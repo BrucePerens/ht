@@ -127,7 +127,7 @@ static const float tones[] = {
 // 
 // DCS codes are sent to the module as the three hex digits followed by the letter
 // 'N' or 'I', for normal or inverted.
-static const uint_16 digital_codes[] = { 0023, 0025, 0026, 0031, 0032, 0036, 0043,
+static const uint16_t digital_codes[] = { 0023, 0025, 0026, 0031, 0032, 0036, 0043,
  0047, 0051, 0053, 0054, 0065, 0071, 0072, 0073, 0074, 0114, 0115, 0116, 0122, 0125,
  0131, 0132, 0134, 0143, 0145, 0152, 0155, 0156, 0162, 0165, 0172, 0174, 0205, 0212,
  0223, 0225, 0226, 0243, 0244, 0245, 0246, 0251, 0252, 0255, 0261, 0263, 0265, 0266,
@@ -415,8 +415,6 @@ radio_sa818(
   (*(s->wait))(0.5);
 
   if ( sa818_command(c, connect_command, connect_response, 0) ) {
-    const size_t version_command_size = sizeof(version_command) - 1;
-    const size_t version_response_size = sizeof(version_response) - 1;
     const char * result = 0;
 
     if ( sa818_command(c, version_command, version_response, &result) ) {
