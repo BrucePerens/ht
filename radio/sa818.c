@@ -83,18 +83,14 @@ static const char connect_command[] = "AT+DMOCONNECT\r\n";
 static const char connect_response[] = "+DMOCONNECT:0\r\n";
 static const char version_command[] = "AT+VERSION\r\n";
 static const char version_response[] = "+VERSION:";
-static const char setgroup_command[] = "AT+DMOSETGROUP=%d,%3.4f,%3.4f,%s,%d,%s\r\n";
 static const char setgroup_response[] = "+DMOSETGROUP:0\r\n";
 /*@unused@*/
 static const char volume_command[] = "AT+DOMOSETVOLUME=%d\r\n";
 /*@unused@*/
 static const char volume_response[] = "+DOMOSETVOLUME:0\r\n";
-static const char setfilter_command[] = "AT+DMOSETFILTER=%d,%d,%d\r\n";
 static const char setfilter_response[] = "+DMOSETFILTER:0\r\n";
-static const char settail_command[] = "AT+DMOSETTAIL=%d\r\n";
 static const char settail_response[] = "+DMOSETTAIL:0\r\n";
 // SA-868 says "AT+RSSI?", and SA-818 says "RSSI?", must test.
-static const char scan_command[] = "S+%3.4f\r\n";
 static const char scan_response[] = "S=";
 static const char rssi_command[] = "RSSI?\r\n";
 static const char rssi_response[] = "RSSI=";
@@ -227,7 +223,7 @@ sa818_frequency_rssi(radio_module * const c, const float frequency, float * cons
 {
   char	buffer[50];
 
-  (void) snprintf(buffer, sizeof(buffer), scan_command, frequency);
+  (void) snprintf(buffer, sizeof(buffer), "S+%3.4f\r\n", frequency);
   const char * result = 0;
   if ( sa818_command(c, buffer, scan_response, &result) ) {
       if ( !!result && *result == '0' )
@@ -314,12 +310,12 @@ sa818_set(
     (void) snprintf(
      s->buffer,
      s->buffer_size,
-     setgroup_command,
-     float_equal(p->bandwidth, 25.0),
+     "AT+DMOSETGROUP=%d,%3.4f,%3.4f,%s,%d,%s\r\n",
+     (int)float_equal(p->bandwidth, 25.0),
      p->transmit_frequency,
      p->receive_frequency,
      receive_subaudio_or_code,
-     roundf(p->squelch_level * 8.0f),
+     (int)roundf(p->squelch_level * 8.0f),
      transmit_subaudio_or_code);
 
     if ( !sa818_command(c, s->buffer, setgroup_response, 0) )
@@ -333,10 +329,10 @@ sa818_set(
     (void) snprintf(
      s->buffer,
      s->buffer_size,
-     setfilter_command,
-     !p->preemphasis_deemphasis,
-     !p->high_pass_filter,
-     !p->low_pass_filter);
+     "AT+DMOSETFILTER=%d,%d,%d\r\n",
+     (int)!p->preemphasis_deemphasis,
+     (int)!p->high_pass_filter,
+     (int)!p->low_pass_filter);
 
     if ( !sa818_command(c, s->buffer, setfilter_response, 0) )
        return false;
@@ -346,8 +342,8 @@ sa818_set(
     (void) snprintf(
      s->buffer,
      s->buffer_size,
-     settail_command,
-     !p->tail_tone);
+     "AT+DMOSETTAIL=%d\r\n",
+     (int)!p->tail_tone);
 
     if ( !sa818_command(c, s->buffer, settail_response, 0) )
        return false;
