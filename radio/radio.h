@@ -1,19 +1,27 @@
+/// Radio: Transceiver module API.
+///
+
 // This is meant to be a device-independent context for an HT, not one specific
 // to SA-818 or any particular module, so that we can write device-independent
 // code, and use it with diverse radio hardware. Of course, that depends on the
 // parameters being similar across devices.
 
-// Opaque internal context for the sa drivers.
-struct _sa818context;
-typedef struct _sa818_context	sa818_context;
+/// \internal
+/// Opaque internal context for the SA-818 driver.
+///
+extern struct sa818context;
+typedef struct sa818_module	sa818_module;
 
-struct _sa828context;
-typedef struct _sa828_context	sa828_context;
+/// \internal
+/// Opaque internal context for the SA-828 driver.
+///
+extern struct sa828context;
+typedef struct sa828_module	sa828_module;
 
 /// Parameters to set on a channel of a transceiver, device-independently.
 /// These were inspired by the SA-818S, but
 /// are meant to be generic across many tranceivers.
-typedef struct _radio_params {
+typedef struct radio_params {
   /// Bandwidth is 12.5 or 25 for most HTs.
   float	bandwidth;
 
@@ -100,7 +108,7 @@ typedef struct _radio_params {
 /// This specifies the band edges of a band. A transceiver might have more than
 /// one band.
 ///
-typedef struct _radio_band_limits {
+typedef struct radio_band_limits {
   /// The lowest frequency that can be set in this band.
   float	low;
 
@@ -108,50 +116,50 @@ typedef struct _radio_band_limits {
   float	high;
 } radio_band_limits;
 
-/// This is device-independent context for a transceiver, not a channel.
+/// \brief This is device-independent context for a radio transceiver module.
 ///
-typedef struct _radio_context {
+typedef struct radio_module {
   /// Driver-provided coroutine to set the operating channel.
-  bool			(*channel)(struct _radio_context const *, const unsigned int channel);
+  bool			(*channel)(struct radio_module const *, const unsigned int channel);
 
   /// Driver-provided coroutine to close the device and de-allocate resources.
-  bool			(*end)(struct _radio_context * const);
+  bool			(*end)(struct radio_module /*@owned@*/ * const);
 
   /// Driver-provided coroutine to determine if a frequency is occupied. This is the
   /// basic function upon which a radio scanner is built. Some transceivers will
   /// provide an RSSI value, or even information about the signal. This currently
   /// only indicates RSSI.
-  bool			(*frequency_rssi)(struct _radio_context * const, const float, float * const);
+  bool			(*frequency_rssi)(struct radio_module * const, const float, float * const);
 
   /// Driver-provided coroutine to get the information about a channel.
-  bool			(*get)(struct _radio_context * const, radio_params * const, const unsigned int channel);
+  bool			(*get)(struct radio_module * const, radio_params * const, const unsigned int channel);
 
   /// Driver-provided heartbeat coroutine, used to keep the device awake or make
   /// sure it's still talking.
-  bool			(*heartbeat)(struct _radio_context * const);
+  bool			(*heartbeat)(struct radio_module * const);
 
   /// Driver-provided coroutine to release the PTT and start receiving.
-  bool			(*receive)(struct _radio_context * const);
+  bool			(*receive)(struct radio_module * const);
 
   /// Driver-provided coroutine to get the RSSI value for the current channel.
-  bool			(*rssi)(struct _radio_context * const, float * const rssi);
+  bool			(*rssi)(struct radio_module * const, float * const rssi);
 
   /// Driver-provided coroutine to set the values for a channel.
-  bool			(*set)(struct _radio_context * const, const radio_params * const, const unsigned int channel);
+  bool			(*set)(struct radio_module * const, const radio_params * const, const unsigned int channel);
 
   /// Driver-provided coroutine to assert PTT and start transmitting.
-  bool			(*transmit)(struct _radio_context * const);
+  bool			(*transmit)(struct radio_module * const);
 
   /// If a function returns false, the error message will be here.
-  const char *		error_message;
+  const char /*@observer@*/ *		error_message;
 
   /// The device name and possibly a version indication.
   /// This will be something like "SA-818_V4.0"
-  const char *		device_name;
+  const char /*@partial@*/ /*@owned@*/ *		device_name;
 
   /// An array of *radio_band_limit* structures specifiying the radio band edges.
   /// *number_of_bands* specifies the number of elements in this array.
-  const radio_band_limits * band_limits;
+  const /*@partial@*/ radio_band_limits /*@owned@*/ * band_limits;
 
   /// The number of bands which this transceiver can communicate upon.
   unsigned int		number_of_bands;
@@ -166,7 +174,160 @@ typedef struct _radio_context {
   /// These are declared so that the debugger can dump them, but all of their
   /// definitions are kept local to their device drivers.
   union _device {
-    sa818_context *	sa818;
-    sa828_context *	sa828;
+    sa818_module /*@owned@*/ *	sa818;
+    sa828_module /*@owned@*/ *	sa828;
   } device;
-} radio_context;
+} radio_module;
+
+// Device-independent transceiver API.
+
+/// \relates radio_module
+/// Change the current channel of the transceiver. On radios with only 1 channel,
+/// this does nothing.
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver, for a hardware transceiver device.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_channel(radio_module * const c, const unsigned int channel);
+
+/// \relates radio_module
+/// Close the interface to the transceiver and release all allocated resources.
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver, for a hardware transceiver device.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_end(radio_module /*@owned@*/ * const c);
+
+/// \relates radio_module
+/// This is the basic operation of a radio scanner. Check if a particular frequency
+/// is occupied, and return the RSSI value. The RSSI is in decibels above
+/// the assumed noise-floor of the receiver, meant for an S-meter display, but this
+/// is a rough estimation only. Some modules only return "occupied" or
+/// "not occupied", in which case the RSSI will be 0 or 255.
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_frequency_rssi(radio_module * const c, const float frequency, float * const rssi);
+
+/// \relates radio_module
+/// Get the current parameters for a transceiver channel. If the radio has only
+/// one channel, this will be channel 0. This would query the actual hardware
+/// transceiver, if it is capable of that, but many of these cheap radio modules
+/// aren't. This software stores what it has previously written to the tranceiver
+/// during this session, and can return that reliably. Although the transceiver may
+/// persist its last settings through power-down, we may not be able to read that
+/// data.
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_get(radio_module * const c, radio_params * const params, const unsigned int channel);
+
+/// \relates radio_module
+/// Nudge the transceiver to keep it awake, and test that we are still connected.
+///
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_heartbeat(radio_module * const c);
+
+/// \relates radio_module
+/// De-assert PTT, and start receiving.
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_receive(radio_module * const c);
+
+/// \relates radio_module
+/// Get the RSSI value for the current channel.
+///
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_rssi(radio_module * const c, float * const rssi);
+
+/// \relates radio_module
+/// Set parameters in a channel of the module.
+/// Some modules have only have one channel, that will be 0.
+/// Some modules have a VFO, that will be 0, and memory channels will be 1 to n.
+///
+/// \warning This writes FLASH memory in some modules. FLASH is specified for a
+/// finite number of write operations. Thus, this can be used some number of times
+/// before
+/// the FLASH wears out. It is not clear if the module will remain operational, other
+/// than being unable to persist memory across power-down, once that happens.
+/// Unfortunately, many
+/// modules are unable to query the present values in FLASH,
+/// and thus this software will write FLASH in those modules at least once after
+/// every power-up. During the session after power-up, this software will try not
+/// to re-write values that are already present in FLASH, but this is limited by
+/// which values are written by a particular operation.
+/// 
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_set(
+ radio_module * const		c,
+ const radio_params * const	p,
+ const unsigned int		channel);
+
+/// \relates radio_module
+/// Assert PTT and start transmitting.
+///
+/// This software or the transceiver module may
+/// provide a transmit time-out function that stops transmission without an
+/// operator command.
+///
+/// @param c A pointer to a radio_module structure returned by the initialization
+/// function of the device driver.
+///
+/// @return True for success, false for failure. When *false* is returned,
+/// *c->error_message* will be set
+/// to an error message in a C string.
+///
+bool
+radio_transmit(radio_module * const c);
