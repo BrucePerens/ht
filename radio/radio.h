@@ -119,62 +119,63 @@ typedef struct radio_band_limits {
 /// \brief This is device-independent context for a radio transceiver module.
 ///
 typedef struct radio_module {
-  /// \brief Driver-provided coroutine to set the operating channel.
+  /// @brief Driver-provided coroutine to set the operating channel.
   ///
-  /// On radios with only 1 channel,
-  /// this does nothing.
+  /// This is the internal implementation of radio_channel(), and has the same
+  /// arguments and return value.
   ///
-  /// \param c A pointer to a radio_module structure returned by the initialization
-  /// function of the device driver, for a hardware transceiver device.
-  ///
-  /// \return True for success, false for failure. When *false* is returned,
-  /// *c->error_message* will be set
-  /// to an error message in a C string.
-  ///
-  bool			(*channel)(struct radio_module const *, const unsigned int channel);
+  bool			*channel(struct radio_module const *, const unsigned int channel);
 
   /// @brief Driver-provided coroutine to close the device and de-allocate resources.
-  /// This is the basic operation of a radio scanner. Check if a particular frequency
-  /// is occupied, and return the RSSI value. The RSSI is in decibels above
-  /// the assumed noise-floor of the receiver, meant for an S-meter display, but this
-  /// is a rough estimation only. Some modules only return "occupied" or
-  /// "not occupied", in which case the RSSI will be 0 or 255.
   ///
-  /// \param c A pointer to a radio_module structure returned by the initialization
-  /// function of the device driver.
-  ///
-  /// \return True for success, false for failure. When *false* is returned,
-  /// *c->error_message* will be set
-  /// to an error message in a C string.
+  /// This is the internal implementation of radio_end(), and has the same
+  /// arguments and return value.
   ///
   bool			(*end)(struct radio_module /*@owned@*/ * const);
 
-  /// Driver-provided coroutine to determine if a frequency is occupied. This is the
-  /// basic function upon which a radio scanner is built. Some transceivers will
-  /// provide an RSSI value, or even information about the signal. This currently
-  /// only indicates RSSI.
+  /// @brief Driver-provided coroutine to determine if a frequency is occupied. 
+  ///
+  /// This is the internal implementation of radio_end(), and has the same
+  /// arguments and return value.
+  ///
   bool			(*frequency_rssi)(struct radio_module * const, const float, float * const);
 
   /// @brief Driver-provided coroutine to get the information about a channel.
+  ///
   /// This is the internal implementation of radio_get(), and has the same
   /// arguments and return value.
   ///
   bool			(*get)(struct radio_module * const, radio_params * const, const unsigned int channel);
 
-  /// Driver-provided heartbeat coroutine, used to keep the device awake or make
-  /// sure it's still talking.
+  /// @brief Driver-provided heartbeat coroutine, used to keep the device awake
+  /// or make sure it's still talking.
+  ///
+  /// This is the internal implementation of radio_heartbeat(), and has the same
+  /// arguments and return value.
   bool			(*heartbeat)(struct radio_module * const);
 
-  /// Driver-provided coroutine to release the PTT and start receiving.
+  /// @brief Driver-provided coroutine to release the PTT and start receiving.
+  ///
+  /// This is the internal implementation of radio_receive(), and has the same
+  /// arguments and return value.
   bool			(*receive)(struct radio_module * const);
 
-  /// Driver-provided coroutine to get the RSSI value for the current channel.
+  /// @brief Driver-provided coroutine to get the RSSI value for the current channel.
+  ///
+  /// This is the internal implementation of radio_rssi(), and has the same
+  /// arguments and return value.
   bool			(*rssi)(struct radio_module * const, float * const rssi);
 
-  /// Driver-provided coroutine to set the values for a channel.
+  /// @brief Driver-provided coroutine to set the values for a channel.
+  ///
+  /// This is the internal implementation of radio_set(), and has the same
+  /// arguments and return value.
   bool			(*set)(struct radio_module * const, const radio_params * const, const unsigned int channel);
 
-  /// Driver-provided coroutine to assert PTT and start transmitting.
+  /// @brief Driver-provided coroutine to assert PTT and start transmitting.
+  ///
+  /// This is the internal implementation of radio_transmit(), and has the same
+  /// arguments and return value.
   bool			(*transmit)(struct radio_module * const);
 
   /// If a function returns false, the error message will be here.
