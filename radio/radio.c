@@ -1,7 +1,4 @@
 #include <stdlib.h>
-#include <stddef.h>
-#include <stdbool.h>
-#include <stdint.h>
 #include <string.h>
 #include "radio.h"
 

@@ -103,9 +103,9 @@ static const char sa868_name[] = "SA-868";
 
 /// The module is capable of these 38 PL tones, and receive and transmit can be
 /// different. The PL tones are sent to the module as the numbers 1 through 38,
-/// no tone is 0. So, convert them using the indices into this table.
-/*@unused@*/ static const float tones[] = {
-  0, 67, 71.9, 74.4, 77, 79.7, 82.5, 85.4, 88.5, 91.5, 94.8, 97.4, 100, 103.5,
+/// no tone is 0. So, convert them using the indices into this table plus 1.
+static const float tones[] = {
+  67, 71.9, 74.4, 77, 79.7, 82.5, 85.4, 88.5, 91.5, 94.8, 97.4, 100, 103.5,
   107.2, 110.9, 114.8, 118.8, 123, 127.3, 131.8, 136.5, 141.3, 146.2, 151.4,
   156.7, 162.2, 167.9, 173.8, 179.9, 186.2, 192.8, 203.5, 210.7, 218.1, 225.7,
   233.6, 241.8, 250.3
@@ -132,7 +132,8 @@ static const char sa868_name[] = "SA-868";
 /// 
 /// It may be that the DCS code is sent to the module as its index in this array
 /// + 39. I'm still investigating.
-/*@unused@*/ static const uint16_t digital_codes[] = { 0023, 0025, 0026, 0031, 0032, 0036, 0043,
+static const uint16_t digital_codes[] = {
+ 0023, 0025, 0026, 0031, 0032, 0036, 0043,
  0047, 0051, 0053, 0054, 0065, 0071, 0072, 0073, 0074, 0114, 0115, 0116, 0122, 0125,
  0131, 0132, 0134, 0143, 0145, 0152, 0155, 0156, 0162, 0165, 0172, 0174, 0205, 0212,
  0223, 0225, 0226, 0243, 0244, 0245, 0246, 0251, 0252, 0255, 0261, 0263, 0265, 0266,
@@ -241,7 +242,7 @@ sa818_get(radio_module * const c, radio_params * const params, const unsigned in
 {
   // Fail if SA-818 is asked for any channel but 0. Once I see the SA-868
   // programming manual, I can code the right thing for that module.
-  if ( channel >= c->number_of_channels )
+  if ( channel >= (unsigned int)c->number_of_channels )
     return false;
 
   memcpy(params, &(c->device.sa818->channels[channel]), sizeof(*params));
@@ -417,6 +418,10 @@ radio_sa818(
   c->set = sa818_set;
   c->transmit = sa818_transmit;
   c->number_of_bands = 1;
+  c->number_of_subaudible_tones = (unsigned int)(sizeof(tones) / sizeof(*tones));
+  c->subaudible_tones = tones;
+  c->number_of_digital_codes = (unsigned int)(sizeof(digital_codes) / sizeof(*digital_codes));
+  c->digital_codes = digital_codes;
   radio_band_limits * const band_limits = c->band_limits = malloc(sizeof(radio_band_limits) * c->number_of_bands);
   if ( band_limits == 0 ) {
     free(c->device.sa818);

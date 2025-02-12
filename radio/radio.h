@@ -1,3 +1,6 @@
+#include <stddef.h>
+#include <stdbool.h>
+#include <stdint.h>
 /// Radio: Transceiver module API.
 /// This is built to drive walkie-talkie modules like the SA-818S.
 /// It's portable to anything that runs C, by adding some device-dependent
@@ -192,7 +195,12 @@ typedef struct radio_module {
   bool			(*transmit)(struct radio_module * const);
 
   /// If a function returns false, the error message will be here.
+  ///
   const char /*@observer@*/ *		error_message;
+
+  /// The last-read RSSI value.
+  ///
+  float			last_rssi; // in dB.
 
   /// The device name and possibly a version indication.
   /// This will be something like "SA-818_V4.0"
@@ -203,13 +211,30 @@ typedef struct radio_module {
   const /*@partial@*/ radio_band_limits /*@owned@*/ * band_limits;
 
   /// The number of bands which this transceiver can communicate upon.
+  ///
   unsigned int		number_of_bands;
 
   /// The number of channels which this transceiver provides.
+  ///
   unsigned int		number_of_channels;
 
-  /// The last-read RSSI value.
-  float			last_rssi; // in dB.
+  /// The number of subaudible tones that this tranceiver provides.
+  ///
+  unsigned int		number_of_subaudible_tones;
+
+  /// The table of subaudible tones that this transceiver provides.
+  /// *number_of_subaudible_tones* provides the number of entries in the table.
+  ///
+  const float /*@observer@*/ * subaudible_tones;
+
+  /// The number of digital squelch codes that this tranceiver provides.
+  ///
+  unsigned int		number_of_digital_codes;
+
+  /// The table of digital squelch codes that this transceiver provides.
+  /// *number_of_digital_codes* provides the number of entries in the table.
+  ///
+  const uint16_t /*@observer@*/	* digital_codes;
 
   /// \private
   /// Pointers to opaque structures for the device drivers.
@@ -229,6 +254,8 @@ typedef struct radio_module {
 ///
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver, for a hardware transceiver device.
+///
+/// \param channel The channel number to set the radio to operate upon.
 ///
 /// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
@@ -260,6 +287,8 @@ radio_end(radio_module /*@owned@*/ * const c);
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
+/// \param rssi A pointer to a float that will be set to the RSSI value.
+///
 /// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
@@ -279,16 +308,22 @@ radio_frequency_rssi(radio_module * const c, const float frequency, float * cons
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
+/// \param params A pointer to a radio_params structure that will be set with the
+/// data about the channel.
+///
 /// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
+/// \attention
+/// Sometimes this information comes from the transceiver, but if the
+/// transceiver can't read out that data, it's just a copy of what this
+/// software last wrote to the transceiver.
 bool
 radio_get(radio_module * const c, radio_params * const params, const unsigned int channel);
 
 /// \relates radio_module
 /// Nudge the transceiver to keep it awake, and test that we are still connected.
-///
 ///
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
@@ -316,9 +351,10 @@ radio_receive(radio_module * const c);
 /// \relates radio_module
 /// Get the RSSI value for the current channel.
 ///
-///
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
+///
+/// \param rssi A pointer to a float that will be set with the RSSI value.
 ///
 /// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
@@ -346,6 +382,11 @@ radio_rssi(radio_module * const c, float * const rssi);
 /// 
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
+///
+/// \param params A pointer to a radio_params structure containing the information
+/// to be set for the channel.
+///
+/// \param channel The number of the channel which will have new data set.
 ///
 /// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
