@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: target/posix_driver.h Source File</title>
+<title>K6BP HT Firmware: os/posix_driver.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,25 +97,21 @@ $(document).ready(function(){initNavTree('posix__driver_8h_source.html',''); ini
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="radio_8h.html">radio.h</a>&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keywordtype">bool</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><a class="code hl_function" href="posix__driver_8h.html#abb7438d1ecf0996c863d0c4d28c98c4f">dummy_gpio</a>(<a class="code hl_union" href="unionplatform__context.html">platform_context</a> * <span class="keyword">const</span> context);</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keywordtype">size_t</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><a class="code hl_function" href="posix__driver_8h.html#ac9d145d30b0aae616f800c5f3113acd2">posix_read</a>(<a class="code hl_union" href="unionplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> buffer_length);</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keywordtype">size_t</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><a class="code hl_function" href="posix__driver_8h.html#ac9d145d30b0aae616f800c5f3113acd2">posix_read</a>(<a class="code hl_union" href="unionplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> buffer_length);</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><a class="code hl_function" href="posix__driver_8h.html#a7108b74cda7a4baad99c487c4cf8aff8">posix_write</a>(<a class="code hl_union" href="unionplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> buffer_length);</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">size_t</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><a class="code hl_function" href="posix__driver_8h.html#a7108b74cda7a4baad99c487c4cf8aff8">posix_write</a>(<a class="code hl_union" href="unionplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> buffer_length);</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><a class="code hl_function" href="posix__driver_8h.html#a1964a67161fc497f698c42a6cac78216">posix_wait</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> seconds);</div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><a class="code hl_function" href="posix__driver_8h.html#a1964a67161fc497f698c42a6cac78216">posix_wait</a>(<span class="keyword">const</span> <span class="keywordtype">float</span> seconds);</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><a class="code hl_function" href="posix__driver_8h.html#a2480c9f8a596887b765fe2ca095913c4">posix_wake</a>();</div>
-<div class="ttc" id="aposix__driver_8h_html_a1964a67161fc497f698c42a6cac78216"><div class="ttname"><a href="posix__driver_8h.html#a1964a67161fc497f698c42a6cac78216">posix_wait</a></div><div class="ttdeci">void posix_wait(const float seconds)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00022">posix.c:22</a></div></div>
-<div class="ttc" id="aposix__driver_8h_html_a2480c9f8a596887b765fe2ca095913c4"><div class="ttname"><a href="posix__driver_8h.html#a2480c9f8a596887b765fe2ca095913c4">posix_wake</a></div><div class="ttdeci">void posix_wake()</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00027">posix.c:27</a></div></div>
-<div class="ttc" id="aposix__driver_8h_html_a7108b74cda7a4baad99c487c4cf8aff8"><div class="ttname"><a href="posix__driver_8h.html#a7108b74cda7a4baad99c487c4cf8aff8">posix_write</a></div><div class="ttdeci">size_t posix_write(platform_context *const context, const char *const buffer, const size_t buffer_length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00016">posix.c:16</a></div></div>
-<div class="ttc" id="aposix__driver_8h_html_abb7438d1ecf0996c863d0c4d28c98c4f"><div class="ttname"><a href="posix__driver_8h.html#abb7438d1ecf0996c863d0c4d28c98c4f">dummy_gpio</a></div><div class="ttdeci">bool dummy_gpio(platform_context *const context)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00004">posix.c:4</a></div></div>
-<div class="ttc" id="aposix__driver_8h_html_ac9d145d30b0aae616f800c5f3113acd2"><div class="ttname"><a href="posix__driver_8h.html#ac9d145d30b0aae616f800c5f3113acd2">posix_read</a></div><div class="ttdeci">size_t posix_read(platform_context *const context, char *const buffer, const size_t buffer_length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00010">posix.c:10</a></div></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><a class="code hl_function" href="posix__driver_8h.html#a2480c9f8a596887b765fe2ca095913c4">posix_wake</a>();</div>
+<div class="ttc" id="aposix__driver_8h_html_a1964a67161fc497f698c42a6cac78216"><div class="ttname"><a href="posix__driver_8h.html#a1964a67161fc497f698c42a6cac78216">posix_wait</a></div><div class="ttdeci">void posix_wait(const float seconds)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00016">posix.c:16</a></div></div>
+<div class="ttc" id="aposix__driver_8h_html_a2480c9f8a596887b765fe2ca095913c4"><div class="ttname"><a href="posix__driver_8h.html#a2480c9f8a596887b765fe2ca095913c4">posix_wake</a></div><div class="ttdeci">void posix_wake()</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00021">posix.c:21</a></div></div>
+<div class="ttc" id="aposix__driver_8h_html_a7108b74cda7a4baad99c487c4cf8aff8"><div class="ttname"><a href="posix__driver_8h.html#a7108b74cda7a4baad99c487c4cf8aff8">posix_write</a></div><div class="ttdeci">size_t posix_write(platform_context *const context, const char *const buffer, const size_t buffer_length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00010">posix.c:10</a></div></div>
+<div class="ttc" id="aposix__driver_8h_html_ac9d145d30b0aae616f800c5f3113acd2"><div class="ttname"><a href="posix__driver_8h.html#ac9d145d30b0aae616f800c5f3113acd2">posix_read</a></div><div class="ttdeci">size_t posix_read(platform_context *const context, char *const buffer, const size_t buffer_length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00004">posix.c:4</a></div></div>
 <div class="ttc" id="aradio_8h_html"><div class="ttname"><a href="radio_8h.html">radio.h</a></div></div>
 <div class="ttc" id="aunionplatform__context_html"><div class="ttname"><a href="unionplatform__context.html">platform_context</a></div><div class="ttdef"><b>Definition:</b> <a href="radio_8h_source.html#l00421">radio.h:421</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
@@ -123,7 +119,7 @@ $(document).ready(function(){initNavTree('posix__driver_8h_source.html',''); ini
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_1bbcb9615bce09de8292fb64e7b04403.html">target</a></li><li class="navelem"><a class="el" href="posix__driver_8h.html">posix_driver.h</a></li>
+    <li class="navelem"><a class="el" href="dir_8b7cb6c889a10e2a101a7e90c854ca4d.html">os</a></li><li class="navelem"><a class="el" href="posix__driver_8h.html">posix_driver.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>
