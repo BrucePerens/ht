@@ -1,4 +1,7 @@
 /// Radio: Transceiver module API.
+/// This is built to drive walkie-talkie modules like the SA-818S.
+/// It's portable to anything that runs C, by adding some device-dependent
+/// coroutines.
 ///
 
 // This is meant to be a device-independent context for an HT, not one specific
