@@ -2,30 +2,25 @@
 #include <stdlib.h>
 #include <stddef.h>
 #include "radio.h"
-#ifdef DRIVER_posix
-#include "posix_driver.h"
-#endif
+#include "os_driver.h"
 #include "platform.h"
-
-static union platform_context platform;
 
 int
 main(int, char * *)
 {
-#ifdef DRIVER_posix
+  union platform_context platform;
 #ifdef DRIVER_sa818
   radio_module * module =
   radio_sa818(
     &platform,
     dummy_gpio,
-    posix_read,
-    posix_write,
-    posix_wait,
-    posix_wake
+    os_read,
+    os_write,
+    os_wait,
+    os_wake
   );
   if ( module )
     (void) radio_end(module);
-#endif
 #endif
   return  0;
 }
