@@ -378,7 +378,7 @@ radio_transmit(radio_module * const c);
 ///
 /// @returns A pointer to a radio_module structure for the transceiver device.
 ///
-extern radio_module *
+extern radio_module /*@null@*/ *
 radio_sa818(
   void /*@observer@*/ * const	serial_context,
   bool		(* gpio)(void * const context),
