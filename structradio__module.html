@@ -98,45 +98,13 @@ $(document).ready(function(){initNavTree('structradio__module.html',''); initRes
 </div><!--header-->
 <div class="contents">
 
-<p>This is device-independent context for a radio transceiver module.  
+<p>This is device-independent context for a radio transceiver module. The user API is documented below under <em>Related Functions</em>  
  <a href="structradio__module.html#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="radio_8h_source.html">radio.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
-Data Structures</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionradio__module_1_1device.html">device</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a2c170d6b72705efd28c4165ca737ef07"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> const *, const unsigned int channel)</td></tr>
-<tr class="memdesc:a2c170d6b72705efd28c4165ca737ef07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to set the operating channel.  <br /></td></tr>
-<tr class="separator:a2c170d6b72705efd28c4165ca737ef07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a71ae2d817bc070c47dc30d7d0760b58e"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a71ae2d817bc070c47dc30d7d0760b58e">end</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td></tr>
-<tr class="memdesc:a71ae2d817bc070c47dc30d7d0760b58e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to close the device and de-allocate resources.  <br /></td></tr>
-<tr class="separator:a71ae2d817bc070c47dc30d7d0760b58e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2fdcdc081f1794cb6788c0dbd724ef65"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a2fdcdc081f1794cb6788c0dbd724ef65">frequency_rssi</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const, const float, float *const)</td></tr>
-<tr class="memdesc:a2fdcdc081f1794cb6788c0dbd724ef65"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to determine if a frequency is occupied.  <br /></td></tr>
-<tr class="separator:a2fdcdc081f1794cb6788c0dbd724ef65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af80721122015f4e88684cb0843b1c068"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#af80721122015f4e88684cb0843b1c068">get</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const, <a class="el" href="structradio__params.html">radio_params</a> *const, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td></tr>
-<tr class="memdesc:af80721122015f4e88684cb0843b1c068"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to get the information about a channel.  <br /></td></tr>
-<tr class="separator:af80721122015f4e88684cb0843b1c068"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a119092f1d5ab8dc3bf783a364713d61a"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a119092f1d5ab8dc3bf783a364713d61a">heartbeat</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td></tr>
-<tr class="memdesc:a119092f1d5ab8dc3bf783a364713d61a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided heartbeat coroutine, used to keep the device awake or make sure it's still talking.  <br /></td></tr>
-<tr class="separator:a119092f1d5ab8dc3bf783a364713d61a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a14b457f9f175338942431941262b7d9e"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a14b457f9f175338942431941262b7d9e">receive</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td></tr>
-<tr class="memdesc:a14b457f9f175338942431941262b7d9e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to release the PTT and start receiving.  <br /></td></tr>
-<tr class="separator:a14b457f9f175338942431941262b7d9e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a825ebd8da209f039078bc82c4a7577e2"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a825ebd8da209f039078bc82c4a7577e2">rssi</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const, float *const rssi)</td></tr>
-<tr class="memdesc:a825ebd8da209f039078bc82c4a7577e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to get the RSSI value for the current channel.  <br /></td></tr>
-<tr class="separator:a825ebd8da209f039078bc82c4a7577e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0782476f48318c528df7a6eae9677e3d"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a0782476f48318c528df7a6eae9677e3d">set</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const, const <a class="el" href="structradio__params.html">radio_params</a> *const, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td></tr>
-<tr class="memdesc:a0782476f48318c528df7a6eae9677e3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to set the values for a channel.  <br /></td></tr>
-<tr class="separator:a0782476f48318c528df7a6eae9677e3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9c2c40400fe2f58fb0aa8fb56a7a5004"><td class="memItemLeft" align="right" valign="top">bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a9c2c40400fe2f58fb0aa8fb56a7a5004">transmit</a> )(struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td></tr>
-<tr class="memdesc:a9c2c40400fe2f58fb0aa8fb56a7a5004"><td class="mdescLeft">&#160;</td><td class="mdescRight">Driver-provided coroutine to assert PTT and start transmitting.  <br /></td></tr>
-<tr class="separator:a9c2c40400fe2f58fb0aa8fb56a7a5004"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aed3e11140a4ff2456ee8cb2bb7271c3c"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#aed3e11140a4ff2456ee8cb2bb7271c3c">error_message</a></td></tr>
 <tr class="memdesc:aed3e11140a4ff2456ee8cb2bb7271c3c"><td class="mdescLeft">&#160;</td><td class="mdescRight">If a function returns false, the error message will be here.  <br /></td></tr>
 <tr class="separator:aed3e11140a4ff2456ee8cb2bb7271c3c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -153,28 +121,26 @@ Data Fields</h2></td></tr>
 <tr class="memitem:a1fc144a866c15129724671d689edbe25"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a1fc144a866c15129724671d689edbe25">last_rssi</a></td></tr>
 <tr class="memdesc:a1fc144a866c15129724671d689edbe25"><td class="mdescLeft">&#160;</td><td class="mdescRight">The last-read RSSI value.  <br /></td></tr>
 <tr class="separator:a1fc144a866c15129724671d689edbe25"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a27d848e24b672d5d6160adcc246b3061"><td class="memItemLeft" align="right" valign="top">union <a class="el" href="unionradio__module_1_1device.html">radio_module::device</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a27d848e24b672d5d6160adcc246b3061">device</a></td></tr>
-<tr class="separator:a27d848e24b672d5d6160adcc246b3061"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="related" name="related"></a>
 Related Functions</h2></td></tr>
 <tr><td class="ititle" colspan="2"><p>(Note that these are not member functions.) </p>
 </td></tr>
-<tr class="memitem:ad5b571054da9d558199f3ab97af95311"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#ad5b571054da9d558199f3ab97af95311">radio_channel</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td></tr>
+<tr class="memitem:ad5b571054da9d558199f3ab97af95311"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#ad5b571054da9d558199f3ab97af95311">radio_channel</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, const unsigned int channel)</td></tr>
 <tr class="separator:ad5b571054da9d558199f3ab97af95311"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49c0ca5bff0f8924deeac56d143dff71"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a49c0ca5bff0f8924deeac56d143dff71">radio_end</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c)</td></tr>
 <tr class="separator:a49c0ca5bff0f8924deeac56d143dff71"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f361e779ab337e4a246281b253c7b17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a1f361e779ab337e4a246281b253c7b17">radio_frequency_rssi</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, const float frequency, float *const <a class="el" href="structradio__module.html#a825ebd8da209f039078bc82c4a7577e2">rssi</a>)</td></tr>
+<tr class="memitem:a1f361e779ab337e4a246281b253c7b17"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a1f361e779ab337e4a246281b253c7b17">radio_frequency_rssi</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, const float frequency, float *const rssi)</td></tr>
 <tr class="separator:a1f361e779ab337e4a246281b253c7b17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af3fe73a1da517959380be524cbbde1b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#af3fe73a1da517959380be524cbbde1b7">radio_get</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, <a class="el" href="structradio__params.html">radio_params</a> *const params, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td></tr>
+<tr class="memitem:af3fe73a1da517959380be524cbbde1b7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#af3fe73a1da517959380be524cbbde1b7">radio_get</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, <a class="el" href="structradio__params.html">radio_params</a> *const params, const unsigned int channel)</td></tr>
 <tr class="separator:af3fe73a1da517959380be524cbbde1b7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c0e674b57feccb9b7082cda4b7058b4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a5c0e674b57feccb9b7082cda4b7058b4">radio_heartbeat</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c)</td></tr>
 <tr class="separator:a5c0e674b57feccb9b7082cda4b7058b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d55b0e6840aa681161c7d8a81fc2955"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a5d55b0e6840aa681161c7d8a81fc2955">radio_receive</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c)</td></tr>
 <tr class="separator:a5d55b0e6840aa681161c7d8a81fc2955"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a9dd0fbb586031c10a66c799945fd5e4f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a9dd0fbb586031c10a66c799945fd5e4f">radio_rssi</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, float *const <a class="el" href="structradio__module.html#a825ebd8da209f039078bc82c4a7577e2">rssi</a>)</td></tr>
+<tr class="memitem:a9dd0fbb586031c10a66c799945fd5e4f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a9dd0fbb586031c10a66c799945fd5e4f">radio_rssi</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, float *const rssi)</td></tr>
 <tr class="separator:a9dd0fbb586031c10a66c799945fd5e4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c2c7495e87b09fdce26a6176a72b4bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc">radio_set</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, const <a class="el" href="structradio__params.html">radio_params</a> *const p, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td></tr>
+<tr class="memitem:a8c2c7495e87b09fdce26a6176a72b4bc"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc">radio_set</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c, const <a class="el" href="structradio__params.html">radio_params</a> *const p, const unsigned int channel)</td></tr>
 <tr class="separator:a8c2c7495e87b09fdce26a6176a72b4bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2e7142fe3559dedffb221b6a5fd85ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca">radio_transmit</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c)</td></tr>
 <tr class="separator:ac2e7142fe3559dedffb221b6a5fd85ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -182,9 +148,9 @@ Related Functions</h2></td></tr>
 <tr class="separator:aaab7423e05ba0a485edca5d6bbe864d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>This is device-independent context for a radio transceiver module. </p>
+<div class="textblock"><p>This is device-independent context for a radio transceiver module. The user API is documented below under <em>Related Functions</em> </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00124">124</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00125">125</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 </div><h2 class="groupheader">Friends And Related Function Documentation</h2>
 <a id="ad5b571054da9d558199f3ab97af95311" name="ad5b571054da9d558199f3ab97af95311"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad5b571054da9d558199f3ab97af95311">&#9670;&#160;</a></span>radio_channel()</h2>
@@ -222,7 +188,7 @@ Related Functions</h2></td></tr>
 <p>Change the current channel of the transceiver. On radios with only 1 channel, this does nothing.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver, for a hardware transceiver device.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver, for a hardware transceiver device.</td></tr>
   </table>
   </dd>
 </dl>
@@ -258,7 +224,7 @@ Related Functions</h2></td></tr>
 <p>Close the interface to the transceiver and release all allocated resources.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver, for a hardware transceiver device.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver, for a hardware transceiver device.</td></tr>
   </table>
   </dd>
 </dl>
@@ -310,7 +276,7 @@ Related Functions</h2></td></tr>
 <p>This is the basic operation of a radio scanner. Check if a particular frequency is occupied, and return the RSSI value. The RSSI is in decibels above the assumed noise-floor of the receiver, meant for an S-meter display, but this is a rough estimation only. Some modules only return "occupied" or "not occupied", in which case the RSSI will be 0 or 255.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -362,7 +328,7 @@ Related Functions</h2></td></tr>
 <p>Get the current parameters for a transceiver channel. If the radio has only one channel, this will be channel 0. This would query the actual hardware transceiver, if it is capable of that, but many of these cheap radio modules aren't. This software stores what it has previously written to the tranceiver during this session, and can return that reliably. Although the transceiver may persist its last settings through power-down, we may not be able to read that data.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -398,7 +364,7 @@ Related Functions</h2></td></tr>
 <p>Nudge the transceiver to keep it awake, and test that we are still connected.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -434,7 +400,7 @@ Related Functions</h2></td></tr>
 <p>De-assert PTT, and start receiving.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -480,7 +446,7 @@ Related Functions</h2></td></tr>
 <p>Get the RSSI value for the current channel.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -559,7 +525,7 @@ Related Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure for the transceiver device. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure for the transceiver device. </dd></dl>
 
 </div>
 </div>
@@ -606,7 +572,7 @@ Related Functions</h2></td></tr>
 <dl class="section warning"><dt>Warning</dt><dd>This writes FLASH memory in some modules. FLASH is specified for a finite number of write operations. Thus, this can be used some number of times before the FLASH wears out. It is not clear if the module will remain operational, other than being unable to persist memory across power-down, once that happens. Unfortunately, many modules are unable to query the present values in FLASH, and thus this software will write FLASH in those modules at least once after every power-up. During the session after power-up, this software will try not to re-write values that are already present in FLASH, but this is limited by which values are written by a particular operation.</dd></dl>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -643,7 +609,7 @@ Related Functions</h2></td></tr>
 <p>This software or the transceiver module may provide a transmit time-out function that stops transmission without an operator command.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module.">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
+    <tr><td class="paramname">c</td><td>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure returned by the initialization function of the device driver.</td></tr>
   </table>
   </dd>
 </dl>
@@ -667,40 +633,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>An array of <em>radio_band_limit</em> structures specifiying the radio band edges. <em>number_of_bands</em> specifies the number of elements in this array. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00193">193</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a2c170d6b72705efd28c4165ca737ef07" name="a2c170d6b72705efd28c4165ca737ef07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2c170d6b72705efd28c4165ca737ef07">&#9670;&#160;</a></span>channel</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* channel) (struct <a class="el" href="structradio__module.html">radio_module</a> const *, const unsigned int channel)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to set the operating channel. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#ad5b571054da9d558199f3ab97af95311">radio_channel()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00130">130</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a27d848e24b672d5d6160adcc246b3061" name="a27d848e24b672d5d6160adcc246b3061"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a27d848e24b672d5d6160adcc246b3061">&#9670;&#160;</a></span>device</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">union <a class="el" href="unionradio__module_1_1device.html">radio_module::device</a> <a class="el" href="unionradio__module_1_1device.html">device</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00203">203</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -717,26 +650,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The device name and possibly a version indication. This will be something like "SA-818_V4.0" </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00189">189</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a71ae2d817bc070c47dc30d7d0760b58e" name="a71ae2d817bc070c47dc30d7d0760b58e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a71ae2d817bc070c47dc30d7d0760b58e">&#9670;&#160;</a></span>end</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* end) (struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to close the device and de-allocate resources. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#a49c0ca5bff0f8924deeac56d143dff71">radio_end()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00137">137</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00199">199</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -754,64 +668,7 @@ Related Functions</h2></td></tr>
 
 <p>If a function returns false, the error message will be here. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00185">185</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a2fdcdc081f1794cb6788c0dbd724ef65" name="a2fdcdc081f1794cb6788c0dbd724ef65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2fdcdc081f1794cb6788c0dbd724ef65">&#9670;&#160;</a></span>frequency_rssi</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* frequency_rssi) (struct <a class="el" href="structradio__module.html">radio_module</a> *const, const float, float *const)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to determine if a frequency is occupied. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#a49c0ca5bff0f8924deeac56d143dff71">radio_end()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00144">144</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="af80721122015f4e88684cb0843b1c068" name="af80721122015f4e88684cb0843b1c068"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af80721122015f4e88684cb0843b1c068">&#9670;&#160;</a></span>get</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* get) (struct <a class="el" href="structradio__module.html">radio_module</a> *const, <a class="el" href="structradio__params.html">radio_params</a> *const, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to get the information about a channel. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#af3fe73a1da517959380be524cbbde1b7">radio_get()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00151">151</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a119092f1d5ab8dc3bf783a364713d61a" name="a119092f1d5ab8dc3bf783a364713d61a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a119092f1d5ab8dc3bf783a364713d61a">&#9670;&#160;</a></span>heartbeat</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* heartbeat) (struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided heartbeat coroutine, used to keep the device awake or make sure it's still talking. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#a5c0e674b57feccb9b7082cda4b7058b4">radio_heartbeat()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00158">158</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00195">195</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -829,7 +686,7 @@ Related Functions</h2></td></tr>
 
 <p>The last-read RSSI value. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00202">202</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00212">212</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -847,7 +704,7 @@ Related Functions</h2></td></tr>
 
 <p>The number of bands which this transceiver can communicate upon. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00196">196</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00206">206</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -865,83 +722,7 @@ Related Functions</h2></td></tr>
 
 <p>The number of channels which this transceiver provides. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00199">199</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a14b457f9f175338942431941262b7d9e" name="a14b457f9f175338942431941262b7d9e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a14b457f9f175338942431941262b7d9e">&#9670;&#160;</a></span>receive</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* receive) (struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to release the PTT and start receiving. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#a5d55b0e6840aa681161c7d8a81fc2955">radio_receive()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00164">164</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a825ebd8da209f039078bc82c4a7577e2" name="a825ebd8da209f039078bc82c4a7577e2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a825ebd8da209f039078bc82c4a7577e2">&#9670;&#160;</a></span>rssi</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* rssi) (struct <a class="el" href="structradio__module.html">radio_module</a> *const, float *const rssi)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to get the RSSI value for the current channel. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#a9dd0fbb586031c10a66c799945fd5e4f">radio_rssi()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00170">170</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a0782476f48318c528df7a6eae9677e3d" name="a0782476f48318c528df7a6eae9677e3d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a0782476f48318c528df7a6eae9677e3d">&#9670;&#160;</a></span>set</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* set) (struct <a class="el" href="structradio__module.html">radio_module</a> *const, const <a class="el" href="structradio__params.html">radio_params</a> *const, const unsigned int <a class="el" href="structradio__module.html#a2c170d6b72705efd28c4165ca737ef07">channel</a>)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to set the values for a channel. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc">radio_set()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00176">176</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
-
-</div>
-</div>
-<a id="a9c2c40400fe2f58fb0aa8fb56a7a5004" name="a9c2c40400fe2f58fb0aa8fb56a7a5004"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c2c40400fe2f58fb0aa8fb56a7a5004">&#9670;&#160;</a></span>transmit</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">bool(* transmit) (struct <a class="el" href="structradio__module.html">radio_module</a> *const)</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Driver-provided coroutine to assert PTT and start transmitting. </p>
-<p>This is the internal implementation of <a class="el" href="structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca">radio_transmit()</a>, and has the same arguments and return value. </p>
-
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00182">182</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00209">209</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
