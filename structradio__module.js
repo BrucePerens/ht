@@ -1,7 +1,6 @@
 var structradio__module =
 [
     [ "_device", "unionradio__module_1_1__device.html", "unionradio__module_1_1__device" ],
-    [ "get", "structradio__module.html#af80721122015f4e88684cb0843b1c068", null ],
     [ "radio_channel", "structradio__module.html#ad5b571054da9d558199f3ab97af95311", null ],
     [ "radio_end", "structradio__module.html#a49c0ca5bff0f8924deeac56d143dff71", null ],
     [ "radio_frequency_rssi", "structradio__module.html#a1f361e779ab337e4a246281b253c7b17", null ],
@@ -19,6 +18,7 @@ var structradio__module =
     [ "end", "structradio__module.html#a71ae2d817bc070c47dc30d7d0760b58e", null ],
     [ "error_message", "structradio__module.html#aed3e11140a4ff2456ee8cb2bb7271c3c", null ],
     [ "frequency_rssi", "structradio__module.html#a2fdcdc081f1794cb6788c0dbd724ef65", null ],
+    [ "get", "structradio__module.html#af80721122015f4e88684cb0843b1c068", null ],
     [ "heartbeat", "structradio__module.html#a119092f1d5ab8dc3bf783a364713d61a", null ],
     [ "last_rssi", "structradio__module.html#a1fc144a866c15129724671d689edbe25", null ],
     [ "number_of_bands", "structradio__module.html#a1957df4fbd22be2d4727a6192b82f01b", null ],
