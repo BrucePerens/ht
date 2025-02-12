@@ -5,6 +5,7 @@
 #ifdef DRIVER_posix
 #include "posix_driver.h"
 #endif
+#include "platform.h"
 
 static union platform_context platform;
 

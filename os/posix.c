@@ -1,11 +1,5 @@
 #include "posix_driver.h"
 
-bool
-dummy_gpio(platform_context * const context)
-{
-  return true;
-}
-
 size_t
 posix_read(platform_context * const context, char * const buffer, const size_t buffer_length)
 {
