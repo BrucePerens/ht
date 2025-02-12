@@ -1,7 +1,7 @@
 var posix_8c =
 [
-    [ "posix_read", "posix_8c.html#ac9d145d30b0aae616f800c5f3113acd2", null ],
-    [ "posix_wait", "posix_8c.html#a1964a67161fc497f698c42a6cac78216", null ],
-    [ "posix_wake", "posix_8c.html#a2480c9f8a596887b765fe2ca095913c4", null ],
-    [ "posix_write", "posix_8c.html#ac89f00ec1d81c80bb1d7ea119edbac8c", null ]
+    [ "os_read", "posix_8c.html#aac4bd9f218a0f0745d24853d3deb2f82", null ],
+    [ "os_wait", "posix_8c.html#a872634312711abb7f027126c858cfda2", null ],
+    [ "os_wake", "posix_8c.html#a81d3e49e54e29e474a1ea5240244240e", null ],
+    [ "os_write", "posix_8c.html#a497ef7fff7a7bb24a5dffcd433c33bc3", null ]
 ];
