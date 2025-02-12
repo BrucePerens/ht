@@ -156,21 +156,8 @@ typedef struct radio_module {
   bool			(*frequency_rssi)(struct radio_module * const, const float, float * const);
 
   /// @brief Driver-provided coroutine to get the information about a channel.
-  /// \relates radio_module
-  /// Get the current parameters for a transceiver channel. If the radio has only
-  /// one channel, this will be channel 0. This would query the actual hardware
-  /// transceiver, if it is capable of that, but many of these cheap radio modules
-  /// aren't. This software stores what it has previously written to the tranceiver
-  /// during this session, and can return that reliably. Although the transceiver may
-  /// persist its last settings through power-down, we may not be able to read that
-  /// data.
-  ///
-  /// \param c A pointer to a radio_module structure returned by the initialization
-  /// function of the device driver.
-  ///
-  /// \return True for success, false for failure. When *false* is returned,
-  /// *c->error_message* will be set
-  /// to an error message in a C string.
+  /// This is the internal implementation of radio_get(), and has the same
+  /// arguments and return value.
   ///
   bool			(*get)(struct radio_module * const, radio_params * const, const unsigned int channel);
 
