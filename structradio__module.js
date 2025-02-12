@@ -1,7 +1,6 @@
 var structradio__module =
 [
-    [ "_device", "unionradio__module_1_1__device.html", "unionradio__module_1_1__device" ],
-    [ "channel", "structradio__module.html#a60ce1dca1fd6945439ad87e9e30083ee", null ],
+    [ "device", "unionradio__module_1_1device.html", "unionradio__module_1_1device" ],
     [ "radio_channel", "structradio__module.html#ad5b571054da9d558199f3ab97af95311", null ],
     [ "radio_end", "structradio__module.html#a49c0ca5bff0f8924deeac56d143dff71", null ],
     [ "radio_frequency_rssi", "structradio__module.html#a1f361e779ab337e4a246281b253c7b17", null ],
@@ -13,7 +12,8 @@ var structradio__module =
     [ "radio_set", "structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc", null ],
     [ "radio_transmit", "structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca", null ],
     [ "band_limits", "structradio__module.html#a0f38b44db43c0424d20d7c5e0f8d4ab0", null ],
-    [ "device", "structradio__module.html#a8f97807f85f80ee6a87f509214f2d30d", null ],
+    [ "channel", "structradio__module.html#a2c170d6b72705efd28c4165ca737ef07", null ],
+    [ "device", "structradio__module.html#a27d848e24b672d5d6160adcc246b3061", null ],
     [ "device_name", "structradio__module.html#a77c7adc4663824cee5fa2e15b9e266e7", null ],
     [ "end", "structradio__module.html#a71ae2d817bc070c47dc30d7d0760b58e", null ],
     [ "error_message", "structradio__module.html#aed3e11140a4ff2456ee8cb2bb7271c3c", null ],

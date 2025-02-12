@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['number_5fof_5fbands_0',['number_of_bands',['../structradio__module.html#a1957df4fbd22be2d4727a6192b82f01b',1,'radio_module']]],
-  ['number_5fof_5fchannels_1',['number_of_channels',['../structradio__module.html#a1589deffb9e79b915149fa029609ab63',1,'radio_module']]]
+  ['preemphasis_5fdeemphasis_0',['preemphasis_deemphasis',['../structradio__params.html#af72fda9873998e1d8769803acfd94482',1,'radio_params']]],
+  ['ptt_1',['ptt',['../structsa818__module.html#a258ed623843bcc4187dcaf8011403c82',1,'sa818_module']]]
 ];

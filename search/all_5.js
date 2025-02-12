@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['frequency_5frssi_0',['frequency_rssi',['../structradio__module.html#a2fdcdc081f1794cb6788c0dbd724ef65',1,'radio_module']]]
+  ['get_0',['get',['../structradio__module.html#af80721122015f4e88684cb0843b1c068',1,'radio_module']]],
+  ['gpio_1',['gpio',['../structsa818__module.html#a357f693f828c02240b074e4ae989f7f1',1,'sa818_module']]]
 ];

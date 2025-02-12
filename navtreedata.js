@@ -25,11 +25,8 @@
 var NAVTREE =
 [
   [ "K6BP HT Firmware", "index.html", [
-    [ "Getting Started", "index.html#autotoc_md0", null ],
-    [ "K6BP HT Firmware", "md__r_e_a_d_m_e.html", [
-      [ "API Documentation", "md__r_e_a_d_m_e.html#autotoc_md2", null ]
-    ] ],
     [ "Data Structures", "annotated.html", [
+      [ "Getting Started", "index.html#autotoc_md0", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
