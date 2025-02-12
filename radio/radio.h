@@ -127,7 +127,7 @@ typedef struct radio_module {
   /// This is the internal implementation of radio_channel(), and has the same
   /// arguments and return value.
   ///
-  bool			*channel(struct radio_module const *, const unsigned int channel);
+  bool			(*channel)(struct radio_module const *, const unsigned int channel);
 
   /// @brief Driver-provided coroutine to close the device and de-allocate resources.
   ///
@@ -204,7 +204,7 @@ typedef struct radio_module {
   /// Pointers to opaque structures for the device drivers.
   /// These are declared so that the debugger can dump them, but all of their
   /// definitions are kept local to their device drivers.
-  union _device {
+  union device {
     sa818_module /*@owned@*/ *	sa818;
     sa828_module /*@owned@*/ *	sa828;
   } device;
