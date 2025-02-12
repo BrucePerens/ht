@@ -1,6 +1,6 @@
 # Build output
 ht
-doc/html
+docs/html
 
 # Prerequisites
 *.d
