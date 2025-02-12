@@ -49,7 +49,7 @@ typedef struct sa818_module {
 
   // This is an opaque, caller-provided context for serial I/O.
   // On POSIX-like things it would be a file descriptor.
-  void /*@observer@*/ *	serial_context;	// Context passed to the read and write coroutines.
+  serial_context /*@shared@*/ * s_context;	// Context passed to the read and write coroutines.
 
   // This is a caller-provided GPIO function.
   bool		(*gpio)(void * const context);
@@ -163,9 +163,9 @@ sa818_command(
 
   const size_t command_length = strlen(command);
 
-  if ( (*(s->write))(s->serial_context, command, command_length) == command_length ) {
+  if ( (*(s->write))(s->s_context, command, command_length) == command_length ) {
     const size_t response_length = strlen(response);
-    const size_t size = (*(s->read))(s->serial_context, s->buffer, s->buffer_size - 1);
+    const size_t size = (*(s->read))(s->s_context, s->buffer, s->buffer_size - 1);
     if ( size >= response_length ) {
       if ( memcmp(s->buffer, response, response_length) == 0 ) {
         if ( result ) {
@@ -365,27 +365,13 @@ sa818_transmit(radio_module * const c)
 }
 
 // Initialize the context structure.
-radio_module /*@null@*/ /*@only@*/ /*@owned@*/ *
+radio_module /*@null@*/ *
 radio_sa818(
-  // This is an opaque, caller-provided context for serial I/O.
-  // On POSIX-like things it would be a file descriptor.
-  void /*@observer@*/ * const	serial_context,	// Context passed to the read and write coroutines.
-
-  // This is a caller-provided GPIO function.
-  bool		(* gpio)(void * const context),
-
-  // This is a caller-provided serial input function.
-  size_t	(*read)(void * const context, char * const buffer, const size_t buffer_length),
-
-  // This is a caller-provided serial output function.
-  size_t	(*write)(void * const context, const char * const buffer, const size_t buffer_length),
-
-  // Caller-provided wait function, waits the float argument seconds.
-  void		(*wait)(const float),
-
-  // This is a caller-provided function to wake up the caller when something
-  // changes in the radio.
-  /*@unused@*/
+  serial_context * const s_context,
+  bool		(* gpio)(serial_context * const context),
+  size_t	(*read)(serial_context * const context, char * const buffer, const size_t buffer_length),
+  size_t	(*write)(serial_context * const context, const char * const buffer, const size_t buffer_length),
+  void		(*wait)(const float seconds),
   void		(*wake)()
 )
 {
@@ -400,7 +386,7 @@ radio_sa818(
     return 0;
   }
   memset(c->device.sa818, 0, sizeof(*c->device.sa818));
-  s->serial_context = serial_context;
+  s->s_context = s_context;
   s->gpio = gpio;
   s->read = read;
   s->write = write;

@@ -1,3 +1,6 @@
+#ifndef _RADIO_DOT_H_
+#define _RADIO_DOT_H_
+
 #include <stddef.h>
 #include <stdbool.h>
 #include <stdint.h>
@@ -415,6 +418,11 @@ radio_set(
 bool
 radio_transmit(radio_module * const c);
 
+union serial_context {
+};
+typedef union serial_context serial_context;
+
+
 /// \relates radio_module
 /// Connect a module that uses the SA-818 command set.
 /// This can be SA-808, SA-818, SA-818S, SA-868, SA-868S, DRA-818.
@@ -452,10 +460,12 @@ radio_transmit(radio_module * const c);
 ///
 extern radio_module /*@null@*/ *
 radio_sa818(
-  void /*@observer@*/ * const	serial_context,
-  bool		(* gpio)(void * const context),
-  size_t	(*read)(void * const context, char * const buffer, const size_t buffer_length),
-  size_t	(*write)(void * const context, const char * const buffer, const size_t buffer_length),
+  serial_context /*@shared@*/ * const context,
+  bool		(* gpio)(serial_context * const context),
+  size_t	(*read)(serial_context * const context, char * const buffer, const size_t buffer_length),
+  size_t	(*write)(serial_context * const context, const char * const buffer, const size_t buffer_length),
   void		(*wait)(const float seconds),
   void		(*wake)()
 );
+
+#endif
