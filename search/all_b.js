@@ -12,7 +12,7 @@ var searchData=
   ['radio_5fparams_9',['radio_params',['../radio_8h.html#ae5eebaf3d90c762fe53f1c7d0cbe2aeb',1,'radio_params():&#160;radio.h'],['../structradio__params.html',1,'radio_params']]],
   ['radio_5freceive_10',['radio_receive',['../radio_8c.html#a5d55b0e6840aa681161c7d8a81fc2955',1,'radio_receive():&#160;radio.c'],['../structradio__module.html#a5d55b0e6840aa681161c7d8a81fc2955',1,'radio_module::radio_receive()']]],
   ['radio_5frssi_11',['radio_rssi',['../radio_8c.html#a9dd0fbb586031c10a66c799945fd5e4f',1,'radio_rssi():&#160;radio.c'],['../structradio__module.html#a9dd0fbb586031c10a66c799945fd5e4f',1,'radio_module::radio_rssi()']]],
-  ['radio_5fsa818_12',['radio_sa818',['../sa818_8c.html#a1e60f9fbe2bea2096d85574ec5d845ea',1,'radio_sa818():&#160;sa818.c'],['../structradio__module.html#a7932a016e41a572f4f061ff2599a9a40',1,'radio_module::radio_sa818()']]],
+  ['radio_5fsa818_12',['radio_sa818',['../sa818_8c.html#ade662085284f67c529680aaa40f1fe43',1,'radio_sa818():&#160;sa818.c'],['../structradio__module.html#a9266266eb8e81da8e625df8e205dafef',1,'radio_module::radio_sa818()']]],
   ['radio_5fset_13',['radio_set',['../radio_8c.html#a8c2c7495e87b09fdce26a6176a72b4bc',1,'radio_set():&#160;radio.c'],['../structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc',1,'radio_module::radio_set()']]],
   ['radio_5ftransmit_14',['radio_transmit',['../radio_8c.html#ac2e7142fe3559dedffb221b6a5fd85ca',1,'radio_transmit():&#160;radio.c'],['../structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca',1,'radio_module::radio_transmit()']]],
   ['read_15',['read',['../structsa818__module.html#a45415272a1de37bc40e3577efb6203fb',1,'sa818_module']]],

@@ -7,7 +7,7 @@ var searchData=
   ['radio_5fheartbeat_4',['radio_heartbeat',['../structradio__module.html#a5c0e674b57feccb9b7082cda4b7058b4',1,'radio_module::radio_heartbeat()'],['../radio_8c.html#a5c0e674b57feccb9b7082cda4b7058b4',1,'radio_heartbeat():&#160;radio.c']]],
   ['radio_5freceive_5',['radio_receive',['../structradio__module.html#a5d55b0e6840aa681161c7d8a81fc2955',1,'radio_module::radio_receive()'],['../radio_8c.html#a5d55b0e6840aa681161c7d8a81fc2955',1,'radio_receive():&#160;radio.c']]],
   ['radio_5frssi_6',['radio_rssi',['../structradio__module.html#a9dd0fbb586031c10a66c799945fd5e4f',1,'radio_module::radio_rssi()'],['../radio_8c.html#a9dd0fbb586031c10a66c799945fd5e4f',1,'radio_rssi():&#160;radio.c']]],
-  ['radio_5fsa818_7',['radio_sa818',['../structradio__module.html#a7932a016e41a572f4f061ff2599a9a40',1,'radio_module::radio_sa818()'],['../sa818_8c.html#a1e60f9fbe2bea2096d85574ec5d845ea',1,'radio_sa818():&#160;sa818.c']]],
+  ['radio_5fsa818_7',['radio_sa818',['../structradio__module.html#a9266266eb8e81da8e625df8e205dafef',1,'radio_module::radio_sa818()'],['../sa818_8c.html#ade662085284f67c529680aaa40f1fe43',1,'radio_sa818():&#160;sa818.c']]],
   ['radio_5fset_8',['radio_set',['../structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc',1,'radio_module::radio_set()'],['../radio_8c.html#a8c2c7495e87b09fdce26a6176a72b4bc',1,'radio_set():&#160;radio.c']]],
   ['radio_5ftransmit_9',['radio_transmit',['../structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca',1,'radio_module::radio_transmit()'],['../radio_8c.html#ac2e7142fe3559dedffb221b6a5fd85ca',1,'radio_transmit(radio_module *const c):&#160;radio.c']]],
   ['roundf_10',['roundf',['../sa818_8c.html#a4f48da4925df1ba027b5f96eb9bd2878',1,'sa818.c']]]

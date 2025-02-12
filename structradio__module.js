@@ -7,7 +7,7 @@ var structradio__module =
     [ "radio_heartbeat", "structradio__module.html#a5c0e674b57feccb9b7082cda4b7058b4", null ],
     [ "radio_receive", "structradio__module.html#a5d55b0e6840aa681161c7d8a81fc2955", null ],
     [ "radio_rssi", "structradio__module.html#a9dd0fbb586031c10a66c799945fd5e4f", null ],
-    [ "radio_sa818", "structradio__module.html#a7932a016e41a572f4f061ff2599a9a40", null ],
+    [ "radio_sa818", "structradio__module.html#a9266266eb8e81da8e625df8e205dafef", null ],
     [ "radio_set", "structradio__module.html#a8c2c7495e87b09fdce26a6176a72b4bc", null ],
     [ "radio_transmit", "structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca", null ],
     [ "band_limits", "structradio__module.html#a0f38b44db43c0424d20d7c5e0f8d4ab0", null ],
