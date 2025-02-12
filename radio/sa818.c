@@ -49,7 +49,7 @@ typedef struct sa818_module {
 
   // This is an opaque, caller-provided context for serial I/O.
   // On POSIX-like things it would be a file descriptor.
-  serial_context /*@shared@*/ * s_context;	// Context passed to the read and write coroutines.
+  platform_context /*@shared@*/ * platform;	// Context passed to the read and write coroutines.
 
   // This is a caller-provided GPIO function.
   bool		(*gpio)(void * const context);
@@ -163,9 +163,9 @@ sa818_command(
 
   const size_t command_length = strlen(command);
 
-  if ( (*(s->write))(s->s_context, command, command_length) == command_length ) {
+  if ( (*(s->write))(s->platform, command, command_length) == command_length ) {
     const size_t response_length = strlen(response);
-    const size_t size = (*(s->read))(s->s_context, s->buffer, s->buffer_size - 1);
+    const size_t size = (*(s->read))(s->platform, s->buffer, s->buffer_size - 1);
     if ( size >= response_length ) {
       if ( memcmp(s->buffer, response, response_length) == 0 ) {
         if ( result ) {
@@ -367,10 +367,10 @@ sa818_transmit(radio_module * const c)
 // Initialize the context structure.
 radio_module /*@null@*/ *
 radio_sa818(
-  serial_context * const s_context,
-  bool		(* gpio)(serial_context * const context),
-  size_t	(*read)(serial_context * const context, char * const buffer, const size_t buffer_length),
-  size_t	(*write)(serial_context * const context, const char * const buffer, const size_t buffer_length),
+  platform_context * const platform,
+  bool		(* gpio)(platform_context * const context),
+  size_t	(*read)(platform_context * const context, char * const buffer, const size_t buffer_length),
+  size_t	(*write)(platform_context * const context, const char * const buffer, const size_t buffer_length),
   void		(*wait)(const float seconds),
   void		(*wake)()
 )
@@ -386,7 +386,7 @@ radio_sa818(
     return 0;
   }
   memset(c->device.sa818, 0, sizeof(*c->device.sa818));
-  s->s_context = s_context;
+  s->platform = platform;
   s->gpio = gpio;
   s->read = read;
   s->write = write;

@@ -6,7 +6,7 @@
 #include "posix_driver.h"
 #endif
 
-static union serial_context s_context;
+static union platform_context platform;
 
 int
 main(int, char * *)
@@ -15,7 +15,7 @@ main(int, char * *)
 #ifdef DRIVER_sa818
   radio_module * module =
   radio_sa818(
-    &s_context,
+    &platform,
     dummy_gpio,
     posix_read,
     posix_write,

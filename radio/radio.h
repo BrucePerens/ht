@@ -418,9 +418,12 @@ radio_set(
 bool
 radio_transmit(radio_module * const c);
 
-union serial_context {
+union platform_context {
+#ifdef DRIVER_posix
+  int	fd;
+#endif
 };
-typedef union serial_context serial_context;
+typedef union platform_context platform_context;
 
 
 /// \relates radio_module
@@ -429,7 +432,7 @@ typedef union serial_context serial_context;
 /// This is portable code, functions to perform I/O on a specific platform
 /// are passed as coroutines.
 ///
-/// @param serial_context An opaque context passed to the serial co-routines.
+/// @param platform_context An opaque context passed to the serial co-routines.
 ///
 /// @param gpio A user-provided coroutine to control GPIO connected to the
 /// transceiver device. This is expected to interpret the states of the
@@ -460,10 +463,10 @@ typedef union serial_context serial_context;
 ///
 extern radio_module /*@null@*/ *
 radio_sa818(
-  serial_context /*@shared@*/ * const context,
-  bool		(* gpio)(serial_context * const context),
-  size_t	(*read)(serial_context * const context, char * const buffer, const size_t buffer_length),
-  size_t	(*write)(serial_context * const context, const char * const buffer, const size_t buffer_length),
+  platform_context /*@shared@*/ * const context,
+  bool		(* gpio)(platform_context * const context),
+  size_t	(*read)(platform_context * const context, char * const buffer, const size_t buffer_length),
+  size_t	(*write)(platform_context * const context, const char * const buffer, const size_t buffer_length),
   void		(*wait)(const float seconds),
   void		(*wake)()
 );
