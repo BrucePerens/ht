@@ -133,7 +133,20 @@ typedef struct radio_module {
   ///
   bool			(*channel)(struct radio_module const *, const unsigned int channel);
 
-  /// Driver-provided coroutine to close the device and de-allocate resources.
+  /// @brief Driver-provided coroutine to close the device and de-allocate resources.
+  /// This is the basic operation of a radio scanner. Check if a particular frequency
+  /// is occupied, and return the RSSI value. The RSSI is in decibels above
+  /// the assumed noise-floor of the receiver, meant for an S-meter display, but this
+  /// is a rough estimation only. Some modules only return "occupied" or
+  /// "not occupied", in which case the RSSI will be 0 or 255.
+  ///
+  /// \param c A pointer to a radio_module structure returned by the initialization
+  /// function of the device driver.
+  ///
+  /// \return True for success, false for failure. When *false* is returned,
+  /// *c->error_message* will be set
+  /// to an error message in a C string.
+  ///
   bool			(*end)(struct radio_module /*@owned@*/ * const);
 
   /// Driver-provided coroutine to determine if a frequency is occupied. This is the
