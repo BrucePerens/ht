@@ -148,13 +148,13 @@ Related Functions</h2></td></tr>
 <tr class="separator:a8c2c7495e87b09fdce26a6176a72b4bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac2e7142fe3559dedffb221b6a5fd85ca"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca">radio_transmit</a> (<a class="el" href="structradio__module.html">radio_module</a> *const c)</td></tr>
 <tr class="separator:ac2e7142fe3559dedffb221b6a5fd85ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaab7423e05ba0a485edca5d6bbe864d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#aaab7423e05ba0a485edca5d6bbe864d3">radio_sa818</a> (void *const serial_context, bool(*gpio)(void *const context), size_t(*read)(void *const context, char *const buffer, const size_t buffer_length), size_t(*write)(void *const context, const char *const buffer, const size_t buffer_length), void(*wait)(const float seconds), void(*wake)())</td></tr>
-<tr class="separator:aaab7423e05ba0a485edca5d6bbe864d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7932a016e41a572f4f061ff2599a9a40"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structradio__module.html#a7932a016e41a572f4f061ff2599a9a40">radio_sa818</a> (<a class="el" href="unionserial__context.html">serial_context</a> *const context, bool(*gpio)(<a class="el" href="unionserial__context.html">serial_context</a> *const context), size_t(*read)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, char *const buffer, const size_t buffer_length), size_t(*write)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, const char *const buffer, const size_t buffer_length), void(*wait)(const float seconds), void(*wake)())</td></tr>
+<tr class="separator:a7932a016e41a572f4f061ff2599a9a40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is device-independent context for a radio transceiver module. The user API is documented below under <em>Related Functions</em> </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00128">128</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00131">131</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 </div><h2 class="groupheader">Friends And Related Function Documentation</h2>
 <a id="ad5b571054da9d558199f3ab97af95311" name="ad5b571054da9d558199f3ab97af95311"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad5b571054da9d558199f3ab97af95311">&#9670;&#160;</a></span>radio_channel()</h2>
@@ -465,8 +465,8 @@ Related Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aaab7423e05ba0a485edca5d6bbe864d3" name="aaab7423e05ba0a485edca5d6bbe864d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaab7423e05ba0a485edca5d6bbe864d3">&#9670;&#160;</a></span>radio_sa818()</h2>
+<a id="a7932a016e41a572f4f061ff2599a9a40" name="a7932a016e41a572f4f061ff2599a9a40"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7932a016e41a572f4f061ff2599a9a40">&#9670;&#160;</a></span>radio_sa818()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -477,25 +477,25 @@ Related Functions</h2></td></tr>
         <tr>
           <td class="memname"><a class="el" href="structradio__module.html">radio_module</a> * radio_sa818 </td>
           <td>(</td>
-          <td class="paramtype">void *const&#160;</td>
-          <td class="paramname"><em>serial_context</em>, </td>
+          <td class="paramtype"><a class="el" href="unionserial__context.html">serial_context</a> *const&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool(*)(void *const context)&#160;</td>
+          <td class="paramtype">bool(*)(<a class="el" href="unionserial__context.html">serial_context</a> *const context)&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t(*)(void *const context, char *const buffer, const size_t buffer_length)&#160;</td>
+          <td class="paramtype">size_t(*)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, char *const buffer, const size_t buffer_length)&#160;</td>
           <td class="paramname"><em>read</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t(*)(void *const context, const char *const buffer, const size_t buffer_length)&#160;</td>
+          <td class="paramtype">size_t(*)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, const char *const buffer, const size_t buffer_length)&#160;</td>
           <td class="paramname"><em>write</em>, </td>
         </tr>
         <tr>
@@ -525,7 +525,7 @@ Related Functions</h2></td></tr>
 <p>Connect a module that uses the SA-818 command set. This can be SA-808, SA-818, SA-818S, SA-868, SA-868S, DRA-818. This is portable code, functions to perform I/O on a specific platform are passed as coroutines.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">serial_context</td><td>An opaque context passed to the serial co-routines.</td></tr>
+    <tr><td class="paramname"><a class="el" href="unionserial__context.html">serial_context</a></td><td>An opaque context passed to the serial co-routines.</td></tr>
     <tr><td class="paramname">gpio</td><td>A user-provided coroutine to control GPIO connected to the transceiver device. This is expected to interpret the states of the <em>enable</em>, <em>high_power</em>, and <em>ptt</em> variables in the <em><a class="el" href="structsa818__module.html">sa818_module</a></em> structure. Note that the state of those variables is opposite what will be asserted on the GPIOs, as the module considers <em>low</em> to be <em>true</em>.</td></tr>
     <tr><td class="paramname">read</td><td>A user-provided coroutine to perform reading from the serial device. The interface is like that of the system read(2), with an opaque datum in place of the file descriptor (on POSIX-like systems it would be the file descriptor). However, unlike read(2), this function is expected to return after receiving "\r\n" or after IO times out.</td></tr>
     <tr><td class="paramname">write</td><td>A user-provided coroutine to perform writing to the serial device. The interface is like that of the system write(2), with an opaque datum in place of the file descriptor (on POSIX-like systems it would be the file descriptor).</td></tr>
@@ -535,6 +535,8 @@ Related Functions</h2></td></tr>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A pointer to a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> structure for the transceiver device. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00369">369</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
 
 </div>
 </div>
@@ -644,7 +646,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>An array of <em>radio_band_limit</em> structures specifiying the radio band edges. <em>number_of_bands</em> specifies the number of elements in this array. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00211">211</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00214">214</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -661,7 +663,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The device name and possibly a version indication. This will be something like "SA-818_V4.0" </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00207">207</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00210">210</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -678,7 +680,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The table of digital squelch codes that this transceiver provides. <em>number_of_digital_codes</em> provides the number of entries in the table. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00237">237</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00240">240</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -695,7 +697,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>If a function returns false, the error message will be here. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00199">199</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00202">202</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -712,7 +714,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The last-read RSSI value. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00203">203</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00206">206</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -729,7 +731,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The number of bands which this transceiver can communicate upon. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00215">215</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00218">218</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -746,7 +748,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The number of channels which this transceiver provides. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00219">219</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00222">222</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -763,7 +765,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The number of digital squelch codes that this tranceiver provides. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00232">232</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00235">235</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -780,7 +782,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The number of subaudible tones that this tranceiver provides. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00223">223</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00226">226</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>
@@ -797,7 +799,7 @@ Related Functions</h2></td></tr>
 </div><div class="memdoc">
 <p>The table of subaudible tones that this transceiver provides. <em>number_of_subaudible_tones</em> provides the number of entries in the table. </p>
 
-<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00228">228</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="radio_8h_source.html#l00231">231</a> of file <a class="el" href="radio_8h_source.html">radio.h</a>.</p>
 
 </div>
 </div>

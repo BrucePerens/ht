@@ -9,7 +9,7 @@ var structsa818__module =
     [ "high_power", "structsa818__module.html#ad0cd310a6ff1dc947e320390092d72cf", null ],
     [ "ptt", "structsa818__module.html#a258ed623843bcc4187dcaf8011403c82", null ],
     [ "read", "structsa818__module.html#a45415272a1de37bc40e3577efb6203fb", null ],
-    [ "serial_context", "structsa818__module.html#aea7da786c92ab14c11201b5edbbcf6a9", null ],
+    [ "s_context", "structsa818__module.html#a4c3607621be1782cba7da8c0f65c6e66", null ],
     [ "version", "structsa818__module.html#a039f1dc229c7bd812108a7e8f54249e5", null ],
     [ "wait", "structsa818__module.html#aa83d6403ba6ffff6c08a89b21d4b01fa", null ],
     [ "wake", "structsa818__module.html#a6a7775fd0e643daa66153aace7dab7aa", null ],

@@ -127,8 +127,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4f48da4925df1ba027b5f96eb9bd2878"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ffaef3fc3f7ddb9856ccd4bcb79e9bc"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#a5ffaef3fc3f7ddb9856ccd4bcb79e9bc">strdup</a> (const char *s)</td></tr>
 <tr class="separator:a5ffaef3fc3f7ddb9856ccd4bcb79e9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aecff87fd291d31c24e4ff57071c7ae36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#aecff87fd291d31c24e4ff57071c7ae36">radio_sa818</a> (void *const serial_context, bool(*gpio)(void *const context), size_t(*read)(void *const context, char *const buffer, const size_t buffer_length), size_t(*write)(void *const context, const char *const buffer, const size_t buffer_length), void(*wait)(const float), void(*wake)())</td></tr>
-<tr class="separator:aecff87fd291d31c24e4ff57071c7ae36"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e60f9fbe2bea2096d85574ec5d845ea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#a1e60f9fbe2bea2096d85574ec5d845ea">radio_sa818</a> (<a class="el" href="unionserial__context.html">serial_context</a> *const s_context, bool(*gpio)(<a class="el" href="unionserial__context.html">serial_context</a> *const context), size_t(*read)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, char *const buffer, const size_t buffer_length), size_t(*write)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, const char *const buffer, const size_t buffer_length), void(*wait)(const float seconds), void(*wake)())</td></tr>
+<tr class="separator:a1e60f9fbe2bea2096d85574ec5d845ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="acadfb69989d55a8fbc7317114712f558" name="acadfb69989d55a8fbc7317114712f558"></a>
@@ -162,40 +162,43 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="aecff87fd291d31c24e4ff57071c7ae36" name="aecff87fd291d31c24e4ff57071c7ae36"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aecff87fd291d31c24e4ff57071c7ae36">&#9670;&#160;</a></span>radio_sa818()</h2>
+<a id="a1e60f9fbe2bea2096d85574ec5d845ea" name="a1e60f9fbe2bea2096d85574ec5d845ea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e60f9fbe2bea2096d85574ec5d845ea">&#9670;&#160;</a></span>radio_sa818()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="structradio__module.html">radio_module</a> * radio_sa818 </td>
           <td>(</td>
-          <td class="paramtype">void *const&#160;</td>
-          <td class="paramname"><em>serial_context</em>, </td>
+          <td class="paramtype"><a class="el" href="unionserial__context.html">serial_context</a> *const&#160;</td>
+          <td class="paramname"><em>s_context</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">bool(*)(void *const context)&#160;</td>
+          <td class="paramtype">bool(*)(<a class="el" href="unionserial__context.html">serial_context</a> *const context)&#160;</td>
           <td class="paramname"><em>gpio</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t(*)(void *const context, char *const buffer, const size_t buffer_length)&#160;</td>
+          <td class="paramtype">size_t(*)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, char *const buffer, const size_t buffer_length)&#160;</td>
           <td class="paramname"><em>read</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">size_t(*)(void *const context, const char *const buffer, const size_t buffer_length)&#160;</td>
+          <td class="paramtype">size_t(*)(<a class="el" href="unionserial__context.html">serial_context</a> *const context, const char *const buffer, const size_t buffer_length)&#160;</td>
           <td class="paramname"><em>write</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">void(*)(const float)&#160;</td>
+          <td class="paramtype">void(*)(const float seconds)&#160;</td>
           <td class="paramname"><em>wait</em>, </td>
         </tr>
         <tr>
@@ -210,6 +213,11 @@ Functions</h2></td></tr>
           <td></td><td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">related</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00369">369</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
