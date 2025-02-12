@@ -5,5 +5,6 @@ var searchData=
   ['sa828_5fmodule_2',['sa828_module',['../radio_8h.html#a0152f720acfa1b5de8c2d66b32e0ee80',1,'radio.h']]],
   ['serial_5fcontext_3',['serial_context',['../structsa818__module.html#aea7da786c92ab14c11201b5edbbcf6a9',1,'sa818_module']]],
   ['squelch_5flevel_4',['squelch_level',['../structradio__params.html#a9c34e30cfcc613368ec6ebb68f4671a2',1,'radio_params']]],
-  ['strdup_5',['strdup',['../sa818_8c.html#a5ffaef3fc3f7ddb9856ccd4bcb79e9bc',1,'sa818.c']]]
+  ['strdup_5',['strdup',['../sa818_8c.html#a5ffaef3fc3f7ddb9856ccd4bcb79e9bc',1,'sa818.c']]],
+  ['subaudible_5ftones_6',['subaudible_tones',['../structradio__module.html#a7f8e07268c9333d061b02f8ce19bdf1d',1,'radio_module']]]
 ];
