@@ -17,5 +17,8 @@ radio.o: radio/radio.c radio/radio.h
 clean:
 	rm ht $(OBJS)
 
+doxygen:
+	doxygen
+
 splint:
 	splint $(INCLUDES) $(SOURCES)

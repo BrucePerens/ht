@@ -8,9 +8,10 @@
 #include <math.h>
 #include "radio.h"
 
-/// splint complains about these not being defined.
+/// splint complains about these not being defined, it's not parsing their headers
+/// correctly for some reason.
 extern float roundf(float);
-char *strdup(const char *s);
+extern char *strdup(const char *s);
 
 // Driver for the SA-808 SA-818, SA-818S, SA-868, SA-868S,
 // DRA-818
@@ -69,12 +70,12 @@ typedef struct sa818_module {
 
   // This is local context for the channel data, so we don't have to read it from
   // the module.
-  /*@partial@*/ radio_params /*@owned@*/ /*@relnull@*/ * channels;
+  /*@partial@*/ radio_params /*@owned@*/ * channels;
 
   char version[50];
 
   // Read I/O buffer.
-  char /*@partial@*/ /*@owned@*/ * buffer;
+  char /*@owned@*/ * buffer;
   size_t  buffer_size;
 } sa818_module;
 
@@ -100,40 +101,38 @@ static const char sa808_name[] = "SA-808";
 // Used to test if the device is an SA-868.
 static const char sa868_name[] = "SA-868";
 
-// The module is capable of these 38 PL tones, and receive and transmit can be
-// different. The PL tones are sent to the module as the numbers 1 through 38,
-// no tone is 0. So, convert them using the indices into this table.
-/*@unused@*/
-static const float tones[] = {
+/// The module is capable of these 38 PL tones, and receive and transmit can be
+/// different. The PL tones are sent to the module as the numbers 1 through 38,
+/// no tone is 0. So, convert them using the indices into this table.
+/*@unused@*/ static const float tones[] = {
   0, 67, 71.9, 74.4, 77, 79.7, 82.5, 85.4, 88.5, 91.5, 94.8, 97.4, 100, 103.5,
   107.2, 110.9, 114.8, 118.8, 123, 127.3, 131.8, 136.5, 141.3, 146.2, 151.4,
   156.7, 162.2, 167.9, 173.8, 179.9, 186.2, 192.8, 203.5, 210.7, 218.1, 225.7,
   233.6, 241.8, 250.3
 };
 
-// DCS codes are represented as OCTAL numbers, and any I/O for them must treat
-// them as such. If you handle them as decimal, your code will get confused.
-//
-// If you are confused by the long binary sequences that the module documentation
-// shows for DCS codes, the good news is that they document an on-the-air sequence,
-// not one you have to program into the module.
-// DCS codes are shifted on to the air MSB first, and have this format:
-// 11 bits Golay pairty.
-// 100
-// 3 bits for high octet.
-// 3 bits for middle octet.
-// 3 bits for low octet.
-//
-// It's not possible to use all 512 codes, because there isn't a start sequence!
-// So, if a code matches another code that has been rotated, you can't use it.
-//
-// Every inverted DCS code is the same as a existing non-inverted DCS code, so there
-// is no reason to provide the option to invert codes.
-// 
-// It may be that the DCS code is sent to the module as its index in this array
-// + 39. I'm still investigating.
-/*@unused@*/
-static const uint16_t digital_codes[] = { 0023, 0025, 0026, 0031, 0032, 0036, 0043,
+/// DCS codes are represented as OCTAL numbers, and any I/O for them must treat
+/// them as such. If you handle them as decimal, your code will get confused.
+///
+/// If you are confused by the long binary sequences that the module documentation
+/// shows for DCS codes, the good news is that they document an on-the-air sequence,
+/// not one you have to program into the module.
+/// DCS codes are shifted on to the air MSB first, and have this format:
+/// 11 bits Golay pairty.
+/// 100
+/// 3 bits for high octet.
+/// 3 bits for middle octet.
+/// 3 bits for low octet.
+///
+/// It's not possible to use all 512 codes, because there isn't a start sequence!
+/// So, if a code matches another code that has been rotated, you can't use it.
+///
+/// Every inverted DCS code is the same as a existing non-inverted DCS code, so there
+/// is no reason to provide the option to invert codes.
+/// 
+/// It may be that the DCS code is sent to the module as its index in this array
+/// + 39. I'm still investigating.
+/*@unused@*/ static const uint16_t digital_codes[] = { 0023, 0025, 0026, 0031, 0032, 0036, 0043,
  0047, 0051, 0053, 0054, 0065, 0071, 0072, 0073, 0074, 0114, 0115, 0116, 0122, 0125,
  0131, 0132, 0134, 0143, 0145, 0152, 0155, 0156, 0162, 0165, 0172, 0174, 0205, 0212,
  0223, 0225, 0226, 0243, 0244, 0245, 0246, 0251, 0252, 0255, 0261, 0263, 0265, 0266,
@@ -150,16 +149,16 @@ float_equal(const float a, const float b)
 }
 
 // Gymnastics so that splint will parse this correctly.
-typedef const char /*@out@*/ * returned_string;
+typedef const char * returned_string;
 
 static bool
 sa818_command(
  radio_module * const c,
  const char * const command,
  const char * const response,
- returned_string /*@null@*/ * const result)
+ returned_string /*@null@*/ /*@shared@*/ * const result)
 {
-  /*@partial@*/ sa818_module * const s = c->device.sa818;
+  sa818_module * const s = c->device.sa818;
 
   const size_t command_length = strlen(command);
 
@@ -464,6 +463,12 @@ radio_sa818(
     }
 
     s->channels = malloc(sizeof(radio_params) * c->number_of_channels);
+    if ( s->channels == 0 ) {
+      free(c->device.sa818);
+      free(c->band_limits);
+      free(c);
+      return 0;
+    }
     // Buffer size must be larger than the largest command or response, on SA-868
     // we set 16 channels at once.
     s->buffer_size = 100 + (20 * (size_t)c->number_of_channels);
@@ -475,6 +480,7 @@ radio_sa818(
       free(c);
       return 0;
     }
+    memset(s->buffer, 0, s->buffer_size);
 
     // Poll for band limits. I don't know if this will work or what are the actual
     // lowest and highest frequencies that can be set.

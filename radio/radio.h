@@ -119,7 +119,18 @@ typedef struct radio_band_limits {
 /// \brief This is device-independent context for a radio transceiver module.
 ///
 typedef struct radio_module {
-  /// Driver-provided coroutine to set the operating channel.
+  /// \brief Driver-provided coroutine to set the operating channel.
+  ///
+  /// On radios with only 1 channel,
+  /// this does nothing.
+  ///
+  /// \param c A pointer to a radio_module structure returned by the initialization
+  /// function of the device driver, for a hardware transceiver device.
+  ///
+  /// \return True for success, false for failure. When *false* is returned,
+  /// *c->error_message* will be set
+  /// to an error message in a C string.
+  ///
   bool			(*channel)(struct radio_module const *, const unsigned int channel);
 
   /// Driver-provided coroutine to close the device and de-allocate resources.
@@ -185,10 +196,10 @@ typedef struct radio_module {
 /// Change the current channel of the transceiver. On radios with only 1 channel,
 /// this does nothing.
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver, for a hardware transceiver device.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -198,10 +209,10 @@ radio_channel(radio_module * const c, const unsigned int channel);
 /// \relates radio_module
 /// Close the interface to the transceiver and release all allocated resources.
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver, for a hardware transceiver device.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -215,10 +226,10 @@ radio_end(radio_module /*@owned@*/ * const c);
 /// is a rough estimation only. Some modules only return "occupied" or
 /// "not occupied", in which case the RSSI will be 0 or 255.
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -234,10 +245,10 @@ radio_frequency_rssi(radio_module * const c, const float frequency, float * cons
 /// persist its last settings through power-down, we may not be able to read that
 /// data.
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -248,10 +259,10 @@ radio_get(radio_module * const c, radio_params * const params, const unsigned in
 /// Nudge the transceiver to keep it awake, and test that we are still connected.
 ///
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -261,10 +272,10 @@ radio_heartbeat(radio_module * const c);
 /// \relates radio_module
 /// De-assert PTT, and start receiving.
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -275,10 +286,10 @@ radio_receive(radio_module * const c);
 /// Get the RSSI value for the current channel.
 ///
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -302,10 +313,10 @@ radio_rssi(radio_module * const c, float * const rssi);
 /// to re-write values that are already present in FLASH, but this is limited by
 /// which values are written by a particular operation.
 /// 
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
@@ -322,12 +333,57 @@ radio_set(
 /// provide a transmit time-out function that stops transmission without an
 /// operator command.
 ///
-/// @param c A pointer to a radio_module structure returned by the initialization
+/// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// @return True for success, false for failure. When *false* is returned,
+/// \return True for success, false for failure. When *false* is returned,
 /// *c->error_message* will be set
 /// to an error message in a C string.
 ///
 bool
 radio_transmit(radio_module * const c);
+
+/// \relates radio_module
+/// Connect a module that uses the SA-818 command set.
+/// This can be SA-808, SA-818, SA-818S, SA-868, SA-868S, DRA-818.
+/// This is portable code, functions to perform I/O on a specific platform
+/// are passed as coroutines.
+///
+/// @param serial_context An opaque context passed to the serial co-routines.
+///
+/// @param gpio A user-provided coroutine to control GPIO connected to the
+/// transceiver device. This is expected to interpret the states of the
+/// *enable*, *high_power*, and *ptt* variables in the *sa818_module* structure.
+/// Note that the state of those variables is opposite what will be asserted on
+/// the GPIOs, as the module considers *low* to be *true*.
+///
+/// @param read A user-provided coroutine to perform reading from the serial device.
+/// The interface is like that of the system read(2), with an opaque datum in place
+/// of the file descriptor (on POSIX-like systems it would be the file descriptor).
+/// However, unlike read(2), this function is expected to return after receiving
+/// "\r\n" or after IO times out.
+///
+/// @param write A user-provided coroutine to perform writing to the serial device.
+/// The interface is like that of the system write(2), with an opaque datum in place
+/// of the file descriptor (on POSIX-like systems it would be the file descriptor).
+///
+/// @param wait A user-provided coroutine to suspend the program for a short interval.
+/// The argument is a float representing the interval in seconds to suspend.
+/// This is used to wait for a short interval after initializing the device.
+///
+/// @param wait A user-provided coroutine to wake the application after something
+/// changes in the radio, for example when it starts receiving a signal after an
+/// interval with the squelch closed. This allows the application to suspend its
+/// process when it's not active, rather than poll.
+///
+/// @returns A pointer to a radio_module structure for the transceiver device.
+///
+extern radio_module *
+radio_sa818(
+  void /*@observer@*/ * const	serial_context,
+  bool		(* gpio)(void * const context),
+  size_t	(*read)(void * const context, char * const buffer, const size_t buffer_length),
+  size_t	(*write)(void * const context, const char * const buffer, const size_t buffer_length),
+  void		(*wait)(const float seconds),
+  void		(*wake)()
+);
