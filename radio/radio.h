@@ -9,7 +9,6 @@
 // code, and use it with diverse radio hardware. Of course, that depends on the
 // parameters being similar across devices.
 
-/// \internal
 /// Opaque internal context for the SA-818 driver.
 ///
 extern struct sa818context;
@@ -120,8 +119,11 @@ typedef struct radio_band_limits {
 } radio_band_limits;
 
 /// \brief This is device-independent context for a radio transceiver module.
+/// The user API is documented below under
+/// *Related Functions*
 ///
 typedef struct radio_module {
+  /// \private
   /// @brief Driver-provided coroutine to set the operating channel.
   ///
   /// This is the internal implementation of radio_channel(), and has the same
@@ -129,6 +131,7 @@ typedef struct radio_module {
   ///
   bool			(*channel)(struct radio_module const *, const unsigned int channel);
 
+  /// \private
   /// @brief Driver-provided coroutine to close the device and de-allocate resources.
   ///
   /// This is the internal implementation of radio_end(), and has the same
@@ -136,6 +139,7 @@ typedef struct radio_module {
   ///
   bool			(*end)(struct radio_module /*@owned@*/ * const);
 
+  /// \private
   /// @brief Driver-provided coroutine to determine if a frequency is occupied. 
   ///
   /// This is the internal implementation of radio_end(), and has the same
@@ -143,6 +147,7 @@ typedef struct radio_module {
   ///
   bool			(*frequency_rssi)(struct radio_module * const, const float, float * const);
 
+  /// \private
   /// @brief Driver-provided coroutine to get the information about a channel.
   ///
   /// This is the internal implementation of radio_get(), and has the same
@@ -150,6 +155,7 @@ typedef struct radio_module {
   ///
   bool			(*get)(struct radio_module * const, radio_params * const, const unsigned int channel);
 
+  /// \private
   /// @brief Driver-provided heartbeat coroutine, used to keep the device awake
   /// or make sure it's still talking.
   ///
@@ -157,24 +163,28 @@ typedef struct radio_module {
   /// arguments and return value.
   bool			(*heartbeat)(struct radio_module * const);
 
+  /// \private
   /// @brief Driver-provided coroutine to release the PTT and start receiving.
   ///
   /// This is the internal implementation of radio_receive(), and has the same
   /// arguments and return value.
   bool			(*receive)(struct radio_module * const);
 
+  /// \private
   /// @brief Driver-provided coroutine to get the RSSI value for the current channel.
   ///
   /// This is the internal implementation of radio_rssi(), and has the same
   /// arguments and return value.
   bool			(*rssi)(struct radio_module * const, float * const rssi);
 
+  /// \private
   /// @brief Driver-provided coroutine to set the values for a channel.
   ///
   /// This is the internal implementation of radio_set(), and has the same
   /// arguments and return value.
   bool			(*set)(struct radio_module * const, const radio_params * const, const unsigned int channel);
 
+  /// \private
   /// @brief Driver-provided coroutine to assert PTT and start transmitting.
   ///
   /// This is the internal implementation of radio_transmit(), and has the same
@@ -201,6 +211,7 @@ typedef struct radio_module {
   /// The last-read RSSI value.
   float			last_rssi; // in dB.
 
+  /// \private
   /// Pointers to opaque structures for the device drivers.
   /// These are declared so that the debugger can dump them, but all of their
   /// definitions are kept local to their device drivers.
