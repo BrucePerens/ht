@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: Globals</title>
+<title>K6BP HT Firmware: platform/k6vp_2/k6vp_2.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('globals_type.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('k6vp__2_8c_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -89,34 +89,26 @@ $(document).ready(function(){initNavTree('globals_type.html',''); initResizable(
 </div>
 </div>
 
+<div class="header">
+  <div class="headertitle"><div class="title">k6vp_2.c</div></div>
+</div><!--header-->
 <div class="contents">
-&#160;<ul>
-<li>channel_ptr&#160;:&#160;<a class="el" href="radio_8h.html#ae036a276ddf910c86e28f02a7f6a056e">radio.h</a></li>
-<li>end_ptr&#160;:&#160;<a class="el" href="radio_8h.html#a97ab7b1e1d743fc3fc3dbc3c23e4d26c">radio.h</a></li>
-<li>frequency_rssi_ptr&#160;:&#160;<a class="el" href="radio_8h.html#adbd16a2ca5fb81c92ae7db0b03fd364a">radio.h</a></li>
-<li>get_ptr&#160;:&#160;<a class="el" href="radio_8h.html#abed0322a89970ea17e80654e77dcb14a">radio.h</a></li>
-<li>gpio_ptr&#160;:&#160;<a class="el" href="platform_8h.html#aee8781cf4932288658809fe456b7c919">platform.h</a></li>
-<li>heartbeat_ptr&#160;:&#160;<a class="el" href="radio_8h.html#a091104ac747ebe050ba65ae2e0fd966b">radio.h</a></li>
-<li>platform_context&#160;:&#160;<a class="el" href="os__driver_8h.html#aeeda0afc6ab4963876d08c36f134a15e">os_driver.h</a>, <a class="el" href="platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e">platform.h</a></li>
-<li>radio_band_limits&#160;:&#160;<a class="el" href="radio_8h.html#acbae05a44edd5ef8f435a1fbdb4b2566">radio.h</a></li>
-<li>radio_channel_data&#160;:&#160;<a class="el" href="radio_8h.html#ae63908176fbf1021655c1d31982c1aa7">radio.h</a></li>
-<li>radio_module&#160;:&#160;<a class="el" href="radio_8h.html#a3cec2072b67c90a4601e8c8fc030b61a">radio.h</a></li>
-<li>read_ptr&#160;:&#160;<a class="el" href="os__driver_8h.html#a9cca664dce0351eb2215cde7ad68816b">os_driver.h</a></li>
-<li>receive_ptr&#160;:&#160;<a class="el" href="radio_8h.html#a6716bd441bf36127897186734a7c711f">radio.h</a></li>
-<li>rssi_ptr&#160;:&#160;<a class="el" href="radio_8h.html#a0dcb5c6330495e838b0a90ccc46ea604">radio.h</a></li>
-<li>sa818_module&#160;:&#160;<a class="el" href="radio_8h.html#a6d472c72726a88ea16e4568f8f82bf2d">radio.h</a></li>
-<li>sa828_module&#160;:&#160;<a class="el" href="radio_8h.html#a0152f720acfa1b5de8c2d66b32e0ee80">radio.h</a></li>
-<li>set_ptr&#160;:&#160;<a class="el" href="radio_8h.html#a282044afdb888a7e876a8e9afa27d6a3">radio.h</a></li>
-<li>transmit_ptr&#160;:&#160;<a class="el" href="radio_8h.html#ab515d27a7c07a098847de53c8f2bb3e3">radio.h</a></li>
-<li>wait_ptr&#160;:&#160;<a class="el" href="os__driver_8h.html#a46594c551533df569d76ac7df56dede7">os_driver.h</a></li>
-<li>wake_ptr&#160;:&#160;<a class="el" href="os__driver_8h.html#afbb20bc31508cbe106418cfa3a7e05b9">os_driver.h</a></li>
-<li>write_ptr&#160;:&#160;<a class="el" href="os__driver_8h.html#aefb6a5af3103f7f97ccc00fff9dd6b3e">os_driver.h</a></li>
-</ul>
-</div><!-- contents -->
+<a href="k6vp__2_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &quot;<a class="code" href="platform_8h.html">platform.h</a>&quot;</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span> </div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno"><a class="line" href="k6vp__2_8c.html#a6080ec8ff14d7454068fdfb018e1a92c">    4</a></span><a class="code hl_function" href="k6vp__2_8c.html#a6080ec8ff14d7454068fdfb018e1a92c">platform_gpio</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span>, <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span>)</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>{</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>}</div>
+<div class="ttc" id="ak6vp__2_8c_html_a6080ec8ff14d7454068fdfb018e1a92c"><div class="ttname"><a href="k6vp__2_8c.html#a6080ec8ff14d7454068fdfb018e1a92c">platform_gpio</a></div><div class="ttdeci">bool platform_gpio(platform_context *const, unsigned long)</div><div class="ttdef"><b>Definition:</b> <a href="k6vp__2_8c_source.html#l00004">k6vp_2.c:4</a></div></div>
+<div class="ttc" id="aplatform_8h_html"><div class="ttname"><a href="platform_8h.html">platform.h</a></div></div>
+<div class="ttc" id="astructplatform__context_html"><div class="ttname"><a href="structplatform__context.html">platform_context</a></div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00008">platform.h:8</a></div></div>
+</div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
+    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_eda4b135dc52868465517878120f33a8.html">k6vp_2</a></li><li class="navelem"><a class="el" href="k6vp__2_8c.html">k6vp_2.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: radio/sa818.c File Reference</title>
+<title>K6BP HT Firmware: platform/dummy/dummy_bits.h File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('sa818_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('dummy__bits_8h.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,50 +91,68 @@ $(document).ready(function(){initNavTree('sa818_8c.html',''); initResizable(); }
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Data Structures</a> &#124;
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">sa818.c File Reference</div></div>
+<a href="#define-members">Macros</a>  </div>
+  <div class="headertitle"><div class="title">dummy_bits.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;stddef.h&gt;</code><br />
-<code>#include &lt;stdbool.h&gt;</code><br />
-<code>#include &lt;stdint.h&gt;</code><br />
-<code>#include &lt;stdio.h&gt;</code><br />
-<code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;float.h&gt;</code><br />
-<code>#include &lt;math.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="radio_8h_source.html">radio.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="platform_8h_source.html">platform.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="gpio__bits_8h_source.html">gpio_bits.h</a>&quot;</code><br />
-<code>#include &quot;<a class="el" href="os__driver_8h_source.html">os_driver.h</a>&quot;</code><br />
-</div>
-<p><a href="sa818_8c_source.html">Go to the source code of this file.</a></p>
+
+<p><a href="dummy__bits_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:a2db930ef23db0f1d2be601381ae83c3e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#a2db930ef23db0f1d2be601381ae83c3e">sa818</a> (<a class="el" href="structplatform__context.html">platform_context</a> *const platform)</td></tr>
-<tr class="separator:a2db930ef23db0f1d2be601381ae83c3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a9c344efcfc6852857bcd5416b204a898"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dummy__bits_8h.html#a9c344efcfc6852857bcd5416b204a898">SA818_ENABLE_BIT</a>&#160;&#160;&#160;(1ul &lt;&lt; 0)</td></tr>
+<tr class="separator:a9c344efcfc6852857bcd5416b204a898"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ef015777fba459003a6e2a0a67e6b77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dummy__bits_8h.html#a8ef015777fba459003a6e2a0a67e6b77">SA818_PTT_BIT</a>&#160;&#160;&#160;(1ul &lt;&lt; 1)</td></tr>
+<tr class="separator:a8ef015777fba459003a6e2a0a67e6b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf8120228ad7d5bc122a36e49739f744"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="dummy__bits_8h.html#aaf8120228ad7d5bc122a36e49739f744">SA818_HIGH_POWER_BIT</a>&#160;&#160;&#160;(1ul &lt;&lt; 2)</td></tr>
+<tr class="separator:aaf8120228ad7d5bc122a36e49739f744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a2db930ef23db0f1d2be601381ae83c3e" name="a2db930ef23db0f1d2be601381ae83c3e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a2db930ef23db0f1d2be601381ae83c3e">&#9670;&#160;</a></span>sa818()</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a9c344efcfc6852857bcd5416b204a898" name="a9c344efcfc6852857bcd5416b204a898"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c344efcfc6852857bcd5416b204a898">&#9670;&#160;</a></span>SA818_ENABLE_BIT</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="structradio__module.html">radio_module</a> * sa818 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="structplatform__context.html">platform_context</a> *const&#160;</td>
-          <td class="paramname"><em>platform</em></td><td>)</td>
-          <td></td>
+          <td class="memname">#define SA818_ENABLE_BIT&#160;&#160;&#160;(1ul &lt;&lt; 0)</td>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Initialize the sa818 driver and retiurn a <a class="el" href="structradio__module.html" title="This is device-independent context for a radio transceiver module. The user API is documented below u...">radio_module</a> pointer for all of the API calls to access it. </p>
 
-<p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00349">349</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="dummy__bits_8h_source.html#l00001">1</a> of file <a class="el" href="dummy__bits_8h_source.html">dummy_bits.h</a>.</p>
+
+</div>
+</div>
+<a id="aaf8120228ad7d5bc122a36e49739f744" name="aaf8120228ad7d5bc122a36e49739f744"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf8120228ad7d5bc122a36e49739f744">&#9670;&#160;</a></span>SA818_HIGH_POWER_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SA818_HIGH_POWER_BIT&#160;&#160;&#160;(1ul &lt;&lt; 2)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dummy__bits_8h_source.html#l00003">3</a> of file <a class="el" href="dummy__bits_8h_source.html">dummy_bits.h</a>.</p>
+
+</div>
+</div>
+<a id="a8ef015777fba459003a6e2a0a67e6b77" name="a8ef015777fba459003a6e2a0a67e6b77"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ef015777fba459003a6e2a0a67e6b77">&#9670;&#160;</a></span>SA818_PTT_BIT</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define SA818_PTT_BIT&#160;&#160;&#160;(1ul &lt;&lt; 1)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="dummy__bits_8h_source.html#l00002">2</a> of file <a class="el" href="dummy__bits_8h_source.html">dummy_bits.h</a>.</p>
 
 </div>
 </div>
@@ -143,7 +161,7 @@ Functions</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_212b08e736d9d694db45040b806dc585.html">radio</a></li><li class="navelem"><a class="el" href="sa818_8c.html">sa818.c</a></li>
+    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_7c00c43fe03654b40378fad724b70f02.html">dummy</a></li><li class="navelem"><a class="el" href="dummy__bits_8h.html">dummy_bits.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

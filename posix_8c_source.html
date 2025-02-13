@@ -97,33 +97,41 @@ $(document).ready(function(){initNavTree('posix_8c_source.html',''); initResizab
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &quot;<a class="code" href="os__driver_8h.html">os_driver.h</a>&quot;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="platform_8h.html">platform.h</a>&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span>ssize_t</div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="os__driver_8h.html#a820727034da050f46ec656cbf5a349c7">    6</a></span><a class="code hl_function" href="posix_8c.html#a86a3ae252c81d2917b8ab4196ae2a31c">os_read</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> length)</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="keywordtype">bool</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno"><a class="line" href="os__driver_8h.html#a43d2fc70c040f05948eca741d477b864">    6</a></span><a class="code hl_function" href="posix_8c.html#a281b94c442733bd31a560b9cbe313710">os_open</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span>, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span>)</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span>{</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  <span class="keywordflow">return</span> read(context-&gt;fd, buffer, length);</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>}</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>ssize_t</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387">   12</a></span><a class="code hl_function" href="posix_8c.html#af09401299bdb2870637a58de060a6dd9">os_write</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> length)</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keywordflow">return</span> write(context-&gt;fd, buffer, length);</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>}</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817">   18</a></span><a class="code hl_function" href="posix_8c.html#a6edb12aeee88418f825314f800c69648">os_wait</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span>, <span class="keyword">const</span> <span class="keywordtype">float</span>)</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="os__driver_8h.html#ac8a68806778c592e06734d7459a458fa">   23</a></span><a class="code hl_function" href="posix_8c.html#adf7da42b8656f694886aec6732e9417b">os_wake</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span>)</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>}</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>  errno = 0;</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>}</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>ssize_t</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="os__driver_8h.html#a820727034da050f46ec656cbf5a349c7">   13</a></span><a class="code hl_function" href="posix_8c.html#a86a3ae252c81d2917b8ab4196ae2a31c">os_read</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> length)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordflow">return</span> read(context-&gt;fd, buffer, length);</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>ssize_t</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno"><a class="line" href="os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387">   19</a></span><a class="code hl_function" href="posix_8c.html#af09401299bdb2870637a58de060a6dd9">os_write</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span> context, <span class="keyword">const</span> <span class="keywordtype">char</span> * <span class="keyword">const</span> buffer, <span class="keyword">const</span> <span class="keywordtype">size_t</span> length)</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>{</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  <span class="keywordflow">return</span> write(context-&gt;fd, buffer, length);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>}</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817">   25</a></span><a class="code hl_function" href="posix_8c.html#a6edb12aeee88418f825314f800c69648">os_wait</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span>, <span class="keyword">const</span> <span class="keywordtype">float</span>)</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>{</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="os__driver_8h.html#ac8a68806778c592e06734d7459a458fa">   30</a></span><a class="code hl_function" href="posix_8c.html#adf7da42b8656f694886aec6732e9417b">os_wake</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> * <span class="keyword">const</span>)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
 <div class="ttc" id="aos__driver_8h_html"><div class="ttname"><a href="os__driver_8h.html">os_driver.h</a></div></div>
 <div class="ttc" id="aplatform_8h_html"><div class="ttname"><a href="platform_8h.html">platform.h</a></div></div>
-<div class="ttc" id="aposix_8c_html_a6edb12aeee88418f825314f800c69648"><div class="ttname"><a href="posix_8c.html#a6edb12aeee88418f825314f800c69648">os_wait</a></div><div class="ttdeci">void os_wait(platform_context *const, const float)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00018">posix.c:18</a></div></div>
-<div class="ttc" id="aposix_8c_html_a86a3ae252c81d2917b8ab4196ae2a31c"><div class="ttname"><a href="posix_8c.html#a86a3ae252c81d2917b8ab4196ae2a31c">os_read</a></div><div class="ttdeci">ssize_t os_read(platform_context *const context, char *const buffer, const size_t length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00006">posix.c:6</a></div></div>
-<div class="ttc" id="aposix_8c_html_adf7da42b8656f694886aec6732e9417b"><div class="ttname"><a href="posix_8c.html#adf7da42b8656f694886aec6732e9417b">os_wake</a></div><div class="ttdeci">void os_wake(platform_context *const)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00023">posix.c:23</a></div></div>
-<div class="ttc" id="aposix_8c_html_af09401299bdb2870637a58de060a6dd9"><div class="ttname"><a href="posix_8c.html#af09401299bdb2870637a58de060a6dd9">os_write</a></div><div class="ttdeci">ssize_t os_write(platform_context *const context, const char *const buffer, const size_t length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00012">posix.c:12</a></div></div>
+<div class="ttc" id="aposix_8c_html_a281b94c442733bd31a560b9cbe313710"><div class="ttname"><a href="posix_8c.html#a281b94c442733bd31a560b9cbe313710">os_open</a></div><div class="ttdeci">bool os_open(platform_context *const, const char *const)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00006">posix.c:6</a></div></div>
+<div class="ttc" id="aposix_8c_html_a6edb12aeee88418f825314f800c69648"><div class="ttname"><a href="posix_8c.html#a6edb12aeee88418f825314f800c69648">os_wait</a></div><div class="ttdeci">void os_wait(platform_context *const, const float)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00025">posix.c:25</a></div></div>
+<div class="ttc" id="aposix_8c_html_a86a3ae252c81d2917b8ab4196ae2a31c"><div class="ttname"><a href="posix_8c.html#a86a3ae252c81d2917b8ab4196ae2a31c">os_read</a></div><div class="ttdeci">ssize_t os_read(platform_context *const context, char *const buffer, const size_t length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00013">posix.c:13</a></div></div>
+<div class="ttc" id="aposix_8c_html_adf7da42b8656f694886aec6732e9417b"><div class="ttname"><a href="posix_8c.html#adf7da42b8656f694886aec6732e9417b">os_wake</a></div><div class="ttdeci">void os_wake(platform_context *const)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00030">posix.c:30</a></div></div>
+<div class="ttc" id="aposix_8c_html_af09401299bdb2870637a58de060a6dd9"><div class="ttname"><a href="posix_8c.html#af09401299bdb2870637a58de060a6dd9">os_write</a></div><div class="ttdeci">ssize_t os_write(platform_context *const context, const char *const buffer, const size_t length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00019">posix.c:19</a></div></div>
 <div class="ttc" id="astructplatform__context_html"><div class="ttname"><a href="structplatform__context.html">platform_context</a></div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00008">platform.h:8</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
