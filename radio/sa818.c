@@ -154,6 +154,10 @@ sa818_command(
 
   const size_t command_length = strlen(command);
 
+  /// Clang analyze wants me to check this.
+  if ( s->buffer == 0 )
+    return false;
+
   if ( (*(s->platform->write))(s->platform, command, command_length) == (ssize_t)command_length ) {
     const size_t response_length = strlen(response);
     const ssize_t size = (*(s->platform->read))(s->platform, s->buffer, (size_t)s->buffer_size - 1);

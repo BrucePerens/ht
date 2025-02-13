@@ -2,6 +2,7 @@
 #define _OS_DRIVER_DOT_H_
 #include <stdbool.h>
 #include <stddef.h>
+#include <sys/types.h>
 #include "radio.h"
 
 extern struct platform_context;

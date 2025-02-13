@@ -11,11 +11,18 @@ typedef struct platform_context {
 #endif
   /*@shared@*/ gpio_ptr	gpio;
   /*@shared@*/ read_ptr	read;
-  /*@shared@*/ write_ptr	write;
+  /*@shared@*/ write_ptr write;
   /*@shared@*/ wait_ptr	wait;
   /*@shared@*/ wake_ptr	wake;
 } platform_context;
 
-bool
+extern bool
 platform_gpio(platform_context * const context);
+
+extern platform_context /*@null@*/ /*@only@*/ *
+platform_init(const char * filename);
+
+extern void
+platform_end(platform_context /*@only@*/ * platform);
+
 #endif

@@ -12,8 +12,8 @@ CFLAGS?= -w -Wall -Wextra
 
 B:=build.$(ARCH)
 DRIVER_OBJS:=$(DRIVERS:%=$(B)/%.o)
-OBJS:= $(B)/main.o $(B)/radio.o $(DRIVER_OBJS)
-SOURCES:= main.c radio/radio.c radio/sa818.c os/posix.c platform/dummy.c
+OBJS:= $(B)/main.o $(B)/radio.o $(B)/platform.o $(DRIVER_OBJS)
+SOURCES:= main.c radio/radio.c radio/sa818.c os/posix.c platform/platform.c platform/dummy.c
 CPPFLAGS:= -I radio -I os -I platform $(DRIVERS:%=-DDRIVER_%=1)
 LIBS:= -lm
 CC_$(ARCH)?=cc
@@ -34,6 +34,9 @@ $(B)/sa818.o: radio/sa818.c radio/radio.h radio/radio_driver.h platform/platform
 $(B)/posix.o: os/posix.c
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
+$(B)/platform.o: platform/platform.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
 $(B)/dummy.o: platform/dummy.c
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
@@ -47,7 +50,7 @@ splint:
 	splint $(CPPFLAGS) $(SOURCES) +posixstrictlib
 
 analyze:
-	clang --analyze $(INCLUDES) $(SOURCES)
+	clang --analyze $(CPPFLAGS) $(SOURCES)
 
 $(B):
 	mkdir build.$(ARCH)

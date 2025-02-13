@@ -1,5 +1,6 @@
 #include <unistd.h>
 #include "os_driver.h"
+#include "platform.h"
 
 ssize_t
 os_read(platform_context * const context, char * const buffer, const size_t length)
