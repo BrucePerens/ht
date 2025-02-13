@@ -29,7 +29,7 @@ typedef struct sa828_module	sa828_module;
 /// Parameters to set on a channel of a transceiver, device-independently.
 /// These were inspired by the SA-818S, but
 /// are meant to be generic across many tranceivers.
-typedef struct radio_params {
+typedef struct radio_channel_data {
   /// Bandwidth is 12.5 or 25 for most HTs.
   float	bandwidth;
 
@@ -111,7 +111,43 @@ typedef struct radio_params {
   /// Enable to play a subaudible tone for squelch tail elimination.
   bool	tail_tone;		// true means on.
 
-} radio_params;
+} radio_channel_data;
+
+/// Type for the pointer to the driver-provided channel() coroutine.
+///
+typedef bool (*channel_ptr)(struct radio_module const *, const unsigned int channel);
+
+/// Type for the pointer to the driver-provided end() coroutine.
+///
+typedef bool (*end_ptr)(struct radio_module /*@owned@*/ * const);
+
+/// Type for the pointer to the driver-provided frequency_rssi() coroutine.
+///
+typedef bool (*frequency_rssi_ptr)(struct radio_module * const, const float, float * const);
+
+/// Type for the pointer to the driver-provided get() coroutine.
+///
+typedef bool (*get_ptr)(struct radio_module * const, radio_channel_data * const, const unsigned int channel);
+
+/// Type for the pointer to the driver-provided heartbeat() coroutine.
+///
+typedef bool (*heartbeat_ptr)(struct radio_module * const);
+
+/// Type for the pointer to the driver-provided heartbeat() coroutine.
+///
+typedef bool (*receive_ptr)(struct radio_module * const);
+
+/// Type for the pointer to the driver-provided rssi() coroutine.
+///
+typedef bool (*rssi_ptr)(struct radio_module * const, float * const rssi);
+
+/// Type for the pointer to the driver-provided set() coroutine.
+///
+typedef bool (*set_ptr)(struct radio_module * const, const radio_channel_data * const, const unsigned int channel);
+
+/// Type for the pointer to the driver-provided transmit() coroutine.
+///
+typedef bool (*transmit_ptr)(struct radio_module * const);
 
 /// This specifies the band edges of a band. A transceiver might have more than
 /// one band.
@@ -135,7 +171,7 @@ typedef struct radio_module {
   /// This is the internal implementation of radio_channel(), and has the same
   /// arguments and return value.
   ///
-  bool			(*channel)(struct radio_module const *, const unsigned int channel);
+  channel_ptr		channel;
 
   /// \private
   /// @brief Driver-provided coroutine to close the device and de-allocate resources.
@@ -143,7 +179,7 @@ typedef struct radio_module {
   /// This is the internal implementation of radio_end(), and has the same
   /// arguments and return value.
   ///
-  bool			(*end)(struct radio_module /*@owned@*/ * const);
+  end_ptr		end;
 
   /// \private
   /// @brief Driver-provided coroutine to determine if a frequency is occupied. 
@@ -151,7 +187,7 @@ typedef struct radio_module {
   /// This is the internal implementation of radio_end(), and has the same
   /// arguments and return value.
   ///
-  bool			(*frequency_rssi)(struct radio_module * const, const float, float * const);
+  frequency_rssi_ptr	frequency_rssi;
 
   /// \private
   /// @brief Driver-provided coroutine to get the information about a channel.
@@ -159,7 +195,7 @@ typedef struct radio_module {
   /// This is the internal implementation of radio_get(), and has the same
   /// arguments and return value.
   ///
-  bool			(*get)(struct radio_module * const, radio_params * const, const unsigned int channel);
+  get_ptr	get;
 
   /// \private
   /// @brief Driver-provided heartbeat coroutine, used to keep the device awake
@@ -167,35 +203,35 @@ typedef struct radio_module {
   ///
   /// This is the internal implementation of radio_heartbeat(), and has the same
   /// arguments and return value.
-  bool			(*heartbeat)(struct radio_module * const);
+  heartbeat_ptr	heartbeat;
 
   /// \private
   /// @brief Driver-provided coroutine to release the PTT and start receiving.
   ///
   /// This is the internal implementation of radio_receive(), and has the same
   /// arguments and return value.
-  bool			(*receive)(struct radio_module * const);
+  receive_ptr	receive;
 
   /// \private
   /// @brief Driver-provided coroutine to get the RSSI value for the current channel.
   ///
   /// This is the internal implementation of radio_rssi(), and has the same
   /// arguments and return value.
-  bool			(*rssi)(struct radio_module * const, float * const rssi);
+  rssi_ptr	rssi;			
 
   /// \private
   /// @brief Driver-provided coroutine to set the values for a channel.
   ///
   /// This is the internal implementation of radio_set(), and has the same
   /// arguments and return value.
-  bool			(*set)(struct radio_module * const, const radio_params * const, const unsigned int channel);
+  set_ptr	set;
 
   /// \private
   /// @brief Driver-provided coroutine to assert PTT and start transmitting.
   ///
   /// This is the internal implementation of radio_transmit(), and has the same
   /// arguments and return value.
-  bool			(*transmit)(struct radio_module * const);
+  transmit_ptr	transmit;
 
   /// If a function returns false, the error message will be here.
   ///
@@ -311,7 +347,7 @@ radio_frequency_rssi(radio_module * const c, const float frequency, float * cons
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// \param params A pointer to a radio_params structure that will be set with the
+/// \param params A pointer to a radio_channel_data structure that will be set with the
 /// data about the channel.
 ///
 /// \return True for success, false for failure. When *false* is returned,
@@ -323,7 +359,7 @@ radio_frequency_rssi(radio_module * const c, const float frequency, float * cons
 /// transceiver can't read out that data, it's just a copy of what this
 /// software last wrote to the transceiver.
 bool
-radio_get(radio_module * const c, radio_params * const params, const unsigned int channel);
+radio_get(radio_module * const c, radio_channel_data * const params, const unsigned int channel);
 
 /// \relates radio_module
 /// Nudge the transceiver to keep it awake, and test that we are still connected.
@@ -386,7 +422,7 @@ radio_rssi(radio_module * const c, float * const rssi);
 /// \param c A pointer to a radio_module structure returned by the initialization
 /// function of the device driver.
 ///
-/// \param params A pointer to a radio_params structure containing the information
+/// \param params A pointer to a radio_channel_data structure containing the information
 /// to be set for the channel.
 ///
 /// \param channel The number of the channel which will have new data set.
@@ -398,7 +434,7 @@ radio_rssi(radio_module * const c, float * const rssi);
 bool
 radio_set(
  radio_module * const		c,
- const radio_params * const	p,
+ const radio_channel_data * const	p,
  const unsigned int		channel);
 
 /// \relates radio_module
@@ -417,58 +453,5 @@ radio_set(
 ///
 bool
 radio_transmit(radio_module * const c);
-
-union platform_context {
-#ifdef DRIVER_posix
-  int	fd;
-#endif
-};
-typedef union platform_context platform_context;
-
-
-/// \relates radio_module
-/// Connect a module that uses the SA-818 command set.
-/// This can be SA-808, SA-818, SA-818S, SA-868, SA-868S, DRA-818.
-/// This is portable code, functions to perform I/O on a specific platform
-/// are passed as coroutines.
-///
-/// @param platform_context An opaque context passed to the serial co-routines.
-///
-/// @param gpio A user-provided coroutine to control GPIO connected to the
-/// transceiver device. This is expected to interpret the states of the
-/// *enable*, *high_power*, and *ptt* variables in the *sa818_module* structure.
-/// Note that the state of those variables is opposite what will be asserted on
-/// the GPIOs, as the module considers *low* to be *true*.
-///
-/// @param read A user-provided coroutine to perform reading from the serial device.
-/// The interface is like that of the system read(2), with an opaque datum in place
-/// of the file descriptor (on POSIX-like systems it would be the file descriptor).
-/// However, unlike read(2), this function is expected to return after receiving
-/// "\r\n" or after IO times out.
-///
-/// @param write A user-provided coroutine to perform writing to the serial device.
-/// The interface is like that of the system write(2), with an opaque datum in place
-/// of the file descriptor (on POSIX-like systems it would be the file descriptor).
-///
-/// @param wait A user-provided coroutine to suspend the program for a short interval.
-/// The argument is a float representing the interval in seconds to suspend.
-/// This is used to wait for a short interval after initializing the device.
-///
-/// @param wait A user-provided coroutine to wake the application after something
-/// changes in the radio, for example when it starts receiving a signal after an
-/// interval with the squelch closed. This allows the application to suspend its
-/// process when it's not active, rather than poll.
-///
-/// @returns A pointer to a radio_module structure for the transceiver device.
-///
-extern radio_module /*@null@*/ *
-radio_sa818(
-  platform_context /*@shared@*/ * const context,
-  bool		(* gpio)(platform_context * const context),
-  size_t	(*read)(platform_context * const context, char * const buffer, const size_t buffer_length),
-  size_t	(*write)(platform_context * const context, const char * const buffer, const size_t buffer_length),
-  void		(*wait)(const float seconds),
-  void		(*wake)()
-);
 
 #endif

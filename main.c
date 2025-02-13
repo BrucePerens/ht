@@ -1,19 +1,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
-#include "radio.h"
-#include "os_driver.h"
-#include "platform.h"
+#include "radio_driver.h"
 
 int
 main(int, char * *)
 {
-  union platform_context platform;
+  platform_context platform;
+  platform.fd = 0;
 #ifdef DRIVER_sa818
   radio_module * module =
-  radio_sa818(
+  sa818(
     &platform,
-    dummy_gpio,
+    platform_gpio,
     os_read,
     os_write,
     os_wait,

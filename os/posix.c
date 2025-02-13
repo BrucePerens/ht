@@ -1,23 +1,24 @@
+#include <unistd.h>
 #include "os_driver.h"
 
-size_t
-os_read(platform_context * const context, char * const buffer, const size_t buffer_length)
+ssize_t
+os_read(platform_context * const context, char * const buffer, const size_t length)
 {
-  return 0;
+  return read(context->fd, buffer, length);
 }
 
-size_t
+ssize_t
 os_write(platform_context * const context, const char * const buffer, const size_t length)
 {
   return write(context->fd, buffer, length);
 }
 
 void
-os_wait(const float seconds)
+os_wait(platform_context * const, const float)
 {
 }
 
 void
-os_wake()
+os_wake(platform_context * const)
 {
 }

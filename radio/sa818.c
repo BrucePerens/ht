@@ -7,6 +7,8 @@
 #include <float.h>
 #include <math.h>
 #include "radio.h"
+#include "platform.h"
+#include "os_driver.h"
 
 /// splint complains about these not being defined, it's not parsing their headers
 /// correctly for some reason.
@@ -52,31 +54,31 @@ typedef struct sa818_module {
   platform_context /*@shared@*/ * platform;	// Context passed to the read and write coroutines.
 
   // This is a caller-provided GPIO function.
-  bool		(*gpio)(void * const context);
+  /*@shared@*/ gpio_ptr	gpio;
 
   // This is a caller-provided serial input function.
-  size_t	(*read)(void * const context, char * const buffer, const size_t buffer_length);
+  /*@shared@*/ read_ptr	read;
 
   // This is a caller-provided serial output function.
-  size_t	(*write)(void * const context, const char * const buffer, const size_t buffer_length);
+  /*@shared@*/ write_ptr	write;
 
   // This is a caller-provided function to wait the float argument seconds.
-  void		(*wait)(const float seconds);
+  /*@shared@*/ wait_ptr	wait;
 
   // This is a caller-provided function to wake the caller when something happens
   // to the radio.
   /*@unused@*/
-  void		(*wake)();
+  /*@shared@*/ wake_ptr	wake;
 
   // This is local context for the channel data, so we don't have to read it from
   // the module.
-  /*@partial@*/ radio_params /*@owned@*/ * channels;
+  /*@partial@*/ radio_channel_data /*@owned@*/ * channels;
 
   char version[50];
 
   // Read I/O buffer.
   char /*@owned@*/ * buffer;
-  size_t  buffer_size;
+  ssize_t  buffer_size;
 } sa818_module;
 
 // SA-818 command and response strings.
@@ -163,10 +165,10 @@ sa818_command(
 
   const size_t command_length = strlen(command);
 
-  if ( (*(s->write))(s->platform, command, command_length) == command_length ) {
+  if ( (*(s->write))(s->platform, command, command_length) == (ssize_t)command_length ) {
     const size_t response_length = strlen(response);
-    const size_t size = (*(s->read))(s->platform, s->buffer, s->buffer_size - 1);
-    if ( size >= response_length ) {
+    const ssize_t size = (*(s->read))(s->platform, s->buffer, (size_t)s->buffer_size - 1);
+    if ( size >= (ssize_t)response_length ) {
       if ( memcmp(s->buffer, response, response_length) == 0 ) {
         if ( result ) {
           s->buffer[size] = '\0';
@@ -202,7 +204,7 @@ sa818_end(radio_module /*@owned@*/ * const c)
   // Put the radio into standby.
   s->enable = false;
   s->ptt = false;
-  (void) (*(s->gpio))(c);
+  (void) (*(s->gpio))(s->platform);
   free(s->channels);
   free(s->buffer);
   memset(s, 0, sizeof(*s));
@@ -238,7 +240,7 @@ sa818_frequency_rssi(radio_module * const c, const float frequency, float * cons
 // Return the information for the given channel. SA-818 only has the "VFO" channel.
 // SA-868 has 16 memory channels.
 static bool
-sa818_get(radio_module * const c, radio_params * const params, const unsigned int channel)
+sa818_get(radio_module * const c, radio_channel_data * const params, const unsigned int channel)
 {
   // Fail if SA-818 is asked for any channel but 0. Once I see the SA-868
   // programming manual, I can code the right thing for that module.
@@ -264,7 +266,7 @@ sa818_receive(radio_module * const c)
   sa818_module * const s = c->device.sa818;
 
   s->ptt = false;
-  return (*(s->gpio))(c);
+  return (*(s->gpio))(s->platform);
 }
 
 static bool
@@ -289,11 +291,11 @@ sa818_rssi(radio_module * const c, float * const rssi)
 static bool
 sa818_set(
  radio_module * const		c,
- const radio_params * const	p,
+ const radio_channel_data * const	p,
  const unsigned int		channel) 
 {
   sa818_module * const s = c->device.sa818;
-  radio_params * const o = &(c->device.sa818->channels[channel]);
+  radio_channel_data * const o = &(c->device.sa818->channels[channel]);
 
   if ( !float_equal(p->bandwidth, o->bandwidth)
   || !float_equal(p->transmit_frequency, o->transmit_frequency)
@@ -309,7 +311,7 @@ sa818_set(
     
     (void) snprintf(
      s->buffer,
-     s->buffer_size,
+     (size_t)s->buffer_size,
      "AT+DMOSETGROUP=%d,%3.4f,%3.4f,%s,%d,%s\r\n",
      (int)float_equal(p->bandwidth, 25.0),
      p->transmit_frequency,
@@ -328,7 +330,7 @@ sa818_set(
    || p->preemphasis_deemphasis != o->preemphasis_deemphasis ) {
     (void) snprintf(
      s->buffer,
-     s->buffer_size,
+     (size_t)s->buffer_size,
      "AT+DMOSETFILTER=%d,%d,%d\r\n",
      (int)!p->preemphasis_deemphasis,
      (int)!p->high_pass_filter,
@@ -341,7 +343,7 @@ sa818_set(
   if ( p->tail_tone != o->tail_tone ) {
     (void) snprintf(
      s->buffer,
-     s->buffer_size,
+     (size_t)s->buffer_size,
      "AT+DMOSETTAIL=%d\r\n",
      (int)!p->tail_tone);
 
@@ -361,18 +363,18 @@ sa818_transmit(radio_module * const c)
   sa818_module * const s = c->device.sa818;
 
   s->ptt = true;
-  return (*(s->gpio))(c);
+  return (*(s->gpio))(s->platform);
 }
 
 // Initialize the context structure.
 radio_module /*@null@*/ *
-radio_sa818(
+sa818(
   platform_context * const platform,
-  bool		(* gpio)(platform_context * const context),
-  size_t	(*read)(platform_context * const context, char * const buffer, const size_t buffer_length),
-  size_t	(*write)(platform_context * const context, const char * const buffer, const size_t buffer_length),
-  void		(*wait)(const float seconds),
-  void		(*wake)()
+  gpio_ptr	gpio,
+  read_ptr	read,
+  write_ptr	write,
+  wait_ptr	wait,
+  /*@unused@*/ wake_ptr	wake
 )
 {
   // Set up the device-dependent context.
@@ -424,7 +426,7 @@ radio_sa818(
   s->high_power = true;
 
   // Set the hardware GPIO lines.
-  if ( !(*(s->gpio))(c) ) {
+  if ( !(*(s->gpio))(s->platform) ) {
     free(c->device.sa818);
     free(c->band_limits);
     free(c);
@@ -432,7 +434,7 @@ radio_sa818(
   }
 
   // Delay 500 miliseconds for the radio to power up.
-  (*(s->wait))(0.5);
+  (*(s->wait))(s->platform, 0.5f);
 
   if ( sa818_command(c, connect_command, connect_response, 0) ) {
     const char /*@observer@*/ * result = 0;
@@ -453,7 +455,7 @@ radio_sa818(
       c->device_name = strdup(sa808_name);
     }
 
-    s->channels = malloc(sizeof(radio_params) * c->number_of_channels);
+    s->channels = malloc(sizeof(radio_channel_data) * c->number_of_channels);
     if ( s->channels == 0 ) {
       free(c->device.sa818);
       free(c->band_limits);
@@ -462,8 +464,8 @@ radio_sa818(
     }
     // Buffer size must be larger than the largest command or response, on SA-868
     // we set 16 channels at once.
-    s->buffer_size = 100 + (20 * (size_t)c->number_of_channels);
-    s->buffer = malloc(s->buffer_size);
+    s->buffer_size = 100 + (20 * (ssize_t)c->number_of_channels);
+    s->buffer = malloc((size_t)s->buffer_size);
     if ( s->buffer == 0 ) {
       free(s->channels);
       free(c->device.sa818);
@@ -471,7 +473,7 @@ radio_sa818(
       free(c);
       return 0;
     }
-    memset(s->buffer, 0, s->buffer_size);
+    memset(s->buffer, 0, (size_t)s->buffer_size);
 
     // Poll for band limits. I don't know if this will work or what are the actual
     // lowest and highest frequencies that can be set.

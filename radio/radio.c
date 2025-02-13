@@ -21,7 +21,7 @@ radio_frequency_rssi(radio_module * const c, const float frequency, float * cons
 }
 
 bool
-radio_get(radio_module * const c, radio_params * const params, const unsigned int channel)
+radio_get(radio_module * const c, radio_channel_data * const params, const unsigned int channel)
 {
   return (*(c->get))(c, params, channel);
 }
@@ -50,7 +50,7 @@ radio_rssi(radio_module * const c, float * const rssi)
 bool
 radio_set(
  radio_module * const		c,
- const radio_params * const	p,
+ const radio_channel_data * const	p,
  const unsigned int		channel) 
 {
   return (*(c->set))(c, p, channel);
