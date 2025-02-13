@@ -13,7 +13,7 @@ CFLAGS?= -w -Wall -Wextra
 B:=build.$(ARCH)
 DRIVER_OBJS:=$(DRIVERS:%=$(B)/%.o)
 OBJS:= $(B)/main.o $(B)/radio.o $(DRIVER_OBJS)
-SOURCES:= main.c radio/radio.c radio/sa818.c os/posix.c
+SOURCES:= main.c radio/radio.c radio/sa818.c os/posix.c platform/dummy.c
 CPPFLAGS:= -I radio -I os -I platform $(DRIVERS:%=-DDRIVER_%=1)
 LIBS:= -lm
 CC_$(ARCH)?=cc

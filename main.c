@@ -7,7 +7,11 @@ int
 main(int, char * *)
 {
   platform_context platform;
+
+#ifdef DRIVER_posix
   platform.fd = 0;
+#endif
+
 #ifdef DRIVER_sa818
   radio_module * module =
   sa818(
