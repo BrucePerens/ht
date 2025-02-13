@@ -6,19 +6,11 @@ native:
 
 k6vp:
 	mkdir -p build.k6vp
-	(if test -f "$(IDF_PATH)"; then \
-          . $(ESP_IDF)/export.sh; \
-         fi; \
-         cd platform/k6vp_2; \
-         idf.py -B ../../build.k6vp build)
+	aux/run_idf.sh platform/k6vp_2 -B ../../build.k6vp build
 
 k6vp.flash:
 	mkdir -p build.k6vp
-	(if test -f "$(IDF_PATH)"; then \
-          . $(ESP_IDF)/export.sh; \
-         fi; \
-         cd platform/k6vp_2; \
-         idf.py -B ../../build.k6vp flash)
+	aux/run_idf.sh platform/k6vp_2 -B ../../build.k6vp flash
 
 clean:
 	rm -f -r build.*
