@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_5fcontext_0',['platform_context',['../platform_8h.html#ac7678084e430522bef7ae0fe319ba820',1,'platform.h']]]
+  ['platform_5fcontext_0',['platform_context',['../os__driver_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;os_driver.h'],['../platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;platform.h']]]
 ];

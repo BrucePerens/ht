@@ -97,42 +97,70 @@ $(document).ready(function(){initNavTree('main_8c_source.html',''); initResizabl
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;stddef.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="radio__driver_8h.html">radio_driver.h</a>&quot;</span></div>
-<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keywordtype">int</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="main_8c.html#a2c3f6775325c30275d11c6abee2db6a0">    7</a></span><a class="code hl_function" href="main_8c.html#a2c3f6775325c30275d11c6abee2db6a0">main</a>(<span class="keywordtype">int</span>, <span class="keywordtype">char</span> * *)</div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span>{</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>  <a class="code hl_union" href="unionplatform__context.html">platform_context</a> platform;</div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifdef DRIVER_posix</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>  platform.fd = 0;</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#ifdef DRIVER_sa818</span></div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <a class="code hl_struct" href="structradio__module.html">radio_module</a> * module =</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_function" href="sa818_8c.html#a53db4ce677e064f561337bc1e882eef7">sa818</a>(</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    &amp;platform,</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <a class="code hl_function" href="dummy_8c.html#a443a380e73aa81a31fa52c2859d7872f">platform_gpio</a>,</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <a class="code hl_function" href="os__driver_8h.html#a820727034da050f46ec656cbf5a349c7">os_read</a>,</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <a class="code hl_function" href="os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387">os_write</a>,</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <a class="code hl_function" href="os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817">os_wait</a>,</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="os__driver_8h.html#ac8a68806778c592e06734d7459a458fa">os_wake</a></div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  );</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordflow">if</span> ( module )</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    (void) <a class="code hl_function" href="radio_8c.html#a49c0ca5bff0f8924deeac56d143dff71">radio_end</a>(module);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="preprocessor">#endif</span></div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">return</span>  0;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>}</div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="os__driver_8h.html">os_driver.h</a>&quot;</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><a class="code hl_struct" href="structplatform__context.html">platform_context</a> <span class="comment">/*@null@*/</span> <span class="comment">/*@only@*/</span> *</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="main_8c.html#a64cee34cbbfe3a37265e2f39853108f6">    8</a></span><a class="code hl_function" href="main_8c.html#a64cee34cbbfe3a37265e2f39853108f6">platform_init</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> * filename)</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>{</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>  <a class="code hl_struct" href="structplatform__context.html">platform_context</a> * platform = malloc(<span class="keyword">sizeof</span>(*platform));</div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>  <span class="keywordflow">if</span> ( platform == 0 )</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#ifdef DRIVER_posix</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  platform-&gt;fd = 0;</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  platform-&gt;<a class="code hl_variable" href="structplatform__context.html#abeea86b49dac86d9265807c4c5b1f153">gpio</a> = <a class="code hl_function" href="dummy_8c.html#a443a380e73aa81a31fa52c2859d7872f">platform_gpio</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  platform-&gt;<a class="code hl_variable" href="structplatform__context.html#a18757531e7ae861fee179ad9ff0352ec">read</a> = <a class="code hl_function" href="os__driver_8h.html#a820727034da050f46ec656cbf5a349c7">os_read</a>;</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  platform-&gt;<a class="code hl_variable" href="structplatform__context.html#a763f43b5a541d9fafddc93078a19398c">write</a> = <a class="code hl_function" href="os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387">os_write</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  platform-&gt;<a class="code hl_variable" href="structplatform__context.html#acd2f13d9bbb5b39d6d9785a7da6b7676">wait</a> = <a class="code hl_function" href="os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817">os_wait</a>;</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  platform-&gt;<a class="code hl_variable" href="structplatform__context.html#a4b9d713dda5292d1ee8634763fa75be6">wake</a> = <a class="code hl_function" href="os__driver_8h.html#ac8a68806778c592e06734d7459a458fa">os_wake</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keywordflow">return</span> platform;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>}</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="main_8c.html#add7a494132a4e16a18fa8cd82f8ffd46">   27</a></span><a class="code hl_function" href="main_8c.html#add7a494132a4e16a18fa8cd82f8ffd46">platform_end</a>(<a class="code hl_struct" href="structplatform__context.html">platform_context</a> <span class="comment">/*@only@*/</span> * platform)</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>{</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  free(platform);</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keywordtype">int</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno"><a class="line" href="main_8c.html#a2c3f6775325c30275d11c6abee2db6a0">   33</a></span><a class="code hl_function" href="main_8c.html#a2c3f6775325c30275d11c6abee2db6a0">main</a>(<span class="keywordtype">int</span>, <span class="keywordtype">char</span> * *)</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>{</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <a class="code hl_struct" href="structplatform__context.html">platform_context</a> <span class="comment">/*@null@*/</span> <span class="comment">/*@owned@*/</span> * platform = <a class="code hl_function" href="main_8c.html#a64cee34cbbfe3a37265e2f39853108f6">platform_init</a>(<span class="stringliteral">&quot;/dev/tty&quot;</span>);</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span> </div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="keywordflow">if</span> ( platform == 0 )</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span><span class="preprocessor">#ifdef DRIVER_sa818</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <a class="code hl_struct" href="structradio__module.html">radio_module</a> * module =</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <a class="code hl_function" href="sa818_8c.html#a2db930ef23db0f1d2be601381ae83c3e">sa818</a>(platform);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordflow">if</span> ( module )</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    (void) <a class="code hl_function" href="radio_8c.html#a49c0ca5bff0f8924deeac56d143dff71">radio_end</a>(module);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_function" href="main_8c.html#add7a494132a4e16a18fa8cd82f8ffd46">platform_end</a>(platform);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="keywordflow">return</span>  0;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
 <div class="ttc" id="adummy_8c_html_a443a380e73aa81a31fa52c2859d7872f"><div class="ttname"><a href="dummy_8c.html#a443a380e73aa81a31fa52c2859d7872f">platform_gpio</a></div><div class="ttdeci">bool platform_gpio(platform_context *const)</div><div class="ttdef"><b>Definition:</b> <a href="dummy_8c_source.html#l00004">dummy.c:4</a></div></div>
-<div class="ttc" id="amain_8c_html_a2c3f6775325c30275d11c6abee2db6a0"><div class="ttname"><a href="main_8c.html#a2c3f6775325c30275d11c6abee2db6a0">main</a></div><div class="ttdeci">int main(int, char **)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00007">main.c:7</a></div></div>
+<div class="ttc" id="amain_8c_html_a2c3f6775325c30275d11c6abee2db6a0"><div class="ttname"><a href="main_8c.html#a2c3f6775325c30275d11c6abee2db6a0">main</a></div><div class="ttdeci">int main(int, char **)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00033">main.c:33</a></div></div>
+<div class="ttc" id="amain_8c_html_a64cee34cbbfe3a37265e2f39853108f6"><div class="ttname"><a href="main_8c.html#a64cee34cbbfe3a37265e2f39853108f6">platform_init</a></div><div class="ttdeci">platform_context * platform_init(const char *filename)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00008">main.c:8</a></div></div>
+<div class="ttc" id="amain_8c_html_add7a494132a4e16a18fa8cd82f8ffd46"><div class="ttname"><a href="main_8c.html#add7a494132a4e16a18fa8cd82f8ffd46">platform_end</a></div><div class="ttdeci">void platform_end(platform_context *platform)</div><div class="ttdef"><b>Definition:</b> <a href="main_8c_source.html#l00027">main.c:27</a></div></div>
+<div class="ttc" id="aos__driver_8h_html"><div class="ttname"><a href="os__driver_8h.html">os_driver.h</a></div></div>
 <div class="ttc" id="aos__driver_8h_html_a820727034da050f46ec656cbf5a349c7"><div class="ttname"><a href="os__driver_8h.html#a820727034da050f46ec656cbf5a349c7">os_read</a></div><div class="ttdeci">ssize_t os_read(platform_context *const context, char *const buffer, const size_t buffer_length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00005">posix.c:5</a></div></div>
 <div class="ttc" id="aos__driver_8h_html_ac8a68806778c592e06734d7459a458fa"><div class="ttname"><a href="os__driver_8h.html#ac8a68806778c592e06734d7459a458fa">os_wake</a></div><div class="ttdeci">void os_wake(platform_context *const context)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00022">posix.c:22</a></div></div>
 <div class="ttc" id="aos__driver_8h_html_ace5ef5553df295c2ac2ff49e0710e387"><div class="ttname"><a href="os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387">os_write</a></div><div class="ttdeci">ssize_t os_write(platform_context *const context, const char *const buffer, const size_t buffer_length)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00011">posix.c:11</a></div></div>
 <div class="ttc" id="aos__driver_8h_html_aee3bc883c50dca19551cbd7d03962817"><div class="ttname"><a href="os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817">os_wait</a></div><div class="ttdeci">void os_wait(platform_context *const context, const float seconds)</div><div class="ttdef"><b>Definition:</b> <a href="posix_8c_source.html#l00017">posix.c:17</a></div></div>
 <div class="ttc" id="aradio_8c_html_a49c0ca5bff0f8924deeac56d143dff71"><div class="ttname"><a href="radio_8c.html#a49c0ca5bff0f8924deeac56d143dff71">radio_end</a></div><div class="ttdeci">bool radio_end(radio_module *const c)</div><div class="ttdef"><b>Definition:</b> <a href="radio_8c_source.html#l00012">radio.c:12</a></div></div>
 <div class="ttc" id="aradio__driver_8h_html"><div class="ttname"><a href="radio__driver_8h.html">radio_driver.h</a></div></div>
-<div class="ttc" id="asa818_8c_html_a53db4ce677e064f561337bc1e882eef7"><div class="ttname"><a href="sa818_8c.html#a53db4ce677e064f561337bc1e882eef7">sa818</a></div><div class="ttdeci">radio_module * sa818(platform_context *const platform, gpio_ptr gpio, read_ptr read, write_ptr write, wait_ptr wait, wake_ptr wake)</div><div class="ttdef"><b>Definition:</b> <a href="sa818_8c_source.html#l00371">sa818.c:371</a></div></div>
+<div class="ttc" id="asa818_8c_html_a2db930ef23db0f1d2be601381ae83c3e"><div class="ttname"><a href="sa818_8c.html#a2db930ef23db0f1d2be601381ae83c3e">sa818</a></div><div class="ttdeci">radio_module * sa818(platform_context *const platform)</div><div class="ttdef"><b>Definition:</b> <a href="sa818_8c_source.html#l00362">sa818.c:362</a></div></div>
+<div class="ttc" id="astructplatform__context_html"><div class="ttname"><a href="structplatform__context.html">platform_context</a></div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00008">platform.h:8</a></div></div>
+<div class="ttc" id="astructplatform__context_html_a18757531e7ae861fee179ad9ff0352ec"><div class="ttname"><a href="structplatform__context.html#a18757531e7ae861fee179ad9ff0352ec">platform_context::read</a></div><div class="ttdeci">read_ptr read</div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00013">platform.h:13</a></div></div>
+<div class="ttc" id="astructplatform__context_html_a4b9d713dda5292d1ee8634763fa75be6"><div class="ttname"><a href="structplatform__context.html#a4b9d713dda5292d1ee8634763fa75be6">platform_context::wake</a></div><div class="ttdeci">wake_ptr wake</div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00016">platform.h:16</a></div></div>
+<div class="ttc" id="astructplatform__context_html_a763f43b5a541d9fafddc93078a19398c"><div class="ttname"><a href="structplatform__context.html#a763f43b5a541d9fafddc93078a19398c">platform_context::write</a></div><div class="ttdeci">write_ptr write</div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00014">platform.h:14</a></div></div>
+<div class="ttc" id="astructplatform__context_html_abeea86b49dac86d9265807c4c5b1f153"><div class="ttname"><a href="structplatform__context.html#abeea86b49dac86d9265807c4c5b1f153">platform_context::gpio</a></div><div class="ttdeci">gpio_ptr gpio</div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00012">platform.h:12</a></div></div>
+<div class="ttc" id="astructplatform__context_html_acd2f13d9bbb5b39d6d9785a7da6b7676"><div class="ttname"><a href="structplatform__context.html#acd2f13d9bbb5b39d6d9785a7da6b7676">platform_context::wait</a></div><div class="ttdeci">wait_ptr wait</div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00015">platform.h:15</a></div></div>
 <div class="ttc" id="astructradio__module_html"><div class="ttname"><a href="structradio__module.html">radio_module</a></div><div class="ttdoc">This is device-independent context for a radio transceiver module. The user API is documented below u...</div><div class="ttdef"><b>Definition:</b> <a href="radio_8h_source.html#l00167">radio.h:167</a></div></div>
-<div class="ttc" id="aunionplatform__context_html"><div class="ttname"><a href="unionplatform__context.html">platform_context</a></div><div class="ttdef"><b>Definition:</b> <a href="platform_8h_source.html#l00005">platform.h:5</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

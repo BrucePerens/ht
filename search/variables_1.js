@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['channels_0',['channels',['../structsa818__module.html#aa0a93997942b0cff90574af03d7f6c1b',1,'sa818_module']]],
-  ['connected_1',['connected',['../structsa818__module.html#ab36823025f12a809217f7771125658c2',1,'sa818_module']]]
+  ['device_5fname_0',['device_name',['../structradio__module.html#a77c7adc4663824cee5fa2e15b9e266e7',1,'radio_module']]],
+  ['digital_5fcodes_1',['digital_codes',['../structradio__module.html#ab562889ac85daa7dd91fd083f0c5534a',1,'radio_module']]]
 ];

@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['version_0',['version',['../structsa818__module.html#a039f1dc229c7bd812108a7e8f54249e5',1,'sa818_module']]],
-  ['volume_1',['volume',['../structradio__channel__data.html#a016abda2855c77dcc1630f9d2f9f8d18',1,'radio_channel_data']]]
+  ['wait_0',['wait',['../structplatform__context.html#acd2f13d9bbb5b39d6d9785a7da6b7676',1,'platform_context']]],
+  ['wake_1',['wake',['../structplatform__context.html#a4b9d713dda5292d1ee8634763fa75be6',1,'platform_context']]],
+  ['write_2',['write',['../structplatform__context.html#a763f43b5a541d9fafddc93078a19398c',1,'platform_context']]]
 ];

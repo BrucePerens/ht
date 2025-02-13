@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['high_0',['high',['../structradio__band__limits.html#aad3745a166c82f18c12c48d8763cbb1e',1,'radio_band_limits']]],
-  ['high_5fpass_5ffilter_1',['high_pass_filter',['../structradio__channel__data.html#a9c93c3326aa33e5800cf34aa94fd12fe',1,'radio_channel_data']]],
-  ['high_5fpower_2',['high_power',['../structsa818__module.html#ad0cd310a6ff1dc947e320390092d72cf',1,'sa818_module']]]
+  ['last_5frssi_0',['last_rssi',['../structradio__module.html#a1fc144a866c15129724671d689edbe25',1,'radio_module']]],
+  ['low_1',['low',['../structradio__band__limits.html#ab56f475c4370b93559ff9c7cf5e0fa91',1,'radio_band_limits']]],
+  ['low_5fpass_5ffilter_2',['low_pass_filter',['../structradio__channel__data.html#a97afcd96e2cc926f4ba8f6b199a16f0e',1,'radio_channel_data']]]
 ];

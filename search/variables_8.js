@@ -1,6 +1,7 @@
 var searchData=
 [
-  ['platform_0',['platform',['../structsa818__module.html#a22a536c907030d97bc375cb75f8eaa86',1,'sa818_module']]],
-  ['preemphasis_5fdeemphasis_1',['preemphasis_deemphasis',['../structradio__channel__data.html#af72fda9873998e1d8769803acfd94482',1,'radio_channel_data']]],
-  ['ptt_2',['ptt',['../structsa818__module.html#a258ed623843bcc4187dcaf8011403c82',1,'sa818_module']]]
+  ['read_0',['read',['../structplatform__context.html#a18757531e7ae861fee179ad9ff0352ec',1,'platform_context']]],
+  ['receive_5fdigital_5fcode_1',['receive_digital_code',['../structradio__channel__data.html#abade4d22beb9dbb5a9ab0c6dd32634df',1,'radio_channel_data']]],
+  ['receive_5ffrequency_2',['receive_frequency',['../structradio__channel__data.html#af6d78f7f38882e1dd2db48e39b9465ae',1,'radio_channel_data']]],
+  ['receive_5fsubaudible_5ftone_3',['receive_subaudible_tone',['../structradio__channel__data.html#aff3769c6c4f659ef4807b074ee9ee00d',1,'radio_channel_data']]]
 ];

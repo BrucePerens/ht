@@ -1,6 +1,6 @@
 var searchData=
 [
   ['get_5fptr_0',['get_ptr',['../radio_8h.html#abed0322a89970ea17e80654e77dcb14a',1,'radio.h']]],
-  ['gpio_1',['gpio',['../structsa818__module.html#abeea86b49dac86d9265807c4c5b1f153',1,'sa818_module']]],
+  ['gpio_1',['gpio',['../structplatform__context.html#abeea86b49dac86d9265807c4c5b1f153',1,'platform_context']]],
   ['gpio_5fptr_2',['gpio_ptr',['../platform_8h.html#a6197842be28d13fea554e2e019089db2',1,'platform.h']]]
 ];

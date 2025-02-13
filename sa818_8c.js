@@ -1,9 +1,4 @@
 var sa818_8c =
 [
-    [ "sa818_module", "structsa818__module.html", "structsa818__module" ],
-    [ "returned_string", "sa818_8c.html#acadfb69989d55a8fbc7317114712f558", null ],
-    [ "sa818_module", "sa818_8c.html#a6d472c72726a88ea16e4568f8f82bf2d", null ],
-    [ "roundf", "sa818_8c.html#a4f48da4925df1ba027b5f96eb9bd2878", null ],
-    [ "sa818", "sa818_8c.html#a53db4ce677e064f561337bc1e882eef7", null ],
-    [ "strdup", "sa818_8c.html#a5ffaef3fc3f7ddb9856ccd4bcb79e9bc", null ]
+    [ "sa818", "sa818_8c.html#a2db930ef23db0f1d2be601381ae83c3e", null ]
 ];

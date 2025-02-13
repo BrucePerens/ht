@@ -5,6 +5,5 @@ var searchData=
   ['radio_5fmodule_2',['radio_module',['../radio_8h.html#a3cec2072b67c90a4601e8c8fc030b61a',1,'radio.h']]],
   ['read_5fptr_3',['read_ptr',['../os__driver_8h.html#a9cca664dce0351eb2215cde7ad68816b',1,'os_driver.h']]],
   ['receive_5fptr_4',['receive_ptr',['../radio_8h.html#a6716bd441bf36127897186734a7c711f',1,'radio.h']]],
-  ['returned_5fstring_5',['returned_string',['../sa818_8c.html#acadfb69989d55a8fbc7317114712f558',1,'sa818.c']]],
-  ['rssi_5fptr_6',['rssi_ptr',['../radio_8h.html#a0dcb5c6330495e838b0a90ccc46ea604',1,'radio.h']]]
+  ['rssi_5fptr_5',['rssi_ptr',['../radio_8h.html#a0dcb5c6330495e838b0a90ccc46ea604',1,'radio.h']]]
 ];
