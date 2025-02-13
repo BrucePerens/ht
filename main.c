@@ -5,7 +5,7 @@
 #include "os_driver.h"
 
 int
-main(int, char * *)
+main(int, char * *) /*@globals errno;@*/
 {
   platform_context /*@null@*/ /*@owned@*/ * platform = platform_init("/dev/tty");
 
@@ -13,8 +13,7 @@ main(int, char * *)
     return 1;
 
 #ifdef DRIVER_sa818
-  radio_module * module =
-  sa818(platform);
+  radio_module * module = sa818(platform);
   if ( module )
     (void) radio_end(module);
 #endif

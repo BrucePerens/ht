@@ -2,6 +2,13 @@
 #include "os_driver.h"
 #include "platform.h"
 
+bool
+os_open(platform_context * const, const char * const)
+{
+  errno = 0;
+  return true;
+}
+
 ssize_t
 os_read(platform_context * const context, char * const buffer, const size_t length)
 {

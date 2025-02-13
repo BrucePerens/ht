@@ -19,6 +19,7 @@
 #include <math.h>
 #include "radio.h"
 #include "platform.h"
+#include "gpio_bits.h"
 #include "os_driver.h"
 
 /// \private
@@ -39,20 +40,6 @@ typedef struct sa818_module {
   // This will be set to true once the sa has been initialized. It can be cleared
   // if for some reason the module loses power or falls asleep.
   bool		connected;
-
-  // The enable, high_power, and ptt variables below coreespond to GPIO lines
-  // to the radio module, but have an opposite sense, as the radio module uses
-  // low=true, and every GPIO I've ever heard of takes high=true. Make sure your
-  // GPIO coroutine does the inversion.
-
-  // True if the radio is to be turned on.
-  bool		enable;
-
-  // True if the radio is to be set to high power;
-  bool 		high_power;
-
-  // True if the radio is to transmit.
-  bool		ptt;
 
   // This is an opaque, caller-provided context for serial I/O.
   // On POSIX-like things it would be a file descriptor.
@@ -195,9 +182,7 @@ sa818_end(radio_module /*@owned@*/ * const c)
   sa818_module * const s = c->device.sa818;
 
   // Put the radio into standby.
-  s->enable = false;
-  s->ptt = false;
-  (void) (*(s->platform->gpio))(s->platform);
+  (void) (*(s->platform->gpio))(s->platform, 0);
   free(s->channels);
   free(s->buffer);
   memset(s, 0, sizeof(*s));
@@ -258,8 +243,7 @@ sa818_receive(radio_module * const c)
 {
   sa818_module * const s = c->device.sa818;
 
-  s->ptt = false;
-  return (*(s->platform->gpio))(s->platform);
+  return (*(s->platform->gpio))(s->platform, SA818_ENABLE_BIT|SA818_HIGH_POWER_BIT);
 }
 
 static bool
@@ -355,8 +339,7 @@ sa818_transmit(radio_module * const c)
 {
   sa818_module * const s = c->device.sa818;
 
-  s->ptt = true;
-  return (*(s->platform->gpio))(s->platform);
+  return (*(s->platform->gpio))(s->platform, SA818_PTT_BIT|SA818_ENABLE_BIT|SA818_HIGH_POWER_BIT);
 }
 
 
@@ -404,13 +387,7 @@ sa818(platform_context * const platform)
   memset(c->band_limits, 0, sizeof(*c->band_limits));
   c->number_of_channels = 1;
 
-  // Initialize the soft GPIO settings.
-  s->enable = true;
-  s->ptt = false;
-  s->high_power = true;
-
-  // Set the hardware GPIO lines.
-  if ( !(*(s->platform->gpio))(s->platform) ) {
+  if ( !(*(s->platform->gpio))(s->platform, SA818_ENABLE_BIT|SA818_PTT_BIT|SA818_HIGH_POWER_BIT) ) {
     free(c->device.sa818);
     free(c->band_limits);
     free(c);

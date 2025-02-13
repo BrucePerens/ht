@@ -28,7 +28,7 @@ $(B)/main.o: main.c radio/radio.h
 $(B)/radio.o: radio/radio.c radio/radio.h
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
-$(B)/sa818.o: radio/sa818.c radio/radio.h radio/radio_driver.h platform/platform.h
+$(B)/sa818.o: radio/sa818.c radio/radio.h radio/radio_driver.h platform/platform.h platform/gpio_bits.h
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
 $(B)/posix.o: os/posix.c
@@ -37,7 +37,10 @@ $(B)/posix.o: os/posix.c
 $(B)/platform.o: platform/platform.c
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
-$(B)/dummy.o: platform/dummy.c
+$(B)/dummy.o: platform/dummy/dummy.c
+	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
+
+$(B)/k6vp_2.o: platform/k6vp_2/k6vp_2.c
 	$(CC) -c $(CFLAGS) $(CPPFLAGS) -o $@ $<
 
 clean:

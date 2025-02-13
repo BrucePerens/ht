@@ -3,7 +3,7 @@
 #include "radio.h"
 #include "os_driver.h"
 
-typedef bool (*gpio_ptr)(platform_context * context);
+typedef bool (*gpio_ptr)(platform_context * context, unsigned long bits);
 
 typedef struct platform_context {
 #ifdef DRIVER_posix
@@ -17,10 +17,10 @@ typedef struct platform_context {
 } platform_context;
 
 extern bool
-platform_gpio(platform_context * const context);
+platform_gpio(platform_context * const context, unsigned long bits);
 
 extern platform_context /*@null@*/ /*@only@*/ *
-platform_init(const char * filename);
+platform_init(const char /*@null@*/ * filename) /*@globals errno;@*/;
 
 extern void
 platform_end(platform_context /*@only@*/ * platform);
