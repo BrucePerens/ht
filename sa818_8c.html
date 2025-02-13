@@ -106,6 +106,8 @@ $(document).ready(function(){initNavTree('sa818_8c.html',''); initResizable(); }
 <code>#include &lt;float.h&gt;</code><br />
 <code>#include &lt;math.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="radio_8h_source.html">radio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="platform_8h_source.html">platform.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="os__driver_8h_source.html">os_driver.h</a>&quot;</code><br />
 </div>
 <p><a href="sa818_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
@@ -127,8 +129,8 @@ Functions</h2></td></tr>
 <tr class="separator:a4f48da4925df1ba027b5f96eb9bd2878"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5ffaef3fc3f7ddb9856ccd4bcb79e9bc"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#a5ffaef3fc3f7ddb9856ccd4bcb79e9bc">strdup</a> (const char *s)</td></tr>
 <tr class="separator:a5ffaef3fc3f7ddb9856ccd4bcb79e9bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade662085284f67c529680aaa40f1fe43"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#ade662085284f67c529680aaa40f1fe43">radio_sa818</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const platform, bool(*gpio)(<a class="el" href="unionplatform__context.html">platform_context</a> *const context), size_t(*read)(<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length), size_t(*write)(<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const char *const buffer, const size_t buffer_length), void(*wait)(const float seconds), void(*wake)())</td></tr>
-<tr class="separator:ade662085284f67c529680aaa40f1fe43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53db4ce677e064f561337bc1e882eef7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structradio__module.html">radio_module</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="sa818_8c.html#a53db4ce677e064f561337bc1e882eef7">sa818</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const platform, <a class="el" href="platform_8h.html#a6197842be28d13fea554e2e019089db2">gpio_ptr</a> gpio, <a class="el" href="os__driver_8h.html#a9cca664dce0351eb2215cde7ad68816b">read_ptr</a> read, <a class="el" href="os__driver_8h.html#aefb6a5af3103f7f97ccc00fff9dd6b3e">write_ptr</a> write, <a class="el" href="os__driver_8h.html#a46594c551533df569d76ac7df56dede7">wait_ptr</a> wait, <a class="el" href="os__driver_8h.html#afbb20bc31508cbe106418cfa3a7e05b9">wake_ptr</a> wake)</td></tr>
+<tr class="separator:a53db4ce677e064f561337bc1e882eef7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
 <a id="acadfb69989d55a8fbc7317114712f558" name="acadfb69989d55a8fbc7317114712f558"></a>
@@ -143,7 +145,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00153">153</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00155">155</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
 
 </div>
 </div>
@@ -162,68 +164,6 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="ade662085284f67c529680aaa40f1fe43" name="ade662085284f67c529680aaa40f1fe43"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade662085284f67c529680aaa40f1fe43">&#9670;&#160;</a></span>radio_sa818()</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structradio__module.html">radio_module</a> * radio_sa818 </td>
-          <td>(</td>
-          <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
-          <td class="paramname"><em>platform</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">bool(*)(<a class="el" href="unionplatform__context.html">platform_context</a> *const context)&#160;</td>
-          <td class="paramname"><em>gpio</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t(*)(<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)&#160;</td>
-          <td class="paramname"><em>read</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">size_t(*)(<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const char *const buffer, const size_t buffer_length)&#160;</td>
-          <td class="paramname"><em>write</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void(*)(const float seconds)&#160;</td>
-          <td class="paramname"><em>wait</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">void(*)()&#160;</td>
-          <td class="paramname"><em>wake</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">related</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00369">369</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
-
-</div>
-</div>
 <a id="a4f48da4925df1ba027b5f96eb9bd2878" name="a4f48da4925df1ba027b5f96eb9bd2878"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4f48da4925df1ba027b5f96eb9bd2878">&#9670;&#160;</a></span>roundf()</h2>
 
@@ -240,6 +180,60 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 <p>splint complains about these not being defined, it's not parsing their headers correctly for some reason. </p>
+
+</div>
+</div>
+<a id="a53db4ce677e064f561337bc1e882eef7" name="a53db4ce677e064f561337bc1e882eef7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53db4ce677e064f561337bc1e882eef7">&#9670;&#160;</a></span>sa818()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="structradio__module.html">radio_module</a> * sa818 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
+          <td class="paramname"><em>platform</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="platform_8h.html#a6197842be28d13fea554e2e019089db2">gpio_ptr</a>&#160;</td>
+          <td class="paramname"><em>gpio</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="os__driver_8h.html#a9cca664dce0351eb2215cde7ad68816b">read_ptr</a>&#160;</td>
+          <td class="paramname"><em>read</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="os__driver_8h.html#aefb6a5af3103f7f97ccc00fff9dd6b3e">write_ptr</a>&#160;</td>
+          <td class="paramname"><em>write</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="os__driver_8h.html#a46594c551533df569d76ac7df56dede7">wait_ptr</a>&#160;</td>
+          <td class="paramname"><em>wait</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="os__driver_8h.html#afbb20bc31508cbe106418cfa3a7e05b9">wake_ptr</a>&#160;</td>
+          <td class="paramname"><em>wake</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="sa818_8c_source.html#l00371">371</a> of file <a class="el" href="sa818_8c_source.html">sa818.c</a>.</p>
 
 </div>
 </div>

@@ -1,4 +1,4 @@
 var dummy_8c =
 [
-    [ "dummy_gpio", "dummy_8c.html#abb7438d1ecf0996c863d0c4d28c98c4f", null ]
+    [ "platform_gpio", "dummy_8c.html#a443a380e73aa81a31fa52c2859d7872f", null ]
 ];

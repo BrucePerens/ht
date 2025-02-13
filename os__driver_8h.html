@@ -91,6 +91,7 @@ $(document).ready(function(){initNavTree('os__driver_8h.html',''); initResizable
 
 <div class="header">
   <div class="summary">
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">os_driver.h File Reference</div></div>
 </div><!--header-->
@@ -98,29 +99,106 @@ $(document).ready(function(){initNavTree('os__driver_8h.html',''); initResizable
 <div class="textblock"><code>#include &lt;stdbool.h&gt;</code><br />
 <code>#include &lt;stddef.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="radio_8h_source.html">radio.h</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="platform_8h_source.html">platform.h</a>&quot;</code><br />
 </div>
 <p><a href="os__driver_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:a9cca664dce0351eb2215cde7ad68816b"><td class="memItemLeft" align="right" valign="top">typedef ssize_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#a9cca664dce0351eb2215cde7ad68816b">read_ptr</a>) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)</td></tr>
+<tr class="separator:a9cca664dce0351eb2215cde7ad68816b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefb6a5af3103f7f97ccc00fff9dd6b3e"><td class="memItemLeft" align="right" valign="top">typedef ssize_t(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#aefb6a5af3103f7f97ccc00fff9dd6b3e">write_ptr</a>) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)</td></tr>
+<tr class="separator:aefb6a5af3103f7f97ccc00fff9dd6b3e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46594c551533df569d76ac7df56dede7"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#a46594c551533df569d76ac7df56dede7">wait_ptr</a>) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const float seconds)</td></tr>
+<tr class="separator:a46594c551533df569d76ac7df56dede7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afbb20bc31508cbe106418cfa3a7e05b9"><td class="memItemLeft" align="right" valign="top">typedef void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#afbb20bc31508cbe106418cfa3a7e05b9">wake_ptr</a>) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context)</td></tr>
+<tr class="separator:afbb20bc31508cbe106418cfa3a7e05b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aac4bd9f218a0f0745d24853d3deb2f82"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#aac4bd9f218a0f0745d24853d3deb2f82">os_read</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)</td></tr>
-<tr class="separator:aac4bd9f218a0f0745d24853d3deb2f82"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af9a56c8c4feced2435d6c4c3e4ee7e9b"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#af9a56c8c4feced2435d6c4c3e4ee7e9b">os_write</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const char *const buffer, const size_t buffer_length)</td></tr>
-<tr class="separator:af9a56c8c4feced2435d6c4c3e4ee7e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a872634312711abb7f027126c858cfda2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#a872634312711abb7f027126c858cfda2">os_wait</a> (const float seconds)</td></tr>
-<tr class="separator:a872634312711abb7f027126c858cfda2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81d3e49e54e29e474a1ea5240244240e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#a81d3e49e54e29e474a1ea5240244240e">os_wake</a> ()</td></tr>
-<tr class="separator:a81d3e49e54e29e474a1ea5240244240e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a820727034da050f46ec656cbf5a349c7"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#a820727034da050f46ec656cbf5a349c7">os_read</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)</td></tr>
+<tr class="separator:a820727034da050f46ec656cbf5a349c7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace5ef5553df295c2ac2ff49e0710e387"><td class="memItemLeft" align="right" valign="top">ssize_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387">os_write</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const char *const buffer, const size_t buffer_length)</td></tr>
+<tr class="separator:ace5ef5553df295c2ac2ff49e0710e387"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aee3bc883c50dca19551cbd7d03962817"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817">os_wait</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const float seconds)</td></tr>
+<tr class="separator:aee3bc883c50dca19551cbd7d03962817"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac8a68806778c592e06734d7459a458fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="os__driver_8h.html#ac8a68806778c592e06734d7459a458fa">os_wake</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context)</td></tr>
+<tr class="separator:ac8a68806778c592e06734d7459a458fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="aac4bd9f218a0f0745d24853d3deb2f82" name="aac4bd9f218a0f0745d24853d3deb2f82"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aac4bd9f218a0f0745d24853d3deb2f82">&#9670;&#160;</a></span>os_read()</h2>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a9cca664dce0351eb2215cde7ad68816b" name="a9cca664dce0351eb2215cde7ad68816b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9cca664dce0351eb2215cde7ad68816b">&#9670;&#160;</a></span>read_ptr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t os_read </td>
+          <td class="memname">typedef ssize_t(* read_ptr) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="os__driver_8h_source.html#l00008">8</a> of file <a class="el" href="os__driver_8h_source.html">os_driver.h</a>.</p>
+
+</div>
+</div>
+<a id="a46594c551533df569d76ac7df56dede7" name="a46594c551533df569d76ac7df56dede7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46594c551533df569d76ac7df56dede7">&#9670;&#160;</a></span>wait_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* wait_ptr) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, const float seconds)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="os__driver_8h_source.html#l00010">10</a> of file <a class="el" href="os__driver_8h_source.html">os_driver.h</a>.</p>
+
+</div>
+</div>
+<a id="afbb20bc31508cbe106418cfa3a7e05b9" name="afbb20bc31508cbe106418cfa3a7e05b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afbb20bc31508cbe106418cfa3a7e05b9">&#9670;&#160;</a></span>wake_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef void(* wake_ptr) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="os__driver_8h_source.html#l00011">11</a> of file <a class="el" href="os__driver_8h_source.html">os_driver.h</a>.</p>
+
+</div>
+</div>
+<a id="aefb6a5af3103f7f97ccc00fff9dd6b3e" name="aefb6a5af3103f7f97ccc00fff9dd6b3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefb6a5af3103f7f97ccc00fff9dd6b3e">&#9670;&#160;</a></span>write_ptr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef ssize_t(* write_ptr) (<a class="el" href="unionplatform__context.html">platform_context</a> *const context, char *const buffer, const size_t buffer_length)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="os__driver_8h_source.html#l00009">9</a> of file <a class="el" href="os__driver_8h_source.html">os_driver.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a820727034da050f46ec656cbf5a349c7" name="a820727034da050f46ec656cbf5a349c7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a820727034da050f46ec656cbf5a349c7">&#9670;&#160;</a></span>os_read()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ssize_t os_read </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
           <td class="paramname"><em>context</em>, </td>
@@ -145,12 +223,12 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00004">4</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00005">5</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a id="a872634312711abb7f027126c858cfda2" name="a872634312711abb7f027126c858cfda2"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a872634312711abb7f027126c858cfda2">&#9670;&#160;</a></span>os_wait()</h2>
+<a id="aee3bc883c50dca19551cbd7d03962817" name="aee3bc883c50dca19551cbd7d03962817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aee3bc883c50dca19551cbd7d03962817">&#9670;&#160;</a></span>os_wait()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -158,19 +236,29 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void os_wait </td>
           <td>(</td>
-          <td class="paramtype">const float&#160;</td>
-          <td class="paramname"><em>seconds</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const float&#160;</td>
+          <td class="paramname"><em>seconds</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00016">16</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00017">17</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a id="a81d3e49e54e29e474a1ea5240244240e" name="a81d3e49e54e29e474a1ea5240244240e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a81d3e49e54e29e474a1ea5240244240e">&#9670;&#160;</a></span>os_wake()</h2>
+<a id="ac8a68806778c592e06734d7459a458fa" name="ac8a68806778c592e06734d7459a458fa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac8a68806778c592e06734d7459a458fa">&#9670;&#160;</a></span>os_wake()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -178,24 +266,25 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">void os_wake </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
+          <td class="paramname"><em>context</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00021">21</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00022">22</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>
-<a id="af9a56c8c4feced2435d6c4c3e4ee7e9b" name="af9a56c8c4feced2435d6c4c3e4ee7e9b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af9a56c8c4feced2435d6c4c3e4ee7e9b">&#9670;&#160;</a></span>os_write()</h2>
+<a id="ace5ef5553df295c2ac2ff49e0710e387" name="ace5ef5553df295c2ac2ff49e0710e387"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace5ef5553df295c2ac2ff49e0710e387">&#9670;&#160;</a></span>os_write()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">size_t os_write </td>
+          <td class="memname">ssize_t os_write </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
           <td class="paramname"><em>context</em>, </td>
@@ -220,7 +309,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00010">10</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="posix_8c_source.html#l00011">11</a> of file <a class="el" href="posix_8c_source.html">posix.c</a>.</p>
 
 </div>
 </div>

@@ -91,6 +91,8 @@ $(document).ready(function(){initNavTree('platform_8h.html',''); initResizable()
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#typedef-members">Typedefs</a> &#124;
 <a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">platform.h File Reference</div></div>
 </div><!--header-->
@@ -99,20 +101,65 @@ $(document).ready(function(){initNavTree('platform_8h.html',''); initResizable()
 </div>
 <p><a href="platform_8h_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="unionplatform__context.html">platform_context</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ac7678084e430522bef7ae0fe319ba820"><td class="memItemLeft" align="right" valign="top">typedef union <a class="el" href="unionplatform__context.html">platform_context</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#ac7678084e430522bef7ae0fe319ba820">platform_context</a></td></tr>
+<tr class="separator:ac7678084e430522bef7ae0fe319ba820"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6197842be28d13fea554e2e019089db2"><td class="memItemLeft" align="right" valign="top">typedef bool(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#a6197842be28d13fea554e2e019089db2">gpio_ptr</a>) (<a class="el" href="unionplatform__context.html">platform_context</a> *context)</td></tr>
+<tr class="separator:a6197842be28d13fea554e2e019089db2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:abb7438d1ecf0996c863d0c4d28c98c4f"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#abb7438d1ecf0996c863d0c4d28c98c4f">dummy_gpio</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context)</td></tr>
-<tr class="separator:abb7438d1ecf0996c863d0c4d28c98c4f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7eb8ae3dee12b5737d698f83b34678f9"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="platform_8h.html#a7eb8ae3dee12b5737d698f83b34678f9">platform_gpio</a> (<a class="el" href="unionplatform__context.html">platform_context</a> *const context)</td></tr>
+<tr class="separator:a7eb8ae3dee12b5737d698f83b34678f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="abb7438d1ecf0996c863d0c4d28c98c4f" name="abb7438d1ecf0996c863d0c4d28c98c4f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb7438d1ecf0996c863d0c4d28c98c4f">&#9670;&#160;</a></span>dummy_gpio()</h2>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="a6197842be28d13fea554e2e019089db2" name="a6197842be28d13fea554e2e019089db2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6197842be28d13fea554e2e019089db2">&#9670;&#160;</a></span>gpio_ptr</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">bool dummy_gpio </td>
+          <td class="memname">typedef bool(* gpio_ptr) (<a class="el" href="unionplatform__context.html">platform_context</a> *context)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00012">12</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+
+</div>
+</div>
+<a id="ac7678084e430522bef7ae0fe319ba820" name="ac7678084e430522bef7ae0fe319ba820"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac7678084e430522bef7ae0fe319ba820">&#9670;&#160;</a></span>platform_context</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef union <a class="el" href="unionplatform__context.html">platform_context</a> <a class="el" href="unionplatform__context.html">platform_context</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="platform_8h_source.html#l00010">10</a> of file <a class="el" href="platform_8h_source.html">platform.h</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a7eb8ae3dee12b5737d698f83b34678f9" name="a7eb8ae3dee12b5737d698f83b34678f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7eb8ae3dee12b5737d698f83b34678f9">&#9670;&#160;</a></span>platform_gpio()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool platform_gpio </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="unionplatform__context.html">platform_context</a> *const&#160;</td>
           <td class="paramname"><em>context</em></td><td>)</td>

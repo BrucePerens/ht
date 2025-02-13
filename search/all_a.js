@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['os_5fdriver_2eh_0',['os_driver.h',['../os__driver_8h.html',1,'']]],
-  ['os_5fread_1',['os_read',['../os__driver_8h.html#aac4bd9f218a0f0745d24853d3deb2f82',1,'os_read(platform_context *const context, char *const buffer, const size_t buffer_length):&#160;posix.c'],['../posix_8c.html#aac4bd9f218a0f0745d24853d3deb2f82',1,'os_read(platform_context *const context, char *const buffer, const size_t buffer_length):&#160;posix.c']]],
-  ['os_5fwait_2',['os_wait',['../os__driver_8h.html#a872634312711abb7f027126c858cfda2',1,'os_wait(const float seconds):&#160;posix.c'],['../posix_8c.html#a872634312711abb7f027126c858cfda2',1,'os_wait(const float seconds):&#160;posix.c']]],
-  ['os_5fwake_3',['os_wake',['../os__driver_8h.html#a81d3e49e54e29e474a1ea5240244240e',1,'os_wake():&#160;posix.c'],['../posix_8c.html#a81d3e49e54e29e474a1ea5240244240e',1,'os_wake():&#160;posix.c']]],
-  ['os_5fwrite_4',['os_write',['../os__driver_8h.html#af9a56c8c4feced2435d6c4c3e4ee7e9b',1,'os_write(platform_context *const context, const char *const buffer, const size_t buffer_length):&#160;posix.c'],['../posix_8c.html#a497ef7fff7a7bb24a5dffcd433c33bc3',1,'os_write(platform_context *const context, const char *const buffer, const size_t length):&#160;posix.c']]]
+  ['number_5fof_5fbands_0',['number_of_bands',['../structradio__module.html#a1957df4fbd22be2d4727a6192b82f01b',1,'radio_module']]],
+  ['number_5fof_5fchannels_1',['number_of_channels',['../structradio__module.html#a1589deffb9e79b915149fa029609ab63',1,'radio_module']]],
+  ['number_5fof_5fdigital_5fcodes_2',['number_of_digital_codes',['../structradio__module.html#a63a54da318b741411f1337489ab7ac6e',1,'radio_module']]],
+  ['number_5fof_5fsubaudible_5ftones_3',['number_of_subaudible_tones',['../structradio__module.html#a4aed6d1887193f17680b0cc210b3dfc6',1,'radio_module']]]
 ];

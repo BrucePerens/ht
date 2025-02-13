@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_5fcontext_0',['platform_context',['../radio_8h.html#ac7678084e430522bef7ae0fe319ba820',1,'radio.h']]]
+  ['channel_5fptr_0',['channel_ptr',['../radio_8h.html#ae036a276ddf910c86e28f02a7f6a056e',1,'radio.h']]]
 ];
