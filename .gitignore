@@ -1,6 +1,7 @@
 # Build output
 ht
 docs/html
+build.*
 
 # Prerequisites
 *.d

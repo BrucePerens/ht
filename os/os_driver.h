@@ -6,11 +6,11 @@
 #include <errno.h>
 #include "radio.h"
 
-extern struct platform_context;
+struct platform_context;
 typedef struct platform_context platform_context;
 
 typedef ssize_t (* read_ptr)(platform_context * const context, char * const buffer, const size_t buffer_length) /*@globals errno;@*/;
-typedef ssize_t (*write_ptr)(platform_context * const context, char * const buffer, const size_t buffer_length) /*@globals errno;@*/;
+typedef ssize_t (*write_ptr)(platform_context * const context, const char * const buffer, const size_t buffer_length) /*@globals errno;@*/;
 typedef void (*wait_ptr)(platform_context * const context, const float seconds);
 typedef void (*wake_ptr)(platform_context * const context);
 

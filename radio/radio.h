@@ -17,13 +17,13 @@
 
 /// Opaque internal context for the SA-818 driver.
 ///
-extern struct sa818context;
+struct sa818context;
 typedef struct sa818_module	sa818_module;
 
 /// \internal
 /// Opaque internal context for the SA-828 driver.
 ///
-extern struct sa828context;
+struct sa828context;
 typedef struct sa828_module	sa828_module;
 
 /// Parameters to set on a channel of a transceiver, device-independently.
@@ -113,41 +113,44 @@ typedef struct radio_channel_data {
 
 } radio_channel_data;
 
+struct radio_module;
+typedef struct radio_module radio_module;
+
 /// Type for the pointer to the driver-provided channel() coroutine.
 ///
-typedef bool (*channel_ptr)(struct radio_module const *, const unsigned int channel);
+typedef bool (*channel_ptr)(radio_module const *, const unsigned int channel);
 
 /// Type for the pointer to the driver-provided end() coroutine.
 ///
-typedef bool (*end_ptr)(struct radio_module /*@owned@*/ * const);
+typedef bool (*end_ptr)(radio_module /*@owned@*/ * const);
 
 /// Type for the pointer to the driver-provided frequency_rssi() coroutine.
 ///
-typedef bool (*frequency_rssi_ptr)(struct radio_module * const, const float, float * const);
+typedef bool (*frequency_rssi_ptr)(radio_module * const, const float, float * const);
 
 /// Type for the pointer to the driver-provided get() coroutine.
 ///
-typedef bool (*get_ptr)(struct radio_module * const, radio_channel_data * const, const unsigned int channel);
+typedef bool (*get_ptr)(radio_module * const, radio_channel_data * const, const unsigned int channel);
 
 /// Type for the pointer to the driver-provided heartbeat() coroutine.
 ///
-typedef bool (*heartbeat_ptr)(struct radio_module * const);
+typedef bool (*heartbeat_ptr)(radio_module * const);
 
 /// Type for the pointer to the driver-provided heartbeat() coroutine.
 ///
-typedef bool (*receive_ptr)(struct radio_module * const);
+typedef bool (*receive_ptr)(radio_module * const);
 
 /// Type for the pointer to the driver-provided rssi() coroutine.
 ///
-typedef bool (*rssi_ptr)(struct radio_module * const, float * const rssi);
+typedef bool (*rssi_ptr)(radio_module * const, float * const rssi);
 
 /// Type for the pointer to the driver-provided set() coroutine.
 ///
-typedef bool (*set_ptr)(struct radio_module * const, const radio_channel_data * const, const unsigned int channel);
+typedef bool (*set_ptr)(radio_module * const, const radio_channel_data * const, const unsigned int channel);
 
 /// Type for the pointer to the driver-provided transmit() coroutine.
 ///
-typedef bool (*transmit_ptr)(struct radio_module * const);
+typedef bool (*transmit_ptr)(radio_module * const);
 
 /// This specifies the band edges of a band. A transceiver might have more than
 /// one band.

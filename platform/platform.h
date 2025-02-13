@@ -5,7 +5,7 @@
 
 typedef bool (*gpio_ptr)(platform_context * context, unsigned long bits);
 
-typedef struct platform_context {
+struct platform_context {
 #ifdef DRIVER_posix
   int	fd;
 #endif
@@ -14,7 +14,8 @@ typedef struct platform_context {
   /*@shared@*/ write_ptr write;
   /*@shared@*/ wait_ptr	wait;
   /*@shared@*/ wake_ptr	wake;
-} platform_context;
+};
+typedef struct platform_context platform_context;
 
 extern bool
 platform_gpio(platform_context * const context, unsigned long bits);
