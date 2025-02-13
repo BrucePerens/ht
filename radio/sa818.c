@@ -1,3 +1,14 @@
+/// Driver for the SA-808 SA-818, SA-818S, SA-868, SA-868S,
+/// DRA-818
+/// Other modules in the SA-8*8 and DRA-8*8 series use several different protocols,
+/// so there will be separate drivers for them.
+///
+/// The DRA- series are manufactured by Dorji Industrial Group.
+/// The SA- series are manufactured by "G-NiceRF", NiceRF Wireless Technology Co. Ltd.
+///
+/// This is currently only tested with SA-818S.
+/// Bruce Perens K6BP <bruce@perens.com> +1 510-DX4-K6BP.
+///
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdbool.h>
@@ -10,26 +21,20 @@
 #include "platform.h"
 #include "os_driver.h"
 
+/// \private
 /// splint complains about these not being defined, it's not parsing their headers
 /// correctly for some reason.
 extern float roundf(float);
+
+/// \private
+/// same as above.
 extern char *strdup(const char *s);
 
-// Driver for the SA-808 SA-818, SA-818S, SA-868, SA-868S,
-// DRA-818
-// Other modules in the SA-8*8 and DRA-8*8 series use several different protocols,
-// so there will be separate drivers for them.
-//
-// The DRA- series are manufactured by Dorji Industrial Group.
-// The SA- series are manufactured by "G-NiceRF", NiceRF Wireless Technology Co. Ltd.
-//
-// This is currently only tested with SA-818S.
-// Bruce Perens K6BP <bruce@perens.com> +1 510-DX4-K6BP.
-//
-
-// This structure is only defined in this file, so information about the SA/DRA
-// modules should not leak into the rest of the program, enforcing
-// device-independence.
+/// \private
+/// Internal structure for the sa818
+/// This structure is only defined in this file, so information about the SA/DRA
+/// modules should not leak into the rest of the program, enforcing
+/// device-independence.
 typedef struct sa818_module {
   // This will be set to true once the sa has been initialized. It can be cleared
   // if for some reason the module loses power or falls asleep.
@@ -51,24 +56,7 @@ typedef struct sa818_module {
 
   // This is an opaque, caller-provided context for serial I/O.
   // On POSIX-like things it would be a file descriptor.
-  platform_context /*@shared@*/ * platform;	// Context passed to the read and write coroutines.
-
-  // This is a caller-provided GPIO function.
-  /*@shared@*/ gpio_ptr	gpio;
-
-  // This is a caller-provided serial input function.
-  /*@shared@*/ read_ptr	read;
-
-  // This is a caller-provided serial output function.
-  /*@shared@*/ write_ptr	write;
-
-  // This is a caller-provided function to wait the float argument seconds.
-  /*@shared@*/ wait_ptr	wait;
-
-  // This is a caller-provided function to wake the caller when something happens
-  // to the radio.
-  /*@unused@*/
-  /*@shared@*/ wake_ptr	wake;
+  platform_context /*@temp@*/ * platform;	// Context passed to the read and write coroutines.
 
   // This is local context for the channel data, so we don't have to read it from
   // the module.
@@ -151,7 +139,8 @@ float_equal(const float a, const float b)
   return difference < FLT_EPSILON || -difference < FLT_EPSILON;
 }
 
-// Gymnastics so that splint will parse this correctly.
+/// \private
+/// Gymnastics so that splint will parse this correctly.
 typedef const char * returned_string;
 
 static bool
@@ -165,9 +154,9 @@ sa818_command(
 
   const size_t command_length = strlen(command);
 
-  if ( (*(s->write))(s->platform, command, command_length) == (ssize_t)command_length ) {
+  if ( (*(s->platform->write))(s->platform, command, command_length) == (ssize_t)command_length ) {
     const size_t response_length = strlen(response);
-    const ssize_t size = (*(s->read))(s->platform, s->buffer, (size_t)s->buffer_size - 1);
+    const ssize_t size = (*(s->platform->read))(s->platform, s->buffer, (size_t)s->buffer_size - 1);
     if ( size >= (ssize_t)response_length ) {
       if ( memcmp(s->buffer, response, response_length) == 0 ) {
         if ( result ) {
@@ -204,7 +193,7 @@ sa818_end(radio_module /*@owned@*/ * const c)
   // Put the radio into standby.
   s->enable = false;
   s->ptt = false;
-  (void) (*(s->gpio))(s->platform);
+  (void) (*(s->platform->gpio))(s->platform);
   free(s->channels);
   free(s->buffer);
   memset(s, 0, sizeof(*s));
@@ -266,7 +255,7 @@ sa818_receive(radio_module * const c)
   sa818_module * const s = c->device.sa818;
 
   s->ptt = false;
-  return (*(s->gpio))(s->platform);
+  return (*(s->platform->gpio))(s->platform);
 }
 
 static bool
@@ -363,19 +352,14 @@ sa818_transmit(radio_module * const c)
   sa818_module * const s = c->device.sa818;
 
   s->ptt = true;
-  return (*(s->gpio))(s->platform);
+  return (*(s->platform->gpio))(s->platform);
 }
 
-// Initialize the context structure.
+
+/// Initialize the sa818 driver and retiurn a radio_module pointer for all of the
+/// API calls to access it.
 radio_module /*@null@*/ *
-sa818(
-  platform_context * const platform,
-  gpio_ptr	gpio,
-  read_ptr	read,
-  write_ptr	write,
-  wait_ptr	wait,
-  /*@unused@*/ wake_ptr	wake
-)
+sa818(platform_context * const platform)
 {
   // Set up the device-dependent context.
   /*@partial@*/ radio_module * const c = malloc(sizeof(*c));
@@ -389,10 +373,6 @@ sa818(
   }
   memset(c->device.sa818, 0, sizeof(*c->device.sa818));
   s->platform = platform;
-  s->gpio = gpio;
-  s->read = read;
-  s->write = write;
-  s->wait = wait;
 
   // Fill in the call table to provide device-dependent actions for
   // device-independent interfaces.
@@ -426,7 +406,7 @@ sa818(
   s->high_power = true;
 
   // Set the hardware GPIO lines.
-  if ( !(*(s->gpio))(s->platform) ) {
+  if ( !(*(s->platform->gpio))(s->platform) ) {
     free(c->device.sa818);
     free(c->band_limits);
     free(c);
@@ -434,7 +414,7 @@ sa818(
   }
 
   // Delay 500 miliseconds for the radio to power up.
-  (*(s->wait))(s->platform, 0.5f);
+  (*(s->platform->wait))(s->platform, 0.5f);
 
   if ( sa818_command(c, connect_command, connect_response, 0) ) {
     const char /*@observer@*/ * result = 0;

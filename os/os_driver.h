@@ -3,7 +3,9 @@
 #include <stdbool.h>
 #include <stddef.h>
 #include "radio.h"
-#include "platform.h"
+
+extern struct platform_context;
+typedef struct platform_context platform_context;
 
 typedef ssize_t (* read_ptr)(platform_context * const context, char * const buffer, const size_t buffer_length) /*@globals errno;@*/;
 typedef ssize_t (*write_ptr)(platform_context * const context, char * const buffer, const size_t buffer_length) /*@globals errno;@*/;

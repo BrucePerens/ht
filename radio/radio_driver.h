@@ -40,14 +40,7 @@
 /// @returns A pointer to a radio_module structure for the transceiver device.
 ///
 extern radio_module /*@null@*/ *
-sa818(
-  platform_context /*@shared@*/ * const context,
-  gpio_ptr	gpio,
-  read_ptr	read,
-  write_ptr	write,
-  wait_ptr	wait,
-  wake_ptr	wake
-);
+sa818(platform_context /*@temp@*/ * const context);
 #endif /* DRIVER_sa818 */
 
 #endif
