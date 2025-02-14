@@ -14,7 +14,5 @@ var searchData=
   ['build_5fnumber_11',['build_number',['../struct__generic__main.html#a8494c2cbc48ea4044fadf5982763352d',1,'_generic_main']]],
   ['build_5fversion_12',['build_version',['../struct__generic__main.html#a07784bbd82144271ed1b23a64c946a40',1,'_generic_main']]],
   ['button_13',['button',['../web__template_8h.html#a37976ee6fe1fb8546bfd6153b83ffa6c',1,'web_template.h']]],
-  ['buttons_2ec_14',['buttons.c',['../buttons_8c.html',1,'']]],
-  ['byte_15',['Byte',['../miniz_8h.html#ae3a497195d617519e5353ea7b417940f',1,'miniz.h']]],
-  ['bytef_16',['Bytef',['../miniz_8h.html#ac5613fe8160cbbf89d3e470574b755fb',1,'miniz.h']]]
+  ['buttons_2ec_14',['buttons.c',['../buttons_8c.html',1,'']]]
 ];

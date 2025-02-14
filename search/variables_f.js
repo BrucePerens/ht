@@ -9,7 +9,5 @@ var searchData=
   ['source_5faddress_6',['source_address',['../struct__icmpv6__message_1_1__ipv6__header.html#ac6f1f8c7c6aa44bcf2e7b6082b654ef2',1,'_icmpv6_message::_ipv6_header']]],
   ['squelch_5flevel_7',['squelch_level',['../structradio__channel__data.html#a9c34e30cfcc613368ec6ebb68f4671a2',1,'radio_channel_data']]],
   ['sta_8',['sta',['../struct__generic__main.html#a477579ad6762a6fb11348e532989f90b',1,'_generic_main']]],
-  ['state_9',['state',['../structmz__stream__s.html#ac6754a1326240a4722ff6df3003d36de',1,'mz_stream_s']]],
-  ['status_10',['status',['../structmz__zip__reader__extract__iter__state.html#a6e27f49150e9a14580fb313cc2777e00',1,'mz_zip_reader_extract_iter_state']]],
-  ['subaudible_5ftones_11',['subaudible_tones',['../structradio__module.html#a7f8e07268c9333d061b02f8ce19bdf1d',1,'radio_module']]]
+  ['subaudible_5ftones_9',['subaudible_tones',['../structradio__module.html#a7f8e07268c9333d061b02f8ce19bdf1d',1,'radio_module']]]
 ];

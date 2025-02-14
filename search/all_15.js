@@ -5,8 +5,5 @@ var searchData=
   ['var_2',['var',['../web__template_8h.html#a1b0936415a643c88ce543099c10e0d7f',1,'web_template.h']]],
   ['version_3',['version',['../struct__nat__pmp__or__pcp.html#ab22abc2906422da61885ac6c8e6a1a59',1,'_nat_pmp_or_pcp']]],
   ['video_4',['video',['../web__template_8h.html#a93a46df2a4f78b7883fc129375710aae',1,'web_template.h']]],
-  ['voidp_5',['voidp',['../miniz_8h.html#aef6ee0fd51b4998d5eae9ffe4e44306c',1,'miniz.h']]],
-  ['voidpc_6',['voidpc',['../miniz_8h.html#aff7dd941ce5e1aa30ad76fa09845dad3',1,'miniz.h']]],
-  ['voidpf_7',['voidpf',['../miniz_8h.html#acb723a6acb493e64215f5a0613c11eb4',1,'miniz.h']]],
-  ['volume_8',['volume',['../structradio__channel__data.html#a016abda2855c77dcc1630f9d2f9f8d18',1,'radio_channel_data']]]
+  ['volume_5',['volume',['../structradio__channel__data.html#a016abda2855c77dcc1630f9d2f9f8d18',1,'radio_channel_data']]]
 ];

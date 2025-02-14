@@ -1,21 +1,4 @@
 var searchData=
 [
-  ['mz_5falloc_5ffunc_0',['mz_alloc_func',['../miniz_8h.html#a14585dc30ba99cdfca9e0225df4a45a8',1,'miniz.h']]],
-  ['mz_5fbool_1',['mz_bool',['../miniz_8h.html#a896b8bd8958fd11932180d7c9e247986',1,'miniz.h']]],
-  ['mz_5ffile_5fneeds_5fkeepalive_2',['mz_file_needs_keepalive',['../miniz_8h.html#ad7bc23cd7073bca03279afc2f57dc50f',1,'miniz.h']]],
-  ['mz_5ffile_5fread_5ffunc_3',['mz_file_read_func',['../miniz_8h.html#a88993adb5262c6e17495f22790b22bdd',1,'miniz.h']]],
-  ['mz_5ffile_5fwrite_5ffunc_4',['mz_file_write_func',['../miniz_8h.html#a20dd8c64af05b367626a8e151c78e521',1,'miniz.h']]],
-  ['mz_5ffree_5ffunc_5',['mz_free_func',['../miniz_8h.html#ac00f79fc7189a19f9729dbd9b82c8380',1,'miniz.h']]],
-  ['mz_5fint16_6',['mz_int16',['../miniz_8h.html#a5a94836eff2f4841bcdd2eb4ea3b8cc4',1,'miniz.h']]],
-  ['mz_5fint64_7',['mz_int64',['../miniz_8h.html#a49738d6efcd5ee0779fee9582fb3ebfa',1,'miniz.h']]],
-  ['mz_5frealloc_5ffunc_8',['mz_realloc_func',['../miniz_8h.html#ab59076ca68d2ad7d7f9ff77dee398cd7',1,'miniz.h']]],
-  ['mz_5fstream_9',['mz_stream',['../miniz_8h.html#a1591f3aba35161e69ceeb6d80eb8bfc3',1,'miniz.h']]],
-  ['mz_5fstreamp_10',['mz_streamp',['../miniz_8h.html#aeb3235f9c8a7803ef846d6e6d7eed986',1,'miniz.h']]],
-  ['mz_5fuint_11',['mz_uint',['../miniz_8h.html#a4195703cf0ade709ddce7f8777fc0cc2',1,'miniz.h']]],
-  ['mz_5fuint16_12',['mz_uint16',['../miniz_8h.html#ab88892139a542649bc9bbfa592a9d354',1,'miniz.h']]],
-  ['mz_5fuint32_13',['mz_uint32',['../miniz_8h.html#ab1a91818a39ac203d5d9f12a003e8557',1,'miniz.h']]],
-  ['mz_5fuint64_14',['mz_uint64',['../miniz_8h.html#ad1ec3c4964d89baaf6427b699bf71f3f',1,'miniz.h']]],
-  ['mz_5fuint8_15',['mz_uint8',['../miniz_8h.html#a9354eca32f90733aa9bb3738c92da596',1,'miniz.h']]],
-  ['mz_5fulong_16',['mz_ulong',['../miniz_8h.html#a01ae29d9e32fb57d42d52fb83f3fb8e8',1,'miniz.h']]],
-  ['mz_5fzip_5finternal_5fstate_17',['mz_zip_internal_state',['../miniz_8h.html#a2f5efde14c151952d14c6a231b7767ac',1,'miniz.h']]]
+  ['platform_5fcontext_0',['platform_context',['../os__driver_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;os_driver.h'],['../platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;platform.h']]]
 ];

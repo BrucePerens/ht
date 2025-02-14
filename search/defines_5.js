@@ -4,6 +4,5 @@ var searchData=
   ['figcaption_1',['figcaption',['../web__template_8h.html#afb938be4cb451c45d9354eed0f915b2f',1,'web_template.h']]],
   ['figure_2',['figure',['../web__template_8h.html#ae6167d78ccc132d67f27cdc3dcf63ad1',1,'web_template.h']]],
   ['footer_3',['footer',['../web__template_8h.html#a431d40f7ad14a66e185ada6a5de59193',1,'web_template.h']]],
-  ['form_4',['form',['../web__template_8h.html#ad43d55ec6feebfaa6523f8c82c2566a2',1,'web_template.h']]],
-  ['free_5ffunc_5',['free_func',['../miniz_8h.html#ac18e786dc1c81785889a0f4edc113102',1,'miniz.h']]]
+  ['form_4',['form',['../web__template_8h.html#ad43d55ec6feebfaa6523f8c82c2566a2',1,'web_template.h']]]
 ];

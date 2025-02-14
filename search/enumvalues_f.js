@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['xor_5fmapped_5faddress_0',['XOR_MAPPED_ADDRESS',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13a35ed7f6589624d3b02431cba19dccfb9',1,'stun.c']]]
+  ['zero_5flength_0',['ZERO_LENGTH',['../compressed__fs_8h.html#a1e459517f01bb9dac9511086b04d11c3a61e2cd27761bc17047ce35f95119f6d0',1,'compressed_fs.h']]],
+  ['zlib_1',['ZLIB',['../compressed__fs_8h.html#a1e459517f01bb9dac9511086b04d11c3aff714d61d445b732d2553d246ac580e8',1,'compressed_fs.h']]]
 ];

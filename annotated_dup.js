@@ -16,10 +16,6 @@ var annotated_dup =
     [ "gm_event_t", "structgm__event__t.html", "structgm__event__t" ],
     [ "gm_nonvolatile", "structgm__nonvolatile.html", "structgm__nonvolatile" ],
     [ "gm_web_handler", "structgm__web__handler.html", "structgm__web__handler" ],
-    [ "mz_stream_s", "structmz__stream__s.html", "structmz__stream__s" ],
-    [ "mz_zip_archive", "structmz__zip__archive.html", "structmz__zip__archive" ],
-    [ "mz_zip_archive_file_stat", "structmz__zip__archive__file__stat.html", "structmz__zip__archive__file__stat" ],
-    [ "mz_zip_reader_extract_iter_state", "structmz__zip__reader__extract__iter__state.html", "structmz__zip__reader__extract__iter__state" ],
     [ "param", "structparam.html", "structparam" ],
     [ "platform_context", "structplatform__context.html", "structplatform__context" ],
     [ "radio_band_limits", "structradio__band__limits.html", "structradio__band__limits" ],
@@ -30,9 +26,6 @@ var annotated_dup =
     [ "stun_run", "structstun__run.html", "structstun__run" ],
     [ "stun_server", "structstun__server.html", "structstun__server" ],
     [ "tag", "structtag.html", "structtag" ],
-    [ "tdefl_compressor", "structtdefl__compressor.html", "structtdefl__compressor" ],
     [ "timer_task", "structtimer__task.html", "structtimer__task" ],
-    [ "tinfl_decompressor_tag", "structtinfl__decompressor__tag.html", "structtinfl__decompressor__tag" ],
-    [ "tinfl_huff_table", "structtinfl__huff__table.html", "structtinfl__huff__table" ],
     [ "user_data", "structuser__data.html", "structuser__data" ]
 ];
