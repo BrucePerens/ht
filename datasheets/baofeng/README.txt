@@ -1,4 +1,4 @@
-This schematic shows how RDA1846S is used in a commercial multi-band HT.
+These schematics show how RDA1846S is used in commercial multi-band HTs.
 
 The material in this folder is the copyrighted property of
 Fujian Baofeng Electronics Co., Ltd., and is stored here
