@@ -52,16 +52,13 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"_c_make_c_compiler_id_8c.html",
-"generic__main_8h.html#a170249469300b7be411e80085403ad37",
-"improv__wifi_8c.html#a98d44695c46f7dc6b4e95183abc4b17aa7593c5d9fc9931cf9e9f57ccf7df5099",
-"miniz_8h.html#abe27406ab0ea1c4d615d93a3e688748f",
-"radio__driver_8h_source.html",
-"sdkconfig_8h.html#a4743afb98e4ea7ea449c31ff831a2ca8",
-"sdkconfig_8h.html#a965fcdc9bbe69e3ca6caff54bda014c7",
-"sdkconfig_8h.html#ae3f953223271e7eaee48433dcbc25f41",
-"structgm__nonvolatile.html",
-"timer__to__human_8c.html#a0680f5058c785e9cde85779621b814bb"
+"all__zeroes_8c.html",
+"generic__main_8h.html#a6958af1d4f3c52adb8849bb2ce776d74",
+"miniz_8h.html#a068a6e1b16cc7bba48d4d11f3fdc207f",
+"miniz_8h.html#adc956d381ef47f4245a043ba7a4e0107",
+"struct__generic__main.html#a5a6ed9a35ad2d085f61bf62dd2f6263c",
+"structstun__attribute.html#a1b723d5e021fa09a7f679cd08f776645",
+"web__template_8h.html#ab256895305f1c3d3d1227d3a0cbb3ec0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
