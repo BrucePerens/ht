@@ -1,13 +1,12 @@
 var searchData=
 [
-  ['sa818_0',['sa818',['../sa818_8c.html#a2db930ef23db0f1d2be601381ae83c3e',1,'sa818.c']]],
-  ['sa818_2ec_1',['sa818.c',['../sa818_8c.html',1,'']]],
-  ['sa818_5fenable_5fbit_2',['SA818_ENABLE_BIT',['../dummy__bits_8h.html#a9c344efcfc6852857bcd5416b204a898',1,'SA818_ENABLE_BIT():&#160;dummy_bits.h'],['../k6vp__2__bits_8h.html#a9c344efcfc6852857bcd5416b204a898',1,'SA818_ENABLE_BIT():&#160;k6vp_2_bits.h']]],
-  ['sa818_5fhigh_5fpower_5fbit_3',['SA818_HIGH_POWER_BIT',['../dummy__bits_8h.html#aaf8120228ad7d5bc122a36e49739f744',1,'SA818_HIGH_POWER_BIT():&#160;dummy_bits.h'],['../k6vp__2__bits_8h.html#aaf8120228ad7d5bc122a36e49739f744',1,'SA818_HIGH_POWER_BIT():&#160;k6vp_2_bits.h']]],
-  ['sa818_5fmodule_4',['sa818_module',['../radio_8h.html#a6d472c72726a88ea16e4568f8f82bf2d',1,'radio.h']]],
-  ['sa818_5fptt_5fbit_5',['SA818_PTT_BIT',['../dummy__bits_8h.html#a8ef015777fba459003a6e2a0a67e6b77',1,'SA818_PTT_BIT():&#160;dummy_bits.h'],['../k6vp__2__bits_8h.html#a8ef015777fba459003a6e2a0a67e6b77',1,'SA818_PTT_BIT():&#160;k6vp_2_bits.h']]],
-  ['sa828_5fmodule_6',['sa828_module',['../radio_8h.html#a0152f720acfa1b5de8c2d66b32e0ee80',1,'radio.h']]],
-  ['set_5fptr_7',['set_ptr',['../radio_8h.html#a4fcd539e7250febf9082e0efcebb08b9',1,'radio.h']]],
-  ['squelch_5flevel_8',['squelch_level',['../structradio__channel__data.html#a9c34e30cfcc613368ec6ebb68f4671a2',1,'radio_channel_data']]],
-  ['subaudible_5ftones_9',['subaudible_tones',['../structradio__module.html#a7f8e07268c9333d061b02f8ce19bdf1d',1,'radio_module']]]
+  ['platform_2ec_0',['platform.c',['../platform_8c.html',1,'']]],
+  ['platform_2eh_1',['platform.h',['../platform_8h.html',1,'']]],
+  ['platform_5fcontext_2',['platform_context',['../structplatform__context.html',1,'platform_context'],['../os__driver_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;os_driver.h'],['../platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;platform.h']]],
+  ['platform_5fend_3',['platform_end',['../structplatform__context.html#add7a494132a4e16a18fa8cd82f8ffd46',1,'platform_context::platform_end()'],['../platform_8h.html#add7a494132a4e16a18fa8cd82f8ffd46',1,'platform_end(platform_context *platform):&#160;platform.h']]],
+  ['platform_5fgpio_4',['platform_gpio',['../dummy_8c.html#a6080ec8ff14d7454068fdfb018e1a92c',1,'platform_gpio(platform_context *const, unsigned long):&#160;dummy.c'],['../k4vp__2_8c.html#a6080ec8ff14d7454068fdfb018e1a92c',1,'platform_gpio(platform_context *const, unsigned long):&#160;k4vp_2.c'],['../platform_8h.html#ac5d67fcc5b0f745d1e8e4e597dc83d36',1,'platform_gpio(platform_context *const context, unsigned long bits):&#160;dummy.c']]],
+  ['platform_5fid_5',['PLATFORM_ID',['../_c_make_c_compiler_id_8c.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID():&#160;CMakeCCompilerId.c'],['../_c_make_c_x_x_compiler_id_8cpp.html#adbc5372f40838899018fadbc89bd588b',1,'PLATFORM_ID():&#160;CMakeCXXCompilerId.cpp']]],
+  ['platform_5finit_6',['platform_init',['../structplatform__context.html#a64cee34cbbfe3a37265e2f39853108f6',1,'platform_context::platform_init()'],['../platform_8h.html#a64cee34cbbfe3a37265e2f39853108f6',1,'platform_init(const char *filename):&#160;platform.h']]],
+  ['posix_2ec_7',['posix.c',['../posix_8c.html',1,'']]],
+  ['preemphasis_5fdeemphasis_8',['preemphasis_deemphasis',['../structradio__channel__data.html#af72fda9873998e1d8769803acfd94482',1,'radio_channel_data']]]
 ];

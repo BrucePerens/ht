@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: platform/k6vp_2/k6vp_2_bits.h File Reference</title>
+<title>K6BP HT Firmware: platform/k4vp_2/k4vp_2.c File Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('k6vp__2__bits_8h.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('k4vp__2_8c.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,68 +91,47 @@ $(document).ready(function(){initNavTree('k6vp__2__bits_8h.html',''); initResiza
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
-  <div class="headertitle"><div class="title">k6vp_2_bits.h File Reference</div></div>
+<a href="#func-members">Functions</a>  </div>
+  <div class="headertitle"><div class="title">k4vp_2.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><a href="k6vp__2__bits_8h_source.html">Go to the source code of this file.</a></p>
+<div class="textblock"><code>#include &quot;<a class="el" href="platform_8h_source.html">platform.h</a>&quot;</code><br />
+</div>
+<p><a href="k4vp__2_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a9c344efcfc6852857bcd5416b204a898"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="k6vp__2__bits_8h.html#a9c344efcfc6852857bcd5416b204a898">SA818_ENABLE_BIT</a>&#160;&#160;&#160;(1ul &lt;&lt; 0)</td></tr>
-<tr class="separator:a9c344efcfc6852857bcd5416b204a898"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8ef015777fba459003a6e2a0a67e6b77"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="k6vp__2__bits_8h.html#a8ef015777fba459003a6e2a0a67e6b77">SA818_PTT_BIT</a>&#160;&#160;&#160;(1ul &lt;&lt; 1)</td></tr>
-<tr class="separator:a8ef015777fba459003a6e2a0a67e6b77"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaf8120228ad7d5bc122a36e49739f744"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="k6vp__2__bits_8h.html#aaf8120228ad7d5bc122a36e49739f744">SA818_HIGH_POWER_BIT</a>&#160;&#160;&#160;(1ul &lt;&lt; 2)</td></tr>
-<tr class="separator:aaf8120228ad7d5bc122a36e49739f744"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a6080ec8ff14d7454068fdfb018e1a92c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="k4vp__2_8c.html#a6080ec8ff14d7454068fdfb018e1a92c">platform_gpio</a> (<a class="el" href="structplatform__context.html">platform_context</a> *const, unsigned long)</td></tr>
+<tr class="separator:a6080ec8ff14d7454068fdfb018e1a92c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a9c344efcfc6852857bcd5416b204a898" name="a9c344efcfc6852857bcd5416b204a898"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a9c344efcfc6852857bcd5416b204a898">&#9670;&#160;</a></span>SA818_ENABLE_BIT</h2>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a6080ec8ff14d7454068fdfb018e1a92c" name="a6080ec8ff14d7454068fdfb018e1a92c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6080ec8ff14d7454068fdfb018e1a92c">&#9670;&#160;</a></span>platform_gpio()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">#define SA818_ENABLE_BIT&#160;&#160;&#160;(1ul &lt;&lt; 0)</td>
+          <td class="memname">bool platform_gpio </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structplatform__context.html">platform_context</a> * const&#160;</td>
+          <td class="paramname"><em>context</em>, </td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="k6vp__2__bits_8h_source.html#l00001">1</a> of file <a class="el" href="k6vp__2__bits_8h_source.html">k6vp_2_bits.h</a>.</p>
-
-</div>
-</div>
-<a id="aaf8120228ad7d5bc122a36e49739f744" name="aaf8120228ad7d5bc122a36e49739f744"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aaf8120228ad7d5bc122a36e49739f744">&#9670;&#160;</a></span>SA818_HIGH_POWER_BIT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">#define SA818_HIGH_POWER_BIT&#160;&#160;&#160;(1ul &lt;&lt; 2)</td>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">unsigned long&#160;</td>
+          <td class="paramname"><em>bits</em>&#160;</td>
         </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="k6vp__2__bits_8h_source.html#l00003">3</a> of file <a class="el" href="k6vp__2__bits_8h_source.html">k6vp_2_bits.h</a>.</p>
-
-</div>
-</div>
-<a id="a8ef015777fba459003a6e2a0a67e6b77" name="a8ef015777fba459003a6e2a0a67e6b77"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8ef015777fba459003a6e2a0a67e6b77">&#9670;&#160;</a></span>SA818_PTT_BIT</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
         <tr>
-          <td class="memname">#define SA818_PTT_BIT&#160;&#160;&#160;(1ul &lt;&lt; 1)</td>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="k6vp__2__bits_8h_source.html#l00002">2</a> of file <a class="el" href="k6vp__2__bits_8h_source.html">k6vp_2_bits.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="k4vp__2_8c_source.html#l00004">4</a> of file <a class="el" href="k4vp__2_8c_source.html">k4vp_2.c</a>.</p>
 
 </div>
 </div>
@@ -161,7 +140,7 @@ Macros</h2></td></tr>
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_eda4b135dc52868465517878120f33a8.html">k6vp_2</a></li><li class="navelem"><a class="el" href="k6vp__2__bits_8h.html">k6vp_2_bits.h</a></li>
+    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_3a1adb13fe54f1998539cde2b56f0505.html">k4vp_2</a></li><li class="navelem"><a class="el" href="k4vp__2_8c.html">k4vp_2.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

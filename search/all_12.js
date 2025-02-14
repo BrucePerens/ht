@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['wait_0',['wait',['../structplatform__context.html#acd2f13d9bbb5b39d6d9785a7da6b7676',1,'platform_context']]],
-  ['wait_5fptr_1',['wait_ptr',['../os__driver_8h.html#a46594c551533df569d76ac7df56dede7',1,'os_driver.h']]],
-  ['wake_2',['wake',['../structplatform__context.html#a4b9d713dda5292d1ee8634763fa75be6',1,'platform_context']]],
-  ['wake_5fptr_3',['wake_ptr',['../os__driver_8h.html#afbb20bc31508cbe106418cfa3a7e05b9',1,'os_driver.h']]],
-  ['write_4',['write',['../structplatform__context.html#a763f43b5a541d9fafddc93078a19398c',1,'platform_context']]],
-  ['write_5fptr_5',['write_ptr',['../os__driver_8h.html#ab1d5a77be44ac188d6741eb8afa4a663',1,'os_driver.h']]]
+  ['tail_5ftone_0',['tail_tone',['../structradio__channel__data.html#a78f1b160ddaa7a63baa018f8c55673c8',1,'radio_channel_data']]],
+  ['transmit_5fdigital_5fcode_1',['transmit_digital_code',['../structradio__channel__data.html#a89a391bccee9c7468bae0032ab5738f4',1,'radio_channel_data']]],
+  ['transmit_5ffrequency_2',['transmit_frequency',['../structradio__channel__data.html#af19affb5435eee1ea5b501269ba4d4a0',1,'radio_channel_data']]],
+  ['transmit_5fpower_3',['transmit_power',['../structradio__channel__data.html#a911757d50bd11e42c9fff2f67172ea78',1,'radio_channel_data']]],
+  ['transmit_5fptr_4',['transmit_ptr',['../radio_8h.html#a20239143f914b4aaf6959d94a6da86bc',1,'radio.h']]],
+  ['transmit_5fsubaudible_5ftone_5',['transmit_subaudible_tone',['../structradio__channel__data.html#a376f70cf058812d646ca4b512e034f25',1,'radio_channel_data']]]
 ];
