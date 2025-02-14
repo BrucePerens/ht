@@ -8,7 +8,7 @@ Don't get too excited, it doesn't work yet!
 
 ## To Build
 ### K4VP HT Hardware
-First install ESP-IDF using the instructions [here] (https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html).
+First install ESP-IDF using the instructions [here] <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html>.
 The build system expects esp-idf to be in ~/esp/esp-idf .
 
 Then, in the top-level project directory, give the command "make k6vp".
