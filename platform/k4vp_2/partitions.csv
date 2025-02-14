@@ -1,0 +1,25 @@
+# ESP-IDF Partition Table
+# Bruce Perens K6BP <bruce@perens.com>
+#
+# There is 4K before the bootloader, it may be empty.
+# The bootloader starts at 0x1000. There is 32K reserved for it.
+# The partition table starts at 0x9000. It and its checksum take up to 4K.
+# The partition table fits up to 95 entries.
+#
+# The phy_init data are not currently used. This is used if you are shipping to 
+# multiple regions and need to have WiFi configured diffrently for each, without
+# changing the application binary. Then you would set
+# CONFIG_ESP32_PHY_INIT_DATA_IN_PARTITION using "idf.py menuconfig",
+# and figure out how to set the PHY data per region.
+#
+# The MMU requires that the application begin at a 0x10000 boundary. We end up
+# using 128K before the app can start. The app can take up the rest of FLASH.
+# K4VP 2.0 has a ESP32-WROOM-32E-N4. That has 4MB FLASH, so we have 3968K for
+# the app. We can do other things with some of that space, for example we can
+# have a FLASH filesystem and add a scripted language like Lua or Micropython.
+#
+# Name, Type, SubType, Offset, Size, Flags
+nvs,data,nvs,0x10000,24K,
+phy_init,data,phy,0x16000,4K,
+# 16K space here, could be a FLASH filesystem.
+factory,app,factory,0x20000,3968K,

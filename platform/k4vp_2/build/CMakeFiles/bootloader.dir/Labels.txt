@@ -1,0 +1,13 @@
+# Target labels
+ bootloader
+# Source files and their labels
+/home/bruce/ht/platform/k4vp_2/build/CMakeFiles/bootloader
+/home/bruce/ht/platform/k4vp_2/build/CMakeFiles/bootloader.rule
+/home/bruce/ht/platform/k4vp_2/build/CMakeFiles/bootloader-complete.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-build.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-configure.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-download.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-install.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-mkdir.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-patch.rule
+/home/bruce/ht/platform/k4vp_2/build/bootloader-prefix/src/bootloader-stamp/bootloader-update.rule

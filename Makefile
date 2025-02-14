@@ -4,13 +4,13 @@ ESP_IDF?=~/esp/esp-idf
 native:
 	$(MAKE) --no-print-directory -f platform/Makefile.native
 
-k6vp:
-	mkdir -p build.k6vp
-	platform/k6vp_2/run_idf.sh platform/k6vp_2 -B ../../build.k6vp build
+k4vp:
+	mkdir -p build.k4vp
+	platform/k4vp_2/run_idf.sh platform/k4vp_2 -B ../../build.k4vp build
 
-k6vp.flash:
-	mkdir -p build.k6vp
-	platform/k6vp_2/run_idf.sh platform/k6vp_2 -B ../../build.k6vp flash
+k4vp.flash:
+	mkdir -p build.k4vp
+	platform/k4vp_2/run_idf.sh platform/k4vp_2 -B ../../build.k4vp flash
 
 clean:
 	rm -f -r build.*
