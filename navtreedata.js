@@ -30,18 +30,20 @@ var NAVTREE =
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "Globals", "globals.html", [
         [ "All", "globals.html", "globals_dup" ],
-        [ "Functions", "globals_func.html", null ],
+        [ "Functions", "globals_func.html", "globals_func" ],
         [ "Variables", "globals_vars.html", null ],
         [ "Typedefs", "globals_type.html", null ],
+        [ "Enumerations", "globals_enum.html", null ],
+        [ "Enumerator", "globals_eval.html", "globals_eval" ],
         [ "Macros", "globals_defs.html", "globals_defs" ]
       ] ]
     ] ]
@@ -51,10 +53,15 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_c_make_c_compiler_id_8c.html",
-"sdkconfig_8h.html#a1a7be1db0e498850b7eab0280a4f512e",
-"sdkconfig_8h.html#a65fc8c9dba675e6aface3b143562f168",
-"sdkconfig_8h.html#ab3cbd084ca06bf098ff72dc14465dbb2",
-"sdkconfig_8h.html#afe5b26fb70eb9e9b5fdc294cbe9eb5f6"
+"generic__main_8h.html#a170249469300b7be411e80085403ad37",
+"improv__wifi_8c.html#a98d44695c46f7dc6b4e95183abc4b17aa7593c5d9fc9931cf9e9f57ccf7df5099",
+"miniz_8h.html#abe27406ab0ea1c4d615d93a3e688748f",
+"radio__driver_8h_source.html",
+"sdkconfig_8h.html#a4743afb98e4ea7ea449c31ff831a2ca8",
+"sdkconfig_8h.html#a965fcdc9bbe69e3ca6caff54bda014c7",
+"sdkconfig_8h.html#ae3f953223271e7eaee48433dcbc25f41",
+"structgm__nonvolatile.html",
+"timer__to__human_8c.html#a0680f5058c785e9cde85779621b814bb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

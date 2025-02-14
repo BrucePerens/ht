@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['dummy_2ec_0',['dummy.c',['../dummy_8c.html',1,'']]],
-  ['dummy_5fbits_2eh_1',['dummy_bits.h',['../dummy__bits_8h.html',1,'']]]
+  ['boilerplate_2ec_0',['boilerplate.c',['../boilerplate_8c.html',1,'']]],
+  ['buttons_2ec_1',['buttons.c',['../buttons_8c.html',1,'']]]
 ];

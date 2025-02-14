@@ -1,0 +1,26 @@
+var struct__nat__pmp__or__pcp =
+[
+    [ "client_address", "struct__nat__pmp__or__pcp.html#a46aa19e2bbaa9a0778b5c20acbfa422d", null ],
+    [ "epoch", "struct__nat__pmp__or__pcp.html#a6bf8f46b72d33a0bc8f527b37fd0eba9", null ],
+    [ "external_address", "struct__nat__pmp__or__pcp.html#abb63f788ff5501cacac1bf54c71e8381", null ],
+    [ "external_port", "struct__nat__pmp__or__pcp.html#a4579a6a3bb00195b8f1b0dbcf10984e5", null ],
+    [ "internal_port", "struct__nat__pmp__or__pcp.html#a1b5ddb5de38d1042c02bc72fd41311b4", null ],
+    [ "lifetime", "struct__nat__pmp__or__pcp.html#a569e06e92ec3d06c5ebf7f40d7f9a84e", null ],
+    [ "mp", "struct__nat__pmp__or__pcp.html#a32e4399f17fcafedec5a8f5d4146505c", null ],
+    [ "nat_pmp", "struct__nat__pmp__or__pcp.html#abe847c815b75a0a6324d838efc335ecb", null ],
+    [ "nonce", "struct__nat__pmp__or__pcp.html#ae722813cfe3d285edb203934178a27e0", null ],
+    [ "opcode", "struct__nat__pmp__or__pcp.html#a5c1b56e6bccc2a95dbddf1a08e56e87d", null ],
+    [ "pcp", "struct__nat__pmp__or__pcp.html#aa9df22d58f0863dfc558312cd0be902c", null ],
+    [ "protocol", "struct__nat__pmp__or__pcp.html#ad124d3d2e02c729afa303c775295278e", null ],
+    [ "remote_peer_address", "struct__nat__pmp__or__pcp.html#ac807c7894a633023f63bb1aeb7b2bf44", null ],
+    [ "remote_peer_port", "struct__nat__pmp__or__pcp.html#a0557290827ffd25bd71dce04ef4faa20", null ],
+    [ "request", "struct__nat__pmp__or__pcp.html#ad766c7569cc7e37569bc602dfce5a266", null ],
+    [ "request", "struct__nat__pmp__or__pcp.html#a2dbeaf928ab879dbd27ebe6f8e20f579", null ],
+    [ "reserved", "struct__nat__pmp__or__pcp.html#ad41eb183c32bcd9045db56ac2a9b8885", null ],
+    [ "reserved1", "struct__nat__pmp__or__pcp.html#a1bac3eaf5ec72ae83059cda38a312592", null ],
+    [ "reserved1", "struct__nat__pmp__or__pcp.html#a6b89b86dfe0266be2fc46cf46f6e7b72", null ],
+    [ "response", "struct__nat__pmp__or__pcp.html#ae1084f60bc67a8763ca2bf738124a944", null ],
+    [ "response", "struct__nat__pmp__or__pcp.html#aa14ef1b5257ed5037c430d2f049e0511", null ],
+    [ "result_code", "struct__nat__pmp__or__pcp.html#aa3de37afab5717fd74a4ddeb8eeb292a", null ],
+    [ "version", "struct__nat__pmp__or__pcp.html#ab22abc2906422da61885ac6c8e6a1a59", null ]
+];

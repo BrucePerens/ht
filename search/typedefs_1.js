@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['end_5fptr_0',['end_ptr',['../radio_8h.html#aab00c8b7e0117c18dbfe146b48234575',1,'radio.h']]]
+  ['channel_5fptr_0',['channel_ptr',['../radio_8h.html#a3292cddb3cece7c398d3f51a85698ecc',1,'radio.h']]],
+  ['charf_1',['charf',['../miniz_8h.html#a864fa0e2e4e499038305f3276990689b',1,'miniz.h']]]
 ];

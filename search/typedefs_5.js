@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['platform_5fcontext_0',['platform_context',['../os__driver_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;os_driver.h'],['../platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;platform.h']]]
+  ['heartbeat_5fptr_0',['heartbeat_ptr',['../radio_8h.html#a9e2676220e07145a83942c5840b0a05b',1,'radio.h']]]
 ];

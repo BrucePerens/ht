@@ -1,5 +1,20 @@
 var searchData=
 [
-  ['band_5flimits_0',['band_limits',['../structradio__module.html#a0f38b44db43c0424d20d7c5e0f8d4ab0',1,'radio_module']]],
-  ['bandwidth_1',['bandwidth',['../structradio__channel__data.html#a2d20ad05b0ae15fdae25687e5fe4c253',1,'radio_channel_data']]]
+  ['b_0',['b',['../web__template_8h.html#ab2d05693952610f937e5acb3c4a8fa1b',1,'web_template.h']]],
+  ['band_5flimits_1',['band_limits',['../structradio__module.html#a0f38b44db43c0424d20d7c5e0f8d4ab0',1,'radio_module']]],
+  ['bandwidth_2',['bandwidth',['../structradio__channel__data.html#a2d20ad05b0ae15fdae25687e5fe4c253',1,'radio_channel_data']]],
+  ['base_3',['base',['../web__template_8h.html#a6542a2bd356f5c5a12e03135a66e2dae',1,'web_template.h']]],
+  ['bdi_4',['bdi',['../web__template_8h.html#a5f16a34e61f6cd1517d6d287e42b3a2f',1,'web_template.h']]],
+  ['bdo_5',['bdo',['../web__template_8h.html#aa19dab1af331d32b3bcc9138d2190407',1,'web_template.h']]],
+  ['blockquote_6',['blockquote',['../web__template_8h.html#ab755954cee6f1289b2c50d463dd8c25c',1,'web_template.h']]],
+  ['body_7',['body',['../web__template_8h.html#aeb331f92dfb30c493464c56522b258c7',1,'web_template.h']]],
+  ['boilerplate_8',['boilerplate',['../web__template_8h.html#af7e929690eb5825f36cc5772a4ad17ec',1,'web_template.h']]],
+  ['boilerplate_2ec_9',['boilerplate.c',['../boilerplate_8c.html',1,'']]],
+  ['br_10',['br',['../web__template_8h.html#a2bf2280dd2a6739f0df566f16538c8fc',1,'web_template.h']]],
+  ['build_5fnumber_11',['build_number',['../struct__generic__main.html#a8494c2cbc48ea4044fadf5982763352d',1,'_generic_main']]],
+  ['build_5fversion_12',['build_version',['../struct__generic__main.html#a07784bbd82144271ed1b23a64c946a40',1,'_generic_main']]],
+  ['button_13',['button',['../web__template_8h.html#a37976ee6fe1fb8546bfd6153b83ffa6c',1,'web_template.h']]],
+  ['buttons_2ec_14',['buttons.c',['../buttons_8c.html',1,'']]],
+  ['byte_15',['Byte',['../miniz_8h.html#ae3a497195d617519e5353ea7b417940f',1,'miniz.h']]],
+  ['bytef_16',['Bytef',['../miniz_8h.html#ac5613fe8160cbbf89d3e470574b755fb',1,'miniz.h']]]
 ];

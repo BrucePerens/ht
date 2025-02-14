@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['radio_5fband_5flimits_0',['radio_band_limits',['../radio_8h.html#acbae05a44edd5ef8f435a1fbdb4b2566',1,'radio.h']]],
-  ['radio_5fchannel_5fdata_1',['radio_channel_data',['../radio_8h.html#ae63908176fbf1021655c1d31982c1aa7',1,'radio.h']]],
-  ['radio_5fmodule_2',['radio_module',['../radio_8h.html#a3cec2072b67c90a4601e8c8fc030b61a',1,'radio.h']]],
-  ['read_5fptr_3',['read_ptr',['../os__driver_8h.html#a9cca664dce0351eb2215cde7ad68816b',1,'os_driver.h']]],
-  ['receive_5fptr_4',['receive_ptr',['../radio_8h.html#a53d1531b825ff7a8025996eab51a43b1',1,'radio.h']]],
-  ['rssi_5fptr_5',['rssi_ptr',['../radio_8h.html#a8746b0e451e74882c58c847d7149978b',1,'radio.h']]]
+  ['icmpv6_5fmessage_5ft_0',['icmpv6_message_t',['../icmpv6_8c.html#a664842b186a9ada3981b091a44c182f5',1,'icmpv6.c']]],
+  ['improv_5ferror_5fstate_5ft_1',['improv_error_state_t',['../improv__wifi_8c.html#a5964ef89f33cd9e376d189036592ab20',1,'improv_wifi.c']]],
+  ['improv_5frpc_5fcommand_5ft_2',['improv_rpc_command_t',['../improv__wifi_8c.html#a272bb5a2204e346c105fb861234c4e33',1,'improv_wifi.c']]],
+  ['improv_5fstate_5ft_3',['improv_state_t',['../improv__wifi_8c.html#aaab4355f31ed9e41715e37086498f126',1,'improv_wifi.c']]],
+  ['improv_5ftype_5ft_4',['improv_type_t',['../improv__wifi_8c.html#affbaf237e5aa063bb1ef490590aacc75',1,'improv_wifi.c']]],
+  ['intf_5',['intf',['../miniz_8h.html#a7c2da1a4711ea1e7cbf3174d4f5dda9b',1,'miniz.h']]]
 ];
