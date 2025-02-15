@@ -1,5 +1,5 @@
 define:
-  files: ./fs
+  files: ../../embedded_web_site
 
 collect:
   - $files
