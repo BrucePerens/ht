@@ -26,3 +26,7 @@ but doesn't actually work.
 
 ## API Documentation
 See https://bruceperens.github.io/ht/index.html
+
+## Testing
+Connect to the system with "idf.py monitor". Use the "nv" command to set up WiFi.
+Type "help" to see the commands. The web server just serves an error message for now.
