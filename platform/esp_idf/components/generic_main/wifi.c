@@ -124,7 +124,7 @@ gm_wifi_start(void)
 
   ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-  ESP_ERROR_CHECK(esp_netif_set_hostname(GM.sta.esp_netif, "rigcontrol"));
+  ESP_ERROR_CHECK(esp_netif_set_hostname(GM.sta.esp_netif, "ht"));
   ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
@@ -197,7 +197,7 @@ static void wifi_event_sta_connected_to_ap(void* arg, esp_event_base_t event_bas
   // advertisement that is solicited when the IPV6 interfaces are configured.
   gm_icmpv6_start_listener_ipv6(ipv6_router_advertisement_handler);
   ESP_ERROR_CHECK_WITHOUT_ABORT(esp_netif_create_ip6_linklocal(GM.sta.esp_netif));
-  /* dhcp6_enable_stateful(GM.sta.esp_netif->lwip_netif); */
+  dhcp6_enable_stateful(GM.sta.esp_netif->lwip_netif);
   dhcp6_enable_stateless(GM.sta.esp_netif->lwip_netif);
 }
 
@@ -460,3 +460,4 @@ void gm_wifi_restart(void)
     wifi_connect_to_ap(ssid, password);
   }
 }
+

@@ -13,11 +13,18 @@ static struct {
 int run(int argc, char * * argv)
 {
   char	data[128];
+  int	status = -1;
   if ( gm_public_ipv4(data, sizeof(data)) == 0 ) {
     gm_printf("%s\n", data);
-    return 0;
+    status = 0;
   }
-  return -1;
+  /*
+  if ( gm_public_ipv6(data, sizeof(data)) == 0 ) {
+    gm_printf("%s\n", data);
+    status = 0;
+  }
+  */
+  return status;
 }
 
 CONSTRUCTOR install(void)

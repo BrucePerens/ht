@@ -33,7 +33,8 @@ static int tasks(int argc, char * * argv)
   }
   else {
     gm_printf("Task Name\tStatus\tPrio\tHWM\tTask\tAffinity\n");
-    /* vTaskList(stats_buffer); */
+    stats_buffer[0] = '\0';
+    vTaskList(stats_buffer);
     gm_printf("%s\n", stats_buffer);
   }
   return 0;

@@ -13,8 +13,8 @@ void gm_user_initialize_early(void)
   esp_log_level_set("*", ESP_LOG_ERROR);
   // This will be the default WiFi access point name, with the factory MAC address
   // appended to it. Keep it short.
-  GM.application_name = "rigcontrol";
-  gm_printf("\nK6BP RigControl, Version: %s\n", GM.build_version);
+  GM.application_name = "ht";
+  gm_printf("\nK6BP HT Firmware, Version: %s\n", GM.build_version);
 }
 
 void gm_user_initialize_late(void)

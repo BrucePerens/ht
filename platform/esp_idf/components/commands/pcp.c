@@ -32,7 +32,8 @@ static int run(int argc, char * * argv)
     inet_ntop(AF_INET6, m.external_address.s6_addr, buffer, sizeof(buffer));
     return 0;
   }
-  return -1;
+  else
+    return -1;
 }
 
 CONSTRUCTOR install(void)

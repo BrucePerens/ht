@@ -28,8 +28,17 @@ static void initialize(void);
 
 static const char TASK_NAME[] = "main";
 
+bool	app_main_called = false;
+
 void app_main(void)
 {
+  if ( app_main_called ) {
+    fflush(stdout);
+    fprintf(stderr, "app_main called again!\n");
+    fflush(stderr);
+    return;
+  }
+  app_main_called = 1;
   GM.log_file_pointer = stderr;
   initialize();
 }
@@ -45,7 +54,6 @@ static void initialize(void)
   pthread_mutex_init(&GM.console_print_mutex, 0);
 
   gm_wifi_events_initialize();
-
 
   // gm_improv_wifi(0);
 
@@ -91,9 +99,6 @@ static void initialize(void)
   gm_printf("Device name: %s\n", GM.unique_name);
 
   gm_select_task();
-
-  // Start WiFi, if it's already configured.
   gm_wifi_start();
-
   gm_command_interpreter_start();
 }

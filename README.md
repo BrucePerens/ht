@@ -11,6 +11,9 @@ Don't get too excited, it doesn't work yet!
 First install ESP-IDF using the instructions at
 https://docs.espressif.com/projects/esp-idf/en/stable/esp32/get-started/index.html.
 The build system expects esp-idf to be in ~/esp/esp-idf .
+Then install the QEMU esp32 emulator, using the instructions at
+https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-guides/tools/qemu.html
+
 
 Then, in the top-level project directory, give the command "make k6vp".
 
