@@ -28,5 +28,6 @@ but doesn't actually work.
 See https://bruceperens.github.io/ht/index.html
 
 ## Testing
+Change to the platform/k4vp_2 directory.
 Connect to the system with "idf.py monitor". Use the "nv" command to set up WiFi.
 Type "help" to see the commands. The web server just serves an error message for now.
