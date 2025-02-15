@@ -129,9 +129,9 @@ $(document).ready(function(){initNavTree('web__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">void</span></div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="generic__main_8h.html#ac740e39a8c1e6f52928a9ab356aaa022">   35</a></span><a class="code hl_function" href="web__handlers_8c.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a>(httpd_handle_t server)</div>
 <div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// The GET method tries to match a file in the compressed ROM filesystem first.</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// The GET method tries to match a file in the ROM filesystem first.</span></div>
 <div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// If there is no match, it then tries the registered GET methods.</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">/* gm_compressed_fs_web_handlers(server); */</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_function" href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a>(server);</div>
 <div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
 <div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">static</span> <span class="keyword">const</span> httpd_uri_t post = {</div>
 <div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      .uri       = <span class="stringliteral">&quot;/*&quot;</span>,</div>
@@ -196,6 +196,7 @@ $(document).ready(function(){initNavTree('web__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  httpd_resp_send_chunk((httpd_req_t *)gm_web_request, <span class="stringliteral">&quot;&quot;</span>, 0);</div>
 <div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  gm_web_request = 0;</div>
 <div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
+<div class="ttc" id="acompressed__fs_8c_html_af793d91b73cbd1a28dde1f607dfc664b"><div class="ttname"><a href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a></div><div class="ttdeci">void gm_fs_web_handlers(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="compressed__fs_8c_source.html#l00055">compressed_fs.c:55</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926">POST</a></div><div class="ttdeci">@ POST</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00063">generic_main.h:62</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9">PUT</a></div><div class="ttdeci">@ PUT</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00061">generic_main.h:61</a></div></div>

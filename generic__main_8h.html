@@ -261,12 +261,12 @@ Functions</h2></td></tr>
 <tr class="separator:a424c59976cdb3cedc6cffb35105ddb07"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a81fcf7e147f61773bc741537c2124e43"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a> (const esp_console_cmd_t *command)</td></tr>
 <tr class="separator:a81fcf7e147f61773bc741537c2124e43"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa6563efdfe30510344e5ea5a7cbf10af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#aa6563efdfe30510344e5ea5a7cbf10af">gm_compressed_fs_web_handlers</a> (httpd_handle_t server)</td></tr>
-<tr class="separator:aa6563efdfe30510344e5ea5a7cbf10af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aacc4ebafeb423a13a5362cc1ba310124"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#aacc4ebafeb423a13a5362cc1ba310124">gm_ddns</a> (void)</td></tr>
 <tr class="separator:aacc4ebafeb423a13a5362cc1ba310124"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a241265b53f97b10d9cdf9fdf85e34127"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a241265b53f97b10d9cdf9fdf85e34127">gm_event_server</a> (void)</td></tr>
 <tr class="separator:a241265b53f97b10d9cdf9fdf85e34127"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af793d91b73cbd1a28dde1f607dfc664b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a> (httpd_handle_t server)</td></tr>
+<tr class="separator:af793d91b73cbd1a28dde1f607dfc664b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1431053d3e40bc66de80a2a16a0d823"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ad1431053d3e40bc66de80a2a16a0d823">gm_run</a> (<a class="el" href="generic__main_8h.html#a9825bc4be4dde7c5c0a98ac022b51a6b">gm_run_t</a> function, void *<a class="el" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <a class="el" href="generic__main_8h.html#a4aae862eedcfc29f4110d55e11413a27">gm_run_speed_t</a> speed)</td></tr>
 <tr class="separator:ad1431053d3e40bc66de80a2a16a0d823"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac22a7af22d1407b004803ed54e3d85af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a> (int fd, <a class="el" href="generic__main_8h.html#aedee93104fc1bf3ab47b419c05e6fba2">gm_fd_handler_t</a> handler, void *<a class="el" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, bool readable, bool writable, bool exception, uint32_t seconds)</td></tr>
@@ -1153,24 +1153,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="aa6563efdfe30510344e5ea5a7cbf10af" name="aa6563efdfe30510344e5ea5a7cbf10af"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa6563efdfe30510344e5ea5a7cbf10af">&#9670;&#160;</a></span>gm_compressed_fs_web_handlers()</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void gm_compressed_fs_web_handlers </td>
-          <td>(</td>
-          <td class="paramtype">httpd_handle_t&#160;</td>
-          <td class="paramname"><em>server</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="aacc4ebafeb423a13a5362cc1ba310124" name="aacc4ebafeb423a13a5362cc1ba310124"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aacc4ebafeb423a13a5362cc1ba310124">&#9670;&#160;</a></span>gm_ddns()</h2>
 
@@ -1336,6 +1318,26 @@ Variables</h2></td></tr>
 </div><div class="memdoc">
 
 <p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00099">99</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
+
+</div>
+</div>
+<a id="af793d91b73cbd1a28dde1f607dfc664b" name="af793d91b73cbd1a28dde1f607dfc664b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af793d91b73cbd1a28dde1f607dfc664b">&#9670;&#160;</a></span>gm_fs_web_handlers()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_fs_web_handlers </td>
+          <td>(</td>
+          <td class="paramtype">httpd_handle_t&#160;</td>
+          <td class="paramname"><em>server</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="compressed__fs_8c_source.html#l00055">55</a> of file <a class="el" href="compressed__fs_8c_source.html">compressed_fs.c</a>.</p>
 
 </div>
 </div>

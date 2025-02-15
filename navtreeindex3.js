@@ -1,5 +1,6 @@
 var NAVTREEINDEX3 =
 {
+"structradio__channel__data.html#a2d20ad05b0ae15fdae25687e5fe4c253":[0,1,19,0],
 "structradio__channel__data.html#a376f70cf058812d646ca4b512e034f25":[0,1,19,12],
 "structradio__channel__data.html#a78f1b160ddaa7a63baa018f8c55673c8":[0,1,19,8],
 "structradio__channel__data.html#a89a391bccee9c7468bae0032ab5738f4":[0,1,19,9],
@@ -248,6 +249,5 @@ var NAVTREEINDEX3 =
 "web__template_8h.html#ae04293253b669ea7b9882c968030eeed":[1,0,2,1,0,2,0,0,73],
 "web__template_8h.html#ae04efecf89df11add53e68543696c1e6":[1,0,2,1,0,2,0,0,61],
 "web__template_8h.html#ae56805bf3e2bb07f36f8d9dca18e1370":[1,0,2,1,0,2,0,0,105],
-"web__template_8h.html#ae6167d78ccc132d67f27cdc3dcf63ad1":[1,0,2,1,0,2,0,0,40],
-"web__template_8h.html#ae67ab88ac8156b26525f3edec0974cf2":[1,0,2,1,0,2,0,0,27]
+"web__template_8h.html#ae6167d78ccc132d67f27cdc3dcf63ad1":[1,0,2,1,0,2,0,0,40]
 };
