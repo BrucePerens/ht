@@ -34,9 +34,9 @@ run_put_handlers(httpd_req_t * req)
 void
 gm_web_handler_install(httpd_handle_t server)
 {
-  // The GET method tries to match a file in the compressed ROM filesystem first.
+  // The GET method tries to match a file in the ROM filesystem first.
   // If there is no match, it then tries the registered GET methods.
-  /* gm_compressed_fs_web_handlers(server); */
+  gm_fs_web_handlers(server);
 
   static const httpd_uri_t post = {
       .uri       = "/*",

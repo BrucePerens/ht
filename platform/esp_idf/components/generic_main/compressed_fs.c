@@ -1,16 +1,9 @@
-#if 0
 #include <string.h>
 #include <stdlib.h>
 #include <esp_http_server.h>
-#include <miniz.h>
 #include "generic_main.h"
-/* #include "compressed_fs.h" */
 
 static const uint32_t	maximum_chunk_size = 4096;
-
-// The embedded filesystem.
-extern const unsigned int	fs_length;
-extern const char fs[];
 
 static esp_err_t
 http_root_handler(httpd_req_t *req)
@@ -39,89 +32,14 @@ send_chunks(httpd_req_t * req, const char * data, uint32_t size)
   httpd_resp_send_chunk(req, "", 0);
 }
 
-static int
-process_decompressed_data(const void * data, int length, void * context)
-{
-  send_chunks((httpd_req_t *)context, data, length);
-  return 1; // Success code.
-}
-
-static void
-send_uncompressed_file(httpd_req_t * req, const char * fs, const struct compressed_fs_entry * e)
-{
-  size_t	size = e->compressed_size;
-
-  tinfl_decompress_mem_to_callback(fs + e->data_offset, &size, process_decompressed_data, req, TINFL_FLAG_PARSE_ZLIB_HEADER);
-  httpd_resp_send_chunk(req, "", 0);
-}
-
-static void
-read_file(httpd_req_t * req, const char * fs, const struct compressed_fs_entry * e)
-{
-  char	buffer[128];
-  char * found;
-
-  switch ( e->method ) {
-  case ZERO_LENGTH:
-    httpd_resp_send_chunk(req, "", 0);
-    break;
-  case NONE:
-    send_chunks(req, fs + e->data_offset, e->size);
-    httpd_resp_send_chunk(req, "", 0);
-    break;
-  case ZLIB:
-
-    if ( httpd_req_get_hdr_value_str(req, "Accept-Encoding", buffer, sizeof(buffer)) == ESP_OK ) {
-      if ( (found = strstr(buffer, "deflate")) ) {
-        char c = found[7];
-        switch ( c ) {
-        case ',':
-        case ';':
-        case '\0':
-        case '\r':
-        case '\n':
-          break;
-        default:
-          send_uncompressed_file(req, fs, e);
-          httpd_resp_send_chunk(req, "", 0);
-          return;
-        }
-      }
-    }
-    // Send the data compressed, and allow the browser to decompress it.
-    httpd_resp_set_hdr(req, "Content-Encoding", "deflate");
-    send_chunks(req, fs + e->data_offset, e->compressed_size);
-    httpd_resp_send_chunk(req, "", 0);
-    break;
-  }
-}
-
 static esp_err_t
 http_file_handler(httpd_req_t *req)
 {
-  // The header is at the start of the output file, and says where everything else is.
-  // The filesystem entries are at the end of the filesystem, after all of the file
-  // names and file data, because their table can
-  // only be written after all files have been processed. File names and file data
-  // are interleaved after the header. Position of things does matter somewhat because
-  // it's a block-based FLASH device.
-  const struct compressed_fs_header * const header = (const struct compressed_fs_header *)fs;
-  struct compressed_fs_entry * entries = (struct compressed_fs_entry *)(fs + header->table_offset);
   gm_uri uri = {};
 
   if ( gm_uri_parse(req->uri, &uri) != 0 )
     return ESP_ERR_INVALID_ARG;
 
-  // Really simple sequential search for now.
-  // There would have to be lots of files for this to be a problem.
-  for ( int i = 0; i < header->number_of_files; i++ ) {
-    const char * const name = (fs + entries[i].name_offset);
-    if ( strcmp(name, uri.path) == 0 ) {
-      // The file was found. Serve it.
-      read_file(req, fs, &entries[i]);
-      return ESP_OK;
-    }
-  }
   // If we get here, the file was not found.
   if ( gm_web_handler_run(req, &uri, GET) == 0 ) {
     // We found a handler for this URL. Return OK.
@@ -134,7 +52,7 @@ http_file_handler(httpd_req_t *req)
 }
 
 void
-gm_compressed_fs_web_handlers(httpd_handle_t server)
+gm_fs_web_handlers(httpd_handle_t server)
 {
   static const httpd_uri_t root = {
       .uri       = "/",
@@ -152,4 +70,3 @@ gm_compressed_fs_web_handlers(httpd_handle_t server)
   };
   httpd_register_uri_handler(server, &file);
 }
-#endif
