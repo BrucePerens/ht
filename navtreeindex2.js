@@ -1,7 +1,5 @@
 var NAVTREEINDEX2 =
 {
-"port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788ad9c1fe1e6aae8bf46b6232717b253b1d":[1,0,2,1,0,1,18,5,2],
-"port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788ae69379ea7be53c949569029b0379d5eb":[1,0,2,1,0,1,18,5,0],
 "port__control__protocol_8c.html#acd3ebf74e2b85f52b77dcc49c400c9b6":[1,0,2,1,0,1,18,16],
 "port__control__protocol_8c.html#adc3e35480f42347a4c16a5e4c3715167":[1,0,2,1,0,1,18,10],
 "port__control__protocol_8c.html#adc3e35480f42347a4c16a5e4c3715167a72f2f3778196b165d6539be1721b86c2":[1,0,2,1,0,1,18,10,1],
@@ -249,5 +247,7 @@ var NAVTREEINDEX2 =
 "structradio__band__limits.html":[0,1,18],
 "structradio__band__limits.html#aad3745a166c82f18c12c48d8763cbb1e":[0,1,18,0],
 "structradio__band__limits.html#ab56f475c4370b93559ff9c7cf5e0fa91":[0,1,18,1],
-"structradio__channel__data.html":[0,1,19]
+"structradio__channel__data.html":[0,1,19],
+"structradio__channel__data.html#a016abda2855c77dcc1630f9d2f9f8d18":[0,1,19,13],
+"structradio__channel__data.html#a2d20ad05b0ae15fdae25687e5fe4c253":[0,1,19,0]
 };

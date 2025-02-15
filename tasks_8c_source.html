@@ -128,26 +128,27 @@ $(document).ready(function(){initNavTree('tasks_8c_source.html',''); initResizab
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  }</div>
 <div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">else</span> {</div>
 <div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Task Name\tStatus\tPrio\tHWM\tTask\tAffinity\n&quot;</span>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="comment">/* vTaskList(stats_buffer); */</span></div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, stats_buffer);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>}</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="tasks_8c.html#a7bf1e786753c71de834738da71de453a">   42</a></span><a class="code hl_define" href="generic__main_8h.html#a5facd426173a400e33c57d48617b3a66">CONSTRUCTOR</a> <a class="code hl_function" href="tasks_8c.html#a7bf1e786753c71de834738da71de453a">install</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>{</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  tasks_args.cpu  = arg_lit0(NULL, <span class="stringliteral">&quot;cpu&quot;</span>, <span class="stringliteral">&quot;Collect CPU time usage for one second, and display.&quot;</span>);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  tasks_args.end = arg_end(10);</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keyword">static</span> <span class="keyword">const</span> esp_console_cmd_t command = {</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    .command = <span class="stringliteral">&quot;tasks&quot;</span>,</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    .help = <span class="stringliteral">&quot;Display FreeRTOS tasks.&quot;</span>,</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    .hint = NULL,</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    .func = &amp;tasks,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    .argtable = &amp;tasks_args</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  };</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <a class="code hl_function" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a>(&amp;command);</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>}</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    stats_buffer[0] = <span class="charliteral">&#39;\0&#39;</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    vTaskList(stats_buffer);</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;%s\n&quot;</span>, stats_buffer);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  }</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>}</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="tasks_8c.html#a7bf1e786753c71de834738da71de453a">   43</a></span><a class="code hl_define" href="generic__main_8h.html#a5facd426173a400e33c57d48617b3a66">CONSTRUCTOR</a> <a class="code hl_function" href="tasks_8c.html#a7bf1e786753c71de834738da71de453a">install</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>{</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  tasks_args.cpu  = arg_lit0(NULL, <span class="stringliteral">&quot;cpu&quot;</span>, <span class="stringliteral">&quot;Collect CPU time usage for one second, and display.&quot;</span>);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  tasks_args.end = arg_end(10);</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <span class="keyword">static</span> <span class="keyword">const</span> esp_console_cmd_t command = {</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    .command = <span class="stringliteral">&quot;tasks&quot;</span>,</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>    .help = <span class="stringliteral">&quot;Display FreeRTOS tasks.&quot;</span>,</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    .hint = NULL,</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    .func = &amp;tasks,</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    .argtable = &amp;tasks_args</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  };</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <a class="code hl_function" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a>(&amp;command);</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>}</div>
 <div class="ttc" id="acommand_8c_html_a81fcf7e147f61773bc741537c2124e43"><div class="ttname"><a href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a></div><div class="ttdeci">void gm_command_register(const esp_console_cmd_t *command)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00012">command.c:12</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5d74fbe16c813a7c392df9132d100b5b"><div class="ttname"><a href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a></div><div class="ttdeci">int gm_printf(const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00042">printf.c:42</a></div></div>
@@ -155,7 +156,7 @@ $(document).ready(function(){initNavTree('tasks_8c_source.html',''); initResizab
 <div class="ttc" id="atasks_8c_html_a088ac7ffa534015d5b07ddcc7aef9fd4"><div class="ttname"><a href="tasks_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4">end</a></div><div class="ttdeci">struct arg_end * end</div><div class="ttdef"><b>Definition:</b> <a href="tasks_8c_source.html#l00014">tasks.c:14</a></div></div>
 <div class="ttc" id="atasks_8c_html_a09ce3190d4df72aecb56bc0850bb9865"><div class="ttname"><a href="tasks_8c.html#a09ce3190d4df72aecb56bc0850bb9865">print_real_time_stats</a></div><div class="ttdeci">esp_err_t print_real_time_stats(TickType_t xTicksToWait)</div><div class="ttdoc">Function to print the CPU usage of tasks over a given duration.</div><div class="ttdef"><b>Definition:</b> <a href="realtime__tasks_8c_source.html#l00035">realtime_tasks.c:35</a></div></div>
 <div class="ttc" id="atasks_8c_html_a6ba3868b13720a4cbb381196da35f775"><div class="ttname"><a href="tasks_8c.html#a6ba3868b13720a4cbb381196da35f775">cpu</a></div><div class="ttdeci">struct arg_lit * cpu</div><div class="ttdef"><b>Definition:</b> <a href="tasks_8c_source.html#l00013">tasks.c:13</a></div></div>
-<div class="ttc" id="atasks_8c_html_a7bf1e786753c71de834738da71de453a"><div class="ttname"><a href="tasks_8c.html#a7bf1e786753c71de834738da71de453a">install</a></div><div class="ttdeci">CONSTRUCTOR install(void)</div><div class="ttdef"><b>Definition:</b> <a href="tasks_8c_source.html#l00042">tasks.c:42</a></div></div>
+<div class="ttc" id="atasks_8c_html_a7bf1e786753c71de834738da71de453a"><div class="ttname"><a href="tasks_8c.html#a7bf1e786753c71de834738da71de453a">install</a></div><div class="ttdeci">CONSTRUCTOR install(void)</div><div class="ttdef"><b>Definition:</b> <a href="tasks_8c_source.html#l00043">tasks.c:43</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
