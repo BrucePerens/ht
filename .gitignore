@@ -1,4 +1,5 @@
 # Build output
+platform/k4vp_2/managed_components/
 ht
 docs/html
 build.*

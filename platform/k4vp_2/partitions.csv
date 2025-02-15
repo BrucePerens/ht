@@ -1,8 +1,10 @@
-# ESP-IDF Partition Table
+# ESP-IDF Partition Table for K4VP HT
 # Bruce Perens K6BP <bruce@perens.com>
 #
-# There is 4K before the bootloader, it may be empty.
-# The bootloader starts at 0x1000. There is 32K reserved for it.
+# There is 4K before the bootloader, it may be empty. It might be overlapped
+# by the in-chip ROM.
+# The bootloader starts at 0x1000. There is 32K reserved for it and as it is
+# configured at this writing, it's using 26K.
 # The partition table starts at 0x9000. It and its checksum take up to 4K.
 # The partition table fits up to 95 entries.
 #
@@ -17,6 +19,12 @@
 # K4VP 2.0 has a ESP32-WROOM-32E-N4. That has 4MB FLASH, so we have 3968K for
 # the app. We can do other things with some of that space, for example we can
 # have a FLASH filesystem and add a scripted language like Lua or Micropython.
+#
+# If we ever need to squeeze out a few more kilobytes of space:
+# * What's before the bootloader in FLASH?
+# * Reduce the nvs offset to use more of the empty space after the bootloader.
+# * Remove phy_init.
+# * Use the currently empty 16K space after phy_init. 
 #
 # Name, Type, SubType, Offset, Size, Flags
 nvs,data,nvs,0x10000,24K,

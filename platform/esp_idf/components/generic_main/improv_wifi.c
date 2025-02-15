@@ -62,6 +62,7 @@
 #include <esp_vfs.h>
 #include <esp_vfs_dev.h>
 #include <driver/uart.h>
+#include <driver/uart_vfs.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "generic_main.h"
@@ -485,7 +486,7 @@ gm_uart_initialize(void)
    -1,
    -1));
 
-  esp_vfs_dev_uart_use_driver(dev_uart_config.channel);
+  uart_vfs_dev_use_driver(dev_uart_config.channel);
 }
 
 static void

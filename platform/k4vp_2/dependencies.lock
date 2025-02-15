@@ -1,0 +1,21 @@
+dependencies:
+  idf:
+    source:
+      type: idf
+    version: 5.4.0
+  jkent/frogfs:
+    component_hash: ef31be508fb90146c0a4634a035e08840f1e22e05452dc14904072d6322d2089
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.0.0'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 5.3.0
+direct_dependencies:
+- idf
+- jkent/frogfs
+manifest_hash: 6ebe71e3d1f6e6bb1900f7c936de5a49791b2ba013eb413b6e712642fb54a16c
+target: esp32
+version: 2.0.0

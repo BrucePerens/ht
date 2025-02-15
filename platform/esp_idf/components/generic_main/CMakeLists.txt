@@ -23,6 +23,7 @@ REQUIRES
   freertos
   generic_main
   hal
+  esp-tls
   lwip
   nvs_flash
   web_handlers

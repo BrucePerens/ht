@@ -1,0 +1,9 @@
+define:
+  files: ./fs
+
+collect:
+  - $files
+
+filter:
+  '*':
+    - compress zlib
