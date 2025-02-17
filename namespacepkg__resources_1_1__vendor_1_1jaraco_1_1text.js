@@ -1,0 +1,28 @@
+var namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text =
+[
+    [ "FoldedCase", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_folded_case.html", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_folded_case" ],
+    [ "SeparatedValues", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_separated_values.html", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_separated_values" ],
+    [ "Splitter", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_splitter.html", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_splitter" ],
+    [ "Stripper", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_stripper.html", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_stripper" ],
+    [ "WordSet", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_word_set.html", "classpkg__resources_1_1__vendor_1_1jaraco_1_1text_1_1_word_set" ],
+    [ "_", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a16a6be2da9a05d25818190fb08c1ba99", null ],
+    [ "_nonblank", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a8f58db4a2dc6641ee3cdf2962f271319", null ],
+    [ "drop_comment", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#abf07f54122091f248f68fd0094116f17", null ],
+    [ "indent", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a1f26c644dd3d101a481b9748c543d5ab", null ],
+    [ "is_binary", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#afa1aa2aa56ce443a27beae59252a73c3", null ],
+    [ "is_decodable", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a82a3086888118bd3158982f09ef59c46", null ],
+    [ "join_continuation", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#aeed863d2f49b92979ff9957fdaf40f29", null ],
+    [ "multi_substitution", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#aabe4c30a436d6fcb48109779770bd2b9", null ],
+    [ "normalize_newlines", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#aef058d163232e0e85433a4b51dfc5e28", null ],
+    [ "remove_prefix", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#ae1e50e232770ef9a57b783e4f8a01913", null ],
+    [ "remove_suffix", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a3d86c5092036e73edf4b9e103b10365a", null ],
+    [ "simple_html_strip", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a03f67446fd2a8111f190e9eed4e1a416", null ],
+    [ "substitution", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#abe7421acb711879bb74097d98e7e39a5", null ],
+    [ "trim", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a368c493d9d57f9d96f316586dbc7eb44", null ],
+    [ "unwrap", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#acd432d5bebf18efe60bdcb34a7cee2be", null ],
+    [ "wrap", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a2348f3b36951ac7652f9c613310dd0ea", null ],
+    [ "yield_lines", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a10edff5c239f907f2712657423939a22", null ],
+    [ "_unicode_trap", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#a23885bcc08de3fa2a93111531dd455ac", null ],
+    [ "try", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#abe4cc9788f52e49485473dc699537388", null ],
+    [ "words", "namespacepkg__resources_1_1__vendor_1_1jaraco_1_1text.html#acc8b8590db646d910ec1f14b39f71e9b", null ]
+];

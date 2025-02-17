@@ -1,0 +1,28 @@
+var dir_f3ffa95d0aeab92655a5fc593fc3298c =
+[
+    [ "__init__.py", "setuptools_2command_2____init_____8py.html", "setuptools_2command_2____init_____8py" ],
+    [ "alias.py", "alias_8py.html", "alias_8py" ],
+    [ "bdist_egg.py", "bdist__egg_8py.html", "bdist__egg_8py" ],
+    [ "bdist_rpm.py", "command_2bdist__rpm_8py.html", "command_2bdist__rpm_8py" ],
+    [ "build_clib.py", "command_2build__clib_8py.html", "command_2build__clib_8py" ],
+    [ "build_ext.py", "command_2build__ext_8py.html", "command_2build__ext_8py" ],
+    [ "build_py.py", "command_2build__py_8py.html", "command_2build__py_8py" ],
+    [ "develop.py", "develop_8py.html", "develop_8py" ],
+    [ "dist_info.py", "dist__info_8py.html", "dist__info_8py" ],
+    [ "easy_install.py", "easy__install_8py.html", "easy__install_8py" ],
+    [ "editable_wheel.py", "editable__wheel_8py.html", "editable__wheel_8py" ],
+    [ "egg_info.py", "egg__info_8py.html", "egg__info_8py" ],
+    [ "install.py", "setuptools_2command_2install_8py.html", "setuptools_2command_2install_8py" ],
+    [ "install_egg_info.py", "command_2install__egg__info_8py.html", "command_2install__egg__info_8py" ],
+    [ "install_lib.py", "command_2install__lib_8py.html", "command_2install__lib_8py" ],
+    [ "install_scripts.py", "command_2install__scripts_8py.html", "command_2install__scripts_8py" ],
+    [ "py36compat.py", "py36compat_8py.html", "py36compat_8py" ],
+    [ "register.py", "command_2register_8py.html", "command_2register_8py" ],
+    [ "rotate.py", "rotate_8py.html", "rotate_8py" ],
+    [ "saveopts.py", "saveopts_8py.html", "saveopts_8py" ],
+    [ "sdist.py", "setuptools_2command_2sdist_8py.html", "setuptools_2command_2sdist_8py" ],
+    [ "setopt.py", "setopt_8py.html", "setopt_8py" ],
+    [ "test.py", "test_8py.html", "test_8py" ],
+    [ "upload.py", "command_2upload_8py.html", "command_2upload_8py" ],
+    [ "upload_docs.py", "upload__docs_8py.html", "upload__docs_8py" ]
+];

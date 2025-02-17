@@ -1,8 +1,7 @@
 var searchData=
 [
-  ['fieldset_0',['fieldset',['../web__template_8h.html#afd4e4851c7241e4da02b3be53927f764',1,'web_template.h']]],
-  ['figcaption_1',['figcaption',['../web__template_8h.html#afb938be4cb451c45d9354eed0f915b2f',1,'web_template.h']]],
-  ['figure_2',['figure',['../web__template_8h.html#ae6167d78ccc132d67f27cdc3dcf63ad1',1,'web_template.h']]],
-  ['footer_3',['footer',['../web__template_8h.html#a431d40f7ad14a66e185ada6a5de59193',1,'web_template.h']]],
-  ['form_4',['form',['../web__template_8h.html#ad43d55ec6feebfaa6523f8c82c2566a2',1,'web_template.h']]]
+  ['em_0',['em',['../web__template_8h.html#a70ea62d709e1fe479fd4441444f5871a',1,'web_template.h']]],
+  ['embed_1',['embed',['../web__template_8h.html#abbb90cad8fe6813e076d5f4d7f6223bd',1,'web_template.h']]],
+  ['end_2',['end',['../web__template_8h.html#a2fb839951208a8400aa14d71d7c6f974',1,'web_template.h']]],
+  ['end_5fboilerplate_3',['end_boilerplate',['../web__template_8h.html#ad5ea7e68893a46cd22e8d686e5ed3496',1,'web_template.h']]]
 ];

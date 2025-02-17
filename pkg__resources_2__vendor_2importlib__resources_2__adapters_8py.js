@@ -1,0 +1,11 @@
+var pkg__resources_2__vendor_2importlib__resources_2__adapters_8py =
+[
+    [ "SpecLoaderAdapter", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_spec_loader_adapter.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_spec_loader_adapter" ],
+    [ "TraversableResourcesLoader", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_traversable_resources_loader.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_traversable_resources_loader" ],
+    [ "CompatibilityFiles", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files" ],
+    [ "CompatibilityFiles.SpecPath", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files_1_1_spec_path.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files_1_1_spec_path" ],
+    [ "CompatibilityFiles.ChildPath", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files_1_1_child_path.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files_1_1_child_path" ],
+    [ "CompatibilityFiles.OrphanPath", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files_1_1_orphan_path.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1__adapters_1_1_compatibility_files_1_1_orphan_path" ],
+    [ "_io_wrapper", "pkg__resources_2__vendor_2importlib__resources_2__adapters_8py.html#a0a3c5d4c2c4623b44eed341fc529f2e0", null ],
+    [ "wrap_spec", "pkg__resources_2__vendor_2importlib__resources_2__adapters_8py.html#aaf332a4769b1ef1e7fee7b48daa20675", null ]
+];

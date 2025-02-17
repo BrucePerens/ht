@@ -1,0 +1,7 @@
+var namespacepkg__resources_1_1__vendor_1_1importlib__resources_1_1simple =
+[
+    [ "ResourceContainer", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_container.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_container" ],
+    [ "ResourceHandle", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_handle.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_handle" ],
+    [ "SimpleReader", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_simple_reader.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_simple_reader" ],
+    [ "TraversableReader", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_traversable_reader.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_traversable_reader" ]
+];

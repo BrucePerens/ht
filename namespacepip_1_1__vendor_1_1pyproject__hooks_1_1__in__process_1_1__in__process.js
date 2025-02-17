@@ -1,0 +1,27 @@
+var namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process =
+[
+    [ "_DummyException", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1___dummy_exception.html", null ],
+    [ "BackendInvalid", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_backend_invalid.html", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_backend_invalid" ],
+    [ "BackendUnavailable", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_backend_unavailable.html", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_backend_unavailable" ],
+    [ "GotUnsupportedOperation", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_got_unsupported_operation.html", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_got_unsupported_operation" ],
+    [ "HookMissing", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_hook_missing.html", "classpip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process_1_1_hook_missing" ],
+    [ "_build_backend", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#adfda5e2477ff8022ddfae64d0b19196d", null ],
+    [ "_dist_info_files", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a1b250d9804e6f3aa58c4b75cd2b26570", null ],
+    [ "_find_already_built_wheel", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a139472fc57433eec97d7600498e20652", null ],
+    [ "_get_wheel_metadata_from_wheel", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a2e8c9a03cae05ab91b97eb117bd4fb71", null ],
+    [ "_supported_features", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a2cd766266a6e52a406162c1dc263c84d", null ],
+    [ "build_editable", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a15d648472e9f1de9e9dfd64392cd112c", null ],
+    [ "build_sdist", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a142f2765f823e867a3b25cc508192e80", null ],
+    [ "build_wheel", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#adecd76e11e8c8d41fd07c5c2671d2841", null ],
+    [ "contained_in", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a0d09f7b13ef23deeb464695a2bed0589", null ],
+    [ "get_requires_for_build_editable", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a7d053bb744cd256def0bb5d4b1e4db44", null ],
+    [ "get_requires_for_build_sdist", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a57bf903ee9fad3e47f1ae0c31f869a6e", null ],
+    [ "get_requires_for_build_wheel", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#ad782aed186ff482eca78c5bff69355a7", null ],
+    [ "main", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a19a7b3cd609ad62e14a361b54bbad262", null ],
+    [ "prepare_metadata_for_build_editable", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#afdbdfb0afe24c174441edb0ce874c16d", null ],
+    [ "prepare_metadata_for_build_wheel", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a2bf364569851a9f5fcad45e8592b40ba", null ],
+    [ "read_json", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#aa00296a1848e2581e2447fd05de6d95f", null ],
+    [ "write_json", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a8901be1d594d2971488e93d8d168b90a", null ],
+    [ "HOOK_NAMES", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a6a78b72bfbcff2d121ece5b732202af0", null ],
+    [ "WHEEL_BUILT_MARKER", "namespacepip_1_1__vendor_1_1pyproject__hooks_1_1__in__process_1_1__in__process.html#a5a436212bd278ba3771482dbdefba23e", null ]
+];

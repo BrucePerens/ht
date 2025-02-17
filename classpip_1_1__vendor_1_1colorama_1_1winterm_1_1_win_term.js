@@ -1,0 +1,25 @@
+var classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term =
+[
+    [ "__init__", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#ae64f0875afe3067b97ba370b354b9213", null ],
+    [ "back", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a1b2b8f4e9024fe2b717f0aa8247d4f84", null ],
+    [ "cursor_adjust", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a0c00a4208d2ac856a5155fd53e497b7e", null ],
+    [ "erase_line", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a527340494ffa262c43d550f911fdabb6", null ],
+    [ "erase_screen", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#afbbd19013433d5efbd55cd7aa3f03561", null ],
+    [ "fore", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a52878af00ebf24e78933b8e069ab33c7", null ],
+    [ "get_attrs", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a0f2d1b5bd89a8e30ff523f60f8fc4c67", null ],
+    [ "get_position", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a4a34c25c379f6c03f707e3d6647fbed2", null ],
+    [ "reset_all", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a2610e618d8d09a20e00e9e21f8e202ba", null ],
+    [ "set_attrs", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a20ccf49915bed44e657eccf5231ef018", null ],
+    [ "set_console", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a812fefe24a464fbfacacc22846a46d03", null ],
+    [ "set_cursor_position", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a8090bdc805991ddbf5295e12e8d71d83", null ],
+    [ "set_title", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a70be86d42a47b507499d0087bedeaef7", null ],
+    [ "style", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#ada63b1df36e0df2a1351738924421e9b", null ],
+    [ "_back", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#ab75e39f11a7369a842f3c9e047e73365", null ],
+    [ "_default", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#ae4f497877dd40af9020f6ca122302f41", null ],
+    [ "_default_back", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#ae604a0560a6b1e841b71c3772d878287", null ],
+    [ "_default_fore", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#acb4e6451e683e2e1548ba70bf42f165c", null ],
+    [ "_default_style", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a6f2959f3c82f25b94fec6c27a5bb6d5c", null ],
+    [ "_fore", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#af7843208e65c6c75f723737fa55eeff1", null ],
+    [ "_light", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#ab5032498ef461e137a57c8260c4b0a5c", null ],
+    [ "_style", "classpip_1_1__vendor_1_1colorama_1_1winterm_1_1_win_term.html#a8aa14e627929733a9fac4b07be7b879d", null ]
+];

@@ -1,0 +1,25 @@
+var build__meta_8py =
+[
+    [ "SetupRequirementsError", "classsetuptools_1_1build__meta_1_1_setup_requirements_error.html", "classsetuptools_1_1build__meta_1_1_setup_requirements_error" ],
+    [ "Distribution", "classsetuptools_1_1build__meta_1_1_distribution.html", "classsetuptools_1_1build__meta_1_1_distribution" ],
+    [ "_ConfigSettingsTranslator", "classsetuptools_1_1build__meta_1_1___config_settings_translator.html", "classsetuptools_1_1build__meta_1_1___config_settings_translator" ],
+    [ "_BuildMetaBackend", "classsetuptools_1_1build__meta_1_1___build_meta_backend.html", "classsetuptools_1_1build__meta_1_1___build_meta_backend" ],
+    [ "_BuildMetaLegacyBackend", "classsetuptools_1_1build__meta_1_1___build_meta_legacy_backend.html", "classsetuptools_1_1build__meta_1_1___build_meta_legacy_backend" ],
+    [ "_file_with_extension", "build__meta_8py.html#ade24ef39a3a5feef96687aa8798040aa", null ],
+    [ "_get_immediate_subdirectories", "build__meta_8py.html#a55df892f3ad5b008c1267b908018ad70", null ],
+    [ "_open_setup_script", "build__meta_8py.html#ab25e624b7aaa20cf4082d0e6977f4012", null ],
+    [ "no_install_setup_requires", "build__meta_8py.html#a649fd1c0e1fdaffadf0700b2bbaf9aa5", null ],
+    [ "suppress_known_deprecation", "build__meta_8py.html#a39e77ae2b1728b2ed1e34ba76034466b", null ],
+    [ "_BACKEND", "build__meta_8py.html#ab6c8b0832ea08eb0f68077551d512dbd", null ],
+    [ "_ConfigSettings", "build__meta_8py.html#a6ac04d273d9784b9319b8a84406181ec", null ],
+    [ "build_editable", "build__meta_8py.html#ad4a09cc212d6617f43401086794c4482", null ],
+    [ "build_sdist", "build__meta_8py.html#a1dedd5af6687393f88fe3fa53555db0f", null ],
+    [ "build_wheel", "build__meta_8py.html#ae0479d34794baf7478d6ea5eb0e19903", null ],
+    [ "get_requires_for_build_editable", "build__meta_8py.html#a188ce9ee8dc88e2c0c376cc6271ad048", null ],
+    [ "get_requires_for_build_sdist", "build__meta_8py.html#a7d71a9141e9a3d2ab70a35a97250ec15", null ],
+    [ "get_requires_for_build_wheel", "build__meta_8py.html#a8b7d6dd2e20f1f61bc14094bd5638c5c", null ],
+    [ "LEGACY_EDITABLE", "build__meta_8py.html#ad027bf9ec600e9a1327fff5ebf90b02f", null ],
+    [ "prepare_metadata_for_build_editable", "build__meta_8py.html#a07a34307c04ce19a748eed80517f7315", null ],
+    [ "prepare_metadata_for_build_wheel", "build__meta_8py.html#a934a1fe8700e9b743bd7f2157027cb04", null ],
+    [ "SETUPTOOLS_ENABLE_FEATURES", "build__meta_8py.html#a418fdf067e1efca094d36ea283b562ba", null ]
+];

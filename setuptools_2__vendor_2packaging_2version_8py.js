@@ -1,0 +1,25 @@
+var setuptools_2__vendor_2packaging_2version_8py =
+[
+    [ "InvalidVersion", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1_invalid_version.html", null ],
+    [ "_BaseVersion", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1___base_version.html", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1___base_version" ],
+    [ "LegacyVersion", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1_legacy_version.html", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1_legacy_version" ],
+    [ "Version", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1_version.html", "classsetuptools_1_1__vendor_1_1packaging_1_1version_1_1_version" ],
+    [ "_cmpkey", "setuptools_2__vendor_2packaging_2version_8py.html#aa7f2d3c8e1e4a6df628a475a33ec0062", null ],
+    [ "_legacy_cmpkey", "setuptools_2__vendor_2packaging_2version_8py.html#a455c0a5be106bc94d5489e7b5d96039b", null ],
+    [ "_parse_letter_version", "setuptools_2__vendor_2packaging_2version_8py.html#a2d05d90d479ac7021adc9cd65a4b1cc8", null ],
+    [ "_parse_local_version", "setuptools_2__vendor_2packaging_2version_8py.html#a73c103308edd8b03e76f803a4a8d90a3", null ],
+    [ "_parse_version_parts", "setuptools_2__vendor_2packaging_2version_8py.html#a6cd6ec6ffe49a82a0c7ca817d9e5c2aa", null ],
+    [ "parse", "setuptools_2__vendor_2packaging_2version_8py.html#a42d3743f7293754d7bbe77ddd45d91bb", null ],
+    [ "_legacy_version_component_re", "setuptools_2__vendor_2packaging_2version_8py.html#a0d03bc798daab58dbd803f00c67835ce", null ],
+    [ "_legacy_version_replacement_map", "setuptools_2__vendor_2packaging_2version_8py.html#af36d42809161a0a2982532506e88c653", null ],
+    [ "_local_version_separators", "setuptools_2__vendor_2packaging_2version_8py.html#a38ffe5a09d784d6f7343bc91ccfbd10c", null ],
+    [ "_Version", "setuptools_2__vendor_2packaging_2version_8py.html#a518156cc9ab6eab4435b94de2c19e0d3", null ],
+    [ "CmpKey", "setuptools_2__vendor_2packaging_2version_8py.html#acc2e4ca2aff1f93e61ff38e73b3f931e", null ],
+    [ "InfiniteTypes", "setuptools_2__vendor_2packaging_2version_8py.html#a81e89cd6b10decf8f88e6df63aebb47b", null ],
+    [ "LegacyCmpKey", "setuptools_2__vendor_2packaging_2version_8py.html#a52a197dbe36d6c5c53dbb2784138240f", null ],
+    [ "LocalType", "setuptools_2__vendor_2packaging_2version_8py.html#a94fd3ca974273117ec431f20de5104e7", null ],
+    [ "PrePostDevType", "setuptools_2__vendor_2packaging_2version_8py.html#ad6e3291fe75f6dae408d1a5e0980bac9", null ],
+    [ "SubLocalType", "setuptools_2__vendor_2packaging_2version_8py.html#aa9ab5beaad995c066a89a68d3b15aa2e", null ],
+    [ "VERSION_PATTERN", "setuptools_2__vendor_2packaging_2version_8py.html#a189d219f0e31abbfc4f1b0f59168ffc4", null ],
+    [ "VersionComparisonMethod", "setuptools_2__vendor_2packaging_2version_8py.html#aa59c2a11b173a2f7afa4c7e1a08dc197", null ]
+];
