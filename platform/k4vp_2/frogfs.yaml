@@ -1,9 +1,24 @@
+#The trailing slash is important. Files won't be situated in the root of the
+# compressed filesystem if you use no trailing slash, or a trailing /.
 define:
-  files: ../../embedded_web_site
+  files: ../../embedded_web_site/
 
 collect:
   - $files
 
 filter:
   '*':
+    - compress zlib
+      level 9
+
+  '*.html':
+    - compress zlib
+
+  '*.css':
+    - compress zlib
+
+  '*.js':
+    - compress zlib
+
+  '*.mjs':
     - compress zlib

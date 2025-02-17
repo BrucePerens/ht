@@ -14,6 +14,7 @@ void html_boilerplate(const char * pattern, ...)
   doctype
   html
     head
+      link _("rel", "stylesheet") _("href", "/style.css")
       title
         text(titl)
       end

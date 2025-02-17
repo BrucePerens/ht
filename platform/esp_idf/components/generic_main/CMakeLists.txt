@@ -21,6 +21,7 @@ REQUIRES
   esp_http_server
   esp_timer
   freertos
+  frogfs
   generic_main
   hal
   esp-tls

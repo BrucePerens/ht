@@ -1,0 +1,4 @@
+--flash_mode dio --flash_freq 40m --flash_size 4MB
+0x1000 bootloader/bootloader.bin
+0x20000 k4vp.bin
+0x9000 partition_table/partition-table.bin

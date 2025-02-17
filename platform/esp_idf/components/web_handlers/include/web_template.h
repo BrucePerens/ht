@@ -8,14 +8,12 @@
 /*
 #define VSPRINTF(pattern) \
 ( \
-  { \
-    char b##__COUNTER__[128]; \
-    va_list a##__COUNTER__; \
-    va_start(a##__COUNTER__, pattern); \
-    vsnprintf(b##__COUNTER__, sizeof(b##__COUNTER__), (pattern), a##__COUNTER__); \
-    va_end(a##__COUNTER__); \
+    char b##__COUNTER__[128], \
+    va_list a##__COUNTER__, \
+    va_start(a##__COUNTER__, pattern), \
+    vsnprintf(b##__COUNTER__, sizeof(b##__COUNTER__), (pattern), a##__COUNTER__), \
+    va_end(a##__COUNTER__), \
     b##__COUNTER__; \
-  } \
 )
  */
 
@@ -25,7 +23,7 @@
 #define area html_tag("area", false);
 #define article html_tag("article", true);
 #define aside html_tag("aside", true);
-#define attr(pattern, ...) html_attr(pattern, ##__VA_ARGS__);
+#define _(pattern, ...) html_attr(pattern, ##__VA_ARGS__);
 #define audio html_tag("audio", true);
 #define b html_tag("b", true);
 #define base html_tag("base", false);

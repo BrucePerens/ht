@@ -15,27 +15,15 @@ setting_get(httpd_req_t * req, const gm_uri * uri)
 
   boilerplate("Setting %s", name)
 
-  form
-    attr("method", "post")
-    attr("action", "/setting")
+  form _("method", "post") _("action", "/setting")
+    input _("type", "hidden") _("name", "name") _("value", name)
 
-    input
-    attr("type", "hidden")
-    attr("name", "name")
-    attr("value", name)
-
-    label
-      attr("for", name)
+    label _("for", name)
       text(name)
     end
 
-    input
-    attr("type", "text")
-    attr("name", "value")
-    attr("value", value)
-
-    input
-    attr("type", "submit")
+    input _("type", "text") _("name", "value") _("value", value)
+    input _("type", "submit")
   end
 
   end_boilerplate

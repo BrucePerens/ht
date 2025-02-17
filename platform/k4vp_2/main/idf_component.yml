@@ -15,3 +15,6 @@ dependencies:
   #   # All dependencies of `main` are public by default.
   #   public: true
   jkent/frogfs: '*'
+  dannybackx/acmeclient: ^0.1.0
+  joltwallet/littlefs: ^1.16.4
+  bblanchon/arduinojson: ^7.3.0

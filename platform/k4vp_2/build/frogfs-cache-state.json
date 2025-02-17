@@ -1,0 +1,20 @@
+{
+    "": {
+        "type": "dir"
+    },
+    "index.html": {
+        "type": "file",
+        "compress": [
+            "zlib",
+            {}
+        ],
+        "real_size": 219
+    },
+    "style.css": {
+        "type": "file",
+        "compress": [
+            "zlib",
+            {}
+        ]
+    }
+}

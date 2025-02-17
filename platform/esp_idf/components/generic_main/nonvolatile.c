@@ -15,6 +15,9 @@ typedef struct gm_nonvolatile {
 extern void gm_wifi_restart(void);
 
 static const gm_nonvolatile_t gm_nonvolatile[] = {
+  { "admin_password", STRING, true, "The admin user password.\n", 0},
+  { "callsign", STRING, false, "Amateur Radio callsign.\n", 0},
+  { "aprs_destination", STRING, false, "Destination for APRS packets, usually WIDE1.\n", 0},
   { "ddns_basic_auth", STRING, false, "send HTTP basic authentication on the first transaction with the Dynamic DNS server.\n", 0},
   { "ddns_hostname", STRING, false, "Hostname for this device to set in dynamic DNS.", 0 },
   { "ddns_password", STRING, true, "Password for secure access to the dynamic DNS host.", 0 },
@@ -22,7 +25,7 @@ static const gm_nonvolatile_t gm_nonvolatile[] = {
   { "ddns_token", STRING, true, "secret token to set in dynamic DNS.", 0 },
   { "ddns_username", STRING, false, "User name for secure access to the dynamic DNS host.", 0 },
   { "ssid", STRING, false, "Name of the WiFi access point", gm_wifi_restart },
-  { "timezone", STRING, false, "Time zone (see https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)", 0 },
+  { "timezone", STRING, false, "Time zone, like PST8PDT, (see https://github.com/nayarsystems/posix_tz_db/blob/master/zones.csv)", 0 },
   { "wifi_password", STRING, true, "Password of the WiFi access point", gm_wifi_restart },
   { }
 };

@@ -1,0 +1,7 @@
+       - Stage 1
+         - index.html
+           - compress zlib... done (69.4%)
+         - style.css
+           - compress zlib... skipped
+       - Stage 2
+         - Output file written

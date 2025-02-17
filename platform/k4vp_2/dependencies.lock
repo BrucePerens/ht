@@ -1,4 +1,18 @@
 dependencies:
+  bblanchon/arduinojson:
+    component_hash: 21b41e6cce335cefc142c457ceb50eb45621ff9ea6fd0a0ee349a642e48a47a3
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 7.3.0
+  dannybackx/acmeclient:
+    component_hash: 2ec76f70ab466a5203228ea231062410956c65eec553cf8fe7b2ea5182d664b5
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.1.0
   idf:
     source:
       type: idf
@@ -13,9 +27,22 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 5.3.0
+  joltwallet/littlefs:
+    component_hash: add3caf39a265868f70e55f17e8bfb401f200e45a601dc392832e7ac2c1487bc
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=4.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.16.4
 direct_dependencies:
+- bblanchon/arduinojson
+- dannybackx/acmeclient
 - idf
 - jkent/frogfs
-manifest_hash: 6ebe71e3d1f6e6bb1900f7c936de5a49791b2ba013eb413b6e712642fb54a16c
+- joltwallet/littlefs
+manifest_hash: 4386aac3a498cf553f0dc8c5a156351a1e0b691a69e5cb219f837d9c2b7a464f
 target: esp32
 version: 2.0.0

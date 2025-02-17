@@ -30,4 +30,5 @@
 nvs,data,nvs,0x10000,24K,
 phy_init,data,phy,0x16000,4K,
 # 16K space here, could be a FLASH filesystem.
-factory,app,factory,0x20000,3968K,
+factory,app,factory,0x20000,3600K,
+littlefs1,  data, spiffs,0x3a4000,368K

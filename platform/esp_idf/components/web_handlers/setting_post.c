@@ -44,14 +44,12 @@ setting_post(httpd_req_t * req, const gm_uri * uri)
 
   ul
     li
-      a
-      attr("href", "/");
+      a _("href", "/");
         text("Front page.");
       end
     end
     li
-      a
-      attr("href", "/settings");
+      a _("href", "/settings");
         text("Settings.");
       end
     end

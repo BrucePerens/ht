@@ -10,12 +10,8 @@ button_internal(const char * t, const char * method, const char * l, va_list arg
 
   vsnprintf(buffer, sizeof(buffer), l, argument_list);
 
-  form
-    attr("action", buffer)
-    attr("method", method)
-    input
-    attr("type", "submit")
-    attr("value", t)
+  form _("action", buffer) _("method", method)
+    input _("type", "submit") _("value", t)
   end
 }
 
@@ -29,8 +25,7 @@ get_button(const char * t, const char * l, ...)
   vsnprintf(buffer, sizeof(buffer), l, argument_list);
   va_end(argument_list);
 
-  button
-    attr("onclick", "window.location.href='%s';", buffer);
+  button _("onclick", "window.location.href='%s';", buffer);
     text(t);
   end
 }

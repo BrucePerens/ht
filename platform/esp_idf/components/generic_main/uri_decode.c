@@ -40,4 +40,3 @@ gm_uri_decode(const char * uri, char * buffer, size_t size)
   *b = '\0';
   return 0;
 }
-
