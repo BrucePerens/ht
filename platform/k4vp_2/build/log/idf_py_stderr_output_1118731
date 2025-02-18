@@ -1,4 +1,0 @@
-CMake Error at CMakeLists.txt:3 (idf_component_set_property):
-  Unknown CMake command "idf_component_set_property".
-
-

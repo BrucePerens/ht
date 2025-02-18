@@ -4,16 +4,15 @@
 //
 #include <string.h>
 #include <stdlib.h>
-#include <esp_http_server.h>
+#include <esp_https_server.h>
 #include <esp_log.h>
 #include <esp_sntp.h>
 #include <esp_timer.h>
 #include <inttypes.h>
 #include "generic_main.h"
 
-// extern const uint8_t servercert_pem[] asm("_binary_servercert_pem_start");
 static const char TASK_NAME[] = "web_server";
-static httpd_handle_t server = NULL;
+static httpd_handle_t ssl_server = NULL;
 
 static void time_was_synchronized(struct timeval * t)
 {
@@ -29,9 +28,10 @@ static void time_was_synchronized(struct timeval * t)
 
 void start_webserver(void)
 {
-  if (server)
+  if (ssl_server)
     return;
 
+  // Web servers need accurate time.
   esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
   esp_sntp_setservername(0, "pool.ntp.org");
   esp_sntp_set_time_sync_notification_cb(time_was_synchronized);
@@ -44,28 +44,29 @@ void start_webserver(void)
 
   esp_sntp_init();
 
-  httpd_config_t config = HTTPD_DEFAULT_CONFIG();
-  config.stack_size = 8192;
-  config.uri_match_fn = httpd_uri_match_wildcard;
-  config.lru_purge_enable = true;
+  httpd_ssl_config_t config = HTTPD_SSL_CONFIG_DEFAULT();
+  // config.httpd.stack_size = 64 * 1024;
+  config.httpd.uri_match_fn = httpd_uri_match_wildcard;
+  config.httpd.lru_purge_enable = true;
+  gm_self_signed_ssl_certificates(&config);
 
   // Start the httpd server
-  ESP_LOGI(TASK_NAME, "Starting server on port: '%d'", config.server_port);
-  if (httpd_start(&server, &config) == ESP_OK) {
-    gm_web_handler_install(server);
+  ESP_LOGI(TASK_NAME, "Starting server on port: %d", config.port_secure);
+  if (httpd_ssl_start(&ssl_server, &config) == ESP_OK) {
+    gm_web_handler_install(ssl_server);
   }
   else {
-    server = NULL;
+    ssl_server = NULL;
     ESP_LOGI(TASK_NAME, "Error starting server!");
   }
 }
 
 void stop_webserver()
 {
-  if (server) {
+  if (ssl_server) {
     esp_sntp_stop();
     GM.time_last_synchronized = 0;
-    httpd_stop(server);
-    server = NULL;
+    httpd_ssl_stop(ssl_server);
+    ssl_server = NULL;
   }
 }

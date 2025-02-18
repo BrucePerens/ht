@@ -18,7 +18,7 @@ REQUIRES
   driver
   esp_netif
   esp_wifi
-  esp_http_server
+  esp_https_server
   esp_timer
   freertos
   frogfs

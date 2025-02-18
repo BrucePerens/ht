@@ -8,7 +8,7 @@
 #include <esp_netif_types.h>
 #include <esp_netif_net_stack.h>
 #include <esp_event.h>
-#include <esp_http_server.h>
+#include <esp_https_server.h>
 #include <netinet/in.h>
 #include <lwip/dhcp6.h>
 #include <../lwip/esp_netif_lwip_internal.h>
@@ -210,6 +210,7 @@ extern void			gm_port_control_protocol_stop_listener_ipv6(void);
 extern int			gm_printf(const char * format, ...);
 extern int			gm_public_ipv4(char * data, size_t size);
 
+extern void			gm_self_signed_ssl_certificates(struct httpd_ssl_config * c);
 extern int			gm_stun(bool ipv6, struct sockaddr * address, gm_stun_after_t after);
 extern void			gm_stun_stop();
 
