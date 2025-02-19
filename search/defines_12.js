@@ -11,12 +11,10 @@ var searchData=
   ['small_8',['small',['../web__template_8h.html#a6d587e47fa8f196787fcc5e4f87ecec1',1,'web_template.h']]],
   ['source_9',['source',['../web__template_8h.html#a3e04a1a93a391d9d04332c9591fe25ba',1,'web_template.h']]],
   ['span_10',['span',['../web__template_8h.html#ad34ef5274a6aa326a6b49ec9d647c873',1,'web_template.h']]],
-  ['stringify_11',['STRINGIFY',['../bootloader_2_c_make_files_23_825_81_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#a43e1cad902b6477bec893cb6430bd6c8',1,'STRINGIFY():&#160;CMakeCCompilerId.c'],['../_c_make_files_23_825_81_2_compiler_id_c_x_x_2_c_make_c_x_x_compiler_id_8cpp.html#a43e1cad902b6477bec893cb6430bd6c8',1,'STRINGIFY():&#160;CMakeCXXCompilerId.cpp'],['../_c_make_files_23_825_81_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#a43e1cad902b6477bec893cb6430bd6c8',1,'STRINGIFY():&#160;CMakeCCompilerId.c'],['../bootloader_2_c_make_files_23_825_81_2_compiler_id_c_x_x_2_c_make_c_x_x_compiler_id_8cpp.html#a43e1cad902b6477bec893cb6430bd6c8',1,'STRINGIFY():&#160;CMakeCXXCompilerId.cpp']]],
-  ['stringify_5fhelper_12',['STRINGIFY_HELPER',['../bootloader_2_c_make_files_23_825_81_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'STRINGIFY_HELPER():&#160;CMakeCCompilerId.c'],['../bootloader_2_c_make_files_23_825_81_2_compiler_id_c_x_x_2_c_make_c_x_x_compiler_id_8cpp.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'STRINGIFY_HELPER():&#160;CMakeCXXCompilerId.cpp'],['../_c_make_files_23_825_81_2_compiler_id_c_2_c_make_c_compiler_id_8c.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'STRINGIFY_HELPER():&#160;CMakeCCompilerId.c'],['../_c_make_files_23_825_81_2_compiler_id_c_x_x_2_c_make_c_x_x_compiler_id_8cpp.html#a2ae9b72bb13abaabfcf2ee0ba7d3fa1d',1,'STRINGIFY_HELPER():&#160;CMakeCXXCompilerId.cpp']]],
-  ['strong_13',['strong',['../web__template_8h.html#a27a8701ab793572438c090545113660d',1,'web_template.h']]],
-  ['style_14',['style',['../web__template_8h.html#ace27a462d04feb7135f2d059cc4e4936',1,'web_template.h']]],
-  ['sub_15',['sub',['../web__template_8h.html#a8286ea9dfc6fc3f790b3b89093089bd8',1,'web_template.h']]],
-  ['summary_16',['summary',['../web__template_8h.html#afa8a10442a3d4ddf798b8babe923f974',1,'web_template.h']]],
-  ['sup_17',['sup',['../web__template_8h.html#a9819f08c902c7a56d49f5b133a889340',1,'web_template.h']]],
-  ['svg_18',['svg',['../web__template_8h.html#a9428e754695544c9639bfbd36ba802c8',1,'web_template.h']]]
+  ['strong_11',['strong',['../web__template_8h.html#a27a8701ab793572438c090545113660d',1,'web_template.h']]],
+  ['style_12',['style',['../web__template_8h.html#ace27a462d04feb7135f2d059cc4e4936',1,'web_template.h']]],
+  ['sub_13',['sub',['../web__template_8h.html#a8286ea9dfc6fc3f790b3b89093089bd8',1,'web_template.h']]],
+  ['summary_14',['summary',['../web__template_8h.html#afa8a10442a3d4ddf798b8babe923f974',1,'web_template.h']]],
+  ['sup_15',['sup',['../web__template_8h.html#a9819f08c902c7a56d49f5b133a889340',1,'web_template.h']]],
+  ['svg_16',['svg',['../web__template_8h.html#a9428e754695544c9639bfbd36ba802c8',1,'web_template.h']]]
 ];

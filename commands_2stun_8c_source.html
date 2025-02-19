@@ -112,7 +112,7 @@ $(document).ready(function(){initNavTree('commands_2stun_8c_source.html',''); in
 <div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
 <div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code hl_function" href="public__ip__cmd_8c.html#ac1f545534cdaab9094198a5dc2c2a79f">run</a>(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> * * argv)</div>
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>{</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordtype">int</span> <a class="code hl_variable" href="namespacepip_1_1__vendor_1_1rich_1_1prompt.html#a7efbba109c818297efb20c89679a80ae">result</a>;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  <span class="keywordtype">int</span> result;</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;\n&quot;</span>); </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keywordtype">int</span> nerrors = arg_parse(argc, argv, (<span class="keywordtype">void</span> **) &amp;args);</div>
@@ -121,7 +121,7 @@ $(document).ready(function(){initNavTree('commands_2stun_8c_source.html',''); in
 <div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>      <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  }</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <a class="code hl_variable" href="namespacepip_1_1__vendor_1_1rich_1_1prompt.html#a7efbba109c818297efb20c89679a80ae">result</a> = <a class="code hl_function" href="generic__main_8h.html#ae2d57cc57047a7b4cb3cabbb9eb82397">gm_stun</a>(args.ipv6-&gt;count &gt; 0, (<span class="keyword">struct</span> sockaddr *)&amp;sock, 0);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  result = <a class="code hl_function" href="generic__main_8h.html#ae2d57cc57047a7b4cb3cabbb9eb82397">gm_stun</a>(args.ipv6-&gt;count &gt; 0, (<span class="keyword">struct</span> sockaddr *)&amp;sock, 0);</div>
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span> ( result != 0 )</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
@@ -150,7 +150,6 @@ $(document).ready(function(){initNavTree('commands_2stun_8c_source.html',''); in
 <div class="ttc" id="ageneric__main_8h_html_a5d74fbe16c813a7c392df9132d100b5b"><div class="ttname"><a href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a></div><div class="ttdeci">int gm_printf(const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00042">printf.c:42</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5facd426173a400e33c57d48617b3a66"><div class="ttname"><a href="generic__main_8h.html#a5facd426173a400e33c57d48617b3a66">CONSTRUCTOR</a></div><div class="ttdeci">#define CONSTRUCTOR</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00020">generic_main.h:20</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_ae2d57cc57047a7b4cb3cabbb9eb82397"><div class="ttname"><a href="generic__main_8h.html#ae2d57cc57047a7b4cb3cabbb9eb82397">gm_stun</a></div><div class="ttdeci">int gm_stun(bool ipv6, struct sockaddr *address, gm_stun_after_t after)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_2stun_8c_source.html#l00466">stun.c:466</a></div></div>
-<div class="ttc" id="anamespacepip_1_1__vendor_1_1rich_1_1prompt_html_a7efbba109c818297efb20c89679a80ae"><div class="ttname"><a href="namespacepip_1_1__vendor_1_1rich_1_1prompt.html#a7efbba109c818297efb20c89679a80ae">pip._vendor.rich.prompt.result</a></div><div class="ttdeci">IntPrompt result</div><div class="ttdef"><b>Definition:</b> <a href="prompt_8py_source.html#l00354">prompt.py:354</a></div></div>
 <div class="ttc" id="apublic__ip__cmd_8c_html_ac1f545534cdaab9094198a5dc2c2a79f"><div class="ttname"><a href="public__ip__cmd_8c.html#ac1f545534cdaab9094198a5dc2c2a79f">run</a></div><div class="ttdeci">int run(int argc, char **argv)</div><div class="ttdef"><b>Definition:</b> <a href="public__ip__cmd_8c_source.html#l00013">public_ip_cmd.c:13</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

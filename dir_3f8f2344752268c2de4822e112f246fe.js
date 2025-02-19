@@ -20,6 +20,7 @@ var dir_3f8f2344752268c2de4822e112f246fe =
     [ "port_control_protocol.c", "port__control__protocol_8c.html", "port__control__protocol_8c" ],
     [ "printf.c", "printf_8c.html", "printf_8c" ],
     [ "public_ip.c", "public__ip_8c.html", "public__ip_8c" ],
+    [ "redirect.c", "redirect_8c.html", "redirect_8c" ],
     [ "select_task.c", "select__task_8c.html", "select__task_8c" ],
     [ "stun.c", "generic__main_2stun_8c.html", "generic__main_2stun_8c" ],
     [ "timer_to_human.c", "timer__to__human_8c.html", "timer__to__human_8c" ],

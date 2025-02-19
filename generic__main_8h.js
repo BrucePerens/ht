@@ -103,6 +103,7 @@ var generic__main_8h =
     [ "gm_run", "generic__main_8h.html#ad1431053d3e40bc66de80a2a16a0d823", null ],
     [ "gm_select_task", "generic__main_8h.html#a7b139fd8b34f35d963a7b3c70a9b5a5a", null ],
     [ "gm_select_wakeup", "generic__main_8h.html#a0e718796043ccd1f72a42b9c68c2f2d8", null ],
+    [ "gm_self_signed_ssl_certificates", "generic__main_8h.html#a5725961e3b823c2eec778823f48b2006", null ],
     [ "gm_stun", "generic__main_8h.html#ae2d57cc57047a7b4cb3cabbb9eb82397", null ],
     [ "gm_stun_stop", "generic__main_8h.html#a64e6d36c0be4a9f9ef033a23c229e1e5", null ],
     [ "gm_timer_to_human", "generic__main_8h.html#acc1bdc378e69f12022eb585fd08b8d92", null ],

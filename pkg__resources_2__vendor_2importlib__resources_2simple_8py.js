@@ -1,7 +1,0 @@
-var pkg__resources_2__vendor_2importlib__resources_2simple_8py =
-[
-    [ "SimpleReader", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_simple_reader.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_simple_reader" ],
-    [ "ResourceHandle", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_handle.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_handle" ],
-    [ "ResourceContainer", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_container.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_resource_container" ],
-    [ "TraversableReader", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_traversable_reader.html", "classpkg__resources_1_1__vendor_1_1importlib__resources_1_1simple_1_1_traversable_reader" ]
-];
