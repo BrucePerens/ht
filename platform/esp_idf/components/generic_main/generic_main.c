@@ -63,7 +63,6 @@ static void initialize(void)
   esp_netif_init();
   int fd = socket(AF_INET, SOCK_STREAM, 0);
   close(fd);
-  printf("Socket number was %d\n", fd);
 
   // The global event loop is required for all event handling to work.
   ESP_ERROR_CHECK(esp_event_loop_create_default());

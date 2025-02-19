@@ -45,7 +45,8 @@ void start_webserver(void)
   esp_sntp_init();
 
   httpd_ssl_config_t config = HTTPD_SSL_CONFIG_DEFAULT();
-  // config.httpd.stack_size = 64 * 1024;
+  // config.httpd.stack_size = 48 * 1024;
+  config.httpd.core_id = 0;
   config.httpd.uri_match_fn = httpd_uri_match_wildcard;
   config.httpd.lru_purge_enable = true;
   gm_self_signed_ssl_certificates(&config);
