@@ -100,6 +100,8 @@ gm_nonvolatile_set(const char * key, const char * value)
     return GM_ERROR;
   }
 
+  ESP_ERROR_CHECK(nvs_commit(GM.nvs));
+
   if (p->call_after_set)
     (p->call_after_set)();
 
@@ -123,6 +125,7 @@ gm_nonvolatile_erase(const char * key)
 
   switch (err) {
   case ESP_OK:
+    ESP_ERROR_CHECK(nvs_commit(GM.nvs));
     if (p->call_after_set)
       (p->call_after_set)();
     return GM_NORMAL;

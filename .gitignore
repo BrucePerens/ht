@@ -1,6 +1,7 @@
 # Build output
 platform/k4vp_2/managed_components/
 platform/k4vp_2/dependencies.lock
+platform/k4vp_2/build
 ht
 docs/html
 build.*

@@ -32,23 +32,16 @@ bool	app_main_called = false;
 
 void app_main(void)
 {
-  if ( app_main_called ) {
-    fflush(stdout);
-    fprintf(stderr, "app_main called again!\n");
-    fflush(stderr);
+  if ( app_main_called )
     return;
-  }
-  app_main_called = 1;
+
+  app_main_called = true;
   GM.log_file_pointer = stderr;
   initialize();
 }
 
 static void initialize(void)
 {
-  // Initialize the UART as early as possible, so that Improv WiFi commands are not
-  // missed.
-  // gm_uart_initialize();
-
   // Set the console print lock, so that things in tasks don't print over each other.
   // This can't be used for non-tasks.
   pthread_mutex_init(&GM.console_print_mutex, 0);
@@ -70,7 +63,7 @@ static void initialize(void)
   // Connect the non-volatile-storage FLASH partition. Initialize it if
   // necessary.
   esp_err_t err = nvs_flash_init();
-  if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+  if ( err != ESP_OK ) {
     ESP_LOGW(TASK_NAME, "Erasing and initializing non-volatile parameter storage.");
     ESP_ERROR_CHECK(nvs_flash_erase());
     ESP_ERROR_CHECK(nvs_flash_init());
@@ -99,5 +92,47 @@ static void initialize(void)
 
   gm_select_task();
   gm_wifi_start();
+
+  // Create and store an AES key used for encrypting cookie data for
+  // login security and other persistent data. This is less secure than
+  // storing session data on the host, but this is a memory-constrained
+  // environment with a finite number of FLASH write cycles. This has to
+  // happen after WiFi is enabled, as the hardware random generator uses
+  // noise from the high-speed ADC for randomness.
+  size_t size = sizeof(GM.aes_key);
+  const char name[] = "aes_key";
+
+  const esp_err_t blob_err = nvs_get_blob(GM.nvs, name, &GM.aes_key, &size);
+
+  if ( blob_err != ESP_OK || size != sizeof(GM.aes_key) 
+   || *(unsigned long *)&GM.aes_key == 0 ) {
+    gm_printf("Writing\n");
+    esp_fill_random(GM.aes_key, sizeof(GM.aes_key));
+    const esp_err_t set_err = nvs_set_blob(GM.nvs, name, GM.aes_key, sizeof(GM.aes_key));
+    if ( set_err == ESP_OK ) {
+      const esp_err_t commit_err = nvs_commit(GM.nvs);
+      gm_printf("Committed: %d\n", commit_err);
+      size = sizeof(GM.aes_key);
+      const esp_err_t get_err = nvs_get_blob(GM.nvs, name, GM.aes_key, &size);
+      gm_printf("Get after write: %d, key %lx:%lx:%lx:%lx",
+      get_err,
+      *(unsigned long *)&GM.aes_key[0],
+      *(unsigned long *)&GM.aes_key[1],
+      *(unsigned long *)&GM.aes_key[2],
+      *(unsigned long *)&GM.aes_key[3]);
+    }
+  }
+  else {
+    gm_printf("Got stored key: %d, key %lx:%lx:%lx:%lx",
+    blob_err,
+    *(unsigned long *)&GM.aes_key[0],
+    *(unsigned long *)&GM.aes_key[1],
+    *(unsigned long *)&GM.aes_key[2],
+    *(unsigned long *)&GM.aes_key[3]);
+  }
+
+#ifndef CONFIG_ESP_SYSTEM_GDBSTUB_RUNTIME
+  // The GDB stub uses the console, so don't run the interpreter if it's in use.
   gm_command_interpreter_start();
+#endif
 }
