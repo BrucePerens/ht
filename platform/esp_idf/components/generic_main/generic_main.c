@@ -106,29 +106,10 @@ static void initialize(void)
 
   if ( blob_err != ESP_OK || size != sizeof(GM.aes_key) 
    || *(unsigned long *)&GM.aes_key == 0 ) {
-    gm_printf("Writing\n");
     esp_fill_random(GM.aes_key, sizeof(GM.aes_key));
     const esp_err_t set_err = nvs_set_blob(GM.nvs, name, GM.aes_key, sizeof(GM.aes_key));
-    if ( set_err == ESP_OK ) {
-      const esp_err_t commit_err = nvs_commit(GM.nvs);
-      gm_printf("Committed: %d\n", commit_err);
-      size = sizeof(GM.aes_key);
-      const esp_err_t get_err = nvs_get_blob(GM.nvs, name, GM.aes_key, &size);
-      gm_printf("Get after write: %d, key %lx:%lx:%lx:%lx",
-      get_err,
-      *(unsigned long *)&GM.aes_key[0],
-      *(unsigned long *)&GM.aes_key[1],
-      *(unsigned long *)&GM.aes_key[2],
-      *(unsigned long *)&GM.aes_key[3]);
-    }
-  }
-  else {
-    gm_printf("Got stored key: %d, key %lx:%lx:%lx:%lx",
-    blob_err,
-    *(unsigned long *)&GM.aes_key[0],
-    *(unsigned long *)&GM.aes_key[1],
-    *(unsigned long *)&GM.aes_key[2],
-    *(unsigned long *)&GM.aes_key[3]);
+    if ( set_err == ESP_OK )
+      (void) nvs_commit(GM.nvs);
   }
 
 #ifndef CONFIG_ESP_SYSTEM_GDBSTUB_RUNTIME

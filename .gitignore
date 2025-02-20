@@ -2,23 +2,14 @@
 platform/k4vp_2/managed_components/
 platform/k4vp_2/dependencies.lock
 platform/k4vp_2/build
+platform/k4vp_2/sdkconfig
+platform/k4vp_2/sdkconfig.old
 ht
 docs/html
 build.*
 
-# Prerequisites
-*.d
-
 # Object files
 *.o
-*.ko
-*.obj
-*.elf
-
-# Linker output
-*.ilk
-*.map
-*.exp
 
 # Precompiled Headers
 *.gch
@@ -29,32 +20,3 @@ build.*
 *.a
 *.la
 *.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
