@@ -6,6 +6,11 @@ device-dependent coroutines.
 
 Don't get too excited, it doesn't work yet!
 
+## Git
+To clone this repository, use the command:
+
+    git clone -recurse-submodules https://github.com/BrucePerens/ht
+
 ## To Build
 ### K4VP HT Hardware
 First install ESP-IDF using the instructions at
