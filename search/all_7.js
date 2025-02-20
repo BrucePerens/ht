@@ -34,8 +34,8 @@ var searchData=
   ['gm_5fevent_5fserver_31',['gm_event_server',['../event__server_8c.html#a241265b53f97b10d9cdf9fdf85e34127',1,'gm_event_server(void):&#160;event_server.c'],['../generic__main_8h.html#a241265b53f97b10d9cdf9fdf85e34127',1,'gm_event_server(void):&#160;event_server.c']]],
   ['gm_5fevent_5ft_32',['gm_event_t',['../structgm__event__t.html',1,'gm_event_t'],['../event__server_8c.html#a5fc7ce9e5387f3d5643414d46f732dfb',1,'gm_event_t():&#160;event_server.c']]],
   ['gm_5fevent_5fwake_5fselect_33',['GM_EVENT_WAKE_SELECT',['../event__server_8c.html#a7c0948ebf720ed7f811dde9c21244716a8af5016ae41f4ddb304f8e2c91e7fdfe',1,'event_server.c']]],
-  ['gm_5ffail_34',['GM_FAIL',['../generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b',1,'generic_main.h']]],
-  ['gm_5ffail_35',['gm_fail',['../generic__main_8h.html#ab36918ceea6a52ab5b938f0a3eb10989',1,'gm_fail(const char *, const char *, int, const char *,...):&#160;printf.c'],['../printf_8c.html#a0c3b98b69319299fe58f61c3ed2cae63',1,'gm_fail(const char *function, const char *file, int line, const char *pattern,...):&#160;printf.c']]],
+  ['gm_5ffail_34',['gm_fail',['../generic__main_8h.html#ab36918ceea6a52ab5b938f0a3eb10989',1,'gm_fail(const char *, const char *, int, const char *,...):&#160;printf.c'],['../printf_8c.html#a0c3b98b69319299fe58f61c3ed2cae63',1,'gm_fail(const char *function, const char *file, int line, const char *pattern,...):&#160;printf.c']]],
+  ['gm_5ffail_35',['GM_FAIL',['../generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b',1,'generic_main.h']]],
   ['gm_5ffast_36',['GM_FAST',['../generic__main_8h.html#ad04ba6c25fcbdc23c3123de6bd4e0279a02cb6861fa2161f0e406f2cb2e40dadb',1,'generic_main.h']]],
   ['gm_5ffd_5fhandler_5ft_37',['gm_fd_handler_t',['../generic__main_8h.html#aedee93104fc1bf3ab47b419c05e6fba2',1,'generic_main.h']]],
   ['gm_5ffd_5fregister_38',['gm_fd_register',['../generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af',1,'gm_fd_register(int fd, gm_fd_handler_t handler, void *data, bool readable, bool writable, bool exception, uint32_t seconds):&#160;select_task.c'],['../select__task_8c.html#a3240f884bd24cb326e4961f83a694b1b',1,'gm_fd_register(int fd, gm_fd_handler_t handler, void *d, bool readable, bool writable, bool exception, uint32_t seconds):&#160;select_task.c']]],
@@ -125,5 +125,6 @@ var searchData=
   ['gpio_5fbits_2eh_122',['gpio_bits.h',['../gpio__bits_8h.html',1,'']]],
   ['gpio_5fmode_123',['GPIO_Mode',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1b',1,'gpio.c']]],
   ['gpio_5fptr_124',['gpio_ptr',['../platform_8h.html#aee8781cf4932288658809fe456b7c919',1,'platform.h']]],
-  ['granted_5ftime_125',['granted_time',['../struct__gm__port__mapping.html#aa66d354f07eb278916fb908751906dce',1,'_gm_port_mapping']]]
+  ['granted_5ftime_125',['granted_time',['../struct__gm__port__mapping.html#aa66d354f07eb278916fb908751906dce',1,'_gm_port_mapping']]],
+  ['greenbar_126',['GREENBAR',['../lcut_8h.html#a9c0b4faca7ae670afeafbd1999d28fdc',1,'lcut.h']]]
 ];

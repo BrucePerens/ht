@@ -16,6 +16,12 @@ var annotated_dup =
     [ "gm_event_t", "structgm__event__t.html", "structgm__event__t" ],
     [ "gm_nonvolatile", "structgm__nonvolatile.html", "structgm__nonvolatile" ],
     [ "gm_web_handler", "structgm__web__handler.html", "structgm__web__handler" ],
+    [ "lcut_symbol_t", "structlcut__symbol__t.html", "structlcut__symbol__t" ],
+    [ "lcut_t", "structlcut__t.html", "structlcut__t" ],
+    [ "lcut_tc_t", "structlcut__tc__t.html", "structlcut__tc__t" ],
+    [ "lcut_test_t", "structlcut__test__t.html", "structlcut__test__t" ],
+    [ "lcut_ts_t", "structlcut__ts__t.html", "structlcut__ts__t" ],
+    [ "lcut_value_t", "structlcut__value__t.html", "structlcut__value__t" ],
     [ "param", "structparam.html", "structparam" ],
     [ "platform_context", "structplatform__context.html", "structplatform__context" ],
     [ "radio_band_limits", "structradio__band__limits.html", "structradio__band__limits" ],
@@ -27,5 +33,7 @@ var annotated_dup =
     [ "stun_server", "structstun__server.html", "structstun__server" ],
     [ "tag", "structtag.html", "structtag" ],
     [ "timer_task", "structtimer__task.html", "structtimer__task" ],
+    [ "tv_epair_s", "structtv__epair__s.html", "structtv__epair__s" ],
+    [ "tv_pair_s", "structtv__pair__s.html", "structtv__pair__s" ],
     [ "user_data", "structuser__data.html", "structuser__data" ]
 ];

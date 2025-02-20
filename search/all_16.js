@@ -16,5 +16,6 @@ var searchData=
   ['wifi_5fevent_5fsta_5fdisconnected_13',['wifi_event_sta_disconnected',['../wifi_8c.html#a8d948d88ffd3bc98842cec330b94f337',1,'wifi.c']]],
   ['word_14',['word',['../all__zeroes_8c.html#a19036394f9c80a08fc846c96f668711c',1,'all_zeroes.c']]],
   ['write_15',['write',['../structplatform__context.html#a763f43b5a541d9fafddc93078a19398c',1,'platform_context']]],
-  ['write_5fptr_16',['write_ptr',['../os__driver_8h.html#ab1d5a77be44ac188d6741eb8afa4a663',1,'os_driver.h']]]
+  ['write_5fcookie_16',['write_cookie',['../cookie_8c.html#a73d7be486acbf5c4f47470f9fb50cbc8',1,'cookie.c']]],
+  ['write_5fptr_17',['write_ptr',['../os__driver_8h.html#ab1d5a77be44ac188d6741eb8afa4a663',1,'os_driver.h']]]
 ];

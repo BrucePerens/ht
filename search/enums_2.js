@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['eventbits_0',['EventBits',['../wifi_8c.html#aa069dc096e79368bc9cc4e399f6aa53f',1,'wifi.c']]]
+  ['compression_5fmethod_0',['compression_method',['../compressed__fs_8h.html#a1e459517f01bb9dac9511086b04d11c3',1,'compressed_fs.h']]]
 ];

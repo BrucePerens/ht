@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['platform_5fend_0',['platform_end',['../structplatform__context.html#add7a494132a4e16a18fa8cd82f8ffd46',1,'platform_context::platform_end()'],['../platform_8h.html#add7a494132a4e16a18fa8cd82f8ffd46',1,'platform_end(platform_context *platform):&#160;platform.h']]],
-  ['platform_5fgpio_1',['platform_gpio',['../dummy_8c.html#a6080ec8ff14d7454068fdfb018e1a92c',1,'platform_gpio(platform_context *const, unsigned long):&#160;dummy.c'],['../k4vp__2_8c.html#a6080ec8ff14d7454068fdfb018e1a92c',1,'platform_gpio(platform_context *const, unsigned long):&#160;k4vp_2.c'],['../platform_8h.html#ac5d67fcc5b0f745d1e8e4e597dc83d36',1,'platform_gpio(platform_context *const context, unsigned long bits):&#160;dummy.c']]],
-  ['platform_5finit_2',['platform_init',['../structplatform__context.html#a64cee34cbbfe3a37265e2f39853108f6',1,'platform_context::platform_init()'],['../platform_8h.html#a64cee34cbbfe3a37265e2f39853108f6',1,'platform_init(const char *filename):&#160;platform.h']]],
-  ['post_5fbutton_3',['post_button',['../buttons_8c.html#ab03e66f6d3d4d5ef28150966590e6543',1,'post_button(const char *t, const char *l,...):&#160;buttons.c'],['../web__template_8h.html#a5d39f81918fe8878dadead4eea23b7bb',1,'post_button(const char *t, const char *pattern,...):&#160;buttons.c']]],
-  ['print_5freal_5ftime_5fstats_4',['print_real_time_stats',['../realtime__tasks_8c.html#a09ce3190d4df72aecb56bc0850bb9865',1,'print_real_time_stats(TickType_t xTicksToWait):&#160;realtime_tasks.c'],['../tasks_8c.html#a09ce3190d4df72aecb56bc0850bb9865',1,'print_real_time_stats(TickType_t xTicksToWait):&#160;realtime_tasks.c']]]
+  ['main_0',['main',['../main_8c.html#a2c3f6775325c30275d11c6abee2db6a0',1,'main(int, char **):&#160;main.c'],['../test__ascii85_8c.html#a3c04138a5bfe5d72780bb7e82a18e627',1,'main(int argc, char **argv):&#160;test_ascii85.c']]],
+  ['murmurhash3_5favalanche_1',['murmurhash3_avalanche',['../xorshift__e_8c.html#a1d14f7501504b0f9f0df382c27552682',1,'murmurhash3_avalanche(uint64_t x):&#160;xorshift_e.c'],['../xorshift__e_8h.html#a1d14f7501504b0f9f0df382c27552682',1,'murmurhash3_avalanche(uint64_t x):&#160;xorshift_e.c']]]
 ];

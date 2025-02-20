@@ -25,14 +25,14 @@
 var NAVTREE =
 [
   [ "K6BP HT Firmware", "index.html", [
+    [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
-      [ "Getting Started", "index.html#autotoc_md0", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", "functions_vars" ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -53,10 +53,11 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "all__zeroes_8c.html",
-"generic__main_8h.html#aa7d4b559afc372a06f52a961b83c46df",
-"port__control__protocol_8c.html#adc3e35480f42347a4c16a5e4c3715167a72f2f3778196b165d6539be1721b86c2",
-"structradio__channel__data.html#a016abda2855c77dcc1630f9d2f9f8d18",
-"web__template_8h.html#ae6167d78ccc132d67f27cdc3dcf63ad1"
+"generic__main_8h.html#a241265b53f97b10d9cdf9fdf85e34127",
+"lcut_8c.html#a1d0bd94858c170a010584d705156a3ce",
+"setting__get_8c.html#a7bf1e786753c71de834738da71de453a",
+"structstun__attribute.html#a7a5122d675a9ee71032d6d69c5e1d67c",
+"wifi_8c.html#a4a346b228e18bc96a1cef310e288afcd"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
