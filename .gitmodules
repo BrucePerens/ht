@@ -1,0 +1,3 @@
+[submodule "third_party/ascii85"]
+	path = third_party/ascii85
+	url = https://github.com/dcurrie/ascii85.git

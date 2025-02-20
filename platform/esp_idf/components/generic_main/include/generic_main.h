@@ -137,7 +137,7 @@ typedef struct _generic_main {
   const char * const	ipv6_address_types[6];
   int			log_fd;
   FILE *		log_file_pointer;
-  uint8_t		aes_key[32];
+  esp_aes_context	aes_context;
 } generic_main_t;
 
 typedef struct _gm_param_t {

@@ -3,11 +3,13 @@ file(GLOB DOT_CXX *.cxx)
 idf_component_register(
 SRCS
   ${DOT_C}
+  ../../../../third_party/ascii85/ascii85.c
   ${DOT_CXX}
   ${CMAKE_CURRENT_BINARY_DIR}/git_version.c 
 INCLUDE_DIRS
   "."
   "include"
+  ../../../../third_party/ascii85
 PRIV_REQUIRES
   commands
 # Components must be listed before any other components that they depend upon.
@@ -28,6 +30,7 @@ REQUIRES
   lwip
   nvs_flash
   web_handlers
+  json
 )
 
 add_custom_target(

@@ -96,21 +96,29 @@ static void initialize(void)
   // Create and store an AES key used for encrypting cookie data for
   // login security and other persistent data. This is less secure than
   // storing session data on the host, but this is a memory-constrained
-  // environment with a finite number of FLASH write cycles. This has to
-  // happen after WiFi is enabled, as the hardware random generator uses
-  // noise from the high-speed ADC for randomness.
-  size_t size = sizeof(GM.aes_key);
+  // environment with a finite number of FLASH write cycles.
+  // The esp_fill_random() operation has to happen after WiFi is enabled,
+  // as the hardware random generator uses noise from the high-speed ADC
+  // for randomness.
+  //
+  uint8_t aes_key[32];
+  size_t size = sizeof(aes_key);
   const char name[] = "aes_key";
 
-  const esp_err_t blob_err = nvs_get_blob(GM.nvs, name, &GM.aes_key, &size);
+  const esp_err_t blob_err = nvs_get_blob(GM.nvs, name, aes_key, &size);
 
-  if ( blob_err != ESP_OK || size != sizeof(GM.aes_key) 
-   || *(unsigned long *)&GM.aes_key == 0 ) {
-    esp_fill_random(GM.aes_key, sizeof(GM.aes_key));
-    const esp_err_t set_err = nvs_set_blob(GM.nvs, name, GM.aes_key, sizeof(GM.aes_key));
+  if ( blob_err != ESP_OK || size != sizeof(aes_key) 
+   || *(unsigned long *)&aes_key == 0 ) {
+    esp_fill_random(aes_key, sizeof(aes_key));
+    const esp_err_t set_err = nvs_set_blob(GM.nvs, name, aes_key, sizeof(aes_key));
     if ( set_err == ESP_OK )
       (void) nvs_commit(GM.nvs);
   }
+
+  // Initialize a hardware AES context with the key. This will be used for cookie
+  // encryption.
+  esp_aes_init(&GM.aes_ctx);
+  esp_aes_setkey(&GM.aes_ctx, aes_key, 256);
 
 #ifndef CONFIG_ESP_SYSTEM_GDBSTUB_RUNTIME
   // The GDB stub uses the console, so don't run the interpreter if it's in use.
