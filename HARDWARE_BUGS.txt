@@ -1,0 +1,4 @@
+Test for these things reported on some modules:
+Squelch level too high at 1.
+Squelch level 0 and CTCSS set: receiver stops working.
+CTCSS stops, carrier remains, receiver stays open.
