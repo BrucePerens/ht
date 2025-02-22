@@ -1,4 +1,20 @@
 var searchData=
 [
-  ['xor_5fmapped_5faddress_0',['XOR_MAPPED_ADDRESS',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13a35ed7f6589624d3b02431cba19dccfb9',1,'stun.c']]]
+  ['wait_0',['wait',['../structplatform__context.html#acd2f13d9bbb5b39d6d9785a7da6b7676',1,'platform_context']]],
+  ['wait_5fptr_1',['wait_ptr',['../os__driver_8h.html#a46594c551533df569d76ac7df56dede7',1,'os_driver.h']]],
+  ['wake_2',['wake',['../structplatform__context.html#a4b9d713dda5292d1ee8634763fa75be6',1,'platform_context']]],
+  ['wake_5fptr_3',['wake_ptr',['../os__driver_8h.html#afbb20bc31508cbe106418cfa3a7e05b9',1,'os_driver.h']]],
+  ['wbr_4',['wbr',['../web__template_8h.html#ad95237a1045c26b10af1acc32a797491',1,'web_template.h']]],
+  ['web_5fget_2ec_5',['web_get.c',['../web__get_8c.html',1,'']]],
+  ['web_5fhandlers_2ec_6',['web_handlers.c',['../web__handlers_8c.html',1,'']]],
+  ['web_5ftemplate_2ec_7',['web_template.c',['../web__template_8c.html',1,'']]],
+  ['web_5ftemplate_2eh_8',['web_template.h',['../web__template_8h.html',1,'']]],
+  ['webserver_2ec_9',['webserver.c',['../webserver_8c.html',1,'']]],
+  ['wget_2ec_10',['wget.c',['../wget_8c.html',1,'']]],
+  ['when_11',['when',['../structtimer__task.html#a9c0783ff5b989460d3d42460fd182f67',1,'timer_task']]],
+  ['wifi_2ec_12',['wifi.c',['../wifi_8c.html',1,'']]],
+  ['wifi_5fevent_5fsta_5fdisconnected_13',['wifi_event_sta_disconnected',['../wifi_8c.html#a8d948d88ffd3bc98842cec330b94f337',1,'wifi.c']]],
+  ['word_14',['word',['../all__zeroes_8c.html#a19036394f9c80a08fc846c96f668711c',1,'all_zeroes.c']]],
+  ['write_15',['write',['../structplatform__context.html#a763f43b5a541d9fafddc93078a19398c',1,'platform_context']]],
+  ['write_5fptr_16',['write_ptr',['../os__driver_8h.html#ab1d5a77be44ac188d6741eb8afa4a663',1,'os_driver.h']]]
 ];

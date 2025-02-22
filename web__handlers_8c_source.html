@@ -105,114 +105,116 @@ $(document).ready(function(){initNavTree('web__handlers_8c_source.html',''); ini
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="keyword">static</span> esp_err_t</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>run_post_handlers(httpd_req_t * req)</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>{</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> uri = {};</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri) == 0 )</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(req, &amp;uri, <a class="code hl_enumvalue" href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926">POST</a>) ? ESP_FAIL : ESP_OK;</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordflow">return</span> ESP_ERR_INVALID_ARG;</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">static</span> esp_err_t</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>run_put_handlers(httpd_req_t * req)</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> uri = {};</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri);</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>  <a class="code hl_function" href="cookie_8c.html#a520531e3c71e463f9d33d618d93b8af8">gm_read_cookie</a>(req);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> uri = {};</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri) == 0 )</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(req, &amp;uri, <a class="code hl_enumvalue" href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926">POST</a>) ? ESP_FAIL : ESP_OK;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keywordflow">return</span> ESP_ERR_INVALID_ARG;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>}</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span> </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="keyword">static</span> esp_err_t</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>run_put_handlers(httpd_req_t * req)</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>{</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <a class="code hl_function" href="cookie_8c.html#a520531e3c71e463f9d33d618d93b8af8">gm_read_cookie</a>(req);</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> uri = {};</div>
 <div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri) == 0 )</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(req, &amp;uri, <a class="code hl_enumvalue" href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9">PUT</a>) ? ESP_FAIL : ESP_OK;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>}</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="generic__main_8h.html#ac740e39a8c1e6f52928a9ab356aaa022">   35</a></span><a class="code hl_function" href="web__handlers_8c.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a>(httpd_handle_t server)</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>{</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  <span class="comment">// The GET method tries to match a file in the ROM filesystem first.</span></div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// If there is no match, it then tries the registered GET methods.</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <a class="code hl_function" href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a>(server);</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <span class="keyword">static</span> <span class="keyword">const</span> httpd_uri_t post = {</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>      .uri       = <span class="stringliteral">&quot;/*&quot;</span>,</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>      .method    = HTTP_POST,</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      .handler   = run_post_handlers,</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      .user_ctx  = NULL</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  };</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  httpd_register_uri_handler(server, &amp;post);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keyword">static</span> <span class="keyword">const</span> httpd_uri_t put = {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>      .uri       = <span class="stringliteral">&quot;/*&quot;</span>,</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>      .method    = HTTP_PUT,</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      .handler   = run_put_handlers,</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      .user_ctx  = NULL</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  };</div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  httpd_register_uri_handler(server, &amp;put);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>}</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="keywordtype">int</span></div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a6a4c301259a630fbd99bd6b88b893f4c">   60</a></span><a class="code hl_function" href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(httpd_req_t * req, <span class="keyword">const</span> <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> * uri, <a class="code hl_typedef" href="generic__main_8h.html#a7b66bd6b1a51fa2a2431d3ca061c9dfe">gm_web_method</a> method)</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>{</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <span class="keyword">const</span> <span class="keywordtype">char</span> * path = req-&gt;uri;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">const</span> <a class="code hl_struct" href="structgm__web__handler.html">gm_web_handler_t</a> * h = handlers[method];</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <a class="code hl_function" href="web__handlers_8c.html#aaa6a2891afc652a121b3cae7f9a90697">gm_web_set_request</a>(req);</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">if</span> ( *path == <span class="charliteral">&#39;/&#39;</span> )</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    path++;</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="keywordflow">while</span> ( h ) {</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordflow">if</span> ( strcmp(h-&gt;<a class="code hl_variable" href="structgm__web__handler.html#a8f8f80d37794cde9472343e4487ba3eb">name</a>, path) == 0 ) {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>      <span class="keywordflow">return</span> (*(h-&gt;<a class="code hl_variable" href="structgm__web__handler.html#ad22fedd1293d9d9a4161848ba7345c86">handler</a>))(req, uri);</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    h = h-&gt;<a class="code hl_variable" href="structgm__web__handler.html#a08b83fba34726380dd788a34070544b1">next</a>;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  }</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>}</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a5fce1b743e582b2f09a9021abf016f54">   80</a></span><a class="code hl_function" href="web__handlers_8c.html#a5fce1b743e582b2f09a9021abf016f54">gm_web_handler_register</a>(<a class="code hl_struct" href="structgm__web__handler.html">gm_web_handler_t</a> * handler, <a class="code hl_typedef" href="generic__main_8h.html#a7b66bd6b1a51fa2a2431d3ca061c9dfe">gm_web_method</a> method)</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>{</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  *last[method] = handler;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  last[method] = &amp;(handler-&gt;<a class="code hl_variable" href="structgm__web__handler.html#a08b83fba34726380dd788a34070544b1">next</a>);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>}</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno"><a class="line" href="generic__main_8h.html#aaa6a2891afc652a121b3cae7f9a90697">   87</a></span><a class="code hl_function" href="web__handlers_8c.html#aaa6a2891afc652a121b3cae7f9a90697">gm_web_set_request</a>(<span class="keywordtype">void</span> * context)</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>{</div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  gm_web_request = context;</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>}</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a10eb4ebcb0c1ba8afd3c171ce6bb1e26">   93</a></span><a class="code hl_function" href="web__handlers_8c.html#a1bf5aaa28453d821d05c5d54816c4d25">gm_web_send_to_client</a> (<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>{</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  httpd_resp_send_chunk((httpd_req_t *)gm_web_request, <a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, size);</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>}</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span> </div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno"><a class="line" href="web__handlers_8c.html#a2d468d83f222ffbc0c73bc8f825b81ef">   99</a></span><a class="code hl_function" href="generic__main_8h.html#a95665b5b4f90263ded4985e9ffc60b9a">gm_web_finish</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">size_t</span> size)</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>{</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  httpd_resp_send_chunk((httpd_req_t *)gm_web_request, <span class="stringliteral">&quot;&quot;</span>, 0);</div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  gm_web_request = 0;</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>}</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri) == 0 )</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordflow">return</span> <a class="code hl_function" href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(req, &amp;uri, <a class="code hl_enumvalue" href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9">PUT</a>) ? ESP_FAIL : ESP_OK;</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>}</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="generic__main_8h.html#ac740e39a8c1e6f52928a9ab356aaa022">   37</a></span><a class="code hl_function" href="web__handlers_8c.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a>(httpd_handle_t server)</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>{</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// The GET method tries to match a file in the ROM filesystem first.</span></div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// If there is no match, it then tries the registered GET methods.</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  <a class="code hl_function" href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a>(server);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keyword">static</span> <span class="keyword">const</span> httpd_uri_t post = {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>      .uri       = <span class="stringliteral">&quot;/*&quot;</span>,</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>      .method    = HTTP_POST,</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>      .handler   = run_post_handlers,</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>      .user_ctx  = NULL</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  };</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  httpd_register_uri_handler(server, &amp;post);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  <span class="keyword">static</span> <span class="keyword">const</span> httpd_uri_t put = {</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>      .uri       = <span class="stringliteral">&quot;/*&quot;</span>,</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>      .method    = HTTP_PUT,</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>      .handler   = run_put_handlers,</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>      .user_ctx  = NULL</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  };</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  httpd_register_uri_handler(server, &amp;put);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>}</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="keywordtype">int</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a6a4c301259a630fbd99bd6b88b893f4c">   61</a></span><a class="code hl_function" href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(httpd_req_t * req, <span class="keyword">const</span> <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> * uri, <a class="code hl_typedef" href="generic__main_8h.html#a7b66bd6b1a51fa2a2431d3ca061c9dfe">gm_web_method</a> method)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>{</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">const</span> <span class="keywordtype">char</span> * path = req-&gt;uri;</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>  <span class="keyword">const</span> <a class="code hl_struct" href="structgm__web__handler.html">gm_web_handler_t</a> * h = handlers[method];</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <a class="code hl_function" href="web__handlers_8c.html#aaa6a2891afc652a121b3cae7f9a90697">gm_web_set_request</a>(req);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span> </div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keywordflow">if</span> ( *path == <span class="charliteral">&#39;/&#39;</span> )</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    path++;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordflow">while</span> ( h ) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keywordflow">if</span> ( strcmp(h-&gt;<a class="code hl_variable" href="structgm__web__handler.html#a8f8f80d37794cde9472343e4487ba3eb">name</a>, path) == 0 ) {</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>      <span class="keywordflow">return</span> (*(h-&gt;<a class="code hl_variable" href="structgm__web__handler.html#ad22fedd1293d9d9a4161848ba7345c86">handler</a>))(req, uri);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    }</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    h = h-&gt;<a class="code hl_variable" href="structgm__web__handler.html#a08b83fba34726380dd788a34070544b1">next</a>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  }</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a5fce1b743e582b2f09a9021abf016f54">   81</a></span><a class="code hl_function" href="web__handlers_8c.html#a5fce1b743e582b2f09a9021abf016f54">gm_web_handler_register</a>(<a class="code hl_struct" href="structgm__web__handler.html">gm_web_handler_t</a> * handler, <a class="code hl_typedef" href="generic__main_8h.html#a7b66bd6b1a51fa2a2431d3ca061c9dfe">gm_web_method</a> method)</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>{</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  *last[method] = handler;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  last[method] = &amp;(handler-&gt;<a class="code hl_variable" href="structgm__web__handler.html#a08b83fba34726380dd788a34070544b1">next</a>);</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>}</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span> </div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno"><a class="line" href="generic__main_8h.html#aaa6a2891afc652a121b3cae7f9a90697">   88</a></span><a class="code hl_function" href="web__handlers_8c.html#aaa6a2891afc652a121b3cae7f9a90697">gm_web_set_request</a>(<span class="keywordtype">void</span> * context)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>{</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  gm_web_request = context;</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>}</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a10eb4ebcb0c1ba8afd3c171ce6bb1e26">   94</a></span><a class="code hl_function" href="web__handlers_8c.html#a1bf5aaa28453d821d05c5d54816c4d25">gm_web_send_to_client</a> (<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>{</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>  httpd_resp_send_chunk((httpd_req_t *)gm_web_request, <a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, size);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>}</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno"><a class="line" href="web__handlers_8c.html#a2d468d83f222ffbc0c73bc8f825b81ef">  100</a></span><a class="code hl_function" href="generic__main_8h.html#a95665b5b4f90263ded4985e9ffc60b9a">gm_web_finish</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> *<a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>{</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  httpd_resp_send_chunk((httpd_req_t *)gm_web_request, <span class="stringliteral">&quot;&quot;</span>, 0);</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  gm_web_request = 0;</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>}</div>
 <div class="ttc" id="acompressed__fs_8c_html_af793d91b73cbd1a28dde1f607dfc664b"><div class="ttname"><a href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a></div><div class="ttdeci">void gm_fs_web_handlers(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="compressed__fs_8c_source.html#l00066">compressed_fs.c:66</a></div></div>
+<div class="ttc" id="acookie_8c_html_a520531e3c71e463f9d33d618d93b8af8"><div class="ttname"><a href="cookie_8c.html#a520531e3c71e463f9d33d618d93b8af8">gm_read_cookie</a></div><div class="ttdeci">void gm_read_cookie(httpd_req_t *req)</div><div class="ttdef"><b>Definition:</b> <a href="cookie_8c_source.html#l00082">cookie.c:82</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
-<div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926">POST</a></div><div class="ttdeci">@ POST</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00063">generic_main.h:62</a></div></div>
-<div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9">PUT</a></div><div class="ttdeci">@ PUT</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00061">generic_main.h:61</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926">POST</a></div><div class="ttdeci">@ POST</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00064">generic_main.h:63</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9">PUT</a></div><div class="ttdeci">@ PUT</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00062">generic_main.h:62</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a7b66bd6b1a51fa2a2431d3ca061c9dfe"><div class="ttname"><a href="generic__main_8h.html#a7b66bd6b1a51fa2a2431d3ca061c9dfe">gm_web_method</a></div><div class="ttdeci">enum _gm_web_method gm_web_method</div></div>
 <div class="ttc" id="ageneric__main_8h_html_a95665b5b4f90263ded4985e9ffc60b9a"><div class="ttname"><a href="generic__main_8h.html#a95665b5b4f90263ded4985e9ffc60b9a">gm_web_finish</a></div><div class="ttdeci">void gm_web_finish()</div></div>
 <div class="ttc" id="ageneric__main_8h_html_adc4504a3122bae4be487112b0e3437c4"><div class="ttname"><a href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a></div><div class="ttdeci">int gm_uri_parse(const char *uri, gm_uri *u)</div><div class="ttdef"><b>Definition:</b> <a href="uri__parse_8c_source.html#l00006">uri_parse.c:6</a></div></div>
-<div class="ttc" id="astruct__gm__uri_html"><div class="ttname"><a href="struct__gm__uri.html">_gm_uri</a></div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00152">generic_main.h:152</a></div></div>
-<div class="ttc" id="astructgm__web__handler_html"><div class="ttname"><a href="structgm__web__handler.html">gm_web_handler</a></div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00157">generic_main.h:157</a></div></div>
-<div class="ttc" id="astructgm__web__handler_html_a08b83fba34726380dd788a34070544b1"><div class="ttname"><a href="structgm__web__handler.html#a08b83fba34726380dd788a34070544b1">gm_web_handler::next</a></div><div class="ttdeci">struct gm_web_handler * next</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00160">generic_main.h:160</a></div></div>
-<div class="ttc" id="astructgm__web__handler_html_a8f8f80d37794cde9472343e4487ba3eb"><div class="ttname"><a href="structgm__web__handler.html#a8f8f80d37794cde9472343e4487ba3eb">gm_web_handler::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00158">generic_main.h:158</a></div></div>
-<div class="ttc" id="astructgm__web__handler_html_ad22fedd1293d9d9a4161848ba7345c86"><div class="ttname"><a href="structgm__web__handler.html#ad22fedd1293d9d9a4161848ba7345c86">gm_web_handler::handler</a></div><div class="ttdeci">int(* handler)(httpd_req_t *request, const gm_uri *uri)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00159">generic_main.h:159</a></div></div>
-<div class="ttc" id="aweb__handlers_8c_html_a1bf5aaa28453d821d05c5d54816c4d25"><div class="ttname"><a href="web__handlers_8c.html#a1bf5aaa28453d821d05c5d54816c4d25">gm_web_send_to_client</a></div><div class="ttdeci">void gm_web_send_to_client(const char *data, size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00093">web_handlers.c:93</a></div></div>
-<div class="ttc" id="aweb__handlers_8c_html_a5fce1b743e582b2f09a9021abf016f54"><div class="ttname"><a href="web__handlers_8c.html#a5fce1b743e582b2f09a9021abf016f54">gm_web_handler_register</a></div><div class="ttdeci">void gm_web_handler_register(gm_web_handler_t *handler, gm_web_method method)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00080">web_handlers.c:80</a></div></div>
-<div class="ttc" id="aweb__handlers_8c_html_a6a4c301259a630fbd99bd6b88b893f4c"><div class="ttname"><a href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a></div><div class="ttdeci">int gm_web_handler_run(httpd_req_t *req, const gm_uri *uri, gm_web_method method)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00060">web_handlers.c:60</a></div></div>
-<div class="ttc" id="aweb__handlers_8c_html_aaa6a2891afc652a121b3cae7f9a90697"><div class="ttname"><a href="web__handlers_8c.html#aaa6a2891afc652a121b3cae7f9a90697">gm_web_set_request</a></div><div class="ttdeci">void gm_web_set_request(void *context)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00087">web_handlers.c:87</a></div></div>
-<div class="ttc" id="aweb__handlers_8c_html_ac740e39a8c1e6f52928a9ab356aaa022"><div class="ttname"><a href="web__handlers_8c.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a></div><div class="ttdeci">void gm_web_handler_install(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00035">web_handlers.c:35</a></div></div>
+<div class="ttc" id="astruct__gm__uri_html"><div class="ttname"><a href="struct__gm__uri.html">_gm_uri</a></div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00180">generic_main.h:180</a></div></div>
+<div class="ttc" id="astructgm__web__handler_html"><div class="ttname"><a href="structgm__web__handler.html">gm_web_handler</a></div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00185">generic_main.h:185</a></div></div>
+<div class="ttc" id="astructgm__web__handler_html_a08b83fba34726380dd788a34070544b1"><div class="ttname"><a href="structgm__web__handler.html#a08b83fba34726380dd788a34070544b1">gm_web_handler::next</a></div><div class="ttdeci">struct gm_web_handler * next</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00188">generic_main.h:188</a></div></div>
+<div class="ttc" id="astructgm__web__handler_html_a8f8f80d37794cde9472343e4487ba3eb"><div class="ttname"><a href="structgm__web__handler.html#a8f8f80d37794cde9472343e4487ba3eb">gm_web_handler::name</a></div><div class="ttdeci">const char * name</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00186">generic_main.h:186</a></div></div>
+<div class="ttc" id="astructgm__web__handler_html_ad22fedd1293d9d9a4161848ba7345c86"><div class="ttname"><a href="structgm__web__handler.html#ad22fedd1293d9d9a4161848ba7345c86">gm_web_handler::handler</a></div><div class="ttdeci">int(* handler)(httpd_req_t *request, const gm_uri *uri)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00187">generic_main.h:187</a></div></div>
+<div class="ttc" id="aweb__handlers_8c_html_a1bf5aaa28453d821d05c5d54816c4d25"><div class="ttname"><a href="web__handlers_8c.html#a1bf5aaa28453d821d05c5d54816c4d25">gm_web_send_to_client</a></div><div class="ttdeci">void gm_web_send_to_client(const char *data, size_t size)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00094">web_handlers.c:94</a></div></div>
+<div class="ttc" id="aweb__handlers_8c_html_a5fce1b743e582b2f09a9021abf016f54"><div class="ttname"><a href="web__handlers_8c.html#a5fce1b743e582b2f09a9021abf016f54">gm_web_handler_register</a></div><div class="ttdeci">void gm_web_handler_register(gm_web_handler_t *handler, gm_web_method method)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00081">web_handlers.c:81</a></div></div>
+<div class="ttc" id="aweb__handlers_8c_html_a6a4c301259a630fbd99bd6b88b893f4c"><div class="ttname"><a href="web__handlers_8c.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a></div><div class="ttdeci">int gm_web_handler_run(httpd_req_t *req, const gm_uri *uri, gm_web_method method)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00061">web_handlers.c:61</a></div></div>
+<div class="ttc" id="aweb__handlers_8c_html_aaa6a2891afc652a121b3cae7f9a90697"><div class="ttname"><a href="web__handlers_8c.html#aaa6a2891afc652a121b3cae7f9a90697">gm_web_set_request</a></div><div class="ttdeci">void gm_web_set_request(void *context)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00088">web_handlers.c:88</a></div></div>
+<div class="ttc" id="aweb__handlers_8c_html_ac740e39a8c1e6f52928a9ab356aaa022"><div class="ttname"><a href="web__handlers_8c.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a></div><div class="ttdeci">void gm_web_handler_install(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00037">web_handlers.c:37</a></div></div>
 <div class="ttc" id="aweb__template_8h_html_a43a278d13284fb3412e9eee1db1d967e"><div class="ttname"><a href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a></div><div class="ttdeci">#define data</div><div class="ttdef"><b>Definition:</b> <a href="web__template_8h_source.html#l00042">web_template.h:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

@@ -7,6 +7,7 @@ var annotated_dup =
     [ "_gm_port_mapping", "struct__gm__port__mapping.html", "struct__gm__port__mapping" ],
     [ "_gm_run_data", "struct__gm__run__data.html", "struct__gm__run__data" ],
     [ "_gm_uri", "struct__gm__uri.html", "struct__gm__uri" ],
+    [ "_gm_user_data", "struct__gm__user__data.html", "struct__gm__user__data" ],
     [ "_icmpv6_message", "struct__icmpv6__message.html", "struct__icmpv6__message" ],
     [ "_last_request", "struct__last__request.html", "struct__last__request" ],
     [ "_nat_pmp_or_pcp", "struct__nat__pmp__or__pcp.html", "struct__nat__pmp__or__pcp" ],

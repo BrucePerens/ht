@@ -119,6 +119,8 @@ Typedefs</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:aac6f4c828ad94aaf48c2483fe4141e55"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_2nonvolatile_8c.html#aac6f4c828ad94aaf48c2483fe4141e55">gm_wifi_restart</a> (void)</td></tr>
 <tr class="separator:aac6f4c828ad94aaf48c2483fe4141e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a09781828984e6c36d58634ab4a5ff5be"><td class="memItemLeft" align="right" valign="top">esp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_2nonvolatile_8c.html#a09781828984e6c36d58634ab4a5ff5be">gm_flash_failure</a> (const char *module, esp_err_t err)</td></tr>
+<tr class="separator:a09781828984e6c36d58634ab4a5ff5be"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a51460bdf032351552fe12401c1b0974d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_2nonvolatile_8c.html#a51460bdf032351552fe12401c1b0974d">gm_nonvolatile_list</a> (<a class="el" href="generic__main_8h.html#ade53b09e147b3d3d1d1e89c66d4de424">gm_nonvolatile_list_coroutine_t</a> coroutine)</td></tr>
 <tr class="separator:a51460bdf032351552fe12401c1b0974d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8df59d2613237c4e551315a6cf6df3ad"><td class="memItemLeft" align="right" valign="top"><a class="el" href="generic__main_8h.html#a322970f36cc9a5ac1ccf2f1e6230be54">gm_nonvolatile_result_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_2nonvolatile_8c.html#a8df59d2613237c4e551315a6cf6df3ad">gm_nonvolatile_get</a> (const char *key, char *buffer, size_t buffer_size)</td></tr>
@@ -144,6 +146,36 @@ Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
+<a id="a09781828984e6c36d58634ab4a5ff5be" name="a09781828984e6c36d58634ab4a5ff5be"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a09781828984e6c36d58634ab4a5ff5be">&#9670;&#160;</a></span>gm_flash_failure()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">esp_err_t gm_flash_failure </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>module</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">esp_err_t&#160;</td>
+          <td class="paramname"><em>err</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00034">34</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+
+</div>
+</div>
 <a id="aba2ab04759c29a613a0a89f5f713b94b" name="aba2ab04759c29a613a0a89f5f713b94b"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aba2ab04759c29a613a0a89f5f713b94b">&#9670;&#160;</a></span>gm_nonvolatile_erase()</h2>
 
@@ -160,7 +192,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00112">112</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00131">131</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>
@@ -196,7 +228,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00058">58</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00075">75</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>
@@ -216,7 +248,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00034">34</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00047">47</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>
@@ -246,7 +278,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00085">85</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00104">104</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>

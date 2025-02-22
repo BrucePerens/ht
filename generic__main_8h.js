@@ -5,6 +5,7 @@ var generic__main_8h =
     [ "_gm_netif", "struct__gm__netif.html", "struct__gm__netif" ],
     [ "_gm_netif::gm_netif_ip4", "struct__gm__netif_1_1gm__netif__ip4.html", "struct__gm__netif_1_1gm__netif__ip4" ],
     [ "_gm_netif::gm_netif_ip6", "struct__gm__netif_1_1gm__netif__ip6.html", "struct__gm__netif_1_1gm__netif__ip6" ],
+    [ "_gm_user_data", "struct__gm__user__data.html", "struct__gm__user__data" ],
     [ "_generic_main", "struct__generic__main.html", "struct__generic__main" ],
     [ "_gm_param_t", "struct__gm__param__t.html", "struct__gm__param__t" ],
     [ "_gm_uri", "struct__gm__uri.html", "struct__gm__uri" ],
@@ -31,6 +32,7 @@ var generic__main_8h =
     [ "gm_run_t", "generic__main_8h.html#a9825bc4be4dde7c5c0a98ac022b51a6b", null ],
     [ "gm_stun_after_t", "generic__main_8h.html#aaa7ffa3d2573730e09f49a87f9103539", null ],
     [ "gm_uri", "generic__main_8h.html#a5b341a77fe0d01ab1e46f8690600c7dd", null ],
+    [ "gm_user_data_t", "generic__main_8h.html#aeea3041e7dfa1937524cd89e9bdfa0d1", null ],
     [ "gm_web_get_coroutine_t", "generic__main_8h.html#ad7681b498b656544e9c554c175810132", null ],
     [ "gm_web_handler_t", "generic__main_8h.html#ae22ff22bddc7da6ae802323cf22d3e94", null ],
     [ "gm_web_method", "generic__main_8h.html#a7b66bd6b1a51fa2a2431d3ca061c9dfe", null ],
@@ -79,6 +81,7 @@ var generic__main_8h =
     [ "gm_fail", "generic__main_8h.html#ab36918ceea6a52ab5b938f0a3eb10989", null ],
     [ "gm_fd_register", "generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af", null ],
     [ "gm_fd_unregister", "generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039", null ],
+    [ "gm_flash_failure", "generic__main_8h.html#ac2cfab6c3d6dc1fc469dffb54cb4cae4", null ],
     [ "gm_fs_web_handlers", "generic__main_8h.html#af793d91b73cbd1a28dde1f607dfc664b", null ],
     [ "gm_icmpv6_start_listener_ipv6", "generic__main_8h.html#aab72fa84675b45ccfffe380905910ede", null ],
     [ "gm_icmpv6_stop_listener_ipv6", "generic__main_8h.html#a221343a627f3b36aa0d7ac118acb5918", null ],
@@ -100,6 +103,7 @@ var generic__main_8h =
     [ "gm_port_control_protocol_stop_listener_ipv6", "generic__main_8h.html#a169c59a5a7c99f3bf979de923a1e04a8", null ],
     [ "gm_printf", "generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b", null ],
     [ "gm_public_ipv4", "generic__main_8h.html#a942dd964f2b73b8d56ddb994842b362f", null ],
+    [ "gm_read_cookie", "generic__main_8h.html#a520531e3c71e463f9d33d618d93b8af8", null ],
     [ "gm_run", "generic__main_8h.html#ad1431053d3e40bc66de80a2a16a0d823", null ],
     [ "gm_select_task", "generic__main_8h.html#a7b139fd8b34f35d963a7b3c70a9b5a5a", null ],
     [ "gm_select_wakeup", "generic__main_8h.html#a0e718796043ccd1f72a42b9c68c2f2d8", null ],
@@ -127,5 +131,6 @@ var generic__main_8h =
     [ "gm_wifi_start", "generic__main_8h.html#a1c7be980135a5aa45c600d01fedd0ca3", null ],
     [ "gm_wifi_wait_until_disconnected", "generic__main_8h.html#a584ee9de1273331416f9cf53678c2d2b", null ],
     [ "gm_wifi_wait_until_ready", "generic__main_8h.html#a8d42db9ee4b15c2b63708603dd729cec", null ],
+    [ "gm_write_cookie", "generic__main_8h.html#a6d3ab3a1602ce0d5a920bcfaad229e71", null ],
     [ "GM", "generic__main_8h.html#ad66802844977f678a6bb2e99792255db", null ]
 ];
