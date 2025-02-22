@@ -25,8 +25,8 @@
 var NAVTREE =
 [
   [ "K6BP HT Firmware", "index.html", [
-    [ "Modules", "modules.html", "modules" ],
     [ "Data Structures", "annotated.html", [
+      [ "Getting Started", "index.html#autotoc_md0", null ],
       [ "Data Structures", "annotated.html", "annotated_dup" ],
       [ "Data Structure Index", "classes.html", null ],
       [ "Data Fields", "functions.html", [
@@ -53,11 +53,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "all__zeroes_8c.html",
-"generic__main_8h.html#a241265b53f97b10d9cdf9fdf85e34127",
-"lcut_8c.html#a1d0bd94858c170a010584d705156a3ce",
-"setting__get_8c.html#a7bf1e786753c71de834738da71de453a",
-"structstun__attribute.html#a7a5122d675a9ee71032d6d69c5e1d67c",
-"wifi_8c.html#a4a346b228e18bc96a1cef310e288afcd"
+"generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75",
+"port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7a47893f480da5694a697c6c25865da9f9",
+"struct_cookie_payload_1_1_payload_1_1_header.html#abe89a5c9b8094408e24a07f750ffecab",
+"web__template_8h.html#a7a113b8f607568ff9de8c62ad53d72f8"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

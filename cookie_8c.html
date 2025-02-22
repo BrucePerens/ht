@@ -91,60 +91,167 @@ $(document).ready(function(){initNavTree('cookie_8c.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
+<a href="#nested-classes">Data Structures</a> &#124;
+<a href="#define-members">Macros</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">cookie.c File Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;cjson.h&gt;</code><br />
-<code>#include &lt;hwcrypto/aes.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="ascii85_8h_source.html">ascii85.h</a>&quot;</code><br />
+<div class="textblock"><code>#include &lt;stdint.h&gt;</code><br />
+<code>#include &lt;stddef.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
+<code>#include &lt;cJSON.h&gt;</code><br />
+<code>#include &lt;sys/param.h&gt;</code><br />
+<code>#include &lt;aes/esp_aes.h&gt;</code><br />
+<code>#include &lt;esp_random.h&gt;</code><br />
+<code>#include &lt;esp_https_server.h&gt;</code><br />
+<code>#include &lt;esp_rom_crc.h&gt;</code><br />
+<code>#include &lt;esp_log.h&gt;</code><br />
+<code>#include &quot;../src/utils/base64.h&quot;</code><br />
+<code>#include &quot;<a class="el" href="generic__main_8h_source.html">generic_main.h</a>&quot;</code><br />
 </div>
 <p><a href="cookie_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">union &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="union_cookie_payload.html">CookiePayload</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload.html">CookiePayload::Payload</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">CookiePayload::Payload::Header</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_cookie.html">CookiePayload::Cookie</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:aeb47018f732c79a339c5617ef0cbab65"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#aeb47018f732c79a339c5617ef0cbab65">roundup</a>(x,  y)&#160;&#160;&#160;((((x) + ((y) - 1)) / (y)) * (y))</td></tr>
+<tr class="separator:aeb47018f732c79a339c5617ef0cbab65"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3fb2dea7d964f6ed95dfac2897c4001d"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>&#160;&#160;&#160;1024</td></tr>
+<tr class="separator:a3fb2dea7d964f6ed95dfac2897c4001d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a6f4880cad22729172eb950684ef37b97"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a6f4880cad22729172eb950684ef37b97">parse_cookie</a> (httpd_req_c *const req)</td></tr>
-<tr class="separator:a6f4880cad22729172eb950684ef37b97"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a73d7be486acbf5c4f47470f9fb50cbc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a73d7be486acbf5c4f47470f9fb50cbc8">write_cookie</a> (httpd_req_c *const req, const cJSON *const json)</td></tr>
-<tr class="separator:a73d7be486acbf5c4f47470f9fb50cbc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a130c391587121b9f64b92d840738a2d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a130c391587121b9f64b92d840738a2d2">gm_read_cookie</a> (const char *c)</td></tr>
+<tr class="separator:a130c391587121b9f64b92d840738a2d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d3ab3a1602ce0d5a920bcfaad229e71"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a6d3ab3a1602ce0d5a920bcfaad229e71">gm_write_cookie</a> (httpd_req_t *const req, cJSON *const json)</td></tr>
+<tr class="separator:a6d3ab3a1602ce0d5a920bcfaad229e71"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a094fd99b8998b3f12907a435aa322976"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a094fd99b8998b3f12907a435aa322976">cookie_test</a> ()</td></tr>
+<tr class="separator:a094fd99b8998b3f12907a435aa322976"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8301bf2b767bcc1fe898b6117420f0b2"><td class="memItemLeft" align="right" valign="top">const char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a8301bf2b767bcc1fe898b6117420f0b2">tag</a> [] = &quot;cookie&quot;</td></tr>
+<tr class="separator:a8301bf2b767bcc1fe898b6117420f0b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a9e42f270ef36e89f5aa5ad52a1095d"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a2a9e42f270ef36e89f5aa5ad52a1095d">cookie_start</a> [] = &quot;c=&quot;</td></tr>
+<tr class="separator:a2a9e42f270ef36e89f5aa5ad52a1095d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7b348d1c83f3c25393842ca6715fcaca"><td class="memItemLeft" align="right" valign="top">const uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="cookie_8c.html#a7b348d1c83f3c25393842ca6715fcaca">cookie_end</a> []</td></tr>
+<tr class="separator:a7b348d1c83f3c25393842ca6715fcaca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="a6f4880cad22729172eb950684ef37b97" name="a6f4880cad22729172eb950684ef37b97"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a6f4880cad22729172eb950684ef37b97">&#9670;&#160;</a></span>parse_cookie()</h2>
+<h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a3fb2dea7d964f6ed95dfac2897c4001d" name="a3fb2dea7d964f6ed95dfac2897c4001d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3fb2dea7d964f6ed95dfac2897c4001d">&#9670;&#160;</a></span>PAYLOAD_SIZE</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void parse_cookie </td>
+          <td class="memname">#define PAYLOAD_SIZE&#160;&#160;&#160;1024</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00028">28</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<a id="aeb47018f732c79a339c5617ef0cbab65" name="aeb47018f732c79a339c5617ef0cbab65"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeb47018f732c79a339c5617ef0cbab65">&#9670;&#160;</a></span>roundup</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define roundup</td>
           <td>(</td>
-          <td class="paramtype">httpd_req_c *const&#160;</td>
-          <td class="paramname"><em>req</em></td><td>)</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">x, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">y&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td>&#160;&#160;&#160;((((x) + ((y) - 1)) / (y)) * (y))</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00024">24</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="a094fd99b8998b3f12907a435aa322976" name="a094fd99b8998b3f12907a435aa322976"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a094fd99b8998b3f12907a435aa322976">&#9670;&#160;</a></span>cookie_test()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void cookie_test </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
           <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00006">6</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00218">218</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
 
 </div>
 </div>
-<a id="a73d7be486acbf5c4f47470f9fb50cbc8" name="a73d7be486acbf5c4f47470f9fb50cbc8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a73d7be486acbf5c4f47470f9fb50cbc8">&#9670;&#160;</a></span>write_cookie()</h2>
+<a id="a130c391587121b9f64b92d840738a2d2" name="a130c391587121b9f64b92d840738a2d2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a130c391587121b9f64b92d840738a2d2">&#9670;&#160;</a></span>gm_read_cookie()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void write_cookie </td>
+          <td class="memname">void gm_read_cookie </td>
           <td>(</td>
-          <td class="paramtype">httpd_req_c *const&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>c</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00082">82</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<a id="a6d3ab3a1602ce0d5a920bcfaad229e71" name="a6d3ab3a1602ce0d5a920bcfaad229e71"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6d3ab3a1602ce0d5a920bcfaad229e71">&#9670;&#160;</a></span>gm_write_cookie()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_write_cookie </td>
+          <td>(</td>
+          <td class="paramtype">httpd_req_t *const&#160;</td>
           <td class="paramname"><em>req</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">const cJSON *const&#160;</td>
+          <td class="paramtype">cJSON *const&#160;</td>
           <td class="paramname"><em>json</em>&#160;</td>
         </tr>
         <tr>
@@ -155,7 +262,58 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00036">36</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00136">136</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a id="a7b348d1c83f3c25393842ca6715fcaca" name="a7b348d1c83f3c25393842ca6715fcaca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7b348d1c83f3c25393842ca6715fcaca">&#9670;&#160;</a></span>cookie_end</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t cookie_end[]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">=</div>
+<div class="line"><span class="stringliteral">&quot;; Secure; SameSite=Strict; Max-Age=2592000; Partitioned;&quot;</span></div>
+</div><!-- fragment -->
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00037">37</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<a id="a2a9e42f270ef36e89f5aa5ad52a1095d" name="a2a9e42f270ef36e89f5aa5ad52a1095d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2a9e42f270ef36e89f5aa5ad52a1095d">&#9670;&#160;</a></span>cookie_start</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const uint8_t cookie_start[] = &quot;c=&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00033">33</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<a id="a8301bf2b767bcc1fe898b6117420f0b2" name="a8301bf2b767bcc1fe898b6117420f0b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8301bf2b767bcc1fe898b6117420f0b2">&#9670;&#160;</a></span>tag</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char <a class="el" href="structtag.html">tag</a>[] = &quot;cookie&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00030">30</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
 
 </div>
 </div>

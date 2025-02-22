@@ -1,8 +1,20 @@
 var searchData=
 [
-  ['band_5flimits_0',['band_limits',['../structradio__module.html#a0f38b44db43c0424d20d7c5e0f8d4ab0',1,'radio_module']]],
-  ['bandwidth_1',['bandwidth',['../structradio__channel__data.html#a2d20ad05b0ae15fdae25687e5fe4c253',1,'radio_channel_data']]],
-  ['before_2',['before',['../structlcut__tc__t.html#a1c43aaea710c399e72e2be70c06fc56e',1,'lcut_tc_t']]],
-  ['build_5fnumber_3',['build_number',['../struct__generic__main.html#a8494c2cbc48ea4044fadf5982763352d',1,'_generic_main']]],
-  ['build_5fversion_4',['build_version',['../struct__generic__main.html#a07784bbd82144271ed1b23a64c946a40',1,'_generic_main']]]
+  ['call_5fafter_5fset_0',['call_after_set',['../structgm__nonvolatile.html#a572a1b535208e689eaf4c7a11b18e490',1,'gm_nonvolatile']]],
+  ['characters_1',['characters',['../union_cookie_payload.html#a608910084a00154e94d08dc1a7014a29',1,'CookiePayload']]],
+  ['checksum_2',['checksum',['../struct__icmpv6__message.html#a6796c847bbd16253ce2538754c250bd6',1,'_icmpv6_message']]],
+  ['class_3',['class',['../structstun__attribute.html#a17f4064b3a26c1ff2aea6b50dfca9d9e',1,'stun_attribute']]],
+  ['client_5faddress_4',['client_address',['../struct__nat__pmp__or__pcp.html#a46aa19e2bbaa9a0778b5c20acbfa422d',1,'_nat_pmp_or_pcp']]],
+  ['code_5',['code',['../struct__icmpv6__message.html#a966576744a473fafb7687f8e5649941f',1,'_icmpv6_message']]],
+  ['compressed_5ffs_5fmagic_6',['compressed_fs_magic',['../compressed__fs_8h.html#acc418e31c4f621d9786362d258de9cd6',1,'compressed_fs.h']]],
+  ['compressed_5fsize_7',['compressed_size',['../structcompressed__fs__entry.html#a0390ef14e544845805d363863209a341',1,'compressed_fs_entry']]],
+  ['compression_8',['compression',['../frogfs_8c.html#a5b8aa99c8f939da201f589ee78397007',1,'frogfs.c']]],
+  ['console_5fprint_5fmutex_9',['console_print_mutex',['../struct__generic__main.html#a5a6ed9a35ad2d085f61bf62dd2f6263c',1,'_generic_main']]],
+  ['cookie_10',['cookie',['../union_cookie_payload.html#a4dbe7ec20e71acb064231f86f5db6799',1,'CookiePayload']]],
+  ['cookie_5fend_11',['cookie_end',['../cookie_8c.html#a7b348d1c83f3c25393842ca6715fcaca',1,'cookie.c']]],
+  ['cookie_5fstart_12',['cookie_start',['../cookie_8c.html#a2a9e42f270ef36e89f5aa5ad52a1095d',1,'cookie.c']]],
+  ['coroutine_13',['coroutine',['../structuser__data.html#acf5e7dd24273f2702baf791517231011',1,'user_data']]],
+  ['cpu_14',['cpu',['../tasks_8c.html#a6ba3868b13720a4cbb381196da35f775',1,'tasks.c']]],
+  ['crc32_15',['crc32',['../struct_cookie_payload_1_1_payload_1_1_header.html#a7ba6d986496f16e7c9bb92ea0265914d',1,'CookiePayload::Payload::Header']]],
+  ['current_5fhop_5flimit_16',['current_hop_limit',['../struct__icmpv6__message_1_1__ra.html#ab35e1dd3fec0cccb9a355d1282d4911c',1,'_icmpv6_message::_ra']]]
 ];

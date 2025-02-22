@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: third_party/ascii85/lcut Directory Reference</title>
+<title>K6BP HT Firmware: CookiePayload::Payload::Header Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('dir_295bb688cff88080c3e59f34c400907f.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('struct_cookie_payload_1_1_payload_1_1_header.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,30 +90,64 @@ $(document).ready(function(){initNavTree('dir_295bb688cff88080c3e59f34c400907f.h
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">lcut Directory Reference</div></div>
+  <div class="summary">
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle"><div class="title">CookiePayload::Payload::Header Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="files" name="files"></a>
-Files</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="apr__ring_8h.html">apr_ring.h</a> <a href="apr__ring_8h_source.html">[code]</a></td></tr>
-<tr class="memdesc:apr__ring_8h"><td class="mdescLeft">&#160;</td><td class="mdescRight">APR Rings. <br /></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcut_8c.html">lcut.c</a> <a href="lcut_8c_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="lcut_8h.html">lcut.h</a> <a href="lcut_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xorshift__e_8c.html">xorshift_e.c</a> <a href="xorshift__e_8c_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">file &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="xorshift__e_8h.html">xorshift_e.h</a> <a href="xorshift__e_8h_source.html">[code]</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a7ba6d986496f16e7c9bb92ea0265914d"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html#a7ba6d986496f16e7c9bb92ea0265914d">crc32</a></td></tr>
+<tr class="separator:a7ba6d986496f16e7c9bb92ea0265914d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe89a5c9b8094408e24a07f750ffecab"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html#abe89a5c9b8094408e24a07f750ffecab">random</a></td></tr>
+<tr class="separator:abe89a5c9b8094408e24a07f750ffecab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00045">45</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a7ba6d986496f16e7c9bb92ea0265914d" name="a7ba6d986496f16e7c9bb92ea0265914d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7ba6d986496f16e7c9bb92ea0265914d">&#9670;&#160;</a></span>crc32</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t crc32</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00049">49</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<a id="abe89a5c9b8094408e24a07f750ffecab" name="abe89a5c9b8094408e24a07f750ffecab"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe89a5c9b8094408e24a07f750ffecab">&#9670;&#160;</a></span>random</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint32_t random</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00056">56</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>platform/esp_idf/components/generic_main/<a class="el" href="cookie_8c_source.html">cookie.c</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_44f42edf5dd23d4deca0321224e9ce90.html">third_party</a></li><li class="navelem"><a class="el" href="dir_70f38313ac6554149cbfddc1a551d63d.html">ascii85</a></li><li class="navelem"><a class="el" href="dir_295bb688cff88080c3e59f34c400907f.html">lcut</a></li>
+    <li class="navelem"><a class="el" href="union_cookie_payload.html">CookiePayload</a></li><li class="navelem"><a class="el" href="struct_cookie_payload_1_1_payload.html">Payload</a></li><li class="navelem"><a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">Header</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['frogfs_5ffile_5fhandler_0',['frogfs_file_handler',['../compressed__fs_8c.html#aedb004090428619ddc56006fd6837b65',1,'frogfs_file_handler(httpd_req_t *const req, const gm_uri *const uri):&#160;frogfs.c'],['../frogfs_8c.html#aedb004090428619ddc56006fd6837b65',1,'frogfs_file_handler(httpd_req_t *const req, const gm_uri *const uri):&#160;frogfs.c']]]
+  ['esp_5fevent_5fdeclare_5fbase_0',['ESP_EVENT_DECLARE_BASE',['../generic__main_8h.html#aa7d4b559afc372a06f52a961b83c46df',1,'generic_main.h']]],
+  ['esp_5fevent_5fdefine_5fbase_1',['ESP_EVENT_DEFINE_BASE',['../event__loop_8c.html#a3c7b643325e4cd481b27739acc042b3c',1,'event_loop.c']]]
 ];

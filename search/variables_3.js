@@ -1,19 +1,9 @@
 var searchData=
 [
-  ['call_5fafter_5fset_0',['call_after_set',['../structgm__nonvolatile.html#a572a1b535208e689eaf4c7a11b18e490',1,'gm_nonvolatile']]],
-  ['cases_1',['cases',['../structlcut__test__t.html#a8efe4612d6d98d6e4db8c9825a125827',1,'lcut_test_t']]],
-  ['checksum_2',['checksum',['../struct__icmpv6__message.html#a6796c847bbd16253ce2538754c250bd6',1,'_icmpv6_message']]],
-  ['class_3',['class',['../structstun__attribute.html#a17f4064b3a26c1ff2aea6b50dfca9d9e',1,'stun_attribute']]],
-  ['client_5faddress_4',['client_address',['../struct__nat__pmp__or__pcp.html#a46aa19e2bbaa9a0778b5c20acbfa422d',1,'_nat_pmp_or_pcp']]],
-  ['code_5',['code',['../struct__icmpv6__message.html#a966576744a473fafb7687f8e5649941f',1,'_icmpv6_message']]],
-  ['compressed_5ffs_5fmagic_6',['compressed_fs_magic',['../compressed__fs_8h.html#acc418e31c4f621d9786362d258de9cd6',1,'compressed_fs.h']]],
-  ['compressed_5fsize_7',['compressed_size',['../structcompressed__fs__entry.html#a0390ef14e544845805d363863209a341',1,'compressed_fs_entry']]],
-  ['compression_8',['compression',['../frogfs_8c.html#a5b8aa99c8f939da201f589ee78397007',1,'frogfs.c']]],
-  ['console_5fprint_5fmutex_9',['console_print_mutex',['../struct__generic__main.html#a5a6ed9a35ad2d085f61bf62dd2f6263c',1,'_generic_main']]],
-  ['coroutine_10',['coroutine',['../structuser__data.html#acf5e7dd24273f2702baf791517231011',1,'user_data']]],
-  ['cpu_11',['cpu',['../tasks_8c.html#a6ba3868b13720a4cbb381196da35f775',1,'tasks.c']]],
-  ['current_5fhop_5flimit_12',['current_hop_limit',['../struct__icmpv6__message_1_1__ra.html#ab35e1dd3fec0cccb9a355d1282d4911c',1,'_icmpv6_message::_ra']]],
-  ['cut_5fresult_13',['cut_result',['../structlcut__t.html#a38f04faaef1a9c53420940e41d514809',1,'lcut_t']]],
-  ['cut_5fstatus_14',['cut_status',['../structlcut__t.html#aa9f4cfcfd15aefcdac9eefc4e1d5f88c',1,'lcut_t']]],
-  ['cut_5ftest_15',['cut_test',['../structlcut__t.html#aebcff180ea8d2ed4977b3527fc2817d1',1,'lcut_t']]]
+  ['data_0',['data',['../struct___g_m___array.html#a43245d4cc7a2050761d46a12ceff50a6',1,'_GM_Array::data()'],['../struct_cookie_payload_1_1_payload.html#ae61c1ed3c13e1537b20e001dc59c4529',1,'CookiePayload::Payload::data()'],['../struct_cookie_payload_1_1_cookie.html#aa4862f4f6249193297129f926cef6928',1,'CookiePayload::Cookie::data()'],['../structgm__event__t.html#a735984d41155bc1032e09bece8f8d66d',1,'gm_event_t::data()'],['../structgm__event__t.html#a09f29c27ec16f7754a7c757d9ac88aa6',1,'gm_event_t::data()'],['../struct__gm__run__data.html#a735984d41155bc1032e09bece8f8d66d',1,'_gm_run_data::data()'],['../structtimer__task.html#a735984d41155bc1032e09bece8f8d66d',1,'timer_task::data()'],['../structuser__data.html#a91a70b77df95bd8b0830b49a094c2acb',1,'user_data::data()']]],
+  ['data_5foffset_1',['data_offset',['../structcompressed__fs__entry.html#a0e322da8c7e3d2d6292089c0432f885d',1,'compressed_fs_entry']]],
+  ['day_2',['day',['../timer__to__human_8c.html#abc5e0ac527618e89887ebbe05e8c0050',1,'timer_to_human.c']]],
+  ['destination_5faddress_3',['destination_address',['../struct__icmpv6__message_1_1__ipv6__header.html#aa70c6c1b0a5dbb424000e49e6f8e8906',1,'_icmpv6_message::_ipv6_header']]],
+  ['device_5fname_4',['device_name',['../structradio__module.html#a77c7adc4663824cee5fa2e15b9e266e7',1,'radio_module']]],
+  ['digital_5fcodes_5',['digital_codes',['../structradio__module.html#ab562889ac85daa7dd91fd083f0c5534a',1,'radio_module']]]
 ];

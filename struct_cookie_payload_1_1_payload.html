@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: lcut_t Struct Reference</title>
+<title>K6BP HT Firmware: CookiePayload::Payload Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('structlcut__t.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('struct_cookie_payload_1_1_payload.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,83 +91,67 @@ $(document).ready(function(){initNavTree('structlcut__t.html',''); initResizable
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Data Structures</a> &#124;
 <a href="#pub-attribs">Data Fields</a>  </div>
-  <div class="headertitle"><div class="title">lcut_t Struct Reference</div></div>
+  <div class="headertitle"><div class="title">CookiePayload::Payload Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
-
-<p><code>#include &lt;<a class="el" href="lcut_8h_source.html">lcut.h</a>&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
+Data Structures</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">Header</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:aebcff180ea8d2ed4977b3527fc2817d1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="structlcut__test__t.html">lcut_test_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlcut__t.html#aebcff180ea8d2ed4977b3527fc2817d1">cut_test</a></td></tr>
-<tr class="separator:aebcff180ea8d2ed4977b3527fc2817d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa9f4cfcfd15aefcdac9eefc4e1d5f88c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlcut__t.html#aa9f4cfcfd15aefcdac9eefc4e1d5f88c">cut_status</a></td></tr>
-<tr class="separator:aa9f4cfcfd15aefcdac9eefc4e1d5f88c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a38f04faaef1a9c53420940e41d514809"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structlcut__t.html#a38f04faaef1a9c53420940e41d514809">cut_result</a></td></tr>
-<tr class="separator:a38f04faaef1a9c53420940e41d514809"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a910a4b37872f69e3658d7eb0259c4227"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">CookiePayload::Payload::Header</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload.html#a910a4b37872f69e3658d7eb0259c4227">header</a></td></tr>
+<tr class="separator:a910a4b37872f69e3658d7eb0259c4227"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae61c1ed3c13e1537b20e001dc59c4529"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_cookie_payload_1_1_payload.html#ae61c1ed3c13e1537b20e001dc59c4529">data</a> [<a class="el" href="cookie_8c.html#aeb47018f732c79a339c5617ef0cbab65">roundup</a>(<a class="el" href="cookie_8c.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>+sizeof(struct <a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">Header</a>), 16)]</td></tr>
+<tr class="separator:ae61c1ed3c13e1537b20e001dc59c4529"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock">
-<p class="definition">Definition at line <a class="el" href="lcut_8h_source.html#l00120">120</a> of file <a class="el" href="lcut_8h_source.html">lcut.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00044">44</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
 </div><h2 class="groupheader">Field Documentation</h2>
-<a id="a38f04faaef1a9c53420940e41d514809" name="a38f04faaef1a9c53420940e41d514809"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a38f04faaef1a9c53420940e41d514809">&#9670;&#160;</a></span>cut_result</h2>
+<a id="ae61c1ed3c13e1537b20e001dc59c4529" name="ae61c1ed3c13e1537b20e001dc59c4529"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae61c1ed3c13e1537b20e001dc59c4529">&#9670;&#160;</a></span>data</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int cut_result</td>
+          <td class="memname">char data[<a class="el" href="cookie_8c.html#aeb47018f732c79a339c5617ef0cbab65">roundup</a>(<a class="el" href="cookie_8c.html#a3fb2dea7d964f6ed95dfac2897c4001d">PAYLOAD_SIZE</a>+sizeof(struct <a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">Header</a>), 16)]</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="lcut_8h_source.html#l00123">123</a> of file <a class="el" href="lcut_8h_source.html">lcut.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="cookie_8c_source.html#l00059">59</a> of file <a class="el" href="cookie_8c_source.html">cookie.c</a>.</p>
 
 </div>
 </div>
-<a id="aa9f4cfcfd15aefcdac9eefc4e1d5f88c" name="aa9f4cfcfd15aefcdac9eefc4e1d5f88c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa9f4cfcfd15aefcdac9eefc4e1d5f88c">&#9670;&#160;</a></span>cut_status</h2>
+<a id="a910a4b37872f69e3658d7eb0259c4227" name="a910a4b37872f69e3658d7eb0259c4227"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a910a4b37872f69e3658d7eb0259c4227">&#9670;&#160;</a></span>header</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">int cut_status</td>
+          <td class="memname">struct <a class="el" href="struct_cookie_payload_1_1_payload_1_1_header.html">CookiePayload::Payload::Header</a> header</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="lcut_8h_source.html#l00122">122</a> of file <a class="el" href="lcut_8h_source.html">lcut.h</a>.</p>
-
-</div>
-</div>
-<a id="aebcff180ea8d2ed4977b3527fc2817d1" name="aebcff180ea8d2ed4977b3527fc2817d1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aebcff180ea8d2ed4977b3527fc2817d1">&#9670;&#160;</a></span>cut_test</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="structlcut__test__t.html">lcut_test_t</a>* cut_test</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="lcut_8h_source.html#l00121">121</a> of file <a class="el" href="lcut_8h_source.html">lcut.h</a>.</p>
 
 </div>
 </div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
-<li>third_party/ascii85/lcut/<a class="el" href="lcut_8h_source.html">lcut.h</a></li>
+<li>platform/esp_idf/components/generic_main/<a class="el" href="cookie_8c_source.html">cookie.c</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="structlcut__t.html">lcut_t</a></li>
+    <li class="navelem"><a class="el" href="union_cookie_payload.html">CookiePayload</a></li><li class="navelem"><a class="el" href="struct_cookie_payload_1_1_payload.html">Payload</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ascii85_5ferrs_5fe_0',['ascii85_errs_e',['../ascii85_8h.html#ae03412863150aa644eb9fce4f8a2e8b7',1,'ascii85.h']]]
+  ['compression_5fmethod_0',['compression_method',['../compressed__fs_8h.html#a1e459517f01bb9dac9511086b04d11c3',1,'compressed_fs.h']]]
 ];
