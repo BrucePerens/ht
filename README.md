@@ -36,3 +36,23 @@ See https://bruceperens.github.io/ht/index.html
 Change to the platform/k4vp_2 directory.
 Connect to the system with "idf.py monitor". Use the "nv" command to set up WiFi.
 Type "help" to see the commands. The web server just serves an error message for now.
+
+## Security
+The K4VP platform and similar are vulnerable to session hijacking attacks
+because they often use self-signed certificates, which the user becomes trained
+to accept, and the user can blithely accept the certificate of a masquerading
+site.  The masquerading site can then gain a copy of the session cookie, and can
+use it to log in to the device and operate the radio.
+
+This is mitigated somewhat by:
+* Use of LetsEncrypt SSL certificates, where possible, since they are unique and
+  the user doesn't have to accept them.
+* Where a self-signed certificate must be used, and accepted by the user,
+  a unique certificate should be provisioned to each device so that it is
+  not possible for an attacker to know the secret key used by another device.
+  Vendors of devices must implement this.
+* Implementing a CA, and signing the device certificate, then having the user
+  accept a well-known CA certificate from a secure site online, instead of a
+  self-signed device certificate.
+* Educating the user to not blithely accept a self-signed certificate except when
+  the device is in-hand.

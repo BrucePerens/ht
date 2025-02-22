@@ -102,24 +102,52 @@ static void initialize(void)
   // for randomness.
   //
   uint8_t aes_key[32];
-  size_t size = sizeof(aes_key);
-  const char name[] = "aes_key";
+  size_t key_size = sizeof(aes_key);
+  size_t iv_size = sizeof(GM.aes_fixed_iv);
+  const char key_name[] = "aes_key";
+  const char iv_name[] = "aes_fixed_iv";
 
-  const esp_err_t blob_err = nvs_get_blob(GM.nvs, name, aes_key, &size);
+  const esp_err_t blob1_err = nvs_get_blob(GM.nvs, key_name, aes_key, &key_size);
+  const esp_err_t blob2_err = nvs_get_blob(
+   GM.nvs,
+   iv_name,
+   GM.aes_fixed_iv,
+   &iv_size);
 
-  if ( blob_err != ESP_OK || size != sizeof(aes_key) 
-   || *(unsigned long *)&aes_key == 0 ) {
+  if ( blob1_err != ESP_OK
+   ||  blob2_err != ESP_OK
+   ||  key_size != sizeof(aes_key) 
+   ||  iv_size != sizeof(GM.aes_fixed_iv) 
+   || *(unsigned long *)&aes_key == 0
+   || *(unsigned long *)&GM.aes_fixed_iv == 0 ) {
     esp_fill_random(aes_key, sizeof(aes_key));
-    const esp_err_t set_err = nvs_set_blob(GM.nvs, name, aes_key, sizeof(aes_key));
-    if ( set_err == ESP_OK )
-      (void) nvs_commit(GM.nvs);
+    const esp_err_t set_key_err = nvs_set_blob(
+     GM.nvs,
+     key_name,
+     aes_key,
+     sizeof(aes_key));
+
+    // We use the same AES initialization vector all of the time for cookie 
+    // encryption, so the cookie plaintext _must_ contain randomness.
+    if ( set_key_err == ESP_OK ) {
+      esp_fill_random(GM.aes_fixed_iv, 16);
+      const esp_err_t set_iv_err = nvs_set_blob(
+       GM.nvs,
+       iv_name,
+       GM.aes_fixed_iv,
+       sizeof(GM.aes_fixed_iv));
+      if ( set_iv_err == ESP_OK )
+        (void) nvs_commit(GM.nvs);
+    }
   }
 
   // Initialize a hardware AES context with the key. This will be used for cookie
   // encryption.
-  esp_aes_init(&GM.aes_ctx);
-  esp_aes_setkey(&GM.aes_ctx, aes_key, 256);
+  esp_aes_init(&GM.aes_context);
+  esp_aes_setkey(&GM.aes_context, aes_key, 256);
 
+  extern void cookie_test();
+  cookie_test();
 #ifndef CONFIG_ESP_SYSTEM_GDBSTUB_RUNTIME
   // The GDB stub uses the console, so don't run the interpreter if it's in use.
   gm_command_interpreter_start();

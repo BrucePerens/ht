@@ -138,6 +138,10 @@ typedef struct _generic_main {
   int			log_fd;
   FILE *		log_file_pointer;
   esp_aes_context	aes_context;
+  // We use the same AES initialization vector for cookie encoding all of the time,
+  // to avoid sending the IV as a second cookie.
+  // So the cookie plaintext _must_ contain randomness.
+  uint8_t		aes_fixed_iv[16];
 } generic_main_t;
 
 typedef struct _gm_param_t {
