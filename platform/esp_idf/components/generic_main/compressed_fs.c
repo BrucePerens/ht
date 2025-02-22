@@ -19,8 +19,8 @@ http_root_handler(httpd_req_t *req)
 static esp_err_t
 http_file_handler(httpd_req_t * const req)
 {
+  gm_read_cookie(req);
   gm_uri uri = {};
-
 
   if ( gm_uri_parse(req->uri, &uri) != 0 )
     return ESP_ERR_INVALID_ARG;

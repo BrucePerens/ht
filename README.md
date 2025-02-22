@@ -37,6 +37,35 @@ Change to the platform/k4vp_2 directory.
 Connect to the system with "idf.py monitor". Use the "nv" command to set up WiFi.
 Type "help" to see the commands. The web server just serves an error message for now.
 
+## Hardware Lifetime Limitations of Platforms Incorporating Small FLASH Memories
+A major limitation in the hardware lifetime is the presence of a _small_
+FLASH memory in an embedded device, as opposed to the gigabyte and
+larger FLASH provided in many devices, which can support more robust
+wear-leveling. The K4VP platform incorporates FLASH of unknown,
+but small, size in the radio module and 4MB FLASH in the ESP-32
+processor. FLASH lifetime is 10,000 to 100,000 write cycles, depending
+on the technology used. If this is exceeded, the FLASH may fail, and
+the device may become useless. Radio modules that support one channel
+and include data persistence, such as the SA-818S, write FLASH every
+time the channel is changed. The ESP-32 processor will write FLASH
+when various parameters are set, and uses wear-leveling so that writes
+are distributed throughout the FLASH memory and a single FLASH cell is
+thus less likely to fail. However, the wear-leveling depends upon empty
+space in each partition used for data storage, and will become less
+protective as the partition is written to close to its full capacity,
+and completely unprotective once the partition is full. The writable
+partitions on the ESP-32 are generally not much larger than the expected
+data that might be stored in them, and thus should not be expected to
+provide robust wear-leveling.
+
+The user may damage their device or render it unusable with frequent writes to
+storage, and a pernicious program might do this in hours. Thus, all software
+should be conscious of this limitation: read data and make sure you _need_ to set
+it before writing. Do not set any FLASH datum more frequently than necessary.
+The developers have endeavored to take these precautions, but the FLASH
+lifetime will be limited by the constraints of the device and its application.
+Thus, the developers take _no_ responsibility for damage to the hardware.
+
 ## Security
 The K4VP platform and similar are vulnerable to session hijacking attacks
 because they often use self-signed certificates, which the user becomes trained

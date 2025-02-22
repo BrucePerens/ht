@@ -1,6 +1,7 @@
 #pragma once
 #include <stdio.h>
 #include <stdarg.h>
+#include <cJSON.h>
 #include <nvs_flash.h>
 #include <nvs.h>
 #include <esp_console.h>
@@ -119,6 +120,27 @@ typedef struct _gm_netif {
   } ip6;
 } gm_netif_t;
 
+// Don't put the user's language in here, the browser should send it in the
+// Accept-Language header.
+// Put email addresses in nvs separately so that they can be stored as strings
+// of variable length. The longest legal email address is 254 characters (not 320). 
+// WARNING: The longest fields here may not have a 0 string terminator.
+// Code must process them with knowledge of that.
+typedef struct _gm_user_data {
+  // 6-letter call, "/", three-letter location, "-", two digits.
+  char		callsign[13];
+  // AES processes data with a multiple of 16 in size.
+  char	password[32];
+  // ITU country code, for operating privileges.
+  char  country[3];
+  // License class for operating privileges. Assuming longest is "technician+";
+  char	license_class[11];
+  // 8 bits of flags available before we change the structure size.
+  uint8_t	admin:1;
+  uint8_t	transmit:1;
+  uint8_t	banned:1;
+} gm_user_data_t;
+
 typedef struct _generic_main {
   nvs_handle_t		nvs;
   gm_netif_t		ap;
@@ -137,11 +159,17 @@ typedef struct _generic_main {
   const char * const	ipv6_address_types[6];
   int			log_fd;
   FILE *		log_file_pointer;
-  esp_aes_context	aes_context;
+  esp_aes_context	aes_cookie_context;
   // We use the same AES initialization vector for cookie encoding all of the time,
   // to avoid sending the IV as a second cookie.
   // So the cookie plaintext _must_ contain randomness.
-  uint8_t		aes_fixed_iv[16];
+  uint8_t		aes_cookie_iv[16];
+  uint8_t		hmac_key[64];
+  cJSON *		json;
+  // Set to the error if there is an indication that FLASH is failing.
+  esp_err_t		flash_failure ;
+  char *		user_name;
+  gm_user_data_t	user_data;
 } generic_main_t;
 
 typedef struct _gm_param_t {
@@ -181,11 +209,13 @@ extern size_t			gm_choose_one(size_t number_of_entries);
 extern void			gm_command_add_registered_to_console(void);
 extern void			gm_command_interpreter_start(void);
 extern void			gm_command_register(const esp_console_cmd_t * command);
+extern esp_err_t		gm_flash_failure(const char *, esp_err_t err);
 extern int			gm_ddns(void);
 
 extern void			gm_event_server(void);
 
 extern void			gm_fs_web_handlers(httpd_handle_t server);
+extern void			gm_read_cookie(httpd_req_t * req);
 extern void			gm_run(gm_run_t function, void * data, gm_run_speed_t speed);
 extern void			gm_fd_register(int fd, gm_fd_handler_t handler, void * data, bool readable, bool writable, bool exception, uint32_t seconds);
 extern void			gm_fd_unregister(int fd);
@@ -248,3 +278,4 @@ extern void			gm_wifi_start(void);
 extern void			gm_wifi_wait_until_disconnected(void);
 extern void			gm_wifi_wait_until_ready(void);
 
+void				gm_write_cookie(httpd_req_t * const req, cJSON * const json);

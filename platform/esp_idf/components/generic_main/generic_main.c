@@ -22,6 +22,7 @@
 #include <esp_random.h>
 #include <esp_console.h>
 #include <esp_mac.h>
+#include <bootloader_random.h>
 #include "generic_main.h"
 
 static void initialize(void);
@@ -60,15 +61,6 @@ static void initialize(void)
   // The global event loop is required for all event handling to work.
   ESP_ERROR_CHECK(esp_event_loop_create_default());
 
-  // Connect the non-volatile-storage FLASH partition. Initialize it if
-  // necessary.
-  esp_err_t err = nvs_flash_init();
-  if ( err != ESP_OK ) {
-    ESP_LOGW(TASK_NAME, "Erasing and initializing non-volatile parameter storage.");
-    ESP_ERROR_CHECK(nvs_flash_erase());
-    ESP_ERROR_CHECK(nvs_flash_init());
-  }
-  ESP_ERROR_CHECK(nvs_open(GM.nvs_index, NVS_READWRITE, &GM.nvs));
 
   // Get the factory-set MAC address, which is a permanent unique number programmed
   // into e-fuse bits of this CPU, and thus is useful for identifying the device.
@@ -90,8 +82,18 @@ static void initialize(void)
 
   gm_printf("Device name: %s\n", GM.unique_name);
 
-  gm_select_task();
-  gm_wifi_start();
+  // Connect the non-volatile-storage FLASH partition. Initialize it if
+  // necessary.
+  esp_err_t err = nvs_flash_init();
+  if ( err != ESP_OK ) {
+    ESP_LOGW(TASK_NAME, "Erasing and initializing non-volatile parameter storage.");
+    ESP_ERROR_CHECK(nvs_flash_erase());
+    ESP_ERROR_CHECK(nvs_flash_init());
+  }
+  esp_err_t nvs_open_err = nvs_open(GM.nvs_index, NVS_READWRITE, &GM.nvs);
+
+  if ( nvs_open_err != ESP_OK )
+    gm_flash_failure("nvs open", nvs_open_err);
 
   // Create and store an AES key used for encrypting cookie data for
   // login security and other persistent data. This is less secure than
@@ -103,23 +105,37 @@ static void initialize(void)
   //
   uint8_t aes_key[32];
   size_t key_size = sizeof(aes_key);
-  size_t iv_size = sizeof(GM.aes_fixed_iv);
+  size_t iv_size = sizeof(GM.aes_cookie_iv);
+  size_t hmac_key_size = sizeof(GM.hmac_key);
   const char key_name[] = "aes_key";
-  const char iv_name[] = "aes_fixed_iv";
+  const char iv_name[] = "cookie_iv";
+  const char hmac_key_name[] = "hmac_key";
 
   const esp_err_t blob1_err = nvs_get_blob(GM.nvs, key_name, aes_key, &key_size);
   const esp_err_t blob2_err = nvs_get_blob(
    GM.nvs,
    iv_name,
-   GM.aes_fixed_iv,
+   GM.aes_cookie_iv,
    &iv_size);
+  const esp_err_t blob3_err = nvs_get_blob(
+   GM.nvs,
+   hmac_key_name,
+   hmac_key,
+   &hmac_key_size);
 
   if ( blob1_err != ESP_OK
    ||  blob2_err != ESP_OK
+   ||  blob3_err != ESP_OK
    ||  key_size != sizeof(aes_key) 
-   ||  iv_size != sizeof(GM.aes_fixed_iv) 
+   ||  iv_size != sizeof(GM.aes_cookie_iv) 
+   ||  hmac_key_size != sizeof(GM.aes_cookie_iv) 
    || *(unsigned long *)&aes_key == 0
-   || *(unsigned long *)&GM.aes_fixed_iv == 0 ) {
+   || *(unsigned long *)&GM.aes_cookie_iv == 0 ) {
+   || *(unsigned long *)&GM.hmac_key == 0 ) {
+    // WiFi is not yet started, as we need encryption first.
+    // So, use the bootloader random source (one or more of the ADCs, Espressif
+    // says thermal noise, but possibly including radio reception).
+    bootloader_random_enable();
     esp_fill_random(aes_key, sizeof(aes_key));
     const esp_err_t set_key_err = nvs_set_blob(
      GM.nvs,
@@ -129,22 +145,38 @@ static void initialize(void)
 
     // We use the same AES initialization vector all of the time for cookie 
     // encryption, so the cookie plaintext _must_ contain randomness.
-    if ( set_key_err == ESP_OK ) {
-      esp_fill_random(GM.aes_fixed_iv, 16);
-      const esp_err_t set_iv_err = nvs_set_blob(
-       GM.nvs,
-       iv_name,
-       GM.aes_fixed_iv,
-       sizeof(GM.aes_fixed_iv));
-      if ( set_iv_err == ESP_OK )
-        (void) nvs_commit(GM.nvs);
+    esp_fill_random(GM.aes_cookie_iv, sizeof(GM.aes_cookie_iv));
+    const esp_err_t set_iv_err = nvs_set_blob(
+     GM.nvs,
+     iv_name,
+     GM.aes_cookie_iv,
+     sizeof(GM.aes_cookie_iv));
+
+    esp_fill_random(GM.hmac_key, sizeof(GM.hmac_key));
+    const esp_err_t set_hmac_key_err = nvs_set_blob(
+     GM.nvs,
+     iv_name,
+     GM.aes_cookie_iv,
+     sizeof(GM.aes_cookie_iv));
+
+    const esp_err_t nvs_commit_error = nvs_commit(GM.nvs);
+
+    esp_err_t err;
+    if ( (err = set_key_err)
+     || (err = set_iv_err)
+     || (err = set_hmac_key_err)
+     || (err = nvs_commit_error) ) {
+      (void)gm_flash_failure("nvs cryptographic keys", err);
     }
+    bootloader_random_disable();
   }
 
-  // Initialize a hardware AES context with the key. This will be used for cookie
-  // encryption.
-  esp_aes_init(&GM.aes_context);
-  esp_aes_setkey(&GM.aes_context, aes_key, 256);
+  // Initialize a hardware AES context with the cookie encryption key.
+  esp_aes_init(&GM.aes_cookie_context);
+  esp_aes_setkey(&GM.aes_cookie_context, aes_key, 256);
+
+  gm_select_task();
+  gm_wifi_start();
 
   extern void cookie_test();
   cookie_test();

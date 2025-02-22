@@ -30,6 +30,19 @@ static const gm_nonvolatile_t gm_nonvolatile[] = {
   { }
 };
 
+esp_err_t
+gm_flash_failure(const char * module, esp_err_t err) {
+  if ( GM.flash_failure == ESP_OK )
+    GM.flash_failure = err;
+
+  static bool i_told_you_once = false;
+  if ( !i_told_you_once ) {
+    i_told_you_once = true;
+    gm_printf("FLASH memory: %s: %s\n", module, esp_err_to_name(err));
+  }
+  return err;
+}
+
 void
 gm_nonvolatile_list(gm_nonvolatile_list_coroutine_t coroutine)
 {
@@ -40,11 +53,15 @@ gm_nonvolatile_list(gm_nonvolatile_list_coroutine_t coroutine)
   while (p->type) {
     buffer_size = sizeof(buffer);
     esp_err_t err = nvs_get_str(GM.nvs, p->name, buffer, &buffer_size);
-    if (err != ESP_OK) {
-      *buffer = '\0';
-      (*coroutine)(p->name, buffer, p->explanation, GM_NOT_SET);
+    if ( err != ESP_OK ) {
+      if ( err == ESP_ERR_NVS_NOT_FOUND ) {
+        *buffer = '\0';
+        (*coroutine)(p->name, buffer, p->explanation, GM_NOT_SET);
+      }
+      else
+        gm_flash_failure("nvs", err);
     }
-    else if (p->secret) {
+    else if ( p->secret ) {
       *buffer = '\0';
       (*coroutine)(p->name, buffer, p->explanation, GM_SECRET);
     }
@@ -71,6 +88,8 @@ gm_nonvolatile_get(const char * key, char * buffer, size_t buffer_size)
   esp_err_t err = nvs_get_str(GM.nvs, key, buffer, &buffer_size);
 
   if (err) {
+    if ( err != ESP_ERR_NVS_NOT_FOUND )
+      gm_flash_failure("nvs", err);
     *buffer = '\0';
     return GM_NOT_SET;
   }
@@ -96,7 +115,7 @@ gm_nonvolatile_set(const char * key, const char * value)
 
   esp_err_t err = (nvs_set_str(GM.nvs, key, value));
   if (err) {
-    ESP_ERROR_CHECK(err);
+    gm_flash_failure("nvs", err);
     return GM_ERROR;
   }
 

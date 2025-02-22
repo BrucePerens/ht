@@ -26,9 +26,15 @@
 # * Remove phy_init.
 # * Use the currently empty 16K space after phy_init. 
 #
+# The Frogfs ROM filesystem is part of the software, and thus is in the factory
+# partition.
+#
+# FIX: Add and implement partitions for cryptographic keys, so that they can
+# be provisioned by the vendor.
+#
 # Name, Type, SubType, Offset, Size, Flags
 nvs,data,nvs,0x10000,24K,
 phy_init,data,phy,0x16000,4K,
-# 16K space here, could be a FLASH filesystem.
+keys,data,keys,0x17000,12K,
 factory,app,factory,0x20000,3600K,
-littlefs1,  data, spiffs,0x3a4000,368K
+littlefs1, data,spiffs,0x3a4000,368K

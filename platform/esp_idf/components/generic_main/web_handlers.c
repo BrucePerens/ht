@@ -10,6 +10,7 @@ static gm_web_handler_t * * last[3] = {&handlers[0], &handlers[1], &handlers[2]}
 static esp_err_t
 run_post_handlers(httpd_req_t * req)
 {
+  gm_read_cookie(req);
   gm_uri uri = {};
 
   if ( gm_uri_parse(req->uri, &uri) == 0 )
@@ -21,6 +22,7 @@ run_post_handlers(httpd_req_t * req)
 static esp_err_t
 run_put_handlers(httpd_req_t * req)
 {
+  gm_read_cookie(req);
   gm_uri uri = {};
 
   gm_uri_parse(req->uri, &uri);
@@ -53,7 +55,6 @@ gm_web_handler_install(httpd_handle_t server)
       .user_ctx  = NULL
   };
   httpd_register_uri_handler(server, &put);
-
 }
 
 int

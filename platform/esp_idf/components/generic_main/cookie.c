@@ -72,25 +72,52 @@ union CookiePayload {
   } cookie;
 
   // Typed access to encrypt struct Payload.
-  const uint8_t bytes[sizeof(struct Payload)];
+  uint8_t bytes[sizeof(struct Payload)];
 
   // Typed access to send struct Cookie as the Set-Cookie datum.
-  const char characters[sizeof(struct Cookie)];
+  char characters[sizeof(struct Cookie)];
 };
 
 void
-gm_read_cookie(const char * c)
+gm_read_cookie(httpd_req_t * req)
 {
-  struct Payload b;
+  union CookiePayload b;
   uint8_t a[PAYLOAD_SIZE + sizeof(struct Header)];
   size_t length = 0;
 
-  // FIX: Parse the cookie here.
-  const char * const semicolon = strchr(&c[2], ';');
-  const size_t data_length = semicolon - &c[2];
+  const char * c;
+  if ( httpd_req_get_hdr_value_str(
+   req,
+   "Cookie",
+   b.characters,
+   sizeof(b.characters)) != ESP_OK )
+    return;
 
+  c = strstr(b.characters, "c=");
+  if ( c == NULL )
+    return;
+
+  if ( c != b.characters && c[-1] != ' ' ) {
+    c = strstr(c, " c=");
+    if ( c == NULL )
+      return;
+    c++;
+  }
+  c += 2;
+
+  size_t data_length;
+  const char * const end = strchr(c, ';');
+  if ( end != NULL )
+    data_length = end - c;
+  else
+    data_length = strlen(c);
+
+  if ( data_length > sizeof(a) - 1 ) {
+    gm_printf("Cookie size %d larger than buffer size %d.", data_length, sizeof(a) - 1);
+    return;
+  }
   // Decode from Base-64 and get the encrypted payload.
-  uint8_t * const unbased = base64_decode(&c[2], data_length, &length);
+  uint8_t * const unbased = base64_decode(c, data_length, &length);
   memcpy(a, unbased, length);
   a[length] = '\0';
   free(unbased);
@@ -100,36 +127,42 @@ gm_read_cookie(const char * c)
     return;
   }
 
-  // AES modifies the IV so that you can use it to stream.
-  uint8_t iv[sizeof(GM.aes_fixed_iv)];
-  memcpy(iv, GM.aes_fixed_iv, sizeof(iv));
+  // AES modifies the IV so that you can use it to stream. So, make a temporary
+  // copy.
+  uint8_t iv[sizeof(GM.aes_cookie_iv)];
+  memcpy(iv, GM.aes_cookie_iv, sizeof(iv));
   
   // Decrypt the payload.
   (void) esp_aes_crypt_cbc(
-   &GM.aes_context,
+   &GM.aes_cookie_context,
    ESP_AES_DECRYPT,
    length,
    iv,
    a,
-   (uint8_t *)&b);
+   b.bytes);
 
   // Check that the calculated CRC for the data matches the one in the cookie.
   const uint32_t crc32 = esp_rom_crc32_le(
    0,
-   (uint8_t *)&b.header.random, length - sizeof(b.header.crc32));
+   (uint8_t *)&b.payload.header.random, length - sizeof(b.payload.header.crc32));
 
-  if ( b.header.crc32 != crc32 ) {
+  if ( b.payload.header.crc32 != crc32 ) {
     gm_printf("Cookie CRC doesn't match.\n");
     return;
   }
   
   // Parse the payload.
-  cJSON * volatile json = cJSON_Parse(b.data);
+  cJSON * volatile json = cJSON_Parse(b.payload.data);
 
   if ( json == NULL ) {
     gm_printf("Cookie JSON parse failed.\n");
     return;
   }
+
+  if ( GM.json != NULL )
+    cJSON_Delete(GM.json);
+
+  GM.json = json;
 }
 
 void
@@ -176,13 +209,14 @@ gm_write_cookie(httpd_req_t * const req, cJSON * const json)
    (uint8_t *)&b.payload.header.random,
    sizeof(b.payload.header.random) + length + padding);
 
-  // AES modifies the IV so that you can use it to stream.
-  uint8_t iv[sizeof(GM.aes_fixed_iv)];
-  memcpy(iv, GM.aes_fixed_iv, sizeof(iv));
+  // AES modifies the IV so that you can use it to stream. So, make a temporary
+  // copy.
+  uint8_t iv[sizeof(GM.aes_cookie_iv)];
+  memcpy(iv, GM.aes_cookie_iv, sizeof(iv));
 
   // Encrypt the payload.
   (void) esp_aes_crypt_cbc(
-   &GM.aes_context,
+   &GM.aes_cookie_context,
    ESP_AES_ENCRYPT,
    length + sizeof(b.payload.header) + padding,
    iv,
@@ -207,16 +241,10 @@ gm_write_cookie(httpd_req_t * const req, cJSON * const json)
   // This includes null-termination.
   memcpy(&b.cookie.data[base64_length], cookie_end, sizeof(cookie_end));
 
-  // httpd_resp_set_hdr(req, "Set-Cookie", b.characters);
-
-  gm_read_cookie(b.characters);
+  httpd_resp_set_hdr(req, "Set-Cookie", b.characters);
 }
-
-static const char test[] = R"({"user":"bruce","time":1740095075})";
 
 void
 cookie_test()
 {
-  cJSON * volatile json = cJSON_Parse(test);
-  gm_write_cookie((httpd_req_t *)0, json);
 }

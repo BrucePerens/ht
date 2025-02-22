@@ -9,8 +9,9 @@
 #include <lwip/sockets.h>
 #include "generic_main.h"
 
-// Tiny redirect server. Don't use the http server just to do redirect, it uses too many
-// resources. This one shares a thread with all of the other GM select-based event functions.
+// Tiny redirect server. Don't use the http server just to do redirect, it uses too
+// many resources. This one shares a thread with all of the other GM select-based
+// event functions.
 
 const char redirect[] = "\
 HTTP/1.1 301 Moved Permanently\r\n\

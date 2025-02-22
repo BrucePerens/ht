@@ -33,6 +33,7 @@ REQUIRES
   wpa_supplicant
   esp_rom
   log
+  bootloader_support
 )
 
 add_custom_target(
