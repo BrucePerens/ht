@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: platform/esp_idf/components/generic_main/compressed_fs.c Source File</title>
+<title>K6BP HT Firmware: platform/esp_idf/components/generic_main/get.c Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('compressed__fs_8c_source.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('get_8c_source.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -90,15 +90,15 @@ $(document).ready(function(){initNavTree('compressed__fs_8c_source.html',''); in
 </div>
 
 <div class="header">
-  <div class="headertitle"><div class="title">compressed_fs.c</div></div>
+  <div class="headertitle"><div class="title">get.c</div></div>
 </div><!--header-->
 <div class="contents">
-<a href="compressed__fs_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<a href="get_8c.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#include &lt;string.h&gt;</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &lt;esp_http_server.h&gt;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &quot;<a class="code" href="generic__main_8h.html">generic_main.h</a>&quot;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span> </div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>esp_err_t <a class="code hl_function" href="compressed__fs_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a>(httpd_req_t * <span class="keyword">const</span> req, <span class="keyword">const</span> <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> * <span class="keyword">const</span> uri);</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span>esp_err_t <a class="code hl_function" href="get_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a>(httpd_req_t * <span class="keyword">const</span> req, <span class="keyword">const</span> <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> * <span class="keyword">const</span> uri);</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">static</span> esp_err_t</div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>http_root_handler(httpd_req_t *req)</div>
@@ -114,7 +114,7 @@ $(document).ready(function(){initNavTree('compressed__fs_8c_source.html',''); in
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">static</span> esp_err_t</div>
 <div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>http_file_handler(httpd_req_t * <span class="keyword">const</span> req)</div>
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>{</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_function" href="cookie_8c.html#a520531e3c71e463f9d33d618d93b8af8">gm_read_cookie</a>(req);</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <a class="code hl_function" href="generic__main_8h.html#a9d36b4246c24c182cce581b58779a848">gm_session</a>(req);</div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <a class="code hl_struct" href="struct__gm__uri.html">gm_uri</a> uri = {};</div>
 <div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
 <div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a>(req-&gt;uri, &amp;uri) != 0 )</div>
@@ -145,7 +145,7 @@ $(document).ready(function(){initNavTree('compressed__fs_8c_source.html',''); in
 <div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="generic__main_8h.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a>(req, &amp;uri, <a class="code hl_enumvalue" href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a12a8dcf59c16b5aadfda3a08ba67d529">GET</a>) == 0 )</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">return</span> ESP_OK;</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="compressed__fs_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a>(req, &amp;uri) == ESP_OK )</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  <span class="keywordflow">if</span> ( <a class="code hl_function" href="get_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a>(req, &amp;uri) == ESP_OK )</div>
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="keywordflow">return</span> ESP_OK;</div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span> </div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="comment">// FIX: Test and enable.</span></div>
@@ -158,7 +158,7 @@ $(document).ready(function(){initNavTree('compressed__fs_8c_source.html',''); in
 <div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
 <div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
 <div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">   66</a></span><a class="code hl_function" href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a>(httpd_handle_t server)</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno"><a class="line" href="get_8c.html#abb1d761b431e273ea591c9b94dc22dd6">   66</a></span><a class="code hl_function" href="get_8c.html#abb1d761b431e273ea591c9b94dc22dd6">gm_get_handlers</a>(httpd_handle_t server)</div>
 <div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>{</div>
 <div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>  <span class="keyword">static</span> <span class="keyword">const</span> httpd_uri_t root = {</div>
 <div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      .uri       = <span class="stringliteral">&quot;/&quot;</span>,</div>
@@ -176,21 +176,21 @@ $(document).ready(function(){initNavTree('compressed__fs_8c_source.html',''); in
 <div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  };</div>
 <div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  httpd_register_uri_handler(server, &amp;file);</div>
 <div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>}</div>
-<div class="ttc" id="acompressed__fs_8c_html_aedb004090428619ddc56006fd6837b65"><div class="ttname"><a href="compressed__fs_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a></div><div class="ttdeci">esp_err_t frogfs_file_handler(httpd_req_t *const req, const gm_uri *const uri)</div><div class="ttdef"><b>Definition:</b> <a href="frogfs_8c_source.html#l00040">frogfs.c:40</a></div></div>
-<div class="ttc" id="acompressed__fs_8c_html_af793d91b73cbd1a28dde1f607dfc664b"><div class="ttname"><a href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a></div><div class="ttdeci">void gm_fs_web_handlers(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="compressed__fs_8c_source.html#l00066">compressed_fs.c:66</a></div></div>
-<div class="ttc" id="acookie_8c_html_a520531e3c71e463f9d33d618d93b8af8"><div class="ttname"><a href="cookie_8c.html#a520531e3c71e463f9d33d618d93b8af8">gm_read_cookie</a></div><div class="ttdeci">void gm_read_cookie(httpd_req_t *req)</div><div class="ttdef"><b>Definition:</b> <a href="cookie_8c_source.html#l00082">cookie.c:82</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a57e1ec3d9f1a185ad67f0409af45fd75a12a8dcf59c16b5aadfda3a08ba67d529"><div class="ttname"><a href="generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a12a8dcf59c16b5aadfda3a08ba67d529">GET</a></div><div class="ttdeci">@ GET</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00061">generic_main.h:61</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a6a4c301259a630fbd99bd6b88b893f4c"><div class="ttname"><a href="generic__main_8h.html#a6a4c301259a630fbd99bd6b88b893f4c">gm_web_handler_run</a></div><div class="ttdeci">int gm_web_handler_run(httpd_req_t *req, const gm_uri *uri, gm_web_method method)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00061">web_handlers.c:61</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a9d36b4246c24c182cce581b58779a848"><div class="ttname"><a href="generic__main_8h.html#a9d36b4246c24c182cce581b58779a848">gm_session</a></div><div class="ttdeci">void gm_session(httpd_req_t *req)</div><div class="ttdef"><b>Definition:</b> <a href="session_8c_source.html#l00014">session.c:14</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_adc4504a3122bae4be487112b0e3437c4"><div class="ttname"><a href="generic__main_8h.html#adc4504a3122bae4be487112b0e3437c4">gm_uri_parse</a></div><div class="ttdeci">int gm_uri_parse(const char *uri, gm_uri *u)</div><div class="ttdef"><b>Definition:</b> <a href="uri__parse_8c_source.html#l00006">uri_parse.c:6</a></div></div>
-<div class="ttc" id="astruct__gm__uri_html"><div class="ttname"><a href="struct__gm__uri.html">_gm_uri</a></div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00180">generic_main.h:180</a></div></div>
-<div class="ttc" id="astruct__gm__uri_html_ac449e1b178f33eb5a545d8e7dc8510a8"><div class="ttname"><a href="struct__gm__uri.html#ac449e1b178f33eb5a545d8e7dc8510a8">_gm_uri::path</a></div><div class="ttdeci">char path[512]</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00181">generic_main.h:181</a></div></div>
+<div class="ttc" id="aget_8c_html_abb1d761b431e273ea591c9b94dc22dd6"><div class="ttname"><a href="get_8c.html#abb1d761b431e273ea591c9b94dc22dd6">gm_get_handlers</a></div><div class="ttdeci">void gm_get_handlers(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="get_8c_source.html#l00066">get.c:66</a></div></div>
+<div class="ttc" id="aget_8c_html_aedb004090428619ddc56006fd6837b65"><div class="ttname"><a href="get_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a></div><div class="ttdeci">esp_err_t frogfs_file_handler(httpd_req_t *const req, const gm_uri *const uri)</div><div class="ttdef"><b>Definition:</b> <a href="frogfs_8c_source.html#l00040">frogfs.c:40</a></div></div>
+<div class="ttc" id="astruct__gm__uri_html"><div class="ttname"><a href="struct__gm__uri.html">_gm_uri</a></div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00183">generic_main.h:183</a></div></div>
+<div class="ttc" id="astruct__gm__uri_html_ac449e1b178f33eb5a545d8e7dc8510a8"><div class="ttname"><a href="struct__gm__uri.html#ac449e1b178f33eb5a545d8e7dc8510a8">_gm_uri::path</a></div><div class="ttdeci">char path[512]</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00184">generic_main.h:184</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_c58aa417a526ed6ede2bc52486280f3d.html">esp_idf</a></li><li class="navelem"><a class="el" href="dir_9fb0a56561b20ee1148e1f1dbb3bec0d.html">components</a></li><li class="navelem"><a class="el" href="dir_3f8f2344752268c2de4822e112f246fe.html">generic_main</a></li><li class="navelem"><a class="el" href="compressed__fs_8c.html">compressed_fs.c</a></li>
+    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_c58aa417a526ed6ede2bc52486280f3d.html">esp_idf</a></li><li class="navelem"><a class="el" href="dir_9fb0a56561b20ee1148e1f1dbb3bec0d.html">components</a></li><li class="navelem"><a class="el" href="dir_3f8f2344752268c2de4822e112f246fe.html">generic_main</a></li><li class="navelem"><a class="el" href="get_8c.html">get.c</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

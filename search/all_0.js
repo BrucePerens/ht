@@ -10,12 +10,13 @@ var searchData=
   ['_5fgm_5fport_5fmapping_7',['_gm_port_mapping',['../struct__gm__port__mapping.html',1,'']]],
   ['_5fgm_5frun_5fdata_8',['_gm_run_data',['../struct__gm__run__data.html',1,'']]],
   ['_5fgm_5frun_5fspeed_9',['_gm_run_speed',['../generic__main_8h.html#ad04ba6c25fcbdc23c3123de6bd4e0279',1,'generic_main.h']]],
-  ['_5fgm_5furi_10',['_gm_uri',['../struct__gm__uri.html',1,'']]],
-  ['_5fgm_5fuser_5fdata_11',['_gm_user_data',['../struct__gm__user__data.html',1,'']]],
-  ['_5fgm_5fweb_5fmethod_12',['_gm_web_method',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75',1,'generic_main.h']]],
-  ['_5ficmpv6_5fmessage_13',['_icmpv6_message',['../struct__icmpv6__message.html',1,'']]],
-  ['_5fipv6_5fheader_14',['_ipv6_header',['../struct__icmpv6__message_1_1__ipv6__header.html',1,'_icmpv6_message']]],
-  ['_5flast_5frequest_15',['_last_request',['../struct__last__request.html',1,'']]],
-  ['_5fnat_5fpmp_5for_5fpcp_16',['_nat_pmp_or_pcp',['../struct__nat__pmp__or__pcp.html',1,'']]],
-  ['_5fra_17',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
+  ['_5fgm_5fsession_5fcontext_10',['_gm_session_context',['../struct__gm__session__context.html',1,'']]],
+  ['_5fgm_5furi_11',['_gm_uri',['../struct__gm__uri.html',1,'']]],
+  ['_5fgm_5fuser_5fdata_12',['_gm_user_data',['../struct__gm__user__data.html',1,'']]],
+  ['_5fgm_5fweb_5fmethod_13',['_gm_web_method',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75',1,'generic_main.h']]],
+  ['_5ficmpv6_5fmessage_14',['_icmpv6_message',['../struct__icmpv6__message.html',1,'']]],
+  ['_5fipv6_5fheader_15',['_ipv6_header',['../struct__icmpv6__message_1_1__ipv6__header.html',1,'_icmpv6_message']]],
+  ['_5flast_5frequest_16',['_last_request',['../struct__last__request.html',1,'']]],
+  ['_5fnat_5fpmp_5for_5fpcp_17',['_nat_pmp_or_pcp',['../struct__nat__pmp__or__pcp.html',1,'']]],
+  ['_5fra_18',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
 ];

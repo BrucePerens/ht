@@ -6,7 +6,7 @@ var searchData=
   ['url_5fipv6_3',['url_ipv6',['../structddns__provider.html#ad967d07f5058a2b2c43a1b0b120966d1',1,'ddns_provider']]],
   ['urls_4',['urls',['../public__ip_8c.html#ae8d74f388656f66a2276e33644765da1',1,'public_ip.c']]],
   ['used_5',['used',['../struct___g_m___array.html#ae8cc011bf3ee2d3c19743095ffc0f7a5',1,'_GM_Array']]],
-  ['user_5fdata_6',['user_data',['../struct__generic__main.html#a55dc24d6b1aebd5697cdc77e8a14ca17',1,'_generic_main']]],
-  ['user_5fname_7',['user_name',['../struct__generic__main.html#add44c044e019d00d53fe8b4780916b58',1,'_generic_main']]],
+  ['user_5fdata_6',['user_data',['../struct__gm__session__context.html#a55dc24d6b1aebd5697cdc77e8a14ca17',1,'_gm_session_context']]],
+  ['user_5fname_7',['user_name',['../struct__gm__session__context.html#add44c044e019d00d53fe8b4780916b58',1,'_gm_session_context']]],
   ['userhash_8',['userhash',['../structstun__attribute.html#a7a5122d675a9ee71032d6d69c5e1d67c',1,'stun_attribute']]]
 ];

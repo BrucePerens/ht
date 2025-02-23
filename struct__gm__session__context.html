@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.6"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>K6BP HT Firmware: platform/esp_idf/components/generic_main/compressed_fs.c File Reference</title>
+<title>K6BP HT Firmware: _gm_session_context Struct Reference</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -64,7 +64,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(document).ready(function(){initNavTree('compressed__fs_8c.html',''); initResizable(); });
+$(document).ready(function(){initNavTree('struct__gm__session__context.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -91,81 +91,83 @@ $(document).ready(function(){initNavTree('compressed__fs_8c.html',''); initResiz
 
 <div class="header">
   <div class="summary">
-<a href="#func-members">Functions</a>  </div>
-  <div class="headertitle"><div class="title">compressed_fs.c File Reference</div></div>
+<a href="#pub-attribs">Data Fields</a>  </div>
+  <div class="headertitle"><div class="title">_gm_session_context Struct Reference</div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
-<code>#include &lt;stdlib.h&gt;</code><br />
-<code>#include &lt;esp_http_server.h&gt;</code><br />
-<code>#include &quot;<a class="el" href="generic__main_8h_source.html">generic_main.h</a>&quot;</code><br />
-</div>
-<p><a href="compressed__fs_8c_source.html">Go to the source code of this file.</a></p>
+
+<p><code>#include &lt;<a class="el" href="generic__main_8h_source.html">generic_main.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
-Functions</h2></td></tr>
-<tr class="memitem:aedb004090428619ddc56006fd6837b65"><td class="memItemLeft" align="right" valign="top">esp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compressed__fs_8c.html#aedb004090428619ddc56006fd6837b65">frogfs_file_handler</a> (httpd_req_t *const req, const <a class="el" href="generic__main_8h.html#a5b341a77fe0d01ab1e46f8690600c7dd">gm_uri</a> *const uri)</td></tr>
-<tr class="separator:aedb004090428619ddc56006fd6837b65"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af793d91b73cbd1a28dde1f607dfc664b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="compressed__fs_8c.html#af793d91b73cbd1a28dde1f607dfc664b">gm_fs_web_handlers</a> (httpd_handle_t server)</td></tr>
-<tr class="separator:af793d91b73cbd1a28dde1f607dfc664b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
+Data Fields</h2></td></tr>
+<tr class="memitem:a65f742e8d4496f2431894fafe695cc53"><td class="memItemLeft" align="right" valign="top">cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__session__context.html#a65f742e8d4496f2431894fafe695cc53">json</a></td></tr>
+<tr class="separator:a65f742e8d4496f2431894fafe695cc53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:add44c044e019d00d53fe8b4780916b58"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__session__context.html#add44c044e019d00d53fe8b4780916b58">user_name</a></td></tr>
+<tr class="separator:add44c044e019d00d53fe8b4780916b58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55dc24d6b1aebd5697cdc77e8a14ca17"><td class="memItemLeft" align="right" valign="top"><a class="el" href="generic__main_8h.html#aeea3041e7dfa1937524cd89e9bdfa0d1">gm_user_data_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__session__context.html#a55dc24d6b1aebd5697cdc77e8a14ca17">user_data</a></td></tr>
+<tr class="separator:a55dc24d6b1aebd5697cdc77e8a14ca17"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Function Documentation</h2>
-<a id="aedb004090428619ddc56006fd6837b65" name="aedb004090428619ddc56006fd6837b65"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aedb004090428619ddc56006fd6837b65">&#9670;&#160;</a></span>frogfs_file_handler()</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00144">144</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a65f742e8d4496f2431894fafe695cc53" name="a65f742e8d4496f2431894fafe695cc53"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a65f742e8d4496f2431894fafe695cc53">&#9670;&#160;</a></span>json</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">esp_err_t frogfs_file_handler </td>
-          <td>(</td>
-          <td class="paramtype">httpd_req_t *const&#160;</td>
-          <td class="paramname"><em>req</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype">const <a class="el" href="generic__main_8h.html#a5b341a77fe0d01ab1e46f8690600c7dd">gm_uri</a> *const&#160;</td>
-          <td class="paramname"><em>uri</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
+          <td class="memname">cJSON* json</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="frogfs_8c_source.html#l00040">40</a> of file <a class="el" href="frogfs_8c_source.html">frogfs.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00145">145</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
-<a id="af793d91b73cbd1a28dde1f607dfc664b" name="af793d91b73cbd1a28dde1f607dfc664b"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af793d91b73cbd1a28dde1f607dfc664b">&#9670;&#160;</a></span>gm_fs_web_handlers()</h2>
+<a id="a55dc24d6b1aebd5697cdc77e8a14ca17" name="a55dc24d6b1aebd5697cdc77e8a14ca17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55dc24d6b1aebd5697cdc77e8a14ca17">&#9670;&#160;</a></span>user_data</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gm_fs_web_handlers </td>
-          <td>(</td>
-          <td class="paramtype">httpd_handle_t&#160;</td>
-          <td class="paramname"><em>server</em></td><td>)</td>
-          <td></td>
+          <td class="memname"><a class="el" href="generic__main_8h.html#aeea3041e7dfa1937524cd89e9bdfa0d1">gm_user_data_t</a> <a class="el" href="structuser__data.html">user_data</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="compressed__fs_8c_source.html#l00066">66</a> of file <a class="el" href="compressed__fs_8c_source.html">compressed_fs.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00147">147</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
+<a id="add44c044e019d00d53fe8b4780916b58" name="add44c044e019d00d53fe8b4780916b58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#add44c044e019d00d53fe8b4780916b58">&#9670;&#160;</a></span>user_name</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* user_name</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00146">146</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>platform/esp_idf/components/generic_main/include/<a class="el" href="generic__main_8h_source.html">generic_main.h</a></li>
+</ul>
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_c5a52a81292cf9a5167198f4f346d6d9.html">platform</a></li><li class="navelem"><a class="el" href="dir_c58aa417a526ed6ede2bc52486280f3d.html">esp_idf</a></li><li class="navelem"><a class="el" href="dir_9fb0a56561b20ee1148e1f1dbb3bec0d.html">components</a></li><li class="navelem"><a class="el" href="dir_3f8f2344752268c2de4822e112f246fe.html">generic_main</a></li><li class="navelem"><a class="el" href="compressed__fs_8c.html">compressed_fs.c</a></li>
+    <li class="navelem"><a class="el" href="struct__gm__session__context.html">_gm_session_context</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.6 </li>
   </ul>
 </div>

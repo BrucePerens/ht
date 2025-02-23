@@ -11,7 +11,6 @@ var struct__generic__main =
     [ "flash_failure", "struct__generic__main.html#af83739ed9723a6989bdac2d9b894c751", null ],
     [ "hmac_key", "struct__generic__main.html#aa01cc8f4cfa2c5520b1d1b79924cdd26", null ],
     [ "ipv6_address_types", "struct__generic__main.html#a1717c2c1a3a389a898f08d35d6c914d2", null ],
-    [ "json", "struct__generic__main.html#a65f742e8d4496f2431894fafe695cc53", null ],
     [ "log_fd", "struct__generic__main.html#ad9f84b0791cb1cac996456b223aeffec", null ],
     [ "log_file_pointer", "struct__generic__main.html#a24738a7628babf4c49890c1b0f4dbb09", null ],
     [ "medium_event_loop", "struct__generic__main.html#ae111d446a669cf3f9461cdde9806f8ee", null ],
@@ -21,7 +20,5 @@ var struct__generic__main =
     [ "slow_event_loop", "struct__generic__main.html#a0d02c66c8cb134c523b1c397b941ae33", null ],
     [ "sta", "struct__generic__main.html#a477579ad6762a6fb11348e532989f90b", null ],
     [ "time_last_synchronized", "struct__generic__main.html#aee06400a85ce2c234482e68d6ecba864", null ],
-    [ "unique_name", "struct__generic__main.html#a8a63147b17a52a0e8e33f5aa961b61dc", null ],
-    [ "user_data", "struct__generic__main.html#a55dc24d6b1aebd5697cdc77e8a14ca17", null ],
-    [ "user_name", "struct__generic__main.html#add44c044e019d00d53fe8b4780916b58", null ]
+    [ "unique_name", "struct__generic__main.html#a8a63147b17a52a0e8e33f5aa961b61dc", null ]
 ];
