@@ -35,6 +35,6 @@
 # Name, Type, SubType, Offset, Size, Flags
 nvs,data,nvs,0x10000,24K,
 phy_init,data,phy,0x16000,4K,
-keys,data,keys,0x17000,12K,
+keys,data,undefined,0x17000,12K,
 factory,app,factory,0x20000,3600K,
 littlefs1, data,spiffs,0x3a4000,368K

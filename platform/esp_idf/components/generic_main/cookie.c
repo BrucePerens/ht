@@ -72,59 +72,40 @@ union CookiePayload {
   } cookie;
 
   // Typed access to encrypt struct Payload.
-  uint8_t bytes[sizeof(struct Payload)];
+  uint8_t bytes[sizeof(struct Cookie)];
 
   // Typed access to send struct Cookie as the Set-Cookie datum.
   char characters[sizeof(struct Cookie)];
 };
 
-void
+cJSON *
 gm_read_cookie(httpd_req_t * req)
 {
   union CookiePayload b;
-  uint8_t a[PAYLOAD_SIZE + sizeof(struct Header)];
-  size_t length = 0;
+  char a[sizeof(b.characters)];
+  size_t data_length = sizeof(a);
+  
+  esp_err_t cookie_err = httpd_req_get_cookie_val(req, "c", (char *)a, &data_length);
 
-  const char * c;
-  if ( httpd_req_get_hdr_value_str(
-   req,
-   "Cookie",
-   b.characters,
-   sizeof(b.characters)) != ESP_OK )
-    return;
-
-  c = strstr(b.characters, "c=");
-  if ( c == NULL )
-    return;
-
-  if ( c != b.characters && c[-1] != ' ' ) {
-    c = strstr(c, " c=");
-    if ( c == NULL )
-      return;
-    c++;
+  // The most likely error here is simply that the current request did not
+  // contain our session data cookie.
+  if ( cookie_err == ESP_ERR_NOT_FOUND )
+    return 0; // Fail quietly.
+  else if ( cookie_err != ESP_OK ) {
+    gm_printf("Cookie error: %s.\n", esp_err_to_name(cookie_err));
+    return 0;
   }
-  c += 2;
 
-  size_t data_length;
-  const char * const end = strchr(c, ';');
-  if ( end != NULL )
-    data_length = end - c;
-  else
-    data_length = strlen(c);
-
-  if ( data_length > sizeof(a) - 1 ) {
-    gm_printf("Cookie size %d larger than buffer size %d.", data_length, sizeof(a) - 1);
-    return;
-  }
   // Decode from Base-64 and get the encrypted payload.
-  uint8_t * const unbased = base64_decode(c, data_length, &length);
+  size_t length = 0;
+  uint8_t * const unbased = base64_decode(a, data_length, &length);
   memcpy(a, unbased, length);
   a[length] = '\0';
   free(unbased);
 
   if ( length % 16 > 0 ) {
     gm_printf("Cookie payload length %d is not a multiple of 16.\n", length);
-    return;
+    return 0;
   }
 
   // AES modifies the IV so that you can use it to stream. So, make a temporary
@@ -138,7 +119,7 @@ gm_read_cookie(httpd_req_t * req)
    ESP_AES_DECRYPT,
    length,
    iv,
-   a,
+   (uint8_t *)a,
    b.bytes);
 
   // Check that the calculated CRC for the data matches the one in the cookie.
@@ -148,21 +129,20 @@ gm_read_cookie(httpd_req_t * req)
 
   if ( b.payload.header.crc32 != crc32 ) {
     gm_printf("Cookie CRC doesn't match.\n");
-    return;
+    return 0;
   }
   
   // Parse the payload.
-  cJSON * volatile json = cJSON_Parse(b.payload.data);
+  cJSON * volatile json = cJSON_ParseWithLength(
+   b.payload.data,
+   length - sizeof(b.payload.header));
 
   if ( json == NULL ) {
     gm_printf("Cookie JSON parse failed.\n");
-    return;
+    return 0;
   }
 
-  if ( GM.json != NULL )
-    cJSON_Delete(GM.json);
-
-  GM.json = json;
+  return json;
 }
 
 void

@@ -19,7 +19,7 @@ http_root_handler(httpd_req_t *req)
 static esp_err_t
 http_file_handler(httpd_req_t * const req)
 {
-  gm_read_cookie(req);
+  gm_session(req);
   gm_uri uri = {};
 
   if ( gm_uri_parse(req->uri, &uri) != 0 )
@@ -63,7 +63,7 @@ http_file_handler(httpd_req_t * const req)
 }
 
 void
-gm_fs_web_handlers(httpd_handle_t server)
+gm_get_handlers(httpd_handle_t server)
 {
   static const httpd_uri_t root = {
       .uri       = "/",

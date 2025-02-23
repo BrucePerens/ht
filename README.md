@@ -67,6 +67,14 @@ lifetime will be limited by the constraints of the device and its application.
 Thus, the developers take _no_ responsibility for damage to the hardware.
 
 ## Security
+Security is of concern because an attacker that gains control of the device could
+operate the radio transmitter illegally and without control of the station licensee,
+and, for example, jam a a repeater.
+
+In practice, significant effort would be required and thus this might be unlikely.
+The developers have endeavored to make security as good as they can within the
+constraints of the device and its application.
+
 The K4VP platform and similar are vulnerable to session hijacking attacks
 because they often use self-signed certificates, which the user becomes trained
 to accept, and the user can blithely accept the certificate of a masquerading
@@ -74,14 +82,18 @@ site.  The masquerading site can then gain a copy of the session cookie, and can
 use it to log in to the device and operate the radio.
 
 This is mitigated somewhat by:
-* Use of LetsEncrypt SSL certificates, where possible, since they are unique and
-  the user doesn't have to accept them.
-* Where a self-signed certificate must be used, and accepted by the user,
-  a unique certificate should be provisioned to each device so that it is
-  not possible for an attacker to know the secret key used by another device.
-  Vendors of devices must implement this.
-* Implementing a CA, and signing the device certificate, then having the user
-  accept a well-known CA certificate from a secure site online, instead of a
-  self-signed device certificate.
-* Educating the user to not blithely accept a self-signed certificate except when
-  the device is in-hand.
+* We can use LetsEncrypt SSL certificates in the device when it has a public IP
+  and a dynamic DNS host name. They are signed, and need not be accepted by the
+  user, and are unique to each domain name.
+* A unique self-signed certificate _must_ be provisioned to each device, again so
+  that external parties do not have access to the secret key. LetsEncrypt won't work
+  without HTTPS, so it's necessary to start with a self-signed certificate.
+  Vendors of devices _must_ implement provisioning of a unike SSL certificate set
+  to each device. A separate partition for SSL certificates is provided, so that this
+  provisioning can take place easily and without overwriting the firmware.
+* We might be able to provide better security by implementing a certification
+  authority, and signing the device certificate, and then have the user accept a
+  well-known CA certificate from a secure site online. This would avoid having
+  the user accept a self-signed device certificate from the device.
+* We can try to train the user not to blithely accept a self-signed certificate
+  except when the device is in-hand.

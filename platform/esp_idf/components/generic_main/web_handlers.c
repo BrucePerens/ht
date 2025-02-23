@@ -10,7 +10,7 @@ static gm_web_handler_t * * last[3] = {&handlers[0], &handlers[1], &handlers[2]}
 static esp_err_t
 run_post_handlers(httpd_req_t * req)
 {
-  gm_read_cookie(req);
+  gm_session(req);
   gm_uri uri = {};
 
   if ( gm_uri_parse(req->uri, &uri) == 0 )
@@ -22,7 +22,7 @@ run_post_handlers(httpd_req_t * req)
 static esp_err_t
 run_put_handlers(httpd_req_t * req)
 {
-  gm_read_cookie(req);
+  gm_session(req);
   gm_uri uri = {};
 
   gm_uri_parse(req->uri, &uri);
@@ -38,7 +38,7 @@ gm_web_handler_install(httpd_handle_t server)
 {
   // The GET method tries to match a file in the ROM filesystem first.
   // If there is no match, it then tries the registered GET methods.
-  gm_fs_web_handlers(server);
+  gm_get_handlers(server);
 
   static const httpd_uri_t post = {
       .uri       = "/*",

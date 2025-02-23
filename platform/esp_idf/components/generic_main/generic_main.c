@@ -120,7 +120,7 @@ static void initialize(void)
   const esp_err_t blob3_err = nvs_get_blob(
    GM.nvs,
    hmac_key_name,
-   hmac_key,
+   GM.hmac_key,
    &hmac_key_size);
 
   if ( blob1_err != ESP_OK
@@ -130,7 +130,7 @@ static void initialize(void)
    ||  iv_size != sizeof(GM.aes_cookie_iv) 
    ||  hmac_key_size != sizeof(GM.aes_cookie_iv) 
    || *(unsigned long *)&aes_key == 0
-   || *(unsigned long *)&GM.aes_cookie_iv == 0 ) {
+   || *(unsigned long *)&GM.aes_cookie_iv == 0
    || *(unsigned long *)&GM.hmac_key == 0 ) {
     // WiFi is not yet started, as we need encryption first.
     // So, use the bootloader random source (one or more of the ADCs, Espressif

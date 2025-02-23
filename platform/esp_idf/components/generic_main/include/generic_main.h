@@ -141,6 +141,12 @@ typedef struct _gm_user_data {
   uint8_t	banned:1;
 } gm_user_data_t;
 
+typedef struct _gm_session_context {
+  cJSON *		json;
+  char *		user_name;
+  gm_user_data_t	user_data;
+} gm_session_context_t;
+
 typedef struct _generic_main {
   nvs_handle_t		nvs;
   gm_netif_t		ap;
@@ -165,11 +171,8 @@ typedef struct _generic_main {
   // So the cookie plaintext _must_ contain randomness.
   uint8_t		aes_cookie_iv[16];
   uint8_t		hmac_key[64];
-  cJSON *		json;
   // Set to the error if there is an indication that FLASH is failing.
   esp_err_t		flash_failure ;
-  char *		user_name;
-  gm_user_data_t	user_data;
 } generic_main_t;
 
 typedef struct _gm_param_t {
@@ -214,8 +217,9 @@ extern int			gm_ddns(void);
 
 extern void			gm_event_server(void);
 
-extern void			gm_fs_web_handlers(httpd_handle_t server);
-extern void			gm_read_cookie(httpd_req_t * req);
+extern void			gm_get_handlers(httpd_handle_t server);
+extern esp_err_t		gm_get_user_data(const char * name, gm_user_data_t * data);
+extern cJSON *			gm_read_cookie(httpd_req_t * req);
 extern void			gm_run(gm_run_t function, void * data, gm_run_speed_t speed);
 extern void			gm_fd_register(int fd, gm_fd_handler_t handler, void * data, bool readable, bool writable, bool exception, uint32_t seconds);
 extern void			gm_fd_unregister(int fd);
@@ -246,6 +250,7 @@ extern int			gm_printf(const char * format, ...);
 extern int			gm_public_ipv4(char * data, size_t size);
 
 extern void			gm_self_signed_ssl_certificates(struct httpd_ssl_config * c);
+extern void			gm_session(httpd_req_t * req);
 extern int			gm_stun(bool ipv6, struct sockaddr * address, gm_stun_after_t after);
 extern void			gm_stun_stop();
 
