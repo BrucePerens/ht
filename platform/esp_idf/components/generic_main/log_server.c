@@ -49,9 +49,9 @@ socket_event_handler(int fd, void * data, bool readable, bool writable, bool exc
 static void
 accept_handler(int sock, void * data, bool readable, bool writable, bool exception, bool timeout)
 {
-  struct sockaddr_in	client_address;
-  socklen_t		size;
-  int			connection;
+  struct sockaddr_storage	client_address;
+  socklen_t			size;
+  int				connection;
 
   if ( readable ) {
     size = sizeof(client_address);
@@ -76,6 +76,8 @@ gm_log_server_start(void)
 {
   struct sockaddr_in address = {};
 
+  // FIX: Use an IP6 address and clear the IPV6_V6ONLY flag on the socket so that
+  // this accepts both IPV4 and IPV6.
   server = socket(AF_INET, SOCK_STREAM, 0);
 
   address.sin_family = AF_INET;

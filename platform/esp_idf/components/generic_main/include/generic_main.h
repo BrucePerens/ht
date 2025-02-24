@@ -18,6 +18,7 @@
 #include <netinet/in.h>
 #include <esp_debug_helpers.h>
 
+
 #define CONSTRUCTOR static void __attribute__ ((constructor))
 
 #define COUNTOF(a) (sizeof((a)) / sizeof(*(a)))
@@ -220,6 +221,8 @@ extern void			gm_event_server(void);
 extern void			gm_get_handlers(httpd_handle_t server);
 extern esp_err_t		gm_get_user_data(const char * name, gm_user_data_t * data);
 extern cJSON *			gm_read_cookie(httpd_req_t * req);
+extern esp_err_t		gm_start_redirect_to_https();
+extern void			gm_stop_redirect_to_https();
 extern void			gm_run(gm_run_t function, void * data, gm_run_speed_t speed);
 extern void			gm_fd_register(int fd, gm_fd_handler_t handler, void * data, bool readable, bool writable, bool exception, uint32_t seconds);
 extern void			gm_fd_unregister(int fd);

@@ -3,6 +3,9 @@
 #include <esp_event.h>
 #include "generic_main.h"
 
+// FIX: Use only one event loop, we've not put any long-running jobs or any need
+// for priority in here.
+
 ESP_EVENT_DEFINE_BASE(GM_EVENT);
 
 static void

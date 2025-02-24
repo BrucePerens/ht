@@ -614,6 +614,16 @@ gm_port_control_protocol_stop_listener_ipv4(void)
 void
 gm_port_control_protocol_stop_listener_ipv6(void)
 {
+  if ( ipv4_unicast_sock >= 0 ) {
+    gm_fd_unregister(ipv4_unicast_sock);
+    close(ipv4_unicast_sock);
+    ipv4_unicast_sock = -1;
+  }
+  if ( ipv4_multicast_sock >= 0 ) {
+    gm_fd_unregister(ipv4_multicast_sock);
+    close(ipv4_multicast_sock);
+    ipv4_multicast_sock = -1;
+  }
   if ( ipv6_unicast_sock >= 0 ) {
     gm_fd_unregister(ipv6_unicast_sock);
     close(ipv6_unicast_sock);

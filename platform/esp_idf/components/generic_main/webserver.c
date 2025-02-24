@@ -31,6 +31,10 @@ void start_webserver(void)
   if (ssl_server)
     return;
 
+  // Simple redirect server without the memory overhead of starting an instance
+  // of a full http server just to do redirects.
+  gm_start_redirect_to_https();
+
   // Web servers need accurate time.
   esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);
   esp_sntp_setservername(0, "pool.ntp.org");
@@ -65,6 +69,7 @@ void start_webserver(void)
 void stop_webserver()
 {
   if (ssl_server) {
+    gm_stop_redirect_to_https();
     esp_sntp_stop();
     GM.time_last_synchronized = 0;
     httpd_ssl_stop(ssl_server);

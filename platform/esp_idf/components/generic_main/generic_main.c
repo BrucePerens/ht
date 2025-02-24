@@ -23,26 +23,17 @@
 #include <esp_console.h>
 #include <esp_mac.h>
 #include <bootloader_random.h>
+#include <hal/efuse_hal.h>
 #include "generic_main.h"
-
-static void initialize(void);
 
 static const char TASK_NAME[] = "main";
 
 bool	app_main_called = false;
 
-void app_main(void)
+static void initialize()
 {
-  if ( app_main_called )
-    return;
+  const unsigned int chip_revision = efuse_hal_chip_revision();
 
-  app_main_called = true;
-  GM.log_file_pointer = stderr;
-  initialize();
-}
-
-static void initialize(void)
-{
   // Set the console print lock, so that things in tasks don't print over each other.
   // This can't be used for non-tasks.
   pthread_mutex_init(&GM.console_print_mutex, 0);
@@ -178,10 +169,18 @@ static void initialize(void)
   gm_select_task();
   gm_wifi_start();
 
-  extern void cookie_test();
-  cookie_test();
 #ifndef CONFIG_ESP_SYSTEM_GDBSTUB_RUNTIME
   // The GDB stub uses the console, so don't run the interpreter if it's in use.
   gm_command_interpreter_start();
 #endif
+}
+
+void app_main()
+{
+  if ( app_main_called )
+    return;
+
+  app_main_called = true;
+  GM.log_file_pointer = stderr;
+  initialize();
 }
