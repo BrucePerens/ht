@@ -13,7 +13,6 @@ var wifi_8c =
     [ "gm_wifi_wait_until_disconnected", "wifi_8c.html#a584ee9de1273331416f9cf53678c2d2b", null ],
     [ "gm_wifi_wait_until_ready", "wifi_8c.html#a8d42db9ee4b15c2b63708603dd729cec", null ],
     [ "start_webserver", "wifi_8c.html#a440992a6db6af61fb71e65ddf68e71b0", null ],
-    [ "stop_smart_config_task", "wifi_8c.html#a2a37d0b08cba2ee1ac75cce3d53f8aa7", null ],
     [ "stop_webserver", "wifi_8c.html#a529ad0215cf501bdd4d62d60216d1d64", null ],
     [ "wifi_event_sta_disconnected", "wifi_8c.html#a8d948d88ffd3bc98842cec330b94f337", null ]
 ];

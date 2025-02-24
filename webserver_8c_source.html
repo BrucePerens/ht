@@ -126,53 +126,60 @@ $(document).ready(function(){initNavTree('webserver_8c_source.html',''); initRes
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordflow">if</span> (ssl_server)</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span>;</div>
 <div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">// Web servers need accurate time.</span></div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  esp_sntp_setservername(0, <span class="stringliteral">&quot;pool.ntp.org&quot;</span>);</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  esp_sntp_set_time_sync_notification_cb(time_was_synchronized);</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// Adjust the clock suddenly the first time. The time_was_synchronized</span></div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// callback will set it to be adjusted smoothly the second and subsequent</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// time.</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  esp_sntp_set_sync_mode(SNTP_SYNC_MODE_IMMED);</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="comment">// Re-adjust the clock every 10 minutes.</span></div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  esp_sntp_set_sync_interval(60 * 10 * 1000);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  esp_sntp_init();</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  httpd_ssl_config_t config = HTTPD_SSL_CONFIG_DEFAULT();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <span class="comment">// config.httpd.stack_size = 48 * 1024;</span></div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  config.httpd.core_id = 0;</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  config.httpd.uri_match_fn = httpd_uri_match_wildcard;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  config.httpd.lru_purge_enable = <span class="keyword">true</span>;</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <a class="code hl_function" href="generic__main_8h.html#a5725961e3b823c2eec778823f48b2006">gm_self_signed_ssl_certificates</a>(&amp;config);</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  <span class="comment">// Start the httpd server</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  ESP_LOGI(TASK_NAME, <span class="stringliteral">&quot;Starting server on port: %d&quot;</span>, config.port_secure);</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keywordflow">if</span> (httpd_ssl_start(&amp;ssl_server, &amp;config) == ESP_OK) {</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>    <a class="code hl_function" href="generic__main_8h.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a>(ssl_server);</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  }</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">else</span> {</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    ssl_server = NULL;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    ESP_LOGI(TASK_NAME, <span class="stringliteral">&quot;Error starting server!&quot;</span>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="comment">// Simple redirect server without the memory overhead of starting an instance</span></div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="comment">// of a full http server just to do redirects.</span></div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <a class="code hl_function" href="generic__main_8h.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a>();</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <span class="comment">// Web servers need accurate time.</span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  esp_sntp_setoperatingmode(SNTP_OPMODE_POLL);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  esp_sntp_setservername(0, <span class="stringliteral">&quot;pool.ntp.org&quot;</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  esp_sntp_set_time_sync_notification_cb(time_was_synchronized);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="comment">// Adjust the clock suddenly the first time. The time_was_synchronized</span></div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="comment">// callback will set it to be adjusted smoothly the second and subsequent</span></div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="comment">// time.</span></div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  esp_sntp_set_sync_mode(SNTP_SYNC_MODE_IMMED);</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="comment">// Re-adjust the clock every 10 minutes.</span></div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  esp_sntp_set_sync_interval(60 * 10 * 1000);</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  esp_sntp_init();</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>  httpd_ssl_config_t config = HTTPD_SSL_CONFIG_DEFAULT();</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>  <span class="comment">// config.httpd.stack_size = 48 * 1024;</span></div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  config.httpd.core_id = 0;</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  config.httpd.uri_match_fn = httpd_uri_match_wildcard;</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  config.httpd.lru_purge_enable = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <a class="code hl_function" href="generic__main_8h.html#a5725961e3b823c2eec778823f48b2006">gm_self_signed_ssl_certificates</a>(&amp;config);</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  <span class="comment">// Start the httpd server</span></div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  ESP_LOGI(TASK_NAME, <span class="stringliteral">&quot;Starting server on port: %d&quot;</span>, config.port_secure);</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <span class="keywordflow">if</span> (httpd_ssl_start(&amp;ssl_server, &amp;config) == ESP_OK) {</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <a class="code hl_function" href="generic__main_8h.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a>(ssl_server);</div>
 <div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  }</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>}</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno"><a class="line" href="webserver_8c.html#a529ad0215cf501bdd4d62d60216d1d64">   65</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="webserver_8c.html#a529ad0215cf501bdd4d62d60216d1d64">stop_webserver</a>()</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>{</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">if</span> (ssl_server) {</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    esp_sntp_stop();</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#aee06400a85ce2c234482e68d6ecba864">time_last_synchronized</a> = 0;</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    httpd_ssl_stop(ssl_server);</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    ssl_server = NULL;</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  }</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>}</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    ssl_server = NULL;</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    ESP_LOGI(TASK_NAME, <span class="stringliteral">&quot;Error starting server!&quot;</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  }</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>}</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="webserver_8c.html#a529ad0215cf501bdd4d62d60216d1d64">   69</a></span><span class="keywordtype">void</span> <a class="code hl_function" href="webserver_8c.html#a529ad0215cf501bdd4d62d60216d1d64">stop_webserver</a>()</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>{</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordflow">if</span> (ssl_server) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <a class="code hl_function" href="generic__main_8h.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    esp_sntp_stop();</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#aee06400a85ce2c234482e68d6ecba864">time_last_synchronized</a> = 0;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    httpd_ssl_stop(ssl_server);</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    ssl_server = NULL;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  }</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>}</div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a0496e518b680edfca3abc22c7e2f617e"><div class="ttname"><a href="generic__main_8h.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a></div><div class="ttdeci">void gm_stop_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00110">redirect.c:110</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a35edd8b3aa4268ed13883551812b1329"><div class="ttname"><a href="generic__main_8h.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a></div><div class="ttdeci">esp_err_t gm_start_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00077">redirect.c:77</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5725961e3b823c2eec778823f48b2006"><div class="ttname"><a href="generic__main_8h.html#a5725961e3b823c2eec778823f48b2006">gm_self_signed_ssl_certificates</a></div><div class="ttdeci">void gm_self_signed_ssl_certificates(struct httpd_ssl_config *c)</div><div class="ttdef"><b>Definition:</b> <a href="certificates_8c_source.html#l00109">certificates.c:109</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_ac740e39a8c1e6f52928a9ab356aaa022"><div class="ttname"><a href="generic__main_8h.html#ac740e39a8c1e6f52928a9ab356aaa022">gm_web_handler_install</a></div><div class="ttdeci">void gm_web_handler_install(httpd_handle_t server)</div><div class="ttdef"><b>Definition:</b> <a href="web__handlers_8c_source.html#l00037">web_handlers.c:37</a></div></div>
 <div class="ttc" id="aglobal_8c_html_ad66802844977f678a6bb2e99792255db"><div class="ttname"><a href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a></div><div class="ttdeci">generic_main_t GM</div><div class="ttdef"><b>Definition:</b> <a href="global_8c_source.html#l00013">global.c:13</a></div></div>
-<div class="ttc" id="astruct__generic__main_html_aee06400a85ce2c234482e68d6ecba864"><div class="ttname"><a href="struct__generic__main.html#aee06400a85ce2c234482e68d6ecba864">_generic_main::time_last_synchronized</a></div><div class="ttdeci">int64_t time_last_synchronized</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00156">generic_main.h:156</a></div></div>
+<div class="ttc" id="astruct__generic__main_html_aee06400a85ce2c234482e68d6ecba864"><div class="ttname"><a href="struct__generic__main.html#aee06400a85ce2c234482e68d6ecba864">_generic_main::time_last_synchronized</a></div><div class="ttdeci">int64_t time_last_synchronized</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00157">generic_main.h:157</a></div></div>
 <div class="ttc" id="awebserver_8c_html_a440992a6db6af61fb71e65ddf68e71b0"><div class="ttname"><a href="webserver_8c.html#a440992a6db6af61fb71e65ddf68e71b0">start_webserver</a></div><div class="ttdeci">void start_webserver(void)</div><div class="ttdef"><b>Definition:</b> <a href="webserver_8c_source.html#l00029">webserver.c:29</a></div></div>
-<div class="ttc" id="awebserver_8c_html_a529ad0215cf501bdd4d62d60216d1d64"><div class="ttname"><a href="webserver_8c.html#a529ad0215cf501bdd4d62d60216d1d64">stop_webserver</a></div><div class="ttdeci">void stop_webserver()</div><div class="ttdef"><b>Definition:</b> <a href="webserver_8c_source.html#l00065">webserver.c:65</a></div></div>
+<div class="ttc" id="awebserver_8c_html_a529ad0215cf501bdd4d62d60216d1d64"><div class="ttname"><a href="webserver_8c.html#a529ad0215cf501bdd4d62d60216d1d64">stop_webserver</a></div><div class="ttdeci">void stop_webserver()</div><div class="ttdef"><b>Definition:</b> <a href="webserver_8c_source.html#l00069">webserver.c:69</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

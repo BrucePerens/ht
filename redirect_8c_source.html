@@ -102,90 +102,123 @@ $(document).ready(function(){initNavTree('redirect_8c_source.html',''); initResi
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &lt;sys/types.h&gt;</span></div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;lwip/sockets.h&gt;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;<a class="code" href="generic__main_8h.html">generic_main.h</a>&quot;</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span> </div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="comment">// Tiny redirect server. Don&#39;t use the http server just to do redirect, it uses too</span></div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// many resources. This one shares a thread with all of the other GM select-based</span></div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// event functions.</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">   16</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a>[] = <span class="stringliteral">&quot;\</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="stringliteral">HTTP/1.1 301 Moved Permanently\r\n\</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="stringliteral">Connection: close\r\n\</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="stringliteral">Content-Length: 25\</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="stringliteral">Content-Type: text/html; charset=UTF-8\r\n\</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="stringliteral">Location: https:\r\n\</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="stringliteral">\r\n\</span></div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="stringliteral">Please use https: URLs.\r\n&quot;</span>;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">static</span> <span class="keywordtype">void</span></div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>accept_handler(<span class="keywordtype">int</span> sock, <span class="keywordtype">void</span> * <a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">bool</span> readable, <span class="keywordtype">bool</span> writable, <span class="keywordtype">bool</span> exception, <span class="keywordtype">bool</span> timeout)</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>{</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>  <span class="keyword">struct </span>sockaddr_storage   client_address;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  socklen_t         client_size = <span class="keyword">sizeof</span>(client_address);</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>  <span class="keywordflow">if</span> ( !readable || exception ) </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> connection = accept(sock, (<span class="keyword">struct</span> sockaddr *)&amp;client_address, &amp;client_size);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordflow">if</span> ( connection &lt; 0 ) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;Select event server accept failed: %s\n&quot;</span>, strerror(errno));</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// FIX: Make everything from here on a non-blocking handler.</span></div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordtype">char</span>  buffer[1024];</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <span class="keyword">const</span> ssize_t size = recv(connection, buffer, (socklen_t)<span class="keyword">sizeof</span>(buffer), MSG_WAITALL);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  <span class="keywordflow">if</span> ( size &gt; 0 ) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    <span class="comment">// Parse the request.</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  </div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  <span class="keywordflow">if</span> ( size == <span class="keyword">sizeof</span>(buffer) ) {</div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>    <span class="keywordtype">int</span> status;</div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keywordflow">while</span> ( (status = recv(connection, buffer, <span class="keyword">sizeof</span>(buffer), MSG_WAITALL)) &gt; 0 );</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;netinet/in.h&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;<a class="code" href="generic__main_8h.html">generic_main.h</a>&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="comment">// Tiny redirect server, just redirects to the HTTPS root. This allows us to</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="comment">// avoid using the full http server, with its memory overhead, just to do</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="comment">// redirect. This one shares a thread and stack with all of the other GM</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="comment">// select-based event functions.</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno"><a class="line" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">   18</a></span><span class="keyword">const</span> <span class="keywordtype">char</span> <a class="code hl_variable" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a>[] = <span class="stringliteral">&quot;\</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="stringliteral">HTTP/1.1 301 Moved Permanently\r\n\</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="stringliteral">Connection: close\r\n\</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="stringliteral">Content-Length: 25\r\n\</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="stringliteral">Content-Type: text/html; charset=UTF-8\r\n\</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="stringliteral">Location: https://192.168.10.206/\r\n\</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="stringliteral">\r\n\</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="stringliteral">Please use https: URLs.\r\n&quot;</span>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>io_handler(<span class="keywordtype">int</span> sock, <span class="keywordtype">void</span> * <a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">bool</span> readable, <span class="keywordtype">bool</span> writable, <span class="keywordtype">bool</span> exception, <span class="keywordtype">bool</span> timeout)</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>{</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>  <span class="keywordflow">if</span> ( !readable || exception || timeout ) {</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="comment">// Client went away or is unacceptably slow.</span></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>     <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Hanging up on the client.\n&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    (void) shutdown(sock, SHUT_RDWR);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    (void) close(sock);</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  }</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Receive started.\n&quot;</span>);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="keyword">const</span> ssize_t size = recv(sock, buffer, (socklen_t)<span class="keyword">sizeof</span>(buffer), MSG_DONTWAIT);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Receive finished.\n&quot;</span>);</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">if</span> ( size &gt;= 0 ) {</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Send.\n&quot;</span>);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    (void) send(sock, <a class="code hl_variable" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a>, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a>) - 1, 0);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  }</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  <span class="keywordflow">else</span> {</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Receive returned %d %s\n&quot;</span>, size, strerror(errno));</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  }</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>  (void) shutdown(sock, SHUT_RDWR);</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  (void) close(sock);</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>}</div>
 <div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>    <span class="comment">// If status isn&#39;t zero, the recv() threw an error, not just end-of-file, and the</span></div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>    <span class="comment">// connection is likely gone.</span></div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>    <span class="keywordflow">if</span> ( status == 0 )</div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>      (void) send(connection, <a class="code hl_variable" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a>, <span class="keyword">sizeof</span>(<a class="code hl_variable" href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a>) - 1, 0);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    (void) shutdown(connection, SHUT_WR);</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    (void) close(connection);</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  }</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>}</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>esp_err_t</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno"><a class="line" href="redirect_8c.html#a8c338f8e08ab9cfbaf2c341e7d3372c9">   64</a></span><a class="code hl_function" href="redirect_8c.html#a8c338f8e08ab9cfbaf2c341e7d3372c9">redirect_to_https</a>()</div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>{</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> listener = socket(AF_INET, SOCK_STREAM, 0);</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">int</span> no = 0;     </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>  <span class="comment">// FIX: Rewrite this to be an IPV6 socket.</span></div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">// socket so that it will accept both IPV4 and IPV6.</span></div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keyword">const</span> <span class="keyword">struct </span>sockaddr_in serv_addr = {</div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>   .sin_family = AF_INET,</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>   .sin_addr.s_addr = htonl(INADDR_ANY),</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>   .sin_port = htons(80)</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  };</div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>  <span class="keywordflow">if</span> ( bind(listener, (<span class="keyword">const</span> <span class="keyword">struct</span> sockaddr *)&amp;serv_addr, (socklen_t)<span class="keyword">sizeof</span>(serv_addr)) &lt; 0 )</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="comment">// Accept both IPV4 and IPV6 connections.</span></div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  (void) setsockopt(listener, IPPROTO_IPV6, IPV6_V6ONLY, (<span class="keywordtype">void</span> *)&amp;no, <span class="keyword">sizeof</span>(no)); </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keywordflow">if</span> ( listen(listener, 10) &lt; 0 )</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(listener, accept_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 0);</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <span class="keywordflow">return</span> ESP_OK;</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>}</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span><span class="keyword">static</span> <span class="keywordtype">void</span></div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>accept_handler(<span class="keywordtype">int</span> sock, <span class="keywordtype">void</span> * <a class="code hl_define" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, <span class="keywordtype">bool</span> readable, <span class="keywordtype">bool</span> writable, <span class="keywordtype">bool</span> exception, <span class="keywordtype">bool</span> timeout)</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>{</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">struct </span>sockaddr_storage   client_address;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  socklen_t         client_size = <span class="keyword">sizeof</span>(client_address);</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  <span class="keywordflow">if</span> ( !readable || exception ) </div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Accept handler.\n&quot;</span>);</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> connection = accept(</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>   sock,</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>   (<span class="keyword">struct</span> sockaddr *)&amp;client_address,</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>   &amp;client_size);</div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">if</span> ( connection &lt; 0 ) {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;Select event server accept failed: %s\n&quot;</span>, strerror(errno));</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  }</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(connection, io_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 30);</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>}</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span><span class="keyword">static</span> <span class="keywordtype">int</span> listener = -1;</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>esp_err_t</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a35edd8b3aa4268ed13883551812b1329">   77</a></span><a class="code hl_function" href="redirect_8c.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a>()</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  listener = socket(AF_INET6, SOCK_STREAM, 0);</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> no = 0;     </div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">// socket so that it will accept both IPV4 and IPV6.</span></div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  <span class="keyword">const</span> <span class="keyword">struct </span>sockaddr_in6 serv_addr = {</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>   .sin6_family = AF_INET6,</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>   <span class="comment">// lwip defines struct in6_addr and associated things a bit differently than</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>   <span class="comment">// other platforms.</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>   .sin6_addr = IN6ADDR_ANY_INIT,</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>   .sin6_port = htons(80)</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  };</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Created socket.\n&quot;</span>); </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordflow">if</span> ( bind(listener, (<span class="keyword">const</span> <span class="keyword">struct</span> sockaddr *)&amp;serv_addr, (socklen_t)<span class="keyword">sizeof</span>(serv_addr)) &lt; 0 ) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Bind failed.\n&quot;</span>);</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="comment">// Accept both IPV4 and IPV6 connections.</span></div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  (void) setsockopt(listener, IPPROTO_IPV6, IPV6_V6ONLY, (<span class="keyword">const</span> <span class="keywordtype">void</span> *)&amp;no, <span class="keyword">sizeof</span>(no)); </div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <span class="keywordflow">if</span> ( listen(listener, 10) &lt; 0 ) {</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Listen failed.\n&quot;</span>);</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  }</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(listener, accept_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 0);</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>  <span class="keywordflow">return</span> ESP_OK;</div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>}</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span> </div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a0496e518b680edfca3abc22c7e2f617e">  110</a></span><a class="code hl_function" href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a>()</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>{</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  <span class="keywordflow">if</span> ( listener &gt;= 0 ) {</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    <a class="code hl_function" href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a>(listener);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    shutdown(listener, SHUT_RDWR);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    close(listener);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    listener = -1;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>  }</div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>}</div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
-<div class="ttc" id="ageneric__main_8h_html_a5775ffb7210a4f9052e884ed6fda249b"><div class="ttname"><a href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a></div><div class="ttdeci">#define GM_FAIL(args...)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00038">generic_main.h:38</a></div></div>
-<div class="ttc" id="ageneric__main_8h_html_ac22a7af22d1407b004803ed54e3d85af"><div class="ttname"><a href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a></div><div class="ttdeci">void gm_fd_register(int fd, gm_fd_handler_t handler, void *data, bool readable, bool writable, bool exception, uint32_t seconds)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00055">select_task.c:55</a></div></div>
-<div class="ttc" id="aredirect_8c_html_a8c338f8e08ab9cfbaf2c341e7d3372c9"><div class="ttname"><a href="redirect_8c.html#a8c338f8e08ab9cfbaf2c341e7d3372c9">redirect_to_https</a></div><div class="ttdeci">esp_err_t redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00064">redirect.c:64</a></div></div>
-<div class="ttc" id="aredirect_8c_html_ab09bbf67efa5535bce06442f036431f4"><div class="ttname"><a href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a></div><div class="ttdeci">const char redirect[]</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00016">redirect.c:16</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a3433e32a85b9cd569c3a4d8f0a82a039"><div class="ttname"><a href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a></div><div class="ttdeci">void gm_fd_unregister(int fd)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00093">select_task.c:93</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a5775ffb7210a4f9052e884ed6fda249b"><div class="ttname"><a href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a></div><div class="ttdeci">#define GM_FAIL(args...)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00039">generic_main.h:39</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a5d74fbe16c813a7c392df9132d100b5b"><div class="ttname"><a href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a></div><div class="ttdeci">int gm_printf(const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00042">printf.c:42</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_ac22a7af22d1407b004803ed54e3d85af"><div class="ttname"><a href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a></div><div class="ttdeci">void gm_fd_register(int fd, gm_fd_handler_t handler, void *data, bool readable, bool writable, bool exception, uint32_t seconds)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00049">select_task.c:49</a></div></div>
+<div class="ttc" id="aredirect_8c_html_a0496e518b680edfca3abc22c7e2f617e"><div class="ttname"><a href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a></div><div class="ttdeci">void gm_stop_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00110">redirect.c:110</a></div></div>
+<div class="ttc" id="aredirect_8c_html_a35edd8b3aa4268ed13883551812b1329"><div class="ttname"><a href="redirect_8c.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a></div><div class="ttdeci">esp_err_t gm_start_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00077">redirect.c:77</a></div></div>
+<div class="ttc" id="aredirect_8c_html_ab09bbf67efa5535bce06442f036431f4"><div class="ttname"><a href="redirect_8c.html#ab09bbf67efa5535bce06442f036431f4">redirect</a></div><div class="ttdeci">const char redirect[]</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00018">redirect.c:18</a></div></div>
 <div class="ttc" id="aweb__template_8h_html_a43a278d13284fb3412e9eee1db1d967e"><div class="ttname"><a href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a></div><div class="ttdeci">#define data</div><div class="ttdef"><b>Definition:</b> <a href="web__template_8h_source.html#l00042">web_template.h:42</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

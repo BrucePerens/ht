@@ -104,14 +104,17 @@ $(document).ready(function(){initNavTree('redirect_8c.html',''); initResizable()
 <code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;sys/types.h&gt;</code><br />
 <code>#include &lt;lwip/sockets.h&gt;</code><br />
+<code>#include &lt;netinet/in.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="generic__main_8h_source.html">generic_main.h</a>&quot;</code><br />
 </div>
 <p><a href="redirect_8c_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a8c338f8e08ab9cfbaf2c341e7d3372c9"><td class="memItemLeft" align="right" valign="top">esp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="redirect_8c.html#a8c338f8e08ab9cfbaf2c341e7d3372c9">redirect_to_https</a> ()</td></tr>
-<tr class="separator:a8c338f8e08ab9cfbaf2c341e7d3372c9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a35edd8b3aa4268ed13883551812b1329"><td class="memItemLeft" align="right" valign="top">esp_err_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="redirect_8c.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a> ()</td></tr>
+<tr class="separator:a35edd8b3aa4268ed13883551812b1329"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0496e518b680edfca3abc22c7e2f617e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a> ()</td></tr>
+<tr class="separator:a0496e518b680edfca3abc22c7e2f617e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
 Variables</h2></td></tr>
@@ -119,14 +122,14 @@ Variables</h2></td></tr>
 <tr class="separator:ab09bbf67efa5535bce06442f036431f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Function Documentation</h2>
-<a id="a8c338f8e08ab9cfbaf2c341e7d3372c9" name="a8c338f8e08ab9cfbaf2c341e7d3372c9"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a8c338f8e08ab9cfbaf2c341e7d3372c9">&#9670;&#160;</a></span>redirect_to_https()</h2>
+<a id="a35edd8b3aa4268ed13883551812b1329" name="a35edd8b3aa4268ed13883551812b1329"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a35edd8b3aa4268ed13883551812b1329">&#9670;&#160;</a></span>gm_start_redirect_to_https()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">esp_err_t redirect_to_https </td>
+          <td class="memname">esp_err_t gm_start_redirect_to_https </td>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
@@ -134,7 +137,26 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="redirect_8c_source.html#l00064">64</a> of file <a class="el" href="redirect_8c_source.html">redirect.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="redirect_8c_source.html#l00077">77</a> of file <a class="el" href="redirect_8c_source.html">redirect.c</a>.</p>
+
+</div>
+</div>
+<a id="a0496e518b680edfca3abc22c7e2f617e" name="a0496e518b680edfca3abc22c7e2f617e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0496e518b680edfca3abc22c7e2f617e">&#9670;&#160;</a></span>gm_stop_redirect_to_https()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_stop_redirect_to_https </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="redirect_8c_source.html#l00110">110</a> of file <a class="el" href="redirect_8c_source.html">redirect.c</a>.</p>
 
 </div>
 </div>
@@ -153,13 +175,13 @@ Variables</h2></td></tr>
 <b>Initial value:</b><div class="fragment"><div class="line">= <span class="stringliteral">&quot;\</span></div>
 <div class="line"><span class="stringliteral">HTTP/1.1 301 Moved Permanently\r\n\</span></div>
 <div class="line"><span class="stringliteral">Connection: close\r\n\</span></div>
-<div class="line"><span class="stringliteral">Content-Length: 25\</span></div>
+<div class="line"><span class="stringliteral">Content-Length: 25\r\n\</span></div>
 <div class="line"><span class="stringliteral">Content-Type: text/html; charset=UTF-8\r\n\</span></div>
-<div class="line"><span class="stringliteral">Location: https:\r\n\</span></div>
+<div class="line"><span class="stringliteral">Location: https://192.168.10.206/\r\n\</span></div>
 <div class="line"><span class="stringliteral">\r\n\</span></div>
 <div class="line"><span class="stringliteral">Please use https: URLs.\r\n&quot;</span></div>
 </div><!-- fragment -->
-<p class="definition">Definition at line <a class="el" href="redirect_8c_source.html#l00016">16</a> of file <a class="el" href="redirect_8c_source.html">redirect.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="redirect_8c_source.html#l00018">18</a> of file <a class="el" href="redirect_8c_source.html">redirect.c</a>.</p>
 
 </div>
 </div>
