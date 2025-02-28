@@ -10,8 +10,10 @@
 #include <netinet/in.h>
 #include "generic_main.h"
 
-// Simple HTTP web server, just redirects to the HTTPS root. This allows us to
-// avoid using the full http server, which uses up a thread and stack,
+// Simple HTTP web server, just redirects to HTTPS.
+// This uses less than 1700 bytes of ROM when built for debugging, and shares its
+// stack with all of our other select-event-driven tasks. This allows us
+// to avoid using the full http server, which uses up a thread and stack
 // just to do redirect. All other services are via HTTPS, which has a full
 // server with its own thread and stack.
 
@@ -20,9 +22,6 @@ HTTP/1.1 301 Moved Permanently\r\n\
 Content-Length: 0\r\n\
 Content-Type: text/html; charset=UTF-8\r\n\
 Location: https://%s/%s\r\n\r\n";
-
-const char too_large[] = "\
-HTTP/1.1 413 Content Too Large\r\n\r\n";
 
 const char bad_request[] = "\
 HTTP/1.1 400 Bad Request\r\n\r\n";
@@ -140,10 +139,7 @@ io_handler(int sock, void * data, bool readable, bool writable, bool exception, 
         send_bad_request(sock, r);
     }
   }
-  else if ( space == 0 ) {
-    gm_printf("Redirect: header too large.\n");
-    (void) send(sock, too_large, sizeof(too_large) - 1, 0);
-  }
+  send_bad_request(sock, r);
 
   gm_fd_unregister(sock);
   (void) shutdown(sock, SHUT_RDWR);
@@ -189,7 +185,6 @@ gm_start_redirect_to_https()
   listener = socket(AF_INET6, SOCK_STREAM, 0);
   const int no = 0;     
 
-  // socket so that it will accept both IPV4 and IPV6.
   const struct sockaddr_in6 serv_addr = {
    .sin6_family = AF_INET6,
    // lwip defines struct in6_addr and associated things a bit differently than

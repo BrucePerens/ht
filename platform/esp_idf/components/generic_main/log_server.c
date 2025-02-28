@@ -7,6 +7,8 @@
 #include <sys/un.h>
 #include "generic_main.h"
 
+// FIX: Make this use a dual-stack address for accept.
+
 // Log server. This emits a lot to a stream socket, which you can connect with via
 // telnet. Only one connection is supported. When you connect, logging is diverted
 // from the console to the socket, and it is restored to the console when you disconnect.

@@ -15,16 +15,12 @@ gm_fail(const char * function, const char * file, int line, const char * pattern
   va_list args;
 
   va_start(args, pattern);
-
-  pthread_mutex_lock(&GM.console_print_mutex);
-
-  fprintf(GM.log_file_pointer, "\nError in function: %s at: %s:%d, errno: %s\n", function, file, line, strerror(errno));
-  vfprintf(GM.log_file_pointer, pattern, args);
-  esp_backtrace_print(100);
-
-  pthread_mutex_unlock(&GM.console_print_mutex);
-
+  gm_vprintf(pattern, args);
   va_end(args);
+
+  // This isn't on GM.log_file_pointer.
+  esp_backtrace_print(100);
+  fflush(stderr);
 }
 
 int

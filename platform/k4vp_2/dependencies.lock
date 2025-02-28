@@ -37,12 +37,20 @@ dependencies:
       registry_url: https://components.espressif.com/
       type: service
     version: 1.16.4
+  trombik/esp_wireguard:
+    component_hash: 06b514516c241f27493b7589d3d4a79f424713609891168e4e65f529f1980922
+    dependencies: []
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 0.9.0
 direct_dependencies:
 - bblanchon/arduinojson
 - dannybackx/acmeclient
 - idf
 - jkent/frogfs
 - joltwallet/littlefs
-manifest_hash: 4386aac3a498cf553f0dc8c5a156351a1e0b691a69e5cb219f837d9c2b7a464f
+- trombik/esp_wireguard
+manifest_hash: 049bdff36916609a159cbc75bce17d18c22780ee93d44ca7852261473d23327f
 target: esp32
 version: 2.0.0

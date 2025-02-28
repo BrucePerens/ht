@@ -57,7 +57,7 @@ static int run(int argc, char * * argv)
   int64_t timer_now = esp_timer_get_time();
   int64_t duration = timer_now - GM.time_last_synchronized;
 
-  if (GM.time_last_synchronized == -1) {
+  if (GM.time_last_synchronized == 0) {
     strcpy(duration_buf, "never");
     ago = "";
   }

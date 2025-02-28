@@ -1,3 +1,10 @@
+// FIX: My home router is still returning a link-local "public address" for IPV6.
+// Try getting the real public address from STUN and requesting it.
+//
+// FIX: Make all of the listeners one listener, with an IPV6 ANY address, with
+// the IN6ADDR_IP6ONLY flag turned off, the SO_BROADCAST flag turned on, and join
+// the broadcast group with IP_ADD_MEMBERSHIP.
+//
 #include <stdint.h>
 #include <sys/types.h>
 #include <lwip/sockets.h>
@@ -187,7 +194,7 @@ gm_port_control_protocol_request_mapping_ipv4()
   esp_fill_random(&m.nonce, sizeof(m.nonce));
   m.ipv6 = false;
   m.tcp = true;
-  m.internal_port = m.external_port = 8080;
+  m.internal_port = m.external_port = 7300;
   m.lifetime = 24 * 60 * 60;
   return request_mapping_ipv4(&m);
 }
@@ -208,18 +215,29 @@ int request_mapping_ipv6(gm_port_mapping_t * m)
   memcpy(a6->sin6_addr.s6_addr, GM.sta.ip6.router.sin6_addr.s6_addr, sizeof(a6->sin6_addr.s6_addr));
   a6->sin6_family = AF_INET6;
   a6->sin6_port = htons(PCP_PORT);
-  // FIX: What if there is no link-local address?
-  memcpy(&p->pcp.request.client_address.s6_addr, &GM.sta.ip6.link_local.sin6_addr.s6_addr, sizeof(p->pcp.request.client_address.s6_addr));
+
+  // Try to use a local address for the PCP request.
+  struct sockaddr_in6 * address = &GM.sta.ip6.link_local;
+  if ( gm_all_zeroes(address, sizeof(struct sockaddr_in6)) )
+    address = &GM.sta.ip6.site_local;
+  if ( gm_all_zeroes(address, sizeof(struct sockaddr_in6)) )
+    address = &GM.sta.ip6.site_unique;
+  else
+    address = &GM.sta.ip6.global[0];
+
+  memcpy(&p->pcp.request.client_address.s6_addr, address->sin6_addr.s6_addr, sizeof(p->pcp.request.client_address.s6_addr));
 
   memset(buffer, '\0', sizeof(buffer));
-  inet_ntop(a6->sin6_family, &a6->sin6_addr, buffer, sizeof(buffer));
-  ; // gm_printf("Request IPv6 port mapping of router %s\n", buffer);
   p->version = PORT_MAPPING_PROTOCOL;
-  p->opcode = PCP_MAP;
   p->pcp.lifetime = htonl(24 * 60 * 60);
   memcpy(p->pcp.mp.nonce, m->nonce, sizeof(m->nonce));
   p->pcp.mp.protocol = m->tcp ? PCP_TCP : PCP_UDP;
-  // memcpy(p->pcp.mp.external_address.s6_addr, GM.sta.ip6.pub.sin6_addr.s6_addr, sizeof(p->pcp.mp.external_address.s6_addr));
+  // Explicitly request the public address we got from STUN, because miniupnp
+  // can otherwise send us a uselsss mapping for a non-global address.
+  memcpy(p->pcp.mp.external_address.s6_addr, GM.sta.ip6.pub.sin6_addr.s6_addr, sizeof(p->pcp.mp.external_address.s6_addr));
+  inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
+  gm_printf("Requesting external address %s\n", buffer);
+  
   p->pcp.mp.internal_port = htons(m->internal_port);
   p->pcp.mp.external_port = htons(m->external_port);
   p->pcp.lifetime = htonl(m->lifetime);
@@ -249,7 +267,7 @@ gm_port_control_protocol_request_mapping_ipv6()
   esp_fill_random(&m.nonce, sizeof(m.nonce));
   m.ipv6 = true;
   m.tcp = true;
-  m.internal_port = m.external_port = 8080;
+  m.internal_port = m.external_port = 7300;
   m.lifetime = 24 * 60 * 60;
   return request_mapping_ipv6(&m);
 }
@@ -257,7 +275,7 @@ gm_port_control_protocol_request_mapping_ipv6()
 static void
 decode_pcp_announce(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struct sockaddr_storage * address)
 {
-  ; // gm_printf("Received PCP Announce\n");
+  gm_printf("Received PCP Announce\n");
 }
 
 static void
@@ -286,8 +304,9 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struc
     // Get the address type (global, link-local, etc.) for the IPv6 address.
     ipv6_type = esp_netif_ip6_get_addr_type(&esp_addr);
 
+    gm_printf("IPV6 type %s\n", GM.ipv6_address_types[ipv6_type]);
     if ( ipv6_type != ESP_IP6_ADDR_IS_GLOBAL ) {
-      ; // GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping to an IPv6 %s address, instead of a global address. This is probably a MiniUPnPd bug.\n", GM.ipv6_address_types[ipv6_type]);
+      GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping to an IPv6 %s address, instead of a global address. This is probably a MiniUPnPd bug.\n", GM.ipv6_address_types[ipv6_type]);
       return;
     }
     break;
@@ -324,7 +343,8 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struc
     inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
   else
     inet_ntop(AF_INET, &p->pcp.mp.external_address.s6_addr[12], buffer, sizeof(buffer));
-  ; // gm_printf("Router public mapping address: %s port: %d\n", buffer, m.external_port);
+
+  gm_printf("Got PCP public IP and port: %s, %d\n", buffer, m.external_port);
   if ( m.ipv6 )
     mp = &GM.sta.ip6.port_mappings;
   else
@@ -341,7 +361,7 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struc
 static void
 decode_pcp_peer(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struct sockaddr_storage * address)
 {
-  ; // gm_printf("Received PCP Peer\n");
+  gm_printf("Received PCP Peer\n");
 }
 
 void
@@ -427,7 +447,7 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
     struct sockaddr_storage	address;
     socklen_t			address_size = sizeof(address);
     ssize_t			message_size;
-    // int				port;
+    int				port = 0;
     char			buffer[INET6_ADDRSTRLEN + 1];
 
     message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
@@ -443,15 +463,8 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
     }
     else {
       inet_ntop(AF_INET6, &((struct sockaddr_in6 *)&address)->sin6_addr, buffer, sizeof(buffer));
-      // port = htons(((struct sockaddr_in6 *)&address)->sin6_port);
+      port = htons(((struct sockaddr_in6 *)&address)->sin6_port);
     }
-
-    ; // gm_printf("PCP received %s packet of size %d from %s port %d.\n",
-     // data != 0 ? "multicast" : "unicast",
-     // message_size,
-     // buffer,
-     // port);
-
 
     // Data is set to 1 for multicast, 0 for unicast.
     decode_packet(&packet, message_size, (int)data != 0, &address);
@@ -461,6 +474,8 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
 static void
 start_multicast_listener_ipv4(void)
 {
+  if ( ipv4_multicast_sock >= 0 )
+    return;
   // FIX: Time-out responses and retry, eventually abandon trying.
   int			value = 1;
   struct ip_mreq	multi_request = {};
@@ -503,6 +518,9 @@ start_unicast_listener_ipv4(void)
 {
   struct sockaddr_in	address = {};
 
+  if ( ipv4_unicast_sock >= 0 )
+    return;
+
   address.sin_family = AF_INET;
   address.sin_addr.s_addr = GM.sta.ip4.address.sin_addr.s_addr;
   address.sin_port = htons(PCP_PORT);
@@ -522,6 +540,9 @@ start_unicast_listener_ipv4(void)
 static void
 start_multicast_listener_ipv6(void)
 {
+  if ( ipv6_multicast_sock >= 0 ) 
+    return;
+
   int			value = 1;
   struct ipv6_mreq	multi_request = {};
   struct sockaddr_in6	address = {};
@@ -559,6 +580,9 @@ start_multicast_listener_ipv6(void)
 static void
 start_unicast_listener_ipv6(void)
 {
+  if ( ipv6_unicast_sock >= 0 )
+    return;
+
   struct sockaddr_in6	address = {};
   int			value = 1;
 

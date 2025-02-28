@@ -54,7 +54,7 @@ gm_command_interpreter_start(void)
 
   // Configure the console command system.
   esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();
-  repl_config.task_stack_size = 20 * 1024;
+  repl_config.task_stack_size = 5 * 1024;
   repl_config.prompt = ">";
   ESP_ERROR_CHECK(esp_console_new_repl_uart(&uart_config, &repl_config, &GM.repl));
   gm_command_add_registered_to_console();

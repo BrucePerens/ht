@@ -221,6 +221,8 @@ extern void			gm_event_server(void);
 extern void			gm_get_handlers(httpd_handle_t server);
 extern esp_err_t		gm_get_user_data(const char * name, gm_user_data_t * data);
 extern cJSON *			gm_read_cookie(httpd_req_t * req);
+extern void			gm_sntp_start();
+extern void			gm_sntp_stop();
 extern esp_err_t		gm_start_redirect_to_https();
 extern void			gm_stop_redirect_to_https();
 extern void			gm_run(gm_run_t function, void * data, gm_run_speed_t speed);

@@ -1,3 +1,5 @@
+// FIX: Modify to always send using the link-local or NAT IP address, not
+// the public IPV6 address.
 #include <stdint.h>
 #include <sys/types.h>
 #include <lwip/sockets.h>
@@ -171,13 +173,13 @@ decode_mapped_address(struct stun_attribute * a, struct sockaddr * address)
 static void
 decode_error_code(struct stun_attribute * a)
 {
-  gm_printf("STUN: Received error code.\n");
+  GM_FAIL("STUN: Received error code.\n");
 }
 
 static void
 decode_unknown_attributes(struct stun_attribute * a)
 {
-  gm_printf("STUN: Unknown attribute.\n");
+  GM_FAIL("STUN: Unknown attribute.\n");
 }
 
 static void
@@ -283,9 +285,25 @@ send_stun_request(bool ipv6)
 
   stun_sock = socket(send_address->ai_family, SOCK_DGRAM, send_address->ai_protocol);
   if ( stun_sock < 0 ) {
-    gm_printf("STUN: Can't get socket: %s\n", strerror(errno));
+    GM_FAIL("STUN: Can't get socket: %s\n", strerror(errno));
     return -1;
   }
+
+  // Bind the request address to a local address. This probably only matters
+  // for IPV6, as the only IPV4 address is usually behind NAT.
+  if ( ipv6 ) {
+    struct sockaddr_in6 * address = &GM.sta.ip6.link_local;
+    if ( gm_all_zeroes(address, sizeof(struct sockaddr_in6)) )
+      address = &GM.sta.ip6.site_local;
+    if ( gm_all_zeroes(address, sizeof(struct sockaddr_in6)) )
+      address = &GM.sta.ip6.site_unique;
+    else
+      address = &GM.sta.ip6.global[0];
+
+    (void) bind(stun_sock, (struct sockaddr *)address, sizeof(struct sockaddr_in6));
+  }
+  else
+	  (void) bind(stun_sock, (struct sockaddr *)&GM.sta.ip4.address, sizeof(GM.sta.ip4.address));
 
   send_packet->magic_cookie = stun_magic;
   send_packet->type = htons(((message_class & 0x1) << 4) | ((message_class & 0x2) << 8) | (method & 0xf));
@@ -302,7 +320,7 @@ send_stun_request(bool ipv6)
   freeaddrinfo(send_address);
 
   if ( send_result < (send_packet->length + 20) ) {
-    ; // gm_printf("STUN: Send error: %d %s.\n", send_result, strerror(errno));
+    GM_FAIL("STUN: Send error: %d %s.\n", send_result, strerror(errno));
     close(stun_sock);
     stun_sock = -1;
     return -1;
@@ -318,7 +336,7 @@ process_received_packet(struct stun_message * receive_packet, struct sockaddr * 
   struct stun_attribute * attribute = (struct stun_attribute *)receive_packet->attributes;
   uint16_t attribute_size = ntohs(receive_packet->length);
   if ( attribute_size < (receive_result - 20) ) {
-    gm_printf("STUN: packet was truncated.\n");
+    GM_FAIL("STUN: packet was truncated.\n");
     return -1;
   }
   
@@ -326,13 +344,22 @@ process_received_packet(struct stun_message * receive_packet, struct sockaddr * 
     uint16_t type = ntohs(attribute->type);
     uint16_t length = ntohs(attribute->length);
     if ( length == 0 || length >= 768 ) {
-      gm_printf("STUN: attribute length %d is invalid.\n", length);
+      GM_FAIL("STUN: attribute length %d is invalid.\n", length);
     }
     switch ( type ) {
     case MAPPED_ADDRESS:
       if ( !got_xor_mapped_address ) {
+        char buffer[INET6_ADDRSTRLEN + 1];
         got_an_address = true;
         decode_mapped_address(attribute, address);
+        switch ( address->sa_family ) {
+        case AF_INET:
+          inet_ntop(address->sa_family, &((struct sockaddr_in *)address)->sin_addr, buffer, sizeof(buffer));
+          break;
+        case AF_INET6:
+          inet_ntop(address->sa_family, &((struct sockaddr_in6 *)address)->sin6_addr, buffer, sizeof(buffer));
+          break;
+        }
       }
       break;
     case ERROR_CODE:
@@ -367,7 +394,7 @@ process_received_packet(struct stun_message * receive_packet, struct sockaddr * 
       increment += (4 - odd);
 
     if ( increment > attribute_size ) {
-      gm_printf("STUN: Attribute size mismatch.\n");
+      GM_FAIL("STUN: Attribute size mismatch.\n");
       return -1;
     }
     attribute = (struct stun_attribute *)((uint8_t *)attribute + increment);
@@ -376,11 +403,12 @@ process_received_packet(struct stun_message * receive_packet, struct sockaddr * 
   if ( got_an_address )
     return 0;
   else {
-    gm_printf("STUN: message didn't include an address.\n");
+    GM_FAIL("STUN: message didn't include an address.\n");
     return -1;
   }
 }
 
+// FIX: Make this receive multiple times until it has the entire buffer.
 int receive_stun_response(int sock, struct sockaddr * address)
 {
   uint32_t receive_buffer[256] = {};
@@ -401,6 +429,7 @@ int receive_stun_response(int sock, struct sockaddr * address)
    0);
 
   if ( receive_result < 22 ) {
+    GM_FAIL("STUN response too small.\n");
     gm_fd_unregister(sock);
     close(sock);
     stun_sock = -1;
@@ -431,7 +460,6 @@ static void
 stun_receive(int fd, void * data, bool readable, bool writable, bool exception, bool timeout)
 {
   struct stun_run * run = (struct stun_run *)data;
-
 
   if ( readable ) {
     int status = receive_stun_response(fd, run->address);
@@ -465,10 +493,26 @@ stun_receive(int fd, void * data, bool readable, bool writable, bool exception, 
 
 int gm_stun(bool ipv6, struct sockaddr * address, gm_stun_after_t after)
 {
+  char buffer[INET6_ADDRSTRLEN + 1];
+  const char * family = "No specified IP address family";
+
+  memset(buffer, 0, sizeof(buffer));
+  switch ( address->sa_family ) {
+  case AF_INET:
+    family = "IPV4";
+    inet_ntop(address->sa_family, &((struct sockaddr_in *)address)->sin_addr, buffer, sizeof(buffer));
+    break;
+  case AF_INET6:
+    family = "IPV6";
+    inet_ntop(address->sa_family, &((struct sockaddr_in6 *)address)->sin6_addr, buffer, sizeof(buffer));
+    break;
+   default:
+     ;
+  }
   struct stun_run * run = malloc(sizeof(struct stun_run));
 
   if ( run == 0 ) {
-    gm_printf("STUN: malloc failed");
+    GM_FAIL("STUN: malloc failed");
     return -1;
   }
     

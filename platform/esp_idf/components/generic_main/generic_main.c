@@ -32,7 +32,7 @@ bool	app_main_called = false;
 
 static void initialize()
 {
-  const unsigned int chip_revision = efuse_hal_chip_revision();
+  // const unsigned int chip_revision = efuse_hal_chip_revision();
 
   // Set the console print lock, so that things in tasks don't print over each other.
   // This can't be used for non-tasks.
