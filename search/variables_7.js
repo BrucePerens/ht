@@ -7,6 +7,6 @@ var searchData=
   ['high_5fpass_5ffilter_4',['high_pass_filter',['../structradio__channel__data.html#a9c93c3326aa33e5800cf34aa94fd12fe',1,'radio_channel_data']]],
   ['hmac_5fkey_5',['hmac_key',['../struct__generic__main.html#aa01cc8f4cfa2c5520b1d1b79924cdd26',1,'_generic_main']]],
   ['hop_5flimit_6',['hop_limit',['../struct__icmpv6__message_1_1__ipv6__header.html#ae967bb206e3e6ddfcde10d130338a101',1,'_icmpv6_message::_ipv6_header']]],
-  ['host_7',['host',['../structstun__server.html#ae032e164f1daa754d6fbb79d59723931',1,'stun_server']]],
+  ['host_7',['host',['../structrequest.html#ae032e164f1daa754d6fbb79d59723931',1,'request::host()'],['../structstun__server.html#ae032e164f1daa754d6fbb79d59723931',1,'stun_server::host()']]],
   ['hour_8',['hour',['../timer__to__human_8c.html#a413d5b542f4cb41e567859b717420f9c',1,'timer_to_human.c']]]
 ];

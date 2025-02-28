@@ -25,6 +25,7 @@ var dir_3f8f2344752268c2de4822e112f246fe =
     [ "redirect.c", "redirect_8c.html", "redirect_8c" ],
     [ "select_task.c", "select__task_8c.html", "select__task_8c" ],
     [ "session.c", "session_8c.html", "session_8c" ],
+    [ "sntp.c", "sntp_8c.html", "sntp_8c" ],
     [ "stun.c", "generic__main_2stun_8c.html", "generic__main_2stun_8c" ],
     [ "timer_to_human.c", "timer__to__human_8c.html", "timer__to__human_8c" ],
     [ "uri_decode.c", "uri__decode_8c.html", "uri__decode_8c" ],

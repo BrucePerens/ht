@@ -112,6 +112,8 @@ var generic__main_8h =
     [ "gm_select_wakeup", "generic__main_8h.html#a0e718796043ccd1f72a42b9c68c2f2d8", null ],
     [ "gm_self_signed_ssl_certificates", "generic__main_8h.html#a5725961e3b823c2eec778823f48b2006", null ],
     [ "gm_session", "generic__main_8h.html#a9d36b4246c24c182cce581b58779a848", null ],
+    [ "gm_sntp_start", "generic__main_8h.html#acc118af20a9682e8218312d8288048fd", null ],
+    [ "gm_sntp_stop", "generic__main_8h.html#ad70eacc87cba0d4af8ff9eba17763472", null ],
     [ "gm_start_redirect_to_https", "generic__main_8h.html#a35edd8b3aa4268ed13883551812b1329", null ],
     [ "gm_stop_redirect_to_https", "generic__main_8h.html#a0496e518b680edfca3abc22c7e2f617e", null ],
     [ "gm_stun", "generic__main_8h.html#ae2d57cc57047a7b4cb3cabbb9eb82397", null ],

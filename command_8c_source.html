@@ -149,7 +149,7 @@ $(document).ready(function(){initNavTree('command_8c_source.html',''); initResiz
 <div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
 <div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// Configure the console command system.</span></div>
 <div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  repl_config.task_stack_size = 20 * 1024;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  repl_config.task_stack_size = 5 * 1024;</div>
 <div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  repl_config.prompt = <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  ESP_ERROR_CHECK(esp_console_new_repl_uart(&amp;uart_config, &amp;repl_config, &amp;<a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4">repl</a>));</div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <a class="code hl_function" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a>();</div>

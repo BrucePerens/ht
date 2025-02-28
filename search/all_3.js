@@ -39,6 +39,7 @@ var searchData=
   ['country_36',['country',['../struct__gm__user__data.html#a49834b69ca36a0a62119bce86d92eb5b',1,'_gm_user_data']]],
   ['cpu_37',['cpu',['../tasks_8c.html#a6ba3868b13720a4cbb381196da35f775',1,'tasks.c']]],
   ['crc32_38',['crc32',['../struct_cookie_payload_1_1_payload_1_1_header.html#a7ba6d986496f16e7c9bb92ea0265914d',1,'CookiePayload::Payload::Header']]],
-  ['current_5fhop_5flimit_39',['current_hop_limit',['../struct__icmpv6__message_1_1__ra.html#ab35e1dd3fec0cccb9a355d1282d4911c',1,'_icmpv6_message::_ra']]],
-  ['currentstate_40',['CurrentState',['../improv__wifi_8c.html#a79aedb562cbbbda8632a09441eb72041a24fa37c818b275f23d7cc639d83bf0bd',1,'improv_wifi.c']]]
+  ['crlf_39',['crlf',['../redirect_8c.html#a316fc9766abce787ebc80a10207761b8',1,'redirect.c']]],
+  ['current_5fhop_5flimit_40',['current_hop_limit',['../struct__icmpv6__message_1_1__ra.html#ab35e1dd3fec0cccb9a355d1282d4911c',1,'_icmpv6_message::_ra']]],
+  ['currentstate_41',['CurrentState',['../improv__wifi_8c.html#a79aedb562cbbbda8632a09441eb72041a24fa37c818b275f23d7cc639d83bf0bd',1,'improv_wifi.c']]]
 ];

@@ -6,5 +6,6 @@ var searchData=
   ['setting_5fget_2ec_3',['setting_get.c',['../setting__get_8c.html',1,'']]],
   ['setting_5fpost_2ec_4',['setting_post.c',['../setting__post_8c.html',1,'']]],
   ['settings_2ec_5',['settings.c',['../settings_8c.html',1,'']]],
-  ['stun_2ec_6',['stun.c',['../commands_2stun_8c.html',1,'(Global Namespace)'],['../generic__main_2stun_8c.html',1,'(Global Namespace)']]]
+  ['sntp_2ec_6',['sntp.c',['../sntp_8c.html',1,'']]],
+  ['stun_2ec_7',['stun.c',['../commands_2stun_8c.html',1,'(Global Namespace)'],['../generic__main_2stun_8c.html',1,'(Global Namespace)']]]
 ];
