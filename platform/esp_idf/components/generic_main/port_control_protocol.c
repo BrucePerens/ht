@@ -1,9 +1,9 @@
 // FIX: My home router is still returning a link-local "public address" for IPV6.
 // Try getting the real public address from STUN and requesting it.
 //
-// FIX: Make all of the listeners one listener, with an IPV6 ANY address, with
+// FIX: one listener each for unicast and multicast (they have different ports), with
 // the IN6ADDR_IP6ONLY flag turned off, the SO_BROADCAST flag turned on, and join
-// the broadcast group with IP_ADD_MEMBERSHIP.
+// the broadcast group with IP_ADD_MEMBERSHIP for the multicast port.
 //
 #include <stdint.h>
 #include <sys/types.h>
@@ -267,7 +267,7 @@ gm_port_control_protocol_request_mapping_ipv6()
   esp_fill_random(&m.nonce, sizeof(m.nonce));
   m.ipv6 = true;
   m.tcp = true;
-  m.internal_port = m.external_port = 7300;
+  m.internal_port = m.external_port = 7301;
   m.lifetime = 24 * 60 * 60;
   return request_mapping_ipv6(&m);
 }
@@ -292,9 +292,11 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struc
 
   switch ( address->ss_family ) {
   case AF_INET:
+    inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
     last = &last_request_ipv4;
     break;
   case AF_INET6:
+    inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
     last = &last_request_ipv6;
 
     // esp-idf has its own IPv6 address structure.
@@ -306,7 +308,7 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struc
 
     gm_printf("IPV6 type %s\n", GM.ipv6_address_types[ipv6_type]);
     if ( ipv6_type != ESP_IP6_ADDR_IS_GLOBAL ) {
-      GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping to an IPv6 %s address, instead of a global address. This is probably a MiniUPnPd bug.\n", GM.ipv6_address_types[ipv6_type]);
+      GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping to an IPv6 %s address, %s, instead of a global address. This is probably a MiniUPnPd bug.\n", GM.ipv6_address_types[ipv6_type]);
       return;
     }
     break;
@@ -400,8 +402,8 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, bool multicast, struct
     break;
   }
 
-
   response = p->opcode & 0x80;
+  gm_printf("Opcode 0x%x\n", p->opcode);
   
   switch ( p->opcode & 0x7f ) {
   case PCP_ANNOUNCE:
