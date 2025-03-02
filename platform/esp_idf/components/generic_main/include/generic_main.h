@@ -104,7 +104,7 @@ typedef struct _gm_netif {
     struct sockaddr_in	address;
     struct sockaddr_in	router;
     uint32_t		netmask;
-    struct sockaddr_in	pub;
+    struct sockaddr_in	router_public_ip;
     int			nat;	// 1 for NAT, 2 for double-nat.
     gm_port_mapping_t *	port_mappings;
   } ip4;
@@ -114,7 +114,7 @@ typedef struct _gm_netif {
     struct sockaddr_in6	site_unique;
     struct sockaddr_in6	global[3];
     struct sockaddr_in6 router;
-    struct sockaddr_in6	pub;
+    struct sockaddr_in6	router_public_ip;
     gm_port_mapping_t *	port_mappings;
     bool pat66; // True if there is prefix-address-translation. Ugh.
     bool nat6;  // True if there is NAT6 that is not PAT66. Double-ugh.
@@ -245,12 +245,10 @@ extern gm_nonvolatile_result_t	gm_nonvolatile_set(const char * name, const char 
 extern const char *		gm_param(const gm_param_t * p, int count, const char * name);
 extern int			gm_param_parse(const char * s, gm_param_t * p, int count);
 extern int			gm_pattern_string(const char * string, gm_pattern_coroutine_t coroutine, char * buffer, size_t buffer_size);
-extern int			gm_port_control_protocol_request_mapping_ipv4(void);
-extern int			gm_port_control_protocol_request_mapping_ipv6(void);
-extern void			gm_port_control_protocol_start_listener_ipv4(void);
-extern void			gm_port_control_protocol_start_listener_ipv6(void);
-extern void			gm_port_control_protocol_stop_listener_ipv4(void);
-extern void			gm_port_control_protocol_stop_listener_ipv6(void);
+extern void			gm_port_control_protocol_request_mapping_ipv4(void);
+extern void			gm_port_control_protocol_request_mapping_ipv6(void);
+extern void			gm_port_control_protocol_start(void);
+extern void			gm_port_control_protocol_stop(void);
 extern int			gm_printf(const char * format, ...);
 extern int			gm_public_ipv4(char * data, size_t size);
 

@@ -14,8 +14,6 @@ static struct {
 static int run(int argc, char * * argv)
 {
   char	buffer[64];
-  gm_port_mapping_t m = {};
-  int result;
 
   int nerrors = arg_parse(argc, argv, (void **) &args);
   if (nerrors) {
@@ -24,16 +22,11 @@ static int run(int argc, char * * argv)
   }
   printf("\n"); 
   if ( args.ipv6->count > 0 )
-    result = gm_port_control_protocol_request_mapping_ipv6();
+    gm_port_control_protocol_request_mapping_ipv6();
   else
-    result = gm_port_control_protocol_request_mapping_ipv4();
+    gm_port_control_protocol_request_mapping_ipv4();
 
-  if ( result == 0 ) {
-    inet_ntop(AF_INET6, m.external_address.s6_addr, buffer, sizeof(buffer));
-    return 0;
-  }
-  else
-    return -1;
+  return 0;
 }
 
 CONSTRUCTOR install(void)

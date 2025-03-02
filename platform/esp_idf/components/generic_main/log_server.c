@@ -76,6 +76,9 @@ accept_handler(int sock, void * data, bool readable, bool writable, bool excepti
 void
 gm_log_server_start(void)
 {
+  if ( server > 0 )
+    return;
+
   struct sockaddr_in address = {};
 
   // FIX: Use an IP6 address and clear the IPV6_V6ONLY flag on the socket so that
@@ -105,9 +108,10 @@ void
 gm_log_server_stop(void)
 {
   logging_connection_closed();
-  if ( server >= 0 ) {
-    gm_fd_unregister(server);
-    close(server);
-    server = -1;
-  }
+  if ( server < 0 )
+    return;
+  gm_fd_unregister(server);
+  shutdown(server, SHUT_RDWR);
+  close(server);
+  server = -1;
 }

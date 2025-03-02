@@ -182,6 +182,9 @@ static int listener = -1;
 esp_err_t
 gm_start_redirect_to_https()
 {
+  if ( listener >= 0 )
+    return ESP_OK;
+
   listener = socket(AF_INET6, SOCK_STREAM, 0);
   const int no = 0;     
 
@@ -213,10 +216,10 @@ gm_start_redirect_to_https()
 void
 gm_stop_redirect_to_https()
 {
-  if ( listener >= 0 ) {
-    gm_fd_unregister(listener);
-    shutdown(listener, SHUT_RDWR);
-    close(listener);
-    	listener = -1;
-  }
+  if ( listener < 0 )
+    return;
+  gm_fd_unregister(listener);
+  shutdown(listener, SHUT_RDWR);
+  close(listener);
+  listener = -1;
 }

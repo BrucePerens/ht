@@ -84,19 +84,8 @@ gm_wifi_is_connected(void)
 
 static void after_stun(bool success, bool ipv6, struct sockaddr * address)
 {
-  char	buffer[INET6_ADDRSTRLEN + 1];
-
-  if ( success ) {
-    if ( ipv6 ) {
-      inet_ntop(AF_INET6, &((struct sockaddr_in6 *)address)->sin6_addr, buffer, sizeof(buffer));
-      gm_port_control_protocol_request_mapping_ipv6();
-    }
-    else
-      inet_ntop(AF_INET, &((struct sockaddr_in *)address)->sin_addr, buffer, sizeof(buffer));
-  }
-  else {
-    gm_printf("STUN for %s failed.\n", ipv6 ? "IPv6" : "IPv4");
-  }
+  if ( !success )
+    GM_FAIL("STUN for %s failed.\n", ipv6 ? "IPv6" : "IPv4");
 }
 
 void
@@ -207,8 +196,8 @@ static void ip_event_sta_got_ip4(void* arg, esp_event_base_t event_base, int32_t
   inet_ntop(AF_INET, &event->ip_info.gw.addr, buffer, sizeof(buffer));
   gm_printf("router %s\n", buffer);
   gm_sntp_start();
-  gm_stun(false, (struct sockaddr *)&GM.sta.ip4.pub, after_stun);
-  gm_port_control_protocol_start_listener_ipv4();
+  gm_stun(false, (struct sockaddr *)&GM.sta.ip4.router_public_ip, after_stun);
+  gm_port_control_protocol_start();
   gm_port_control_protocol_request_mapping_ipv4();
   start_webserver();
   gm_log_server_start();
@@ -264,27 +253,24 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
     if (is_station) {
       // FIX: We may never get a link-local address on some systems.
       // Cope with it if we don't.
-      if ( gm_all_zeroes(&interface->ip6.pub, sizeof(interface->ip6.pub)) ) {
-        gm_port_control_protocol_start_listener_ipv6();
-        gm_stun(true, (struct sockaddr *)&interface->ip6.pub, after_stun);
+      if ( gm_all_zeroes(&interface->ip6.router_public_ip, sizeof(interface->ip6.router_public_ip)) ) {
+        gm_port_control_protocol_start();
+        gm_stun(true, (struct sockaddr *)&interface->ip6.router_public_ip, after_stun);
       }
     }
     break;
   case ESP_IP6_ADDR_IS_SITE_LOCAL:
     interface->ip6.site_local.sin6_family = AF_INET6;
     memcpy(interface->ip6.site_local.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
-    if ( gm_all_zeroes(&interface->ip6.pub, sizeof(interface->ip6.pub)) ) {
-      gm_port_control_protocol_start_listener_ipv6();
-      gm_stun(true, (struct sockaddr *)&interface->ip6.pub, after_stun);
+    if ( gm_all_zeroes(&interface->ip6.router_public_ip, sizeof(interface->ip6.router_public_ip)) ) {
+      gm_port_control_protocol_start();
+      gm_stun(true, (struct sockaddr *)&interface->ip6.router_public_ip, after_stun);
     }
     break;
   case ESP_IP6_ADDR_IS_UNIQUE_LOCAL:
     interface->ip6.site_unique.sin6_family = AF_INET6;
     memcpy(interface->ip6.site_unique.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
-    if ( gm_all_zeroes(&interface->ip6.pub, sizeof(interface->ip6.pub)) ) {
-      gm_port_control_protocol_start_listener_ipv6();
-      gm_stun(true, (struct sockaddr *)&interface->ip6.pub, after_stun);
-    }
+    gm_port_control_protocol_start();
     break;
   case ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6:
     break;
@@ -344,8 +330,7 @@ void gm_wifi_restart(void)
   stop_webserver();
   gm_log_server_stop();
   gm_icmpv6_stop_listener_ipv6();
-  gm_port_control_protocol_stop_listener_ipv4();
-  gm_port_control_protocol_stop_listener_ipv6();
+  gm_port_control_protocol_stop();
   gm_stun_stop();
   gm_sntp_stop();
   if ( gm_wifi_is_connected() ) {
