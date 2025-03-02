@@ -171,48 +171,52 @@ $(document).ready(function(){initNavTree('log__server_8c_source.html',''); initR
 <div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keywordtype">void</span></div>
 <div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="generic__main_8h.html#ae17fd33e2bbb97acf78960757a4aed47">   77</a></span><a class="code hl_function" href="log__server_8c.html#ae17fd33e2bbb97acf78960757a4aed47">gm_log_server_start</a>(<span class="keywordtype">void</span>)</div>
 <div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>{</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keyword">struct </span>sockaddr_in <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a> = {};</div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span> </div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  <span class="comment">// FIX: Use an IP6 address and clear the IPV6_V6ONLY flag on the socket so that</span></div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="comment">// this accepts both IPV4 and IPV6.</span></div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>  server = socket(AF_INET, SOCK_STREAM, 0);</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span> </div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>.sin_family = AF_INET;</div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>.sin_addr.s_addr = <a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a477579ad6762a6fb11348e532989f90b">sta</a>.<a class="code hl_variable" href="struct__gm__netif.html#ab9ef7195a36b5427338db9911416c778">ip4</a>.<a class="code hl_variable" href="struct__gm__netif_1_1gm__netif__ip4.html#a367491879e8ce396250c54956bc6ed5e">address</a>.sin_addr.s_addr;</div>
-<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>  <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>.sin_port = htons(23);</div>
-<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
-<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <span class="keywordflow">if</span> ( bind(server, (<span class="keyword">struct</span> sockaddr *)&amp;<a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>, <span class="keyword">sizeof</span>(<a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>)) != 0 ) {</div>
-<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;Log server bind failed: %s\n&quot;</span>, strerror(errno));</div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  }</div>
-<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
-<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>  <span class="keywordflow">if</span> ( listen(server, 2) != 0 ) {</div>
-<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;Log server listen failed: %s\n&quot;</span>, strerror(errno));</div>
-<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    close(server);</div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(server, accept_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 0);</div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  ; <span class="comment">// gm_printf(&quot;Log server waiting for connection.\n&quot;);</span></div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>}</div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span> </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00105" name="l00105"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a0f0c763155ec6bb7c9b2893523165166">  105</a></span><a class="code hl_function" href="log__server_8c.html#a0f0c763155ec6bb7c9b2893523165166">gm_log_server_stop</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span>{</div>
-<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span>  logging_connection_closed();</div>
-<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>  <span class="keywordflow">if</span> ( server &gt;= 0 ) {</div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>    <a class="code hl_function" href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a>(server);</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>    close(server);</div>
-<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    server = -1;</div>
-<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>  }</div>
-<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>}</div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="keywordflow">if</span> ( server &gt; 0 )</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keyword">struct </span>sockaddr_in <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a> = {};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>  <span class="comment">// FIX: Use an IP6 address and clear the IPV6_V6ONLY flag on the socket so that</span></div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>  <span class="comment">// this accepts both IPV4 and IPV6.</span></div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>  server = socket(AF_INET, SOCK_STREAM, 0);</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span> </div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>  <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>.sin_family = AF_INET;</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>  <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>.sin_addr.s_addr = <a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a477579ad6762a6fb11348e532989f90b">sta</a>.<a class="code hl_variable" href="struct__gm__netif.html#ab9ef7195a36b5427338db9911416c778">ip4</a>.<a class="code hl_variable" href="struct__gm__netif_1_1gm__netif__ip4.html#a367491879e8ce396250c54956bc6ed5e">address</a>.sin_addr.s_addr;</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>  <a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>.sin_port = htons(23);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span> </div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>  <span class="keywordflow">if</span> ( bind(server, (<span class="keyword">struct</span> sockaddr *)&amp;<a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>, <span class="keyword">sizeof</span>(<a class="code hl_define" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>)) != 0 ) {</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;Log server bind failed: %s\n&quot;</span>, strerror(errno));</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>  }</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span> </div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordflow">if</span> ( listen(server, 2) != 0 ) {</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;Log server listen failed: %s\n&quot;</span>, strerror(errno));</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span>    close(server);</div>
+<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  }</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(server, accept_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 0);</div>
+<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span>  ; <span class="comment">// gm_printf(&quot;Log server waiting for connection.\n&quot;);</span></div>
+<div class="line"><a id="l00105" name="l00105"></a><span class="lineno">  105</span>}</div>
+<div class="line"><a id="l00106" name="l00106"></a><span class="lineno">  106</span> </div>
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno">  107</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a0f0c763155ec6bb7c9b2893523165166">  108</a></span><a class="code hl_function" href="log__server_8c.html#a0f0c763155ec6bb7c9b2893523165166">gm_log_server_stop</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>{</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>  logging_connection_closed();</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <span class="keywordflow">if</span> ( server &lt; 0 )</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <a class="code hl_function" href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a>(server);</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>  shutdown(server, SHUT_RDWR);</div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  close(server);</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>  server = -1;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span>}</div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a3433e32a85b9cd569c3a4d8f0a82a039"><div class="ttname"><a href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a></div><div class="ttdeci">void gm_fd_unregister(int fd)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00093">select_task.c:93</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5775ffb7210a4f9052e884ed6fda249b"><div class="ttname"><a href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a></div><div class="ttdeci">#define GM_FAIL(args...)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00039">generic_main.h:39</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5d74fbe16c813a7c392df9132d100b5b"><div class="ttname"><a href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a></div><div class="ttdeci">int gm_printf(const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00038">printf.c:38</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_ac22a7af22d1407b004803ed54e3d85af"><div class="ttname"><a href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a></div><div class="ttdeci">void gm_fd_register(int fd, gm_fd_handler_t handler, void *data, bool readable, bool writable, bool exception, uint32_t seconds)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00049">select_task.c:49</a></div></div>
 <div class="ttc" id="aglobal_8c_html_ad66802844977f678a6bb2e99792255db"><div class="ttname"><a href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a></div><div class="ttdeci">generic_main_t GM</div><div class="ttdef"><b>Definition:</b> <a href="global_8c_source.html#l00013">global.c:13</a></div></div>
-<div class="ttc" id="alog__server_8c_html_a0f0c763155ec6bb7c9b2893523165166"><div class="ttname"><a href="log__server_8c.html#a0f0c763155ec6bb7c9b2893523165166">gm_log_server_stop</a></div><div class="ttdeci">void gm_log_server_stop(void)</div><div class="ttdef"><b>Definition:</b> <a href="log__server_8c_source.html#l00105">log_server.c:105</a></div></div>
+<div class="ttc" id="alog__server_8c_html_a0f0c763155ec6bb7c9b2893523165166"><div class="ttname"><a href="log__server_8c.html#a0f0c763155ec6bb7c9b2893523165166">gm_log_server_stop</a></div><div class="ttdeci">void gm_log_server_stop(void)</div><div class="ttdef"><b>Definition:</b> <a href="log__server_8c_source.html#l00108">log_server.c:108</a></div></div>
 <div class="ttc" id="alog__server_8c_html_ae17fd33e2bbb97acf78960757a4aed47"><div class="ttname"><a href="log__server_8c.html#ae17fd33e2bbb97acf78960757a4aed47">gm_log_server_start</a></div><div class="ttdeci">void gm_log_server_start(void)</div><div class="ttdef"><b>Definition:</b> <a href="log__server_8c_source.html#l00077">log_server.c:77</a></div></div>
 <div class="ttc" id="astruct__generic__main_html_a24738a7628babf4c49890c1b0f4dbb09"><div class="ttname"><a href="struct__generic__main.html#a24738a7628babf4c49890c1b0f4dbb09">_generic_main::log_file_pointer</a></div><div class="ttdeci">FILE * log_file_pointer</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00168">generic_main.h:168</a></div></div>
 <div class="ttc" id="astruct__generic__main_html_a477579ad6762a6fb11348e532989f90b"><div class="ttname"><a href="struct__generic__main.html#a477579ad6762a6fb11348e532989f90b">_generic_main::sta</a></div><div class="ttdeci">gm_netif_t sta</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00154">generic_main.h:154</a></div></div>

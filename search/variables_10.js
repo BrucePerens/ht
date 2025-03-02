@@ -12,7 +12,7 @@ var searchData=
   ['remote_5fpeer_5faddress_9',['remote_peer_address',['../struct__nat__pmp__or__pcp.html#ac807c7894a633023f63bb1aeb7b2bf44',1,'_nat_pmp_or_pcp']]],
   ['remote_5fpeer_5fport_10',['remote_peer_port',['../struct__nat__pmp__or__pcp.html#a0557290827ffd25bd71dce04ef4faa20',1,'_nat_pmp_or_pcp']]],
   ['repl_11',['repl',['../struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4',1,'_generic_main']]],
-  ['request_12',['request',['../struct__nat__pmp__or__pcp.html#ad766c7569cc7e37569bc602dfce5a266',1,'_nat_pmp_or_pcp::request()'],['../struct__nat__pmp__or__pcp.html#a2dbeaf928ab879dbd27ebe6f8e20f579',1,'_nat_pmp_or_pcp::request()']]],
+  ['request_12',['request',['../struct__nat__pmp__or__pcp.html#a2dbeaf928ab879dbd27ebe6f8e20f579',1,'_nat_pmp_or_pcp::request()'],['../struct__nat__pmp__or__pcp.html#ad766c7569cc7e37569bc602dfce5a266',1,'_nat_pmp_or_pcp::request()']]],
   ['reserved_13',['reserved',['../struct__nat__pmp__or__pcp.html#ad41eb183c32bcd9045db56ac2a9b8885',1,'_nat_pmp_or_pcp']]],
   ['reserved1_14',['reserved1',['../struct__nat__pmp__or__pcp.html#a1bac3eaf5ec72ae83059cda38a312592',1,'_nat_pmp_or_pcp::reserved1()'],['../struct__nat__pmp__or__pcp.html#a6b89b86dfe0266be2fc46cf46f6e7b72',1,'_nat_pmp_or_pcp::reserved1()']]],
   ['response_15',['response',['../struct__nat__pmp__or__pcp.html#ae1084f60bc67a8763ca2bf738124a944',1,'_nat_pmp_or_pcp::response()'],['../struct__nat__pmp__or__pcp.html#aa14ef1b5257ed5037c430d2f049e0511',1,'_nat_pmp_or_pcp::response()']]],
@@ -20,5 +20,6 @@ var searchData=
   ['retransmit_5ftimer_17',['retransmit_timer',['../struct__icmpv6__message_1_1__ra.html#aa3bcc107c5fcb7b9d54f3c672a4880f3',1,'_icmpv6_message::_ra']]],
   ['router_18',['router',['../struct__gm__netif_1_1gm__netif__ip4.html#a76c167858effe7ee221df62c260cde4e',1,'_gm_netif::gm_netif_ip4::router()'],['../struct__gm__netif_1_1gm__netif__ip6.html#a5cab611a06e7eed74b08f509b6997a6c',1,'_gm_netif::gm_netif_ip6::router()']]],
   ['router_5flifetime_19',['router_lifetime',['../struct__icmpv6__message_1_1__ra.html#aad10a5bcb25abcca8282d3a55dbc1458',1,'_icmpv6_message::_ra']]],
-  ['run_20',['run',['../structgm__event__t.html#a6fb782caacb45eeaf9bf33f5f372b830',1,'gm_event_t']]]
+  ['router_5fpublic_5fip_20',['router_public_ip',['../struct__gm__netif_1_1gm__netif__ip4.html#ae5173979fff7b6d14256f25bd34aaa60',1,'_gm_netif::gm_netif_ip4::router_public_ip()'],['../struct__gm__netif_1_1gm__netif__ip6.html#a73ca0b1d278c194990da9eddbdc3ba8d',1,'_gm_netif::gm_netif_ip6::router_public_ip()']]],
+  ['run_21',['run',['../structgm__event__t.html#a6fb782caacb45eeaf9bf33f5f372b830',1,'gm_event_t']]]
 ];

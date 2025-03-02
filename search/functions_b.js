@@ -10,6 +10,6 @@ var searchData=
   ['radio_5fset_7',['radio_set',['../structradio__module.html#ae06c34b43c0045b00995264187a42b27',1,'radio_module::radio_set()'],['../radio_8c.html#ae06c34b43c0045b00995264187a42b27',1,'radio_set():&#160;radio.c']]],
   ['radio_5ftransmit_8',['radio_transmit',['../structradio__module.html#ac2e7142fe3559dedffb221b6a5fd85ca',1,'radio_module::radio_transmit()'],['../radio_8c.html#ac2e7142fe3559dedffb221b6a5fd85ca',1,'radio_transmit(radio_module *const c):&#160;radio.c']]],
   ['receive_5fstun_5fresponse_9',['receive_stun_response',['../generic__main_2stun_8c.html#a0ba5077c3e10b75fa1a7706804a2ce0d',1,'stun.c']]],
-  ['request_5fmapping_5fipv6_10',['request_mapping_ipv6',['../port__control__protocol_8c.html#a1df48532cb5972beb4cf425064b6ec75',1,'port_control_protocol.c']]],
+  ['request_5fmapping_10',['request_mapping',['../port__control__protocol_8c.html#a2f6aa9d5c9d5c98f1b9132f3e71ac7e7',1,'port_control_protocol.c']]],
   ['run_11',['run',['../public__ip__cmd_8c.html#ac1f545534cdaab9094198a5dc2c2a79f',1,'public_ip_cmd.c']]]
 ];

@@ -277,50 +277,53 @@ $(document).ready(function(){initNavTree('redirect_8c_source.html',''); initResi
 <div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>esp_err_t</div>
 <div class="line"><a id="l00183" name="l00183"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a35edd8b3aa4268ed13883551812b1329">  183</a></span><a class="code hl_function" href="redirect_8c.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a>()</div>
 <div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span>{</div>
-<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  listener = socket(AF_INET6, SOCK_STREAM, 0);</div>
-<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> no = 0;     </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>  <span class="keywordflow">if</span> ( listener &gt;= 0 )</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">return</span> ESP_OK;</div>
 <div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span> </div>
-<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  <span class="keyword">const</span> <span class="keyword">struct </span>sockaddr_in6 serv_addr = {</div>
-<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>   .sin6_family = AF_INET6,</div>
-<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span>   <span class="comment">// lwip defines struct in6_addr and associated things a bit differently than</span></div>
-<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>   <span class="comment">// other platforms.</span></div>
-<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>   .sin6_addr = IN6ADDR_ANY_INIT,</div>
-<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>   .sin6_port = htons(80)</div>
-<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>  };</div>
-<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span> </div>
-<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>  <span class="keywordflow">if</span> ( bind(listener, (<span class="keyword">const</span> <span class="keyword">struct</span> sockaddr *)&amp;serv_addr, (socklen_t)<span class="keyword">sizeof</span>(serv_addr)) &lt; 0 ) {</div>
-<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Redirect: Bind failed.\n&quot;</span>);</div>
-<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
-<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  }</div>
-<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span> </div>
-<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>  <span class="comment">// Accept both IPV4 and IPV6 connections.</span></div>
-<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  (void) setsockopt(listener, IPPROTO_IPV6, IPV6_V6ONLY, (<span class="keyword">const</span> <span class="keywordtype">void</span> *)&amp;no, <span class="keyword">sizeof</span>(no)); </div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>  listener = socket(AF_INET6, SOCK_STREAM, 0);</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <span class="keyword">const</span> <span class="keywordtype">int</span> no = 0;     </div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  <span class="keyword">const</span> <span class="keyword">struct </span>sockaddr_in6 serv_addr = {</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>   .sin6_family = AF_INET6,</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span>   <span class="comment">// lwip defines struct in6_addr and associated things a bit differently than</span></div>
+<div class="line"><a id="l00194" name="l00194"></a><span class="lineno">  194</span>   <span class="comment">// other platforms.</span></div>
+<div class="line"><a id="l00195" name="l00195"></a><span class="lineno">  195</span>   .sin6_addr = IN6ADDR_ANY_INIT,</div>
+<div class="line"><a id="l00196" name="l00196"></a><span class="lineno">  196</span>   .sin6_port = htons(80)</div>
+<div class="line"><a id="l00197" name="l00197"></a><span class="lineno">  197</span>  };</div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span> </div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>  <span class="keywordflow">if</span> ( bind(listener, (<span class="keyword">const</span> <span class="keyword">struct</span> sockaddr *)&amp;serv_addr, (socklen_t)<span class="keyword">sizeof</span>(serv_addr)) &lt; 0 ) {</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Redirect: Bind failed.\n&quot;</span>);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>  }</div>
 <div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span> </div>
-<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  <span class="keywordflow">if</span> ( listen(listener, 10) &lt; 0 ) {</div>
-<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Redirect: Listen failed.\n&quot;</span>);</div>
-<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
-<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  }</div>
-<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span> </div>
-<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(listener, accept_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 0);</div>
-<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  <span class="keywordflow">return</span> ESP_OK;</div>
-<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>}</div>
-<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
-<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00214" name="l00214"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a0496e518b680edfca3abc22c7e2f617e">  214</a></span><a class="code hl_function" href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a>()</div>
-<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>{</div>
-<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span>  <span class="keywordflow">if</span> ( listener &gt;= 0 ) {</div>
-<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>    <a class="code hl_function" href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a>(listener);</div>
-<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>    shutdown(listener, SHUT_RDWR);</div>
-<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>    close(listener);</div>
-<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>        listener = -1;</div>
-<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  }</div>
-<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>}</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>  <span class="comment">// Accept both IPV4 and IPV6 connections.</span></div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>  (void) setsockopt(listener, IPPROTO_IPV6, IPV6_V6ONLY, (<span class="keyword">const</span> <span class="keywordtype">void</span> *)&amp;no, <span class="keyword">sizeof</span>(no)); </div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>  <span class="keywordflow">if</span> ( listen(listener, 10) &lt; 0 ) {</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <a class="code hl_function" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(<span class="stringliteral">&quot;Redirect: Listen failed.\n&quot;</span>);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>    <span class="keywordflow">return</span> ESP_FAIL;</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>  }</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span> </div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span>  <a class="code hl_function" href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a>(listener, accept_handler, 0, <span class="keyword">true</span>, <span class="keyword">false</span>, <span class="keyword">true</span>, 0);</div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>  <span class="keywordflow">return</span> ESP_OK;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>}</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span> </div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno"><a class="line" href="generic__main_8h.html#a0496e518b680edfca3abc22c7e2f617e">  217</a></span><a class="code hl_function" href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a>()</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span>{</div>
+<div class="line"><a id="l00219" name="l00219"></a><span class="lineno">  219</span>  <span class="keywordflow">if</span> ( listener &lt; 0 )</div>
+<div class="line"><a id="l00220" name="l00220"></a><span class="lineno">  220</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00221" name="l00221"></a><span class="lineno">  221</span>  <a class="code hl_function" href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a>(listener);</div>
+<div class="line"><a id="l00222" name="l00222"></a><span class="lineno">  222</span>  shutdown(listener, SHUT_RDWR);</div>
+<div class="line"><a id="l00223" name="l00223"></a><span class="lineno">  223</span>  close(listener);</div>
+<div class="line"><a id="l00224" name="l00224"></a><span class="lineno">  224</span>  listener = -1;</div>
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno">  225</span>}</div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a3433e32a85b9cd569c3a4d8f0a82a039"><div class="ttname"><a href="generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039">gm_fd_unregister</a></div><div class="ttdeci">void gm_fd_unregister(int fd)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00093">select_task.c:93</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5775ffb7210a4f9052e884ed6fda249b"><div class="ttname"><a href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a></div><div class="ttdeci">#define GM_FAIL(args...)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00039">generic_main.h:39</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5d74fbe16c813a7c392df9132d100b5b"><div class="ttname"><a href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a></div><div class="ttdeci">int gm_printf(const char *format,...)</div><div class="ttdef"><b>Definition:</b> <a href="printf_8c_source.html#l00038">printf.c:38</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_ac22a7af22d1407b004803ed54e3d85af"><div class="ttname"><a href="generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af">gm_fd_register</a></div><div class="ttdeci">void gm_fd_register(int fd, gm_fd_handler_t handler, void *data, bool readable, bool writable, bool exception, uint32_t seconds)</div><div class="ttdef"><b>Definition:</b> <a href="select__task_8c_source.html#l00049">select_task.c:49</a></div></div>
-<div class="ttc" id="aredirect_8c_html_a0496e518b680edfca3abc22c7e2f617e"><div class="ttname"><a href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a></div><div class="ttdeci">void gm_stop_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00214">redirect.c:214</a></div></div>
+<div class="ttc" id="aredirect_8c_html_a0496e518b680edfca3abc22c7e2f617e"><div class="ttname"><a href="redirect_8c.html#a0496e518b680edfca3abc22c7e2f617e">gm_stop_redirect_to_https</a></div><div class="ttdeci">void gm_stop_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00217">redirect.c:217</a></div></div>
 <div class="ttc" id="aredirect_8c_html_a2d212d68c637707da9153bc15ab8106c"><div class="ttname"><a href="redirect_8c.html#a2d212d68c637707da9153bc15ab8106c">bad_request</a></div><div class="ttdeci">const char bad_request[]</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00026">redirect.c:26</a></div></div>
 <div class="ttc" id="aredirect_8c_html_a316fc9766abce787ebc80a10207761b8"><div class="ttname"><a href="redirect_8c.html#a316fc9766abce787ebc80a10207761b8">crlf</a></div><div class="ttdeci">const char crlf[]</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00029">redirect.c:29</a></div></div>
 <div class="ttc" id="aredirect_8c_html_a35edd8b3aa4268ed13883551812b1329"><div class="ttname"><a href="redirect_8c.html#a35edd8b3aa4268ed13883551812b1329">gm_start_redirect_to_https</a></div><div class="ttdeci">esp_err_t gm_start_redirect_to_https()</div><div class="ttdef"><b>Definition:</b> <a href="redirect_8c_source.html#l00183">redirect.c:183</a></div></div>

@@ -13,12 +13,11 @@ var searchData=
   ['pcp_5fmax_5fpayload_10',['PCP_MAX_PAYLOAD',['../port__control__protocol_8c.html#a74473e5fce6791a91bb13e45ce9d0304',1,'port_control_protocol.c']]],
   ['phrase_11',['phrase',['../structstun__attribute.html#a0ef056a0235aa2b9461e689707f5d1bf',1,'stun_attribute']]],
   ['pin_12',['pin',['../gpio_8c.html#a60d96eece67e3510f1a906fb5d232487',1,'gpio.c']]],
-  ['port_13',['port',['../structstun__server.html#a8e0798404bf2cf5dabb84c5ba9a4f236',1,'stun_server::port()'],['../structstun__attribute.html#a8e0798404bf2cf5dabb84c5ba9a4f236',1,'stun_attribute::port()']]],
+  ['port_13',['port',['../structstun__attribute.html#a8e0798404bf2cf5dabb84c5ba9a4f236',1,'stun_attribute::port()'],['../structstun__server.html#a8e0798404bf2cf5dabb84c5ba9a4f236',1,'stun_server::port()']]],
   ['port_5fmappings_14',['port_mappings',['../struct__gm__netif_1_1gm__netif__ip6.html#a1e01f8ea029440b59296507906357ae4',1,'_gm_netif::gm_netif_ip6::port_mappings()'],['../struct__gm__netif_1_1gm__netif__ip4.html#a1e01f8ea029440b59296507906357ae4',1,'_gm_netif::gm_netif_ip4::port_mappings()']]],
   ['preemphasis_5fdeemphasis_15',['preemphasis_deemphasis',['../structradio__channel__data.html#af72fda9873998e1d8769803acfd94482',1,'radio_channel_data']]],
   ['procedure_16',['procedure',['../structgm__event__t.html#a340ca94a564c73e516b842cece89dc64',1,'gm_event_t::procedure()'],['../struct__gm__run__data.html#a340ca94a564c73e516b842cece89dc64',1,'_gm_run_data::procedure()'],['../structtimer__task.html#a340ca94a564c73e516b842cece89dc64',1,'timer_task::procedure()']]],
   ['protocol_17',['protocol',['../struct__nat__pmp__or__pcp.html#ad124d3d2e02c729afa303c775295278e',1,'_nat_pmp_or_pcp']]],
-  ['pub_18',['pub',['../struct__gm__netif_1_1gm__netif__ip4.html#aae47d012dcf71f215748e80a16baa277',1,'_gm_netif::gm_netif_ip4::pub()'],['../struct__gm__netif_1_1gm__netif__ip6.html#ac498a32b6f2a176f97c2d9754354a168',1,'_gm_netif::gm_netif_ip6::pub()']]],
-  ['pull_5fdown_19',['pull_down',['../gpio_8c.html#a3f685123d5ee1e8bac30ce91bd3c42f2',1,'gpio.c']]],
-  ['pull_5fup_20',['pull_up',['../gpio_8c.html#afc6e0853ad6df62caa768dd78fed18c5',1,'gpio.c']]]
+  ['pull_5fdown_18',['pull_down',['../gpio_8c.html#a3f685123d5ee1e8bac30ce91bd3c42f2',1,'gpio.c']]],
+  ['pull_5fup_19',['pull_up',['../gpio_8c.html#afc6e0853ad6df62caa768dd78fed18c5',1,'gpio.c']]]
 ];
