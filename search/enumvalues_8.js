@@ -10,7 +10,6 @@ var searchData=
   ['nat_5fpmp_5fsuccess_7',['NAT_PMP_SUCCESS',['../port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788ae69379ea7be53c949569029b0379d5eb',1,'port_control_protocol.c']]],
   ['nat_5fpmp_5funsupp_5fversion_8',['NAT_PMP_UNSUPP_VERSION',['../port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788a710c3b806aea8ba69c5e56961248926b',1,'port_control_protocol.c']]],
   ['nat_5fpmp_5funsupported_5fopcode_9',['NAT_PMP_UNSUPPORTED_OPCODE',['../port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788a0c41c8b9a0b4fdaacb5f42ab5a541800',1,'port_control_protocol.c']]],
-  ['noerror_10',['NoError',['../improv__wifi_8c.html#a98d44695c46f7dc6b4e95183abc4b17aaef9104c292609ba6db320509be8fe27f',1,'improv_wifi.c']]],
-  ['nonce_11',['NONCE',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13ae792e90f68de1ea122e7af10c01cc276',1,'stun.c']]],
-  ['none_12',['NONE',['../compressed__fs_8h.html#a1e459517f01bb9dac9511086b04d11c3ac157bdf0b85a40d2619cbc8bc1ae5fe2',1,'compressed_fs.h']]]
+  ['nonce_10',['NONCE',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13ae792e90f68de1ea122e7af10c01cc276',1,'stun.c']]],
+  ['none_11',['NONE',['../compressed__fs_8h.html#a1e459517f01bb9dac9511086b04d11c3ac157bdf0b85a40d2619cbc8bc1ae5fe2',1,'compressed_fs.h']]]
 ];

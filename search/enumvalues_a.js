@@ -4,8 +4,8 @@ var searchData=
   ['password_5falgorithms_1',['PASSWORD_ALGORITHMS',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13a8b254b1dbe4245bbf32ef0d11db4f32f',1,'stun.c']]],
   ['pcp_5faddress_5fmismatch_2',['PCP_ADDRESS_MISMATCH',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7a77a1d0d8d33912c02919055ccb24de64',1,'port_control_protocol.c']]],
   ['pcp_5fannounce_3',['PCP_ANNOUNCE',['../port__control__protocol_8c.html#af2b6084716951a0a114e51e93c76463dad52db63731ea42d3bffa83e7b979f9a9',1,'port_control_protocol.c']]],
-  ['pcp_5fannounce_5fport_4',['PCP_ANNOUNCE_PORT',['../port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fda5490cbce3a13564136346d8686e5478c',1,'port_control_protocol.c']]],
-  ['pcp_5fcannot_5fprovide_5fexternal_5',['PCP_CANNOT_PROVIDE_EXTERNAL',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7a47893f480da5694a697c6c25865da9f9',1,'port_control_protocol.c']]],
+  ['pcp_5fcannot_5fprovide_5fexternal_4',['PCP_CANNOT_PROVIDE_EXTERNAL',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7a47893f480da5694a697c6c25865da9f9',1,'port_control_protocol.c']]],
+  ['pcp_5fclient_5fport_5',['PCP_CLIENT_PORT',['../port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fda5da67ab1f4f662c2b948e455a54d5125',1,'port_control_protocol.c']]],
   ['pcp_5fexcessive_5fremote_5fpeers_6',['PCP_EXCESSIVE_REMOTE_PEERS',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7acbaee10a2a455cd836753741c3f2b751',1,'port_control_protocol.c']]],
   ['pcp_5fmalformed_5foption_7',['PCP_MALFORMED_OPTION',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7a538e0a9addb3de6d0023d4f02d8d4312',1,'port_control_protocol.c']]],
   ['pcp_5fmalformed_5frequest_8',['PCP_MALFORMED_REQUEST',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7ac442abd049c9bc6636c60859ee64576a',1,'port_control_protocol.c']]],
@@ -14,7 +14,7 @@ var searchData=
   ['pcp_5fno_5fresources_11',['PCP_NO_RESOURCES',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7ac2cb96e463d92fb4ca75efc96f5fee3e',1,'port_control_protocol.c']]],
   ['pcp_5fnot_5fauthorized_12',['PCP_NOT_AUTHORIZED',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7ac06eb208a42f0da992361a88d7b03f90',1,'port_control_protocol.c']]],
   ['pcp_5fpeer_13',['PCP_PEER',['../port__control__protocol_8c.html#af2b6084716951a0a114e51e93c76463da631112db1d9b15d3d89832591fec39ff',1,'port_control_protocol.c']]],
-  ['pcp_5fport_14',['PCP_PORT',['../port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fda1df1b515b34be5828fd0d09d793f525e',1,'port_control_protocol.c']]],
+  ['pcp_5fserver_5fport_14',['PCP_SERVER_PORT',['../port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fdacb52e7d1eb328dcdb3b891f7ac75ffa8',1,'port_control_protocol.c']]],
   ['pcp_5fsuccess_15',['PCP_SUCCESS',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7af3df30c12dbceb4ea9604c20047b99e5',1,'port_control_protocol.c']]],
   ['pcp_5ftcp_16',['PCP_TCP',['../port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1a1c7dde88e5f3edec1cc13756854ab685',1,'port_control_protocol.c']]],
   ['pcp_5fudp_17',['PCP_UDP',['../port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1ab2496b9f6ec4819101288376006f8342',1,'port_control_protocol.c']]],
@@ -25,9 +25,7 @@ var searchData=
   ['pcp_5fuser_5fex_5fquota_22',['PCP_USER_EX_QUOTA',['../port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7ab217e7b1502c3d874100204595017488',1,'port_control_protocol.c']]],
   ['port_5fmapping_5fprotocol_23',['PORT_MAPPING_PROTOCOL',['../port__control__protocol_8c.html#adc3e35480f42347a4c16a5e4c3715167a72f2f3778196b165d6539be1721b86c2',1,'port_control_protocol.c']]],
   ['post_24',['POST',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926',1,'generic_main.h']]],
-  ['provisioned_25',['Provisioned',['../improv__wifi_8c.html#a5475e2942e796c165570039ff2215294ac2f1f3d0ddf4f021da8a411843f6b5c7',1,'improv_wifi.c']]],
-  ['provisioning_26',['Provisioning',['../improv__wifi_8c.html#a5475e2942e796c165570039ff2215294a68b30b08fd996f1e40bc246a30660ca9',1,'improv_wifi.c']]],
-  ['pull_5fdown_27',['PULL_DOWN',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba0351276972489e49e38c22116a9b88be',1,'gpio.c']]],
-  ['pull_5fup_28',['PULL_UP',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba6d031447a3a4f4a8bd019caae5a8eefd',1,'gpio.c']]],
-  ['put_29',['PUT',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9',1,'generic_main.h']]]
+  ['pull_5fdown_25',['PULL_DOWN',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba0351276972489e49e38c22116a9b88be',1,'gpio.c']]],
+  ['pull_5fup_26',['PULL_UP',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba6d031447a3a4f4a8bd019caae5a8eefd',1,'gpio.c']]],
+  ['put_27',['PUT',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9',1,'generic_main.h']]]
 ];

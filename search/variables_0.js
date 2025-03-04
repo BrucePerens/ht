@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['address_0',['address',['../struct__gm__netif_1_1gm__netif__ip4.html#a367491879e8ce396250c54956bc6ed5e',1,'_gm_netif::gm_netif_ip4::address()'],['../struct__last__request.html#aae8fde91ce26bf141fe1d113e5c895fb',1,'_last_request::address()'],['../structstun__run.html#a9c804fc1fd286d72c8507f2386505d31',1,'stun_run::address()'],['../improv__wifi_8c.html#a367491879e8ce396250c54956bc6ed5e',1,'address():&#160;improv_wifi.c']]],
+  ['address_0',['address',['../struct__gm__netif_1_1gm__netif__ip4.html#a367491879e8ce396250c54956bc6ed5e',1,'_gm_netif::gm_netif_ip4::address()'],['../struct__last__request.html#aae8fde91ce26bf141fe1d113e5c895fb',1,'_last_request::address()'],['../structstun__run.html#a9c804fc1fd286d72c8507f2386505d31',1,'stun_run::address()']]],
   ['admin_1',['admin',['../struct__gm__user__data.html#aa405bdf5ebca40094959ade066225f7d',1,'_gm_user_data']]],
   ['aes_5fcookie_5fcontext_2',['aes_cookie_context',['../struct__generic__main.html#a9fdb30ef7b2e1becab1e2e57117a792e',1,'_generic_main']]],
   ['aes_5fcookie_5fiv_3',['aes_cookie_iv',['../struct__generic__main.html#a74d8e89f87e4ed006a64c3356bb8dec9',1,'_generic_main']]],

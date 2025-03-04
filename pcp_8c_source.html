@@ -108,43 +108,41 @@ $(document).ready(function(){initNavTree('pcp_8c_source.html',''); initResizable
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
 <div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">static</span> <span class="keywordtype">int</span> run(<span class="keywordtype">int</span> argc, <span class="keywordtype">char</span> * * argv)</div>
 <div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>{</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">char</span>  buffer[64];</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <span class="keywordtype">int</span> nerrors = arg_parse(argc, argv, (<span class="keywordtype">void</span> **) &amp;args);</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>  <span class="keywordflow">if</span> (nerrors) {</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    arg_print_errors(stderr, args.end, argv[0]);</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>      <span class="keywordflow">return</span> 1;</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  }</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  printf(<span class="stringliteral">&quot;\n&quot;</span>); </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">if</span> ( args.ipv6-&gt;count &gt; 0 )</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="generic__main_8h.html#a20b55c52b4cd8746b9cd2a40af8207f8">gm_port_control_protocol_request_mapping_ipv6</a>();</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordflow">else</span></div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <a class="code hl_function" href="generic__main_8h.html#a778f5210b754ac534d6a4581acd66153">gm_port_control_protocol_request_mapping_ipv4</a>();</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>  <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>}</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno"><a class="line" href="pcp_8c.html#a7bf1e786753c71de834738da71de453a">   32</a></span><a class="code hl_define" href="generic__main_8h.html#a5facd426173a400e33c57d48617b3a66">CONSTRUCTOR</a> <a class="code hl_function" href="pcp_8c.html#a7bf1e786753c71de834738da71de453a">install</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>{</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  args.ipv6 =  arg_lit0(<span class="stringliteral">&quot;6&quot;</span>, NULL, <span class="stringliteral">&quot;Use IPv6 (default IPv4)&quot;</span>);</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  args.end = arg_end(10);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>  <span class="keyword">static</span> <span class="keyword">const</span> esp_console_cmd_t command = {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    .command = <span class="stringliteral">&quot;pcp&quot;</span>,</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    .help = <span class="stringliteral">&quot;Run the port control protocol to get a firewall pinhole.&quot;</span>,</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    .hint = NULL,</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    .func = &amp;run,</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    .argtable = &amp;args</div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  };</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span> </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>  <a class="code hl_function" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a>(&amp;command);</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>}</div>
-<div class="ttc" id="acommand_8c_html_a81fcf7e147f61773bc741537c2124e43"><div class="ttname"><a href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a></div><div class="ttdeci">void gm_command_register(const esp_console_cmd_t *command)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00012">command.c:12</a></div></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  <span class="keywordtype">int</span> nerrors = arg_parse(argc, argv, (<span class="keywordtype">void</span> **) &amp;args);</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <span class="keywordflow">if</span> (nerrors) {</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    arg_print_errors(stderr, args.end, argv[0]);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>      <span class="keywordflow">return</span> 1;</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>  }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>  printf(<span class="stringliteral">&quot;\n&quot;</span>); </div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>  <span class="keywordflow">if</span> ( args.ipv6-&gt;count &gt; 0 )</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <a class="code hl_function" href="generic__main_8h.html#a861f1b258118ca6d3d83a71eb07576b3">gm_pcp_request_mapping_ipv6</a>();</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keywordflow">else</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_function" href="generic__main_8h.html#a4fd38097cab904ccf56663f41833a0f3">gm_pcp_request_mapping_ipv4</a>();</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="pcp_8c.html#a7bf1e786753c71de834738da71de453a">   30</a></span><a class="code hl_define" href="generic__main_8h.html#a5facd426173a400e33c57d48617b3a66">CONSTRUCTOR</a> <a class="code hl_function" href="pcp_8c.html#a7bf1e786753c71de834738da71de453a">install</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  args.ipv6 =  arg_lit0(<span class="stringliteral">&quot;6&quot;</span>, NULL, <span class="stringliteral">&quot;Use IPv6 (default IPv4)&quot;</span>);</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  args.end = arg_end(10);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keyword">static</span> <span class="keyword">const</span> esp_console_cmd_t command = {</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    .command = <span class="stringliteral">&quot;pcp&quot;</span>,</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    .help = <span class="stringliteral">&quot;Run the port control protocol to get a firewall pinhole.&quot;</span>,</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    .hint = NULL,</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    .func = &amp;run,</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    .argtable = &amp;args</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  };</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <a class="code hl_function" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a>(&amp;command);</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>}</div>
+<div class="ttc" id="acommand_8c_html_a81fcf7e147f61773bc741537c2124e43"><div class="ttname"><a href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a></div><div class="ttdeci">void gm_command_register(const esp_console_cmd_t *command)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00013">command.c:13</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
-<div class="ttc" id="ageneric__main_8h_html_a20b55c52b4cd8746b9cd2a40af8207f8"><div class="ttname"><a href="generic__main_8h.html#a20b55c52b4cd8746b9cd2a40af8207f8">gm_port_control_protocol_request_mapping_ipv6</a></div><div class="ttdeci">void gm_port_control_protocol_request_mapping_ipv6(void)</div><div class="ttdef"><b>Definition:</b> <a href="port__control__protocol_8c_source.html#l00184">port_control_protocol.c:184</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a4fd38097cab904ccf56663f41833a0f3"><div class="ttname"><a href="generic__main_8h.html#a4fd38097cab904ccf56663f41833a0f3">gm_pcp_request_mapping_ipv4</a></div><div class="ttdeci">void gm_pcp_request_mapping_ipv4(void)</div><div class="ttdef"><b>Definition:</b> <a href="port__control__protocol_8c_source.html#l00168">port_control_protocol.c:168</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5facd426173a400e33c57d48617b3a66"><div class="ttname"><a href="generic__main_8h.html#a5facd426173a400e33c57d48617b3a66">CONSTRUCTOR</a></div><div class="ttdeci">#define CONSTRUCTOR</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00022">generic_main.h:22</a></div></div>
-<div class="ttc" id="ageneric__main_8h_html_a778f5210b754ac534d6a4581acd66153"><div class="ttname"><a href="generic__main_8h.html#a778f5210b754ac534d6a4581acd66153">gm_port_control_protocol_request_mapping_ipv4</a></div><div class="ttdeci">void gm_port_control_protocol_request_mapping_ipv4(void)</div><div class="ttdef"><b>Definition:</b> <a href="port__control__protocol_8c_source.html#l00155">port_control_protocol.c:155</a></div></div>
+<div class="ttc" id="ageneric__main_8h_html_a861f1b258118ca6d3d83a71eb07576b3"><div class="ttname"><a href="generic__main_8h.html#a861f1b258118ca6d3d83a71eb07576b3">gm_pcp_request_mapping_ipv6</a></div><div class="ttdeci">void gm_pcp_request_mapping_ipv6(void)</div><div class="ttdef"><b>Definition:</b> <a href="port__control__protocol_8c_source.html#l00196">port_control_protocol.c:196</a></div></div>
 <div class="ttc" id="apcp_8c_html_a088ac7ffa534015d5b07ddcc7aef9fd4"><div class="ttname"><a href="pcp_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4">end</a></div><div class="ttdeci">struct arg_end * end</div><div class="ttdef"><b>Definition:</b> <a href="pcp_8c_source.html#l00011">pcp.c:11</a></div></div>
-<div class="ttc" id="apcp_8c_html_a7bf1e786753c71de834738da71de453a"><div class="ttname"><a href="pcp_8c.html#a7bf1e786753c71de834738da71de453a">install</a></div><div class="ttdeci">CONSTRUCTOR install(void)</div><div class="ttdef"><b>Definition:</b> <a href="pcp_8c_source.html#l00032">pcp.c:32</a></div></div>
+<div class="ttc" id="apcp_8c_html_a7bf1e786753c71de834738da71de453a"><div class="ttname"><a href="pcp_8c.html#a7bf1e786753c71de834738da71de453a">install</a></div><div class="ttdeci">CONSTRUCTOR install(void)</div><div class="ttdef"><b>Definition:</b> <a href="pcp_8c_source.html#l00030">pcp.c:30</a></div></div>
 <div class="ttc" id="apcp_8c_html_aedc34586441c6627db698d68c052e2e2"><div class="ttname"><a href="pcp_8c.html#aedc34586441c6627db698d68c052e2e2">ipv6</a></div><div class="ttdeci">struct arg_lit * ipv6</div><div class="ttdef"><b>Definition:</b> <a href="pcp_8c_source.html#l00010">pcp.c:10</a></div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->

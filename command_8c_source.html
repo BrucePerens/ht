@@ -98,72 +98,92 @@ $(document).ready(function(){initNavTree('command_8c_source.html',''); initResiz
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="preprocessor">#include &quot;<a class="code" href="generic__main_8h.html">generic_main.h</a>&quot;</span></div>
 <div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;esp_console.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &lt;driver/uart.h&gt;</span></div>
-<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &quot;linenoise/linenoise.h&quot;</span></div>
-<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">static</span> <a class="code hl_struct" href="struct___g_m___array.html">GM_Array</a> * array = 0;</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="comment">// This is called from CONSTRUCTOR functions, before main().</span></div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno"><a class="line" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">   12</a></span><a class="code hl_function" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a>(<span class="keyword">const</span> esp_console_cmd_t * command)</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>{</div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>  <span class="keywordflow">if</span> ( !array ) {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    array = <a class="code hl_function" href="array_8c.html#a99e71ffe00b5b64adbec11b417b5c7ce">gm_array_create</a>();</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>  }</div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  <a class="code hl_function" href="array_8c.html#a5f2a3e59e07f1c813f53d80eb26e250b">gm_array_add</a>(array, (<span class="keyword">const</span> <span class="keywordtype">void</span> *)command);</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>}</div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="keyword">static</span> <span class="keywordtype">int</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>compare(<span class="keyword">const</span> <span class="keywordtype">void</span> * _a, <span class="keyword">const</span> <span class="keywordtype">void</span> * _b)</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>{</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>  <span class="keyword">const</span> esp_console_cmd_t * <a class="code hl_define" href="web__template_8h.html#a8d3c3518d793541417a4845125da1ae1">a</a> = *(<span class="keyword">const</span> esp_console_cmd_t * *)_a;</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">const</span> esp_console_cmd_t * <a class="code hl_define" href="web__template_8h.html#ab2d05693952610f937e5acb3c4a8fa1b">b</a> = *(<span class="keyword">const</span> esp_console_cmd_t * *)_b;</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keywordtype">int</span> result = strcmp(<a class="code hl_define" href="web__template_8h.html#a8d3c3518d793541417a4845125da1ae1">a</a>-&gt;command, <a class="code hl_define" href="web__template_8h.html#ab2d05693952610f937e5acb3c4a8fa1b">b</a>-&gt;command);</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordflow">return</span> result;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>}</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno"><a class="line" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">   30</a></span><a class="code hl_function" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>{</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>  <span class="keywordtype">size_t</span> size;</div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>  <span class="keywordflow">if</span> (!array || (size = <a class="code hl_function" href="array_8c.html#a170249469300b7be411e80085403ad37">gm_array_size</a>(array)) == 0) {</div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;No commands are registered.\n&quot;</span>);</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <span class="keywordflow">return</span>;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>  }</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  <span class="comment">// Alphabetically sort the commands.</span></div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  qsort(<a class="code hl_function" href="array_8c.html#a8a7c07d4d330d1e13a2a8e5003bb97fd">gm_array_data</a>(array), <a class="code hl_function" href="array_8c.html#a170249469300b7be411e80085403ad37">gm_array_size</a>(array), <span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *), compare);</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>  <span class="keywordflow">for</span> ( <span class="keywordtype">size_t</span> <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a> = 0; <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a> &lt; size; <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a>++ ) {</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keyword">const</span> esp_console_cmd_t * c = (<span class="keyword">const</span> esp_console_cmd_t *)<a class="code hl_function" href="array_8c.html#a6937b35d8c8ba3046107e9e5dafc5379">gm_array_get</a>(array, <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a>);</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    ESP_ERROR_CHECK(esp_console_cmd_register(c));</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>  }</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  <a class="code hl_function" href="array_8c.html#a2568754038ecf27d3db8a71b9a37452f">gm_array_destroy</a>(array);</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>}</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keywordtype">void</span></div>
-<div class="line"><a id="l00051" name="l00051"></a><span class="lineno"><a class="line" href="command_8c.html#a424c59976cdb3cedc6cffb35105ddb07">   51</a></span><a class="code hl_function" href="command_8c.html#a424c59976cdb3cedc6cffb35105ddb07">gm_command_interpreter_start</a>(<span class="keywordtype">void</span>)</div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>{</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>  esp_console_dev_uart_config_t uart_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();</div>
-<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span> </div>
-<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  <span class="comment">// Configure the console command system.</span></div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span>  repl_config.task_stack_size = 5 * 1024;</div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  repl_config.prompt = <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  ESP_ERROR_CHECK(esp_console_new_repl_uart(&amp;uart_config, &amp;repl_config, &amp;<a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4">repl</a>));</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>  <a class="code hl_function" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a>();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  ESP_ERROR_CHECK(esp_console_start_repl(<a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4">repl</a>));</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>}</div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;driver/usb_serial_jtag.h&gt;</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span><span class="preprocessor">#include &quot;linenoise/linenoise.h&quot;</span></div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="keyword">static</span> <a class="code hl_struct" href="struct___g_m___array.html">GM_Array</a> * array = 0;</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="comment">// This is called from CONSTRUCTOR functions, before main().</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno"><a class="line" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">   13</a></span><a class="code hl_function" href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a>(<span class="keyword">const</span> esp_console_cmd_t * command)</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>{</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>  <span class="keywordflow">if</span> ( !array ) {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    array = <a class="code hl_function" href="array_8c.html#a99e71ffe00b5b64adbec11b417b5c7ce">gm_array_create</a>();</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>  }</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>  <a class="code hl_function" href="array_8c.html#a5f2a3e59e07f1c813f53d80eb26e250b">gm_array_add</a>(array, (<span class="keyword">const</span> <span class="keywordtype">void</span> *)command);</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>}</div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">static</span> <span class="keywordtype">int</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>compare(<span class="keyword">const</span> <span class="keywordtype">void</span> * _a, <span class="keyword">const</span> <span class="keywordtype">void</span> * _b)</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>{</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>  <span class="keyword">const</span> esp_console_cmd_t * <a class="code hl_define" href="web__template_8h.html#a8d3c3518d793541417a4845125da1ae1">a</a> = *(<span class="keyword">const</span> esp_console_cmd_t * *)_a;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>  <span class="keyword">const</span> esp_console_cmd_t * <a class="code hl_define" href="web__template_8h.html#ab2d05693952610f937e5acb3c4a8fa1b">b</a> = *(<span class="keyword">const</span> esp_console_cmd_t * *)_b;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>  <span class="keywordtype">int</span> result = strcmp(<a class="code hl_define" href="web__template_8h.html#a8d3c3518d793541417a4845125da1ae1">a</a>-&gt;command, <a class="code hl_define" href="web__template_8h.html#ab2d05693952610f937e5acb3c4a8fa1b">b</a>-&gt;command);</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>  <span class="keywordflow">return</span> result;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>}</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">   31</a></span><a class="code hl_function" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>{</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>  <span class="keywordtype">size_t</span> size;</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>  <span class="keywordflow">if</span> (!array || (size = <a class="code hl_function" href="array_8c.html#a170249469300b7be411e80085403ad37">gm_array_size</a>(array)) == 0) {</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    <a class="code hl_define" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(<span class="stringliteral">&quot;No commands are registered.\n&quot;</span>);</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>  }</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>  </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>  <span class="comment">// Alphabetically sort the commands.</span></div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>  qsort(<a class="code hl_function" href="array_8c.html#a8a7c07d4d330d1e13a2a8e5003bb97fd">gm_array_data</a>(array), <a class="code hl_function" href="array_8c.html#a170249469300b7be411e80085403ad37">gm_array_size</a>(array), <span class="keyword">sizeof</span>(<span class="keywordtype">void</span> *), compare);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>  <span class="keywordflow">for</span> ( <span class="keywordtype">size_t</span> <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a> = 0; <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a> &lt; size; <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a>++ ) {</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keyword">const</span> esp_console_cmd_t * c = (<span class="keyword">const</span> esp_console_cmd_t *)<a class="code hl_function" href="array_8c.html#a6937b35d8c8ba3046107e9e5dafc5379">gm_array_get</a>(array, <a class="code hl_define" href="web__template_8h.html#a08582ce460e3d5e1cf0b7fea017d608e">i</a>);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>    ESP_ERROR_CHECK(esp_console_cmd_register(c));</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>  }</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>  <a class="code hl_function" href="array_8c.html#a2568754038ecf27d3db8a71b9a37452f">gm_array_destroy</a>(array);</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>}</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span><span class="keywordtype">void</span></div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno"><a class="line" href="command_8c.html#a424c59976cdb3cedc6cffb35105ddb07">   52</a></span><a class="code hl_function" href="command_8c.html#a424c59976cdb3cedc6cffb35105ddb07">gm_command_interpreter_start</a>(<span class="keywordtype">void</span>)</div>
+<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span>{</div>
+<div class="line"><a id="l00054" name="l00054"></a><span class="lineno">   54</span>  esp_console_repl_config_t repl_config = ESP_CONSOLE_REPL_CONFIG_DEFAULT();</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno">   55</span>  repl_config.task_stack_size = 5 * 1024;</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  repl_config.prompt = <span class="stringliteral">&quot;&gt;&quot;</span>;</div>
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span><span class="preprocessor">#ifdef CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG</span></div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>  esp_console_dev_usb_serial_jtag_config_t hw_config = ESP_CONSOLE_DEV_USB_SERIAL_JTAG_CONFIG_DEFAULT();</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>  ESP_ERROR_CHECK(esp_console_new_repl_usb_serial_jtag(&amp;hw_config, &amp;repl_config, &amp;<a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4">repl</a>));</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  esp_console_dev_uart_config_t hw_config = ESP_CONSOLE_DEV_UART_CONFIG_DEFAULT();</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>  ESP_ERROR_CHECK(esp_console_new_repl_uart(&amp;hw_config, &amp;repl_config, &amp;<a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4">repl</a>));</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="comment">// Don&#39;t start the REPL thread if there isn&#39;t a terminal connected.</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="preprocessor">#ifdef CONFIG_ESP_CONSOLE_USB_SERIAL_JTAG</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordflow">if</span> ( !usb_serial_jtag_is_connected() )</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span><span class="preprocessor">#else</span></div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>  <span class="comment">// ANSI Terminals will report the cursor position in response to this.</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>  <span class="keywordtype">char</span> device_status_report[] = <span class="stringliteral">&quot;\x1b[6n&quot;</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  uart_flush(0);</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  write(1, device_status_report, <span class="keyword">sizeof</span>(device_status_report) - 1);</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="keywordtype">char</span>  buf[20];</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>  <span class="keywordflow">if</span> ( uart_read_bytes(0, buf, <span class="keyword">sizeof</span>(buf), 10) &lt;= 0 )</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keywordflow">return</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>  <span class="comment">// Configure the console command system.</span></div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>  <a class="code hl_function" href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a>();</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>  ESP_ERROR_CHECK(esp_console_start_repl(<a class="code hl_variable" href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a>.<a class="code hl_variable" href="struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4">repl</a>));</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>}</div>
 <div class="ttc" id="aarray_8c_html_a170249469300b7be411e80085403ad37"><div class="ttname"><a href="array_8c.html#a170249469300b7be411e80085403ad37">gm_array_size</a></div><div class="ttdeci">size_t gm_array_size(GM_Array *array)</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00050">array.c:50</a></div></div>
 <div class="ttc" id="aarray_8c_html_a2568754038ecf27d3db8a71b9a37452f"><div class="ttname"><a href="array_8c.html#a2568754038ecf27d3db8a71b9a37452f">gm_array_destroy</a></div><div class="ttdeci">void gm_array_destroy(GM_Array *array)</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00026">array.c:26</a></div></div>
 <div class="ttc" id="aarray_8c_html_a5f2a3e59e07f1c813f53d80eb26e250b"><div class="ttname"><a href="array_8c.html#a5f2a3e59e07f1c813f53d80eb26e250b">gm_array_add</a></div><div class="ttdeci">const void * gm_array_add(GM_Array *array, const void *data)</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00033">array.c:33</a></div></div>
 <div class="ttc" id="aarray_8c_html_a6937b35d8c8ba3046107e9e5dafc5379"><div class="ttname"><a href="array_8c.html#a6937b35d8c8ba3046107e9e5dafc5379">gm_array_get</a></div><div class="ttdeci">const void * gm_array_get(GM_Array *array, size_t index)</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00056">array.c:56</a></div></div>
 <div class="ttc" id="aarray_8c_html_a8a7c07d4d330d1e13a2a8e5003bb97fd"><div class="ttname"><a href="array_8c.html#a8a7c07d4d330d1e13a2a8e5003bb97fd">gm_array_data</a></div><div class="ttdeci">const void ** gm_array_data(GM_Array *array)</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00044">array.c:44</a></div></div>
 <div class="ttc" id="aarray_8c_html_a99e71ffe00b5b64adbec11b417b5c7ce"><div class="ttname"><a href="array_8c.html#a99e71ffe00b5b64adbec11b417b5c7ce">gm_array_create</a></div><div class="ttdeci">GM_Array * gm_array_create()</div><div class="ttdef"><b>Definition:</b> <a href="array_8c_source.html#l00016">array.c:16</a></div></div>
-<div class="ttc" id="acommand_8c_html_a424c59976cdb3cedc6cffb35105ddb07"><div class="ttname"><a href="command_8c.html#a424c59976cdb3cedc6cffb35105ddb07">gm_command_interpreter_start</a></div><div class="ttdeci">void gm_command_interpreter_start(void)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00051">command.c:51</a></div></div>
-<div class="ttc" id="acommand_8c_html_a81fcf7e147f61773bc741537c2124e43"><div class="ttname"><a href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a></div><div class="ttdeci">void gm_command_register(const esp_console_cmd_t *command)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00012">command.c:12</a></div></div>
-<div class="ttc" id="acommand_8c_html_ad4b530299aebe794e91816b1fcda55e6"><div class="ttname"><a href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a></div><div class="ttdeci">void gm_command_add_registered_to_console(void)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00030">command.c:30</a></div></div>
+<div class="ttc" id="acommand_8c_html_a424c59976cdb3cedc6cffb35105ddb07"><div class="ttname"><a href="command_8c.html#a424c59976cdb3cedc6cffb35105ddb07">gm_command_interpreter_start</a></div><div class="ttdeci">void gm_command_interpreter_start(void)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00052">command.c:52</a></div></div>
+<div class="ttc" id="acommand_8c_html_a81fcf7e147f61773bc741537c2124e43"><div class="ttname"><a href="command_8c.html#a81fcf7e147f61773bc741537c2124e43">gm_command_register</a></div><div class="ttdeci">void gm_command_register(const esp_console_cmd_t *command)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00013">command.c:13</a></div></div>
+<div class="ttc" id="acommand_8c_html_ad4b530299aebe794e91816b1fcda55e6"><div class="ttname"><a href="command_8c.html#ad4b530299aebe794e91816b1fcda55e6">gm_command_add_registered_to_console</a></div><div class="ttdeci">void gm_command_add_registered_to_console(void)</div><div class="ttdef"><b>Definition:</b> <a href="command_8c_source.html#l00031">command.c:31</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html"><div class="ttname"><a href="generic__main_8h.html">generic_main.h</a></div></div>
 <div class="ttc" id="ageneric__main_8h_html_a5775ffb7210a4f9052e884ed6fda249b"><div class="ttname"><a href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a></div><div class="ttdeci">#define GM_FAIL(args...)</div><div class="ttdef"><b>Definition:</b> <a href="generic__main_8h_source.html#l00039">generic_main.h:39</a></div></div>
 <div class="ttc" id="aglobal_8c_html_ad66802844977f678a6bb2e99792255db"><div class="ttname"><a href="global_8c.html#ad66802844977f678a6bb2e99792255db">GM</a></div><div class="ttdeci">generic_main_t GM</div><div class="ttdef"><b>Definition:</b> <a href="global_8c_source.html#l00013">global.c:13</a></div></div>

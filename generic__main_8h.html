@@ -282,6 +282,8 @@ Functions</h2></td></tr>
 <tr class="separator:a21bc5d328b52a0edb30de90ebe3e3b79"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2ab9a5644ba537abad91a937289b8e14"><td class="memItemLeft" align="right" valign="top">cJSON *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a2ab9a5644ba537abad91a937289b8e14">gm_read_cookie</a> (httpd_req_t *req)</td></tr>
 <tr class="separator:a2ab9a5644ba537abad91a937289b8e14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abebb14b02976d65c2c42b404210e17e4"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#abebb14b02976d65c2c42b404210e17e4">gm_match_bits</a> (const void *const restrict av, const void *const restrict bv, size_t size)</td></tr>
+<tr class="separator:abebb14b02976d65c2c42b404210e17e4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc118af20a9682e8218312d8288048fd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#acc118af20a9682e8218312d8288048fd">gm_sntp_start</a> ()</td></tr>
 <tr class="separator:acc118af20a9682e8218312d8288048fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad70eacc87cba0d4af8ff9eba17763472"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ad70eacc87cba0d4af8ff9eba17763472">gm_sntp_stop</a> ()</td></tr>
@@ -314,20 +316,24 @@ Functions</h2></td></tr>
 <tr class="separator:a51460bdf032351552fe12401c1b0974d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab472fe8d70226aa86222446a93a320e1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="generic__main_8h.html#a322970f36cc9a5ac1ccf2f1e6230be54">gm_nonvolatile_result_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ab472fe8d70226aa86222446a93a320e1">gm_nonvolatile_set</a> (const char *<a class="el" href="commands_2nonvolatile_8c.html#abf61f4f29c8b0931c0764e696cc8038d">name</a>, const char *<a class="el" href="commands_2nonvolatile_8c.html#ab9af2264cf2ff86b6fbf0758f4b4a133">value</a>)</td></tr>
 <tr class="separator:ab472fe8d70226aa86222446a93a320e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3bd7c95e901b5fa80a2b5676cc114ff5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a3bd7c95e901b5fa80a2b5676cc114ff5">gm_ntop</a> (const struct sockaddr_storage *const <a class="el" href="web__template_8h.html#ac9562ee4ecb3b8aeebeb04656e7e57a9">s</a>, char *const buffer, const size_t size)</td></tr>
+<tr class="separator:a3bd7c95e901b5fa80a2b5676cc114ff5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a18d26eb4ff804395cac6c875c0d707da"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a18d26eb4ff804395cac6c875c0d707da">gm_param</a> (const <a class="el" href="generic__main_8h.html#a4c816f122e5c792037607a8cdb1abb8b">gm_param_t</a> *<a class="el" href="web__template_8h.html#ade66e4ccafbc33b117610bbc0d85feb0">p</a>, int count, const char *<a class="el" href="commands_2nonvolatile_8c.html#abf61f4f29c8b0931c0764e696cc8038d">name</a>)</td></tr>
 <tr class="separator:a18d26eb4ff804395cac6c875c0d707da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38188a5e3580babed62ec96b60b0e6af"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a38188a5e3580babed62ec96b60b0e6af">gm_param_parse</a> (const char *<a class="el" href="web__template_8h.html#ac9562ee4ecb3b8aeebeb04656e7e57a9">s</a>, <a class="el" href="generic__main_8h.html#a4c816f122e5c792037607a8cdb1abb8b">gm_param_t</a> *<a class="el" href="web__template_8h.html#ade66e4ccafbc33b117610bbc0d85feb0">p</a>, int count)</td></tr>
 <tr class="separator:a38188a5e3580babed62ec96b60b0e6af"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af9fee351160d7f411fbd382405dac89d"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#af9fee351160d7f411fbd382405dac89d">gm_pattern_string</a> (const char *string, <a class="el" href="generic__main_8h.html#a1e989767b6cfe7b5f1a9f2658312e5c4">gm_pattern_coroutine_t</a> coroutine, char *buffer, size_t buffer_size)</td></tr>
 <tr class="separator:af9fee351160d7f411fbd382405dac89d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a778f5210b754ac534d6a4581acd66153"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a778f5210b754ac534d6a4581acd66153">gm_port_control_protocol_request_mapping_ipv4</a> (void)</td></tr>
-<tr class="separator:a778f5210b754ac534d6a4581acd66153"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a20b55c52b4cd8746b9cd2a40af8207f8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a20b55c52b4cd8746b9cd2a40af8207f8">gm_port_control_protocol_request_mapping_ipv6</a> (void)</td></tr>
-<tr class="separator:a20b55c52b4cd8746b9cd2a40af8207f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a32fdcee5700e8778e29a5c52b1b963d3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a32fdcee5700e8778e29a5c52b1b963d3">gm_port_control_protocol_start</a> (void)</td></tr>
-<tr class="separator:a32fdcee5700e8778e29a5c52b1b963d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade2e038a4770a70e3735e453d932a277"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ade2e038a4770a70e3735e453d932a277">gm_port_control_protocol_stop</a> (void)</td></tr>
-<tr class="separator:ade2e038a4770a70e3735e453d932a277"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4fd38097cab904ccf56663f41833a0f3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a4fd38097cab904ccf56663f41833a0f3">gm_pcp_request_mapping_ipv4</a> (void)</td></tr>
+<tr class="separator:a4fd38097cab904ccf56663f41833a0f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a861f1b258118ca6d3d83a71eb07576b3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a861f1b258118ca6d3d83a71eb07576b3">gm_pcp_request_mapping_ipv6</a> (void)</td></tr>
+<tr class="separator:a861f1b258118ca6d3d83a71eb07576b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7428284ea4755c22ef2b026dfb4440af"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a7428284ea4755c22ef2b026dfb4440af">gm_pcp_start_ipv4</a> (void)</td></tr>
+<tr class="separator:a7428284ea4755c22ef2b026dfb4440af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3aae46007ca6d177cea9ce115f854b1c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a3aae46007ca6d177cea9ce115f854b1c">gm_pcp_start_ipv6</a> (void)</td></tr>
+<tr class="separator:a3aae46007ca6d177cea9ce115f854b1c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0628cd4da01a84dab437d4fc2679cd27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a0628cd4da01a84dab437d4fc2679cd27">gm_pcp_stop</a> (void)</td></tr>
+<tr class="separator:a0628cd4da01a84dab437d4fc2679cd27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5d74fbe16c813a7c392df9132d100b5b"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a> (const char *format,...)</td></tr>
 <tr class="separator:a5d74fbe16c813a7c392df9132d100b5b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a942dd964f2b73b8d56ddb994842b362f"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a942dd964f2b73b8d56ddb994842b362f">gm_public_ipv4</a> (char *<a class="el" href="web__template_8h.html#a43a278d13284fb3412e9eee1db1d967e">data</a>, size_t size)</td></tr>
@@ -382,6 +388,8 @@ Functions</h2></td></tr>
 <tr class="separator:aac6f4c828ad94aaf48c2483fe4141e55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1c7be980135a5aa45c600d01fedd0ca3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a1c7be980135a5aa45c600d01fedd0ca3">gm_wifi_start</a> (void)</td></tr>
 <tr class="separator:a1c7be980135a5aa45c600d01fedd0ca3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a90eb9a603fa068a181f829109b114852"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a90eb9a603fa068a181f829109b114852">gm_wifi_stop</a> (void)</td></tr>
+<tr class="separator:a90eb9a603fa068a181f829109b114852"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a584ee9de1273331416f9cf53678c2d2b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a584ee9de1273331416f9cf53678c2d2b">gm_wifi_wait_until_disconnected</a> (void)</td></tr>
 <tr class="separator:a584ee9de1273331416f9cf53678c2d2b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8d42db9ee4b15c2b63708603dd729cec"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a8d42db9ee4b15c2b63708603dd729cec">gm_wifi_wait_until_ready</a> (void)</td></tr>
@@ -1162,7 +1170,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="command_8c_source.html#l00030">30</a> of file <a class="el" href="command_8c_source.html">command.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="command_8c_source.html#l00031">31</a> of file <a class="el" href="command_8c_source.html">command.c</a>.</p>
 
 </div>
 </div>
@@ -1182,7 +1190,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="command_8c_source.html#l00051">51</a> of file <a class="el" href="command_8c_source.html">command.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="command_8c_source.html#l00052">52</a> of file <a class="el" href="command_8c_source.html">command.c</a>.</p>
 
 </div>
 </div>
@@ -1202,7 +1210,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="command_8c_source.html#l00012">12</a> of file <a class="el" href="command_8c_source.html">command.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="command_8c_source.html#l00013">13</a> of file <a class="el" href="command_8c_source.html">command.c</a>.</p>
 
 </div>
 </div>
@@ -1470,7 +1478,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="icmpv6_8c_source.html#l00071">71</a> of file <a class="el" href="icmpv6_8c_source.html">icmpv6.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="icmpv6_8c_source.html#l00077">77</a> of file <a class="el" href="icmpv6_8c_source.html">icmpv6.c</a>.</p>
 
 </div>
 </div>
@@ -1490,7 +1498,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="icmpv6_8c_source.html#l00082">82</a> of file <a class="el" href="icmpv6_8c_source.html">icmpv6.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="icmpv6_8c_source.html#l00088">88</a> of file <a class="el" href="icmpv6_8c_source.html">icmpv6.c</a>.</p>
 
 </div>
 </div>
@@ -1509,8 +1517,6 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="improv__wifi_8c_source.html#l00516">516</a> of file <a class="el" href="improv__wifi_8c_source.html">improv_wifi.c</a>.</p>
 
 </div>
 </div>
@@ -1554,6 +1560,42 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="abebb14b02976d65c2c42b404210e17e4" name="abebb14b02976d65c2c42b404210e17e4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abebb14b02976d65c2c42b404210e17e4">&#9670;&#160;</a></span>gm_match_bits()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t gm_match_bits </td>
+          <td>(</td>
+          <td class="paramtype">const void *const restrict&#160;</td>
+          <td class="paramname"><em>av</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const void *const restrict&#160;</td>
+          <td class="paramname"><em>bv</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="match__bits_8c_source.html#l00007">7</a> of file <a class="el" href="match__bits_8c_source.html">match_bits.c</a>.</p>
+
+</div>
+</div>
 <a id="ad656c0cb49d3bf765a586782b9212aa0" name="ad656c0cb49d3bf765a586782b9212aa0"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad656c0cb49d3bf765a586782b9212aa0">&#9670;&#160;</a></span>gm_nonvolatile_erase()</h2>
 
@@ -1570,7 +1612,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00131">131</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00127">127</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>
@@ -1606,7 +1648,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00075">75</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00071">71</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>
@@ -1626,7 +1668,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00047">47</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00043">43</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
 
 </div>
 </div>
@@ -1656,7 +1698,43 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00104">104</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2nonvolatile_8c_source.html#l00100">100</a> of file <a class="el" href="generic__main_2nonvolatile_8c_source.html">nonvolatile.c</a>.</p>
+
+</div>
+</div>
+<a id="a3bd7c95e901b5fa80a2b5676cc114ff5" name="a3bd7c95e901b5fa80a2b5676cc114ff5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3bd7c95e901b5fa80a2b5676cc114ff5">&#9670;&#160;</a></span>gm_ntop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_ntop </td>
+          <td>(</td>
+          <td class="paramtype">const struct sockaddr_storage *const&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">char *const&#160;</td>
+          <td class="paramname"><em>buffer</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const size_t&#160;</td>
+          <td class="paramname"><em>size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="ntop_8c_source.html#l00004">4</a> of file <a class="el" href="ntop_8c_source.html">ntop.c</a>.</p>
 
 </div>
 </div>
@@ -1774,14 +1852,14 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a id="a778f5210b754ac534d6a4581acd66153" name="a778f5210b754ac534d6a4581acd66153"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a778f5210b754ac534d6a4581acd66153">&#9670;&#160;</a></span>gm_port_control_protocol_request_mapping_ipv4()</h2>
+<a id="a4fd38097cab904ccf56663f41833a0f3" name="a4fd38097cab904ccf56663f41833a0f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4fd38097cab904ccf56663f41833a0f3">&#9670;&#160;</a></span>gm_pcp_request_mapping_ipv4()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gm_port_control_protocol_request_mapping_ipv4 </td>
+          <td class="memname">void gm_pcp_request_mapping_ipv4 </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1790,18 +1868,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00155">155</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00168">168</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
-<a id="a20b55c52b4cd8746b9cd2a40af8207f8" name="a20b55c52b4cd8746b9cd2a40af8207f8"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a20b55c52b4cd8746b9cd2a40af8207f8">&#9670;&#160;</a></span>gm_port_control_protocol_request_mapping_ipv6()</h2>
+<a id="a861f1b258118ca6d3d83a71eb07576b3" name="a861f1b258118ca6d3d83a71eb07576b3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a861f1b258118ca6d3d83a71eb07576b3">&#9670;&#160;</a></span>gm_pcp_request_mapping_ipv6()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gm_port_control_protocol_request_mapping_ipv6 </td>
+          <td class="memname">void gm_pcp_request_mapping_ipv6 </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1810,18 +1888,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00184">184</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00196">196</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
-<a id="a32fdcee5700e8778e29a5c52b1b963d3" name="a32fdcee5700e8778e29a5c52b1b963d3"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a32fdcee5700e8778e29a5c52b1b963d3">&#9670;&#160;</a></span>gm_port_control_protocol_start()</h2>
+<a id="a7428284ea4755c22ef2b026dfb4440af" name="a7428284ea4755c22ef2b026dfb4440af"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7428284ea4755c22ef2b026dfb4440af">&#9670;&#160;</a></span>gm_pcp_start_ipv4()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gm_port_control_protocol_start </td>
+          <td class="memname">void gm_pcp_start_ipv4 </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1830,18 +1908,18 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00404">404</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00419">419</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
-<a id="ade2e038a4770a70e3735e453d932a277" name="ade2e038a4770a70e3735e453d932a277"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ade2e038a4770a70e3735e453d932a277">&#9670;&#160;</a></span>gm_port_control_protocol_stop()</h2>
+<a id="a3aae46007ca6d177cea9ce115f854b1c" name="a3aae46007ca6d177cea9ce115f854b1c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3aae46007ca6d177cea9ce115f854b1c">&#9670;&#160;</a></span>gm_pcp_start_ipv6()</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void gm_port_control_protocol_stop </td>
+          <td class="memname">void gm_pcp_start_ipv6 </td>
           <td>(</td>
           <td class="paramtype">void&#160;</td>
           <td class="paramname"></td><td>)</td>
@@ -1850,7 +1928,27 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00462">462</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00477">477</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+
+</div>
+</div>
+<a id="a0628cd4da01a84dab437d4fc2679cd27" name="a0628cd4da01a84dab437d4fc2679cd27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0628cd4da01a84dab437d4fc2679cd27">&#9670;&#160;</a></span>gm_pcp_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_pcp_stop </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00534">534</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -2158,7 +2256,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2stun_8c_source.html#l00494">494</a> of file <a class="el" href="generic__main_2stun_8c_source.html">stun.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2stun_8c_source.html#l00487">487</a> of file <a class="el" href="generic__main_2stun_8c_source.html">stun.c</a>.</p>
 
 </div>
 </div>
@@ -2177,7 +2275,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_2stun_8c_source.html#l00530">530</a> of file <a class="el" href="generic__main_2stun_8c_source.html">stun.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_2stun_8c_source.html#l00510">510</a> of file <a class="el" href="generic__main_2stun_8c_source.html">stun.c</a>.</p>
 
 </div>
 </div>
@@ -2232,8 +2330,6 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="improv__wifi_8c_source.html#l00460">460</a> of file <a class="el" href="improv__wifi_8c_source.html">improv_wifi.c</a>.</p>
 
 </div>
 </div>
@@ -2608,7 +2704,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00056">56</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00057">57</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
 
 </div>
 </div>
@@ -2628,7 +2724,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00077">77</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00078">78</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
 
 </div>
 </div>
@@ -2648,7 +2744,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00320">320</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00323">323</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
 
 </div>
 </div>
@@ -2668,7 +2764,27 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00092">92</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00093">93</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+
+</div>
+</div>
+<a id="a90eb9a603fa068a181f829109b114852" name="a90eb9a603fa068a181f829109b114852"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a90eb9a603fa068a181f829109b114852">&#9670;&#160;</a></span>gm_wifi_stop()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_wifi_stop </td>
+          <td>(</td>
+          <td class="paramtype">void&#160;</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00307">307</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
 
 </div>
 </div>
@@ -2688,7 +2804,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00071">71</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00072">72</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
 
 </div>
 </div>
@@ -2708,7 +2824,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00065">65</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="wifi_8c_source.html#l00066">66</a> of file <a class="el" href="wifi_8c_source.html">wifi.c</a>.</p>
 
 </div>
 </div>

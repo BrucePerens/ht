@@ -14,7 +14,6 @@ var dir_3f8f2344752268c2de4822e112f246fe =
     [ "get.c", "get_8c.html", "get_8c" ],
     [ "global.c", "global_8c.html", "global_8c" ],
     [ "icmpv6.c", "icmpv6_8c.html", "icmpv6_8c" ],
-    [ "improv_wifi.c", "improv__wifi_8c.html", "improv__wifi_8c" ],
     [ "log_server.c", "log__server_8c.html", "log__server_8c" ],
     [ "match_bits.c", "match__bits_8c.html", "match__bits_8c" ],
     [ "nonvolatile.c", "generic__main_2nonvolatile_8c.html", "generic__main_2nonvolatile_8c" ],
