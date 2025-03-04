@@ -197,21 +197,24 @@ gm_pcp_request_mapping_ipv6()
 {
   nat_pmp_or_pcp_t * const	p = &last_request.packet;
   struct sockaddr_in6 * const 	a6 = (struct sockaddr_in6 *)&last_request.address;
-  char				buffer[INET6_ADDRSTRLEN + 1];
+  // char				buffer[INET6_ADDRSTRLEN + 1];
 
   memset(&last_request, '\0', sizeof(last_request));
   last_request.valid = true;
  
   a6->sin6_family = AF_INET6;
-  memcpy(&a6->sin6_addr, &local_ipv6_address.sin6_addr, sizeof(a6->sin6_addr));
+  memcpy(&a6->sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(a6->sin6_addr));
   a6->sin6_port = htons(PCP_SERVER_PORT);
 
   memcpy(&p->pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p->pcp.request.client_address));
   p->pcp.mp.protocol = PCP_TCP;
   p->pcp.mp.internal_port = htons(443);
   p->pcp.mp.external_port = htons(7300);
-  gm_ntop(&last_request.address, buffer, sizeof(buffer));
-  gm_printf("Request IPv6 port mapping of router %s\n", buffer);
+
+  // gm_ntop(&last_request.address, buffer, sizeof(buffer));
+  // gm_printf("Request IPv6 port mapping of router %s\n", buffer);
+  // inet_ntop(AF_INET6, &a6->sin6_addr, buffer, sizeof(buffer));
+  // gm_printf("Client is %s\n", buffer);
  
   request_mapping(p);
 }
@@ -227,7 +230,6 @@ decode_pcp_announce(nat_pmp_or_pcp_t * const p, const ssize_t message_size, cons
 static void
 decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storage * address)
 {
-  gm_printf("In decode_pcp_map\n");
   // FIX: Manage re-authorization of existing mappings. Reject responses that are too
   // long after the request.
   gm_port_mapping_t	m = {};
@@ -259,7 +261,15 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
 
   if ( ipv6_type != ESP_IP6_ADDR_IS_GLOBAL
    && ipv6_type != ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6) {
-    GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping to an IPv6 %s address, %s, instead of a global address. This is probably a MiniUPnPd bug.\n", GM.ipv6_address_types[ipv6_type], buffer);
+    if ( memcmp(
+     &p->pcp.mp.external_address,
+     &GM.sta.ip6.link_local.sin6_addr,
+     sizeof(GM.sta.ip6.link_local.sin6_addr)) == 0 ) {
+      GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping specifying the link-local address of this device, instead of the global address of the router. This is probably a MiniUPnPd bug.\n");
+    }
+    else {
+      GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping to an IPv6 %s address, %s, instead of a global address. This is probably a MiniUPnPd bug.\n", GM.ipv6_address_types[ipv6_type], buffer);
+    }
     return;
   }
 
@@ -379,14 +389,12 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storag
 static void
 incoming_packet(int fd, void * data, bool readable, bool writable, bool exception, bool timeout)
 {
-  gm_printf("In incoming_packet\n");
-
   if ( readable ) {
     nat_pmp_or_pcp_t		packet;
     struct sockaddr_storage	address;
     socklen_t			address_size = sizeof(address);
     ssize_t			message_size;
-    int			port;
+    // int			port;
     char			buffer[INET6_ADDRSTRLEN + 1];
 
     message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
@@ -397,19 +405,19 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
     }
     memset(buffer, '\0', sizeof(buffer));
     if ( address.ss_family == AF_INET ) {
-      inet_ntop(AF_INET, &((struct sockaddr_in *)&address)->sin_addr.s_addr, buffer, sizeof(buffer));
-      port = htons(((struct sockaddr_in *)&address)->sin_port);
+      // inet_ntop(AF_INET, &((struct sockaddr_in *)&address)->sin_addr.s_addr, buffer, sizeof(buffer));
+      // port = htons(((struct sockaddr_in *)&address)->sin_port);
     }
     else {
-      inet_ntop(AF_INET6, &((struct sockaddr_in6 *)&address)->sin6_addr, buffer, sizeof(buffer));
-      port = htons(((struct sockaddr_in6 *)&address)->sin6_port);
+      // inet_ntop(AF_INET6, &((struct sockaddr_in6 *)&address)->sin6_addr, buffer, sizeof(buffer));
+      // port = htons(((struct sockaddr_in6 *)&address)->sin6_port);
     }
 
-    gm_printf("PCP received %s packet of size %d from %s port %d.\n",
-     data != 0 ? "multicast" : "unicast",
-     message_size,
-     buffer,
-     port);
+    // gm_printf("PCP received %s packet of size %d from %s port %d.\n",
+    //  data != 0 ? "multicast" : "unicast",
+    //  message_size,
+    //  buffer,
+    //  port);
 
     decode_packet(&packet, message_size, &address);
   }
