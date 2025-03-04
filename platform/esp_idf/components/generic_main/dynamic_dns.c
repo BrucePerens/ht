@@ -98,16 +98,12 @@ int gm_ddns(void)
   char ddns_provider[64];
   const struct ddns_provider * p = ddns_providers;
   gm_nonvolatile_result_t result;
-  static bool i_told_you_once = false;
 
   result = gm_nonvolatile_get("ddns_provider", ddns_provider, sizeof(ddns_provider));
   
   switch ( result ) {
   case GM_NOT_SET:
-    if (!i_told_you_once) {
-      GM_WARN_ONCE("Warning: Dynamic DNS provider not set.\n");
-      i_told_you_once = true;
-    }
+    GM_WARN_ONCE("Warning: Dynamic DNS provider not set.\n");
     return -1;
   case GM_NORMAL:
   case GM_SECRET:

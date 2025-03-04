@@ -44,6 +44,7 @@ static EventGroupHandle_t wifi_events = NULL;
 static esp_event_handler_instance_t handler_wifi_event_sta_connected_to_ap = NULL;
 static esp_event_handler_instance_t handler_ip_event_sta_got_ip4 = NULL;
 static esp_event_handler_instance_t handler_ip_event_got_ip6 = NULL;
+static bool pcp_ipv6_started = false;
 
 extern void start_webserver(void);
 extern void stop_webserver();
@@ -157,16 +158,17 @@ ipv6_router_advertisement_handler(struct sockaddr_in6 * address, uint16_t router
 {
   if ( !gm_all_zeroes(GM.sta.ip6.router.sin6_addr.s6_addr, sizeof(GM.sta.ip6.router.sin6_addr.s6_addr))
    && memcmp(GM.sta.ip6.router.sin6_addr.s6_addr, address->sin6_addr.s6_addr, sizeof(address->sin6_addr.s6_addr)) != 0 ) {
-    static bool first_time = true;
-    if ( first_time ) {
-      ; // gm_printf("Received a router advertisement from more than one IPv6 router. Ignoring all but the first.\n");
-      first_time = false;
-    }
+    GM_WARN_ONCE("Received a router advertisement from more than one IPv6 router. Ignoring all but the first.\n");
     return;
   }
   memcpy(GM.sta.ip6.router.sin6_addr.s6_addr, address->sin6_addr.s6_addr, sizeof(address->sin6_addr.s6_addr));
   GM.sta.ip6.router.sin6_family = AF_INET6;
   GM.sta.ip6.router.sin6_port = 0;
+  if ( !pcp_ipv6_started ) {
+    pcp_ipv6_started = true;
+    gm_pcp_start_ipv6();
+    gm_pcp_request_mapping_ipv6();
+  }
 }
 
 static void wifi_event_sta_connected_to_ap(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data) {
@@ -197,8 +199,8 @@ static void ip_event_sta_got_ip4(void* arg, esp_event_base_t event_base, int32_t
   gm_printf("router %s\n", buffer);
   gm_sntp_start();
   gm_stun(false, (struct sockaddr *)&GM.sta.ip4.router_public_ip, after_stun);
-  gm_port_control_protocol_start();
-  gm_port_control_protocol_request_mapping_ipv4();
+  gm_pcp_start_ipv4();
+  gm_pcp_request_mapping_ipv4();
   start_webserver();
   gm_log_server_start();
 }
@@ -213,7 +215,6 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
   esp_ip6_addr_type_t	ipv6_type = esp_netif_ip6_get_addr_type(&event->ip6_info.ip);
   const char *		netif_name = esp_netif_get_desc(event->esp_netif);
   gm_netif_t *		interface;
-  bool			is_station = false;
    
   inet_ntop(AF_INET6, &event->ip6_info.ip.addr, buffer, sizeof(buffer));
   gm_printf("Got IPv6: interface %s, address %s, type %s\n",
@@ -222,10 +223,8 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
    GM.ipv6_address_types[ipv6_type]);
   fflush(stderr);
 
-  if (strcmp(netif_name, "sta") == 0) {
+  if (strcmp(netif_name, "sta") == 0)
     interface = &GM.sta;
-    is_station = true;
-  }
   else if (strcmp(netif_name, "ap") == 0)
     interface = &GM.ap;
   else
@@ -250,27 +249,14 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
   case ESP_IP6_ADDR_IS_LINK_LOCAL:
     interface->ip6.link_local.sin6_family = AF_INET6;
     memcpy(interface->ip6.link_local.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
-    if (is_station) {
-      // FIX: We may never get a link-local address on some systems.
-      // Cope with it if we don't.
-      if ( gm_all_zeroes(&interface->ip6.router_public_ip, sizeof(interface->ip6.router_public_ip)) ) {
-        gm_port_control_protocol_start();
-        gm_stun(true, (struct sockaddr *)&interface->ip6.router_public_ip, after_stun);
-      }
-    }
     break;
   case ESP_IP6_ADDR_IS_SITE_LOCAL:
     interface->ip6.site_local.sin6_family = AF_INET6;
     memcpy(interface->ip6.site_local.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
-    if ( gm_all_zeroes(&interface->ip6.router_public_ip, sizeof(interface->ip6.router_public_ip)) ) {
-      gm_port_control_protocol_start();
-      gm_stun(true, (struct sockaddr *)&interface->ip6.router_public_ip, after_stun);
-    }
     break;
   case ESP_IP6_ADDR_IS_UNIQUE_LOCAL:
     interface->ip6.site_unique.sin6_family = AF_INET6;
     memcpy(interface->ip6.site_unique.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
-    gm_port_control_protocol_start();
     break;
   case ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6:
     break;
@@ -317,26 +303,34 @@ static void wifi_connect_to_ap(const char * ssid, const char * password)
   ESP_ERROR_CHECK( esp_wifi_connect() );
 }
 
-void gm_wifi_restart(void)
+void
+gm_wifi_stop()
 {
-  char ssid[33] = { 0 };
-  char password[65] = { 0 };
-  size_t ssid_size = sizeof(ssid);
-  size_t password_size = sizeof(password);
-
-  esp_err_t ssid_err = nvs_get_str(GM.nvs, "ssid", ssid, &ssid_size);
-  esp_err_t password_err = nvs_get_str(GM.nvs, "wifi_password", password, &password_size);
-
   stop_webserver();
   gm_log_server_stop();
   gm_icmpv6_stop_listener_ipv6();
-  gm_port_control_protocol_stop();
+  gm_pcp_stop();
   gm_stun_stop();
   gm_sntp_stop();
   if ( gm_wifi_is_connected() ) {
     esp_wifi_disconnect();
     gm_wifi_wait_until_disconnected();
   }
+  pcp_ipv6_started = false;
+}
+
+void
+gm_wifi_restart(void)
+{
+  char ssid[33] = { 0 };
+  char password[65] = { 0 };
+  size_t ssid_size = sizeof(ssid);
+  size_t password_size = sizeof(password);
+
+  gm_wifi_stop();
+
+  esp_err_t ssid_err = nvs_get_str(GM.nvs, "ssid", ssid, &ssid_size);
+  esp_err_t password_err = nvs_get_str(GM.nvs, "wifi_password", password, &password_size);
 
   // ssid_size includes the terminating null.
   if (ssid_err == ESP_OK && password_err == ESP_OK && ssid_size > 1 && password_size > 1) {

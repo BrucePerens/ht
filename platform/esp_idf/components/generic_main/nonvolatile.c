@@ -35,11 +35,7 @@ gm_flash_failure(const char * module, esp_err_t err) {
   if ( GM.flash_failure == ESP_OK )
     GM.flash_failure = err;
 
-  static bool i_told_you_once = false;
-  if ( !i_told_you_once ) {
-    i_told_you_once = true;
-    gm_printf("FLASH memory: %s: %s\n", module, esp_err_to_name(err));
-  }
+  GM_WARN_ONCE("FLASH memory: %s: %s\n", module, esp_err_to_name(err));
   return err;
 }
 

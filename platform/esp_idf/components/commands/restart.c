@@ -6,6 +6,8 @@
 
 static int restart(int argc, char * * argv)
 {
+  // Need to stop wifi first, or static variables will be left in the wrong state.
+  gm_wifi_stop();
   esp_restart();
 }
 

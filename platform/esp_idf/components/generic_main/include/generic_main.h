@@ -221,6 +221,7 @@ extern void			gm_event_server(void);
 extern void			gm_get_handlers(httpd_handle_t server);
 extern esp_err_t		gm_get_user_data(const char * name, gm_user_data_t * data);
 extern cJSON *			gm_read_cookie(httpd_req_t * req);
+extern size_t			gm_match_bits(const void * const restrict av, const void * const restrict bv, size_t size);
 extern void			gm_sntp_start();
 extern void			gm_sntp_stop();
 extern esp_err_t		gm_start_redirect_to_https();
@@ -242,13 +243,15 @@ extern gm_nonvolatile_result_t	gm_nonvolatile_get(const char * name, char * buff
 extern void			gm_nonvolatile_list(gm_nonvolatile_list_coroutine_t coroutine);
 extern gm_nonvolatile_result_t	gm_nonvolatile_set(const char * name, const char * value);
 
+extern void			gm_ntop(const struct sockaddr_storage * const s, char * const buffer, const size_t size);
 extern const char *		gm_param(const gm_param_t * p, int count, const char * name);
 extern int			gm_param_parse(const char * s, gm_param_t * p, int count);
 extern int			gm_pattern_string(const char * string, gm_pattern_coroutine_t coroutine, char * buffer, size_t buffer_size);
-extern void			gm_port_control_protocol_request_mapping_ipv4(void);
-extern void			gm_port_control_protocol_request_mapping_ipv6(void);
-extern void			gm_port_control_protocol_start(void);
-extern void			gm_port_control_protocol_stop(void);
+extern void			gm_pcp_request_mapping_ipv4(void);
+extern void			gm_pcp_request_mapping_ipv6(void);
+extern void			gm_pcp_start_ipv4(void);
+extern void			gm_pcp_start_ipv6(void);
+extern void			gm_pcp_stop(void);
 extern int			gm_printf(const char * format, ...);
 extern int			gm_public_ipv4(char * data, size_t size);
 
@@ -283,6 +286,7 @@ extern bool			gm_wifi_is_connected(void);
 extern void			gm_wifi_events_initialize(void);
 extern void			gm_wifi_restart(void);
 extern void			gm_wifi_start(void);
+extern void			gm_wifi_stop(void);
 extern void			gm_wifi_wait_until_disconnected(void);
 extern void			gm_wifi_wait_until_ready(void);
 

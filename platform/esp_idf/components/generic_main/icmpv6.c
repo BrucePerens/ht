@@ -53,18 +53,24 @@ decode_packet(icmpv6_message_t * m, ssize_t message_size, void * data, struct so
 static void
 incoming_packet(int fd, void * data, bool readable, bool writable, bool exception, bool timeout)
 {
-  if ( readable ) {
-    icmpv6_message_t		packet;
-    struct sockaddr_storage	address;
-    socklen_t			address_size;
-    ssize_t			message_size;
+  if ( !readable )
+    return;
 
-    message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
-    if ( address.ss_family != AF_INET6 ) // We get ICMPv4 packets.
-      return;
+  icmpv6_message_t		packet;
+  struct sockaddr_storage	address;
+  socklen_t			address_size;
+  ssize_t			message_size;
 
-    decode_packet(&packet, message_size, data, (struct sockaddr_in6 *)&address);
+  message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
+
+  if ( message_size < 0 ) {
+    GM_FAIL("icmpv6 receive handler failed: %s.\n", strerror(errno));
+    return;
   }
+  if ( address.ss_family != AF_INET6 ) // We get ICMPv4 packets.
+    return;
+
+  decode_packet(&packet, message_size, data, (struct sockaddr_in6 *)&address);
 }
 
 void
@@ -83,6 +89,7 @@ gm_icmpv6_stop_listener_ipv6(void)
 {
   if ( icmpv6_socket >= 0 ) {
     gm_fd_unregister(icmpv6_socket);
+    shutdown(icmpv6_socket, SHUT_RDWR);
     close(icmpv6_socket);
     icmpv6_socket = -1;
   }

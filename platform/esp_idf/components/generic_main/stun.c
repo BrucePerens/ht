@@ -349,17 +349,10 @@ process_received_packet(struct stun_message * receive_packet, struct sockaddr * 
     switch ( type ) {
     case MAPPED_ADDRESS:
       if ( !got_xor_mapped_address ) {
-        char buffer[INET6_ADDRSTRLEN + 1];
         got_an_address = true;
         decode_mapped_address(attribute, address);
-        switch ( address->sa_family ) {
-        case AF_INET:
-          inet_ntop(address->sa_family, &((struct sockaddr_in *)address)->sin_addr, buffer, sizeof(buffer));
-          break;
-        case AF_INET6:
-          inet_ntop(address->sa_family, &((struct sockaddr_in6 *)address)->sin6_addr, buffer, sizeof(buffer));
-          break;
-        }
+        // char buffer[INET6_ADDRSTRLEN + 1];
+        // gm_ntop(address, buffer, sizeof(buffer));
       }
       break;
     case ERROR_CODE:
@@ -494,21 +487,8 @@ stun_receive(int fd, void * data, bool readable, bool writable, bool exception, 
 int gm_stun(bool ipv6, struct sockaddr * address, gm_stun_after_t after)
 {
   char buffer[INET6_ADDRSTRLEN + 1];
-  const char * family = "No specified IP address family";
 
   memset(buffer, 0, sizeof(buffer));
-  switch ( address->sa_family ) {
-  case AF_INET:
-    family = "IPV4";
-    inet_ntop(address->sa_family, &((struct sockaddr_in *)address)->sin_addr, buffer, sizeof(buffer));
-    break;
-  case AF_INET6:
-    family = "IPV6";
-    inet_ntop(address->sa_family, &((struct sockaddr_in6 *)address)->sin6_addr, buffer, sizeof(buffer));
-    break;
-   default:
-     ;
-  }
   struct stun_run * run = malloc(sizeof(struct stun_run));
 
   if ( run == 0 ) {

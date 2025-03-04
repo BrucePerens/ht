@@ -13,8 +13,6 @@ static struct {
 
 static int run(int argc, char * * argv)
 {
-  char	buffer[64];
-
   int nerrors = arg_parse(argc, argv, (void **) &args);
   if (nerrors) {
     arg_print_errors(stderr, args.end, argv[0]);
@@ -22,9 +20,9 @@ static int run(int argc, char * * argv)
   }
   printf("\n"); 
   if ( args.ipv6->count > 0 )
-    gm_port_control_protocol_request_mapping_ipv6();
+    gm_pcp_request_mapping_ipv6();
   else
-    gm_port_control_protocol_request_mapping_ipv4();
+    gm_pcp_request_mapping_ipv4();
 
   return 0;
 }

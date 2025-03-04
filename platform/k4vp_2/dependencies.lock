@@ -52,5 +52,5 @@ direct_dependencies:
 - joltwallet/littlefs
 - trombik/esp_wireguard
 manifest_hash: 049bdff36916609a159cbc75bce17d18c22780ee93d44ca7852261473d23327f
-target: esp32
+target: esp32s3
 version: 2.0.0
