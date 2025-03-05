@@ -4,6 +4,8 @@
 #include <arpa/inet.h>
 #include "generic_main.h"
 
+static void renew_mappings();
+
 typedef struct _nat_pmp_or_pcp {
   uint8_t	version;
   uint8_t	opcode; // Also contains the request/response bit.
@@ -135,11 +137,11 @@ request_mapping(nat_pmp_or_pcp_t * p)
   esp_fill_random(p->pcp.mp.nonce, sizeof(p->pcp.mp.nonce));
   p->version = PORT_MAPPING_PROTOCOL;
   p->opcode = PCP_MAP;
-  p->pcp.lifetime = htonl(24 * 60 * 60);
+  p->pcp.lifetime = htonl(2 * 60);
 
   size_t size;
   int connection;
-  if ( last_request.address.ss_family == AF_INET6 ) {
+  if ( last_request.address.ss_family == AF_INET6 && local_ipv6_socket >= 0 ) {
     connection = local_ipv6_socket;
     size = sizeof(struct sockaddr_in6);
   }
@@ -232,11 +234,12 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
 {
   // FIX: Manage re-authorization of existing mappings. Reject responses that are too
   // long after the request.
-  gm_port_mapping_t	m = {};
-  gm_port_mapping_t * *	mp;
   esp_ip6_addr_t	esp_addr;
   esp_ip6_addr_type_t	ipv6_type;
   char			buffer[INET6_ADDRSTRLEN + 1];
+
+  gm_ntop(address, buffer, sizeof(buffer));
+  gm_printf("Received mapping from %s\n", buffer);
 
   inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
   // esp-idf has its own IPv6 address structure.
@@ -273,37 +276,42 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
     return;
   }
 
-  memset(&m, '\0', sizeof(m));
+  gm_port_mapping_t	m = {};
   gettimeofday(&m.granted_time, 0);
+  // We don't change the byte-order of the nonce, just send it out as it was
+  // received.
   memcpy(m.nonce, p->pcp.mp.nonce, sizeof(m.nonce));
-  m.epoch = p->pcp.response.epoch;
-  m.ipv6 = address->ss_family == AF_INET6;
-  m.tcp = p->pcp.mp.protocol == PCP_TCP;
+  m.epoch = ntohl(p->pcp.response.epoch);
+  m.protocol = p->pcp.mp.protocol;
   m.internal_port = ntohs(p->pcp.mp.internal_port);
   m.external_port = ntohs(p->pcp.mp.external_port);
   m.lifetime = ntohl(p->pcp.lifetime);
   memcpy(m.external_address.s6_addr, p->pcp.mp.external_address.s6_addr, sizeof(m.external_address.s6_addr));
 
-  // FIX: This will receive an IPV4 port mapping as an IPV6 mapped IPV4 address.
-  // recognize that.
-
   memset(buffer, '\0', sizeof(buffer));
-  if ( address->ss_family == AF_INET6 )
-    inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
-  else
+  if ( ipv6_type == ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6 )
     inet_ntop(AF_INET, &p->pcp.mp.external_address.s6_addr[12], buffer, sizeof(buffer));
-  gm_printf("Router public mapping address: %s port: %d\n", buffer, m.external_port);
-  if ( m.ipv6 )
-    mp = &GM.sta.ip6.port_mappings;
   else
-    mp = &GM.sta.ip4.port_mappings;
-  while ( *mp != 0 )
-    mp = &((*mp)->next);
-  if ( mp ) {
-    gm_port_mapping_t * n = malloc(sizeof(*n));
-    memcpy(n, &m, sizeof(*n));
-    *mp = n;
+    inet_ntop(AF_INET6, p->pcp.mp.external_address.s6_addr, buffer, sizeof(buffer));
+  gm_printf("Router public mapping address: %s port: %d\n", buffer, m.external_port);
+
+  gm_port_mapping_t * *	mp;
+  if ( ipv6_type == ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6 )
+   mp = &GM.sta.ip4.port_mappings;
+  else
+    mp = &GM.sta.ip6.port_mappings;
+
+  while ( *mp ) {
+    if ( memcmp(m.nonce, (*mp)->nonce, sizeof(m.nonce)) == 0 ) {
+      gm_printf("Renewed mapping.\n");
+      **mp = m;
+      return;
+    }
+    mp = &(*mp)->next;
   }
+
+  *mp = malloc(sizeof(**mp));
+  **mp = m;
 }
 
 static void
@@ -389,37 +397,124 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storag
 static void
 incoming_packet(int fd, void * data, bool readable, bool writable, bool exception, bool timeout)
 {
-  if ( readable ) {
-    nat_pmp_or_pcp_t		packet;
-    struct sockaddr_storage	address;
-    socklen_t			address_size = sizeof(address);
-    ssize_t			message_size;
-    // int			port;
-    char			buffer[INET6_ADDRSTRLEN + 1];
+  gm_printf("Incoming packet: readable: %d, writable: %d, exception: %d, timeout: %d\n", readable, writable, exception, timeout);
+  if ( timeout )
+    renew_mappings();
 
-    message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
+  if ( !readable )
+    return;
+
+  nat_pmp_or_pcp_t		packet;
+  struct sockaddr_storage	address;
+  socklen_t			address_size = sizeof(address);
+  ssize_t			message_size;
+  // int			port;
+  char			buffer[INET6_ADDRSTRLEN + 1];
+
+  message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
  
-    if ( message_size <= 0 ) {
-      GM_FAIL("recvfrom returned %d", message_size);
-      return;
-    }
-    memset(buffer, '\0', sizeof(buffer));
-    if ( address.ss_family == AF_INET ) {
-      // inet_ntop(AF_INET, &((struct sockaddr_in *)&address)->sin_addr.s_addr, buffer, sizeof(buffer));
-      // port = htons(((struct sockaddr_in *)&address)->sin_port);
-    }
-    else {
-      // inet_ntop(AF_INET6, &((struct sockaddr_in6 *)&address)->sin6_addr, buffer, sizeof(buffer));
-      // port = htons(((struct sockaddr_in6 *)&address)->sin6_port);
-    }
+  if ( message_size <= 0 ) {
+    GM_FAIL("recvfrom returned %d", message_size);
+    return;
+  }
+  memset(buffer, '\0', sizeof(buffer));
+  if ( address.ss_family == AF_INET ) {
+    // inet_ntop(AF_INET, &((struct sockaddr_in *)&address)->sin_addr.s_addr, buffer, sizeof(buffer));
+    // port = htons(((struct sockaddr_in *)&address)->sin_port);
+  }
+  else {
+    // inet_ntop(AF_INET6, &((struct sockaddr_in6 *)&address)->sin6_addr, buffer, sizeof(buffer));
+    // port = htons(((struct sockaddr_in6 *)&address)->sin6_port);
+  }
 
-    // gm_printf("PCP received %s packet of size %d from %s port %d.\n",
-    //  data != 0 ? "multicast" : "unicast",
-    //  message_size,
-    //  buffer,
-    //  port);
+  // gm_printf("PCP received %s packet of size %d from %s port %d.\n",
+  //  data != 0 ? "multicast" : "unicast",
+  //  message_size,
+  //  buffer,
+  //  port);
 
-    decode_packet(&packet, message_size, &address);
+  decode_packet(&packet, message_size, &address);
+}
+
+static void
+renew_ipv4(const gm_port_mapping_t * const m)
+{
+  gm_printf("Renew ipv4\n");
+  memset(&last_request, '\0', sizeof(last_request));
+  nat_pmp_or_pcp_t * const p = &last_request.packet;
+  last_request.valid = true;
+
+  struct sockaddr_in * const a4 = (struct sockaddr_in *)&last_request.address;
+  a4->sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr;
+  a4->sin_family = AF_INET;
+  a4->sin_port = htons(PCP_SERVER_PORT);
+
+  memcpy(p->pcp.mp.nonce, m->nonce, sizeof(m->nonce));
+  memcpy(&p->pcp.request.client_address.s6_addr[12], &GM.sta.ip4.address.sin_addr.s_addr, 4);
+  p->pcp.request.client_address.s6_addr[10] = 0xff;
+  p->pcp.request.client_address.s6_addr[11] = 0xff;
+
+  p->pcp.mp.external_address = m->external_address;
+  p->pcp.mp.protocol = m->protocol;
+  p->pcp.mp.internal_port = htons(m->internal_port);
+  p->pcp.mp.external_port = htons(m->external_port);
+  request_mapping(p);
+}
+
+static void
+renew_ipv6(const gm_port_mapping_t * const m)
+{
+  nat_pmp_or_pcp_t * const	p = &last_request.packet;
+  struct sockaddr_in6 * const 	a6 = (struct sockaddr_in6 *)&last_request.address;
+  // char				buffer[INET6_ADDRSTRLEN + 1];
+
+  gm_printf("Renew ipv6.\n");
+  memset(&last_request, '\0', sizeof(last_request));
+  last_request.valid = true;
+ 
+  a6->sin6_family = AF_INET6;
+  memcpy(&a6->sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(a6->sin6_addr));
+  a6->sin6_port = htons(PCP_SERVER_PORT);
+
+  memcpy(p->pcp.mp.nonce, m->nonce, sizeof(m->nonce));
+  memcpy(&p->pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p->pcp.request.client_address));
+  p->pcp.mp.external_address = m->external_address;
+  p->pcp.mp.protocol = m->protocol;
+  p->pcp.mp.internal_port = htons(m->internal_port);
+  p->pcp.mp.external_port = htons(m->external_port);
+
+  // gm_ntop(&last_request.address, buffer, sizeof(buffer));
+  // gm_printf("Request IPv6 port mapping of router %s\n", buffer);
+  // inet_ntop(AF_INET6, &a6->sin6_addr, buffer, sizeof(buffer));
+  // gm_printf("Client is %s\n", buffer);
+ 
+  request_mapping(p);
+}
+
+static void
+renew_mappings()
+{
+  gm_printf("In renew_mappings.\n");
+  gm_port_mapping_t * m = GM.sta.ip4.port_mappings;
+
+  if ( listener < 0 )
+    return;
+
+  while ( m ) {
+    // *m is potentially changing, so save m->next before it does.
+    gm_port_mapping_t * const next = m->next;
+    renew_ipv4(m);
+    m = next;
+  }
+
+  if ( local_ipv6_socket < 0 )
+    return;
+
+  m = GM.sta.ip6.port_mappings;
+  while ( m ) {
+    gm_port_mapping_t * const next = m->next;
+    renew_ipv6(m);
+    m = next;
   }
 }
 
@@ -477,7 +572,7 @@ gm_pcp_start_ipv4()
       return;
     }
   }
-  gm_fd_register(listener, incoming_packet, 0, true, false, true, 0);
+  gm_fd_register(listener, incoming_packet, 0, true, false, true, 1);
 }
 
 // Don't start this until a router advertisement is received.

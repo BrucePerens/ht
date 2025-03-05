@@ -92,9 +92,8 @@ typedef struct _gm_port_mapping {
   uint16_t internal_port;
   uint16_t external_port;
   struct in6_addr external_address;
-  bool ipv6;
-  bool tcp;
   struct _gm_port_mapping * next;
+  uint8_t  protocol;
 } gm_port_mapping_t;
 
 typedef struct _gm_netif {

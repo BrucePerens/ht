@@ -1,3 +1,5 @@
+// FIX: Make repeating timeout work.
+
 // Provide a task that does select() on file descriptors that have been
 // registered with it, and calls handlers when there are events upon those
 // file descriptors. This allows us to do event-driven I/O without depending
@@ -248,7 +250,6 @@ select_task(void * param)
             gm_fd_handler_t handler = handlers[i];
             void * d = data[i];
 
-            gm_fd_unregister(i);
             if (handler)
               (handler)(i, d, false, false, false, true);
           }
