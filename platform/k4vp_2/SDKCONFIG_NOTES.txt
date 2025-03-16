@@ -1,6 +1,6 @@
-CONFIG_UART_ISR_IN_IRAM must be set because frogfs is using serial flash and the UART is
-being used for the radio. I think IRAM is needed to handle shared interrupts because regular
-RAM is bank-switched.
+CONFIG_UART_ISR_IN_IRAM must be set because frogfs is using serial
+flash and the UART is being used for the radio. I think IRAM is needed
+to handle shared interrupts because regular RAM is bank-switched.
 
-Set CONFIG_PARTITION_TABLE_OFFSET to 0x9000, otherwise we don't get enough space for the
-bootloader.
+Set CONFIG_PARTITION_TABLE_OFFSET to 0x9000, otherwise we don't get
+enough space for the bootloader.

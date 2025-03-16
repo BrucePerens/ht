@@ -6,11 +6,6 @@
 #include <sys/un.h>
 #include "generic_main.h"
 
-// FIX: Replace this with eventfd. GM_FAST only has one user, stun, and
-// that isn't necessary. So remove that facility and have this just wake
-// up the select loop.
-// 
-
 // These are events that are delivered via gm_fd_register(), which is the
 // interface to a select() loop. gm_select_task() depends on this to
 // wake up the select() when there is a new file descriptor to monitor.
