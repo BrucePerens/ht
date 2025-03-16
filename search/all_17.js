@@ -11,10 +11,9 @@ var searchData=
   ['web_5ftemplate_2eh_8',['web_template.h',['../web__template_8h.html',1,'']]],
   ['webserver_2ec_9',['webserver.c',['../webserver_8c.html',1,'']]],
   ['wget_2ec_10',['wget.c',['../wget_8c.html',1,'']]],
-  ['when_11',['when',['../structtimer__task.html#a9c0783ff5b989460d3d42460fd182f67',1,'timer_task']]],
-  ['wifi_2ec_12',['wifi.c',['../wifi_8c.html',1,'']]],
-  ['wifi_5fevent_5fsta_5fdisconnected_13',['wifi_event_sta_disconnected',['../wifi_8c.html#a8d948d88ffd3bc98842cec330b94f337',1,'wifi.c']]],
-  ['word_14',['word',['../all__zeroes_8c.html#a19036394f9c80a08fc846c96f668711c',1,'all_zeroes.c']]],
-  ['write_15',['write',['../structplatform__context.html#a763f43b5a541d9fafddc93078a19398c',1,'platform_context']]],
-  ['write_5fptr_16',['write_ptr',['../os__driver_8h.html#ab1d5a77be44ac188d6741eb8afa4a663',1,'os_driver.h']]]
+  ['wifi_2ec_11',['wifi.c',['../wifi_8c.html',1,'']]],
+  ['wifi_5fevent_5fsta_5fdisconnected_12',['wifi_event_sta_disconnected',['../wifi_8c.html#a8d948d88ffd3bc98842cec330b94f337',1,'wifi.c']]],
+  ['word_13',['word',['../all__zeroes_8c.html#a19036394f9c80a08fc846c96f668711c',1,'all_zeroes.c']]],
+  ['write_14',['write',['../structplatform__context.html#a763f43b5a541d9fafddc93078a19398c',1,'platform_context']]],
+  ['write_5fptr_15',['write_ptr',['../os__driver_8h.html#ab1d5a77be44ac188d6741eb8afa4a663',1,'os_driver.h']]]
 ];

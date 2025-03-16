@@ -31,6 +31,5 @@ var annotated_dup =
     [ "stun_run", "structstun__run.html", "structstun__run" ],
     [ "stun_server", "structstun__server.html", "structstun__server" ],
     [ "tag", "structtag.html", "structtag" ],
-    [ "timer_task", "structtimer__task.html", "structtimer__task" ],
     [ "user_data", "structuser__data.html", "structuser__data" ]
 ];
