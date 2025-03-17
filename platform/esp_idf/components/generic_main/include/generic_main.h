@@ -84,21 +84,27 @@ typedef struct _gm_run_data {
   void *	data;
 } gm_run_data_t;
 
-enum gm_pcp_protocol {
+typedef enum _gm_port_mapping_type {
+  GM_REQUEST,
+  GM_GRANTED
+} gm_port_mapping_type_t;
+
+typedef enum _gm_pcp_protocol {
   GM_PCP_TCP = 6,
   GM_PCP_UDP = 17
-};
+} gm_pcp_protocol_t;
 
 typedef struct _gm_port_mapping { 
-  struct timeval granted_time;
-  struct timeval expiration_time;
-  uint32_t nonce[3];
-  uint32_t lifetime;
-  uint16_t internal_port;
-  uint16_t external_port;
-  struct in6_addr external_address;
-  enum gm_pcp_protocol   protocol;
-  struct _gm_port_mapping * next;
+  gm_port_mapping_type_t	type;
+  struct timeval		granted_time;
+  struct timeval		expiration_time;
+  uint32_t			nonce[3];
+  uint32_t			lifetime;
+  uint16_t			internal_port;
+  uint16_t			external_port;
+  struct in6_addr		external_address;
+  gm_pcp_protocol_t		protocol;
+  struct _gm_port_mapping *	next;
 } gm_port_mapping_t;
 
 typedef struct _gm_netif {

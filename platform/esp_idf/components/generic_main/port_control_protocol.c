@@ -177,10 +177,10 @@ gm_pcp_request_mapping_ipv6()
   // char				buffer[INET6_ADDRSTRLEN + 1];
 
   address.sin6_family = AF_INET6;
-  memcpy(&address.sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(address.sin6_addr));
+  address.sin6_addr = GM.sta.ip6.router.sin6_addr;
   address.sin6_port = htons(PCP_SERVER_PORT);
 
-  memcpy(&p.pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p.pcp.request.client_address));
+  p.pcp.request.client_address = local_ipv6_address.sin6_addr;
   p.pcp.mp.protocol = GM_PCP_TCP;
   p.pcp.mp.internal_port = htons(443);
   p.pcp.mp.external_port = htons(7300);
@@ -217,7 +217,7 @@ static void
 save_pcp_mapping(
   const nat_pmp_or_pcp_t * const	p,
   const esp_ip6_addr_type_t		ipv6_type,
-  bool					request
+  const gm_port_mapping_type_t		type
 )
 {
   gm_port_mapping_t	m = {};
@@ -231,7 +231,7 @@ save_pcp_mapping(
   m.internal_port = ntohs(p->pcp.mp.internal_port);
   m.external_port = ntohs(p->pcp.mp.external_port);
   m.lifetime = ntohl(p->pcp.lifetime);
-  memcpy(m.external_address.s6_addr, p->pcp.mp.external_address.s6_addr, sizeof(m.external_address.s6_addr));
+  m.external_address = p->pcp.mp.external_address;
 
   memset(buffer, '\0', sizeof(buffer));
   if ( ipv6_type == ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6 )
@@ -313,7 +313,7 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
     }
   }
   else
-    save_pcp_mapping(p, ipv6_type, false);
+    save_pcp_mapping(p, ipv6_type, GM_GRANTED);
 }
 
 static void
@@ -470,12 +470,12 @@ renew_ipv6(const gm_port_mapping_t * const m)
 
   gm_printf("Renew ipv6.\n");
  
+  address = GM.sta.ip6.router;
   address.sin6_family = AF_INET6;
-  memcpy(&address.sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(address.sin6_addr));
   address.sin6_port = htons(PCP_SERVER_PORT);
 
   memcpy(p.pcp.mp.nonce, m->nonce, sizeof(m->nonce));
-  memcpy(&p.pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p.pcp.request.client_address));
+  p.pcp.request.client_address = local_ipv6_address.sin6_addr;
   p.pcp.mp.external_address = m->external_address;
   p.pcp.mp.protocol = m->protocol;
   p.pcp.mp.internal_port = htons(m->internal_port);
@@ -501,7 +501,8 @@ renew_all_mappings()
   while ( m ) {
     // *m is potentially changing, so save m->next before it does.
     gm_port_mapping_t * const next = m->next;
-    renew_ipv4(m);
+    if ( m->type == GM_GRANTED )
+      renew_ipv4(m);
     m = next;
   }
 
@@ -511,7 +512,8 @@ renew_all_mappings()
   m = GM.sta.ip6.port_mappings;
   while ( m ) {
     gm_port_mapping_t * const next = m->next;
-    renew_ipv6(m);
+    if ( m->type == GM_GRANTED )
+      renew_ipv6(m);
     m = next;
   }
 }
