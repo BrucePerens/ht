@@ -16,7 +16,6 @@ var searchData=
   ['_5fgm_5fweb_5fmethod_13',['_gm_web_method',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75',1,'generic_main.h']]],
   ['_5ficmpv6_5fmessage_14',['_icmpv6_message',['../struct__icmpv6__message.html',1,'']]],
   ['_5fipv6_5fheader_15',['_ipv6_header',['../struct__icmpv6__message_1_1__ipv6__header.html',1,'_icmpv6_message']]],
-  ['_5flast_5frequest_16',['_last_request',['../struct__last__request.html',1,'']]],
-  ['_5fnat_5fpmp_5for_5fpcp_17',['_nat_pmp_or_pcp',['../struct__nat__pmp__or__pcp.html',1,'']]],
-  ['_5fra_18',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
+  ['_5fnat_5fpmp_5for_5fpcp_16',['_nat_pmp_or_pcp',['../struct__nat__pmp__or__pcp.html',1,'']]],
+  ['_5fra_17',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
 ];

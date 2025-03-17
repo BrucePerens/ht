@@ -111,15 +111,11 @@ $(document).ready(function(){initNavTree('port__control__protocol_8c.html',''); 
 Data Structures</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__nat__pmp__or__pcp.html">_nat_pmp_or_pcp</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__last__request.html">_last_request</a></td></tr>
-<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="typedef-members" name="typedef-members"></a>
 Typedefs</h2></td></tr>
 <tr class="memitem:a7956e8c2d582239ebfaadb346460af98"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__nat__pmp__or__pcp.html">_nat_pmp_or_pcp</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98">nat_pmp_or_pcp_t</a></td></tr>
 <tr class="separator:a7956e8c2d582239ebfaadb346460af98"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a61b37a11154464e1e6a5be106a01d8c5"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__last__request.html">_last_request</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#a61b37a11154464e1e6a5be106a01d8c5">last_request_t</a></td></tr>
-<tr class="separator:a61b37a11154464e1e6a5be106a01d8c5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
@@ -141,10 +137,6 @@ Enumerations</h2></td></tr>
 , <a class="el" href="port__control__protocol_8c.html#a6b2e886b8bf75e801faa567368191538a6b30447c6ebfb402ec409d69715eec3c">NAT_PMP_MAP_TCP</a> = 2
  }</td></tr>
 <tr class="separator:a6b2e886b8bf75e801faa567368191538"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a90612c1cf7d50c4d0c09e1d3fd6196f1"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1">pcp_protocol</a> { <a class="el" href="port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1a1c7dde88e5f3edec1cc13756854ab685">PCP_TCP</a> = 6
-, <a class="el" href="port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1ab2496b9f6ec4819101288376006f8342">PCP_UDP</a> = 17
- }</td></tr>
-<tr class="separator:a90612c1cf7d50c4d0c09e1d3fd6196f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abafac796bb4e44112382306334e5b788"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788">nat_pmp_response_code</a> { <br />
 &#160;&#160;<a class="el" href="port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788ae69379ea7be53c949569029b0379d5eb">NAT_PMP_SUCCESS</a> = 0
 , <a class="el" href="port__control__protocol_8c.html#abafac796bb4e44112382306334e5b788a710c3b806aea8ba69c5e56961248926b">NAT_PMP_UNSUPP_VERSION</a> = 1
@@ -180,8 +172,8 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:aae81f77c2e860917cc7931be88aae3ea"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#aae81f77c2e860917cc7931be88aae3ea">request_mapping</a> (<a class="el" href="port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98">nat_pmp_or_pcp_t</a> *<a class="el" href="web__template_8h.html#ade66e4ccafbc33b117610bbc0d85feb0">p</a>)</td></tr>
-<tr class="separator:aae81f77c2e860917cc7931be88aae3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a460d9046d5bd79328085739692216764"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#a460d9046d5bd79328085739692216764">request_mapping</a> (<a class="el" href="port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98">nat_pmp_or_pcp_t</a> *const <a class="el" href="web__template_8h.html#ade66e4ccafbc33b117610bbc0d85feb0">p</a>, const struct sockaddr *const <a class="el" href="web__template_8h.html#a53a27117d33fe219ef26f8b98ae66025">address</a>, const int server, size_t address_size)</td></tr>
+<tr class="separator:a460d9046d5bd79328085739692216764"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7011b75e2d4bf348fb5150f7899d111b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#a7011b75e2d4bf348fb5150f7899d111b">gm_pcp_request_mapping_ipv4</a> ()</td></tr>
 <tr class="separator:a7011b75e2d4bf348fb5150f7899d111b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a136b849bd010b82b7b1f85c105910bd7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="port__control__protocol_8c.html#a136b849bd010b82b7b1f85c105910bd7">gm_pcp_request_mapping_ipv6</a> ()</td></tr>
@@ -205,20 +197,6 @@ Variables</h2></td></tr>
 <tr class="separator:a74473e5fce6791a91bb13e45ce9d0304"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Typedef Documentation</h2>
-<a id="a61b37a11154464e1e6a5be106a01d8c5" name="a61b37a11154464e1e6a5be106a01d8c5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a61b37a11154464e1e6a5be106a01d8c5">&#9670;&#160;</a></span>last_request_t</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef struct <a class="el" href="struct__last__request.html">_last_request</a> <a class="el" href="port__control__protocol_8c.html#a61b37a11154464e1e6a5be106a01d8c5">last_request_t</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a id="a7956e8c2d582239ebfaadb346460af98" name="a7956e8c2d582239ebfaadb346460af98"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7956e8c2d582239ebfaadb346460af98">&#9670;&#160;</a></span>nat_pmp_or_pcp_t</h2>
 
@@ -251,7 +229,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a6b2e886b8bf75e801faa567368191538a6b30447c6ebfb402ec409d69715eec3c" name="a6b2e886b8bf75e801faa567368191538a6b30447c6ebfb402ec409d69715eec3c"></a>NAT_PMP_MAP_TCP&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00089">89</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00083">83</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -275,7 +253,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="abafac796bb4e44112382306334e5b788a0c41c8b9a0b4fdaacb5f42ab5a541800" name="abafac796bb4e44112382306334e5b788a0c41c8b9a0b4fdaacb5f42ab5a541800"></a>NAT_PMP_UNSUPPORTED_OPCODE&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00100">100</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00089">89</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -296,7 +274,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="af2b6084716951a0a114e51e93c76463da631112db1d9b15d3d89832591fec39ff" name="af2b6084716951a0a114e51e93c76463da631112db1d9b15d3d89832591fec39ff"></a>PCP_PEER&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00083">83</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00077">77</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -316,27 +294,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="afd99e49e7909dd1145a257cd6e17e0fda5da67ab1f4f662c2b948e455a54d5125" name="afd99e49e7909dd1145a257cd6e17e0fda5da67ab1f4f662c2b948e455a54d5125"></a>PCP_CLIENT_PORT&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00077">77</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
-
-</div>
-</div>
-<a id="a90612c1cf7d50c4d0c09e1d3fd6196f1" name="a90612c1cf7d50c4d0c09e1d3fd6196f1"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a90612c1cf7d50c4d0c09e1d3fd6196f1">&#9670;&#160;</a></span>pcp_protocol</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1">pcp_protocol</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a90612c1cf7d50c4d0c09e1d3fd6196f1a1c7dde88e5f3edec1cc13756854ab685" name="a90612c1cf7d50c4d0c09e1d3fd6196f1a1c7dde88e5f3edec1cc13756854ab685"></a>PCP_TCP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="a90612c1cf7d50c4d0c09e1d3fd6196f1ab2496b9f6ec4819101288376006f8342" name="a90612c1cf7d50c4d0c09e1d3fd6196f1ab2496b9f6ec4819101288376006f8342"></a>PCP_UDP&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00095">95</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00071">71</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -368,7 +326,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a67c82a1c7b790dd189aa42b7e35444d7acbaee10a2a455cd836753741c3f2b751" name="a67c82a1c7b790dd189aa42b7e35444d7acbaee10a2a455cd836753741c3f2b751"></a>PCP_EXCESSIVE_REMOTE_PEERS&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00111">111</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00100">100</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -388,7 +346,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="adc3e35480f42347a4c16a5e4c3715167a72f2f3778196b165d6539be1721b86c2" name="adc3e35480f42347a4c16a5e4c3715167a72f2f3778196b165d6539be1721b86c2"></a>PORT_MAPPING_PROTOCOL&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00070">70</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00064">64</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -425,7 +383,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00348">348</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00328">328</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -445,7 +403,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00166">166</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00148">148</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -465,7 +423,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00193">193</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00173">173</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -485,7 +443,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00542">542</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00520">520</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -505,7 +463,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00600">600</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00578">578</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -525,12 +483,12 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00657">657</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00635">635</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
-<a id="aae81f77c2e860917cc7931be88aae3ea" name="aae81f77c2e860917cc7931be88aae3ea"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aae81f77c2e860917cc7931be88aae3ea">&#9670;&#160;</a></span>request_mapping()</h2>
+<a id="a460d9046d5bd79328085739692216764" name="a460d9046d5bd79328085739692216764"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a460d9046d5bd79328085739692216764">&#9670;&#160;</a></span>request_mapping()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -538,14 +496,36 @@ Variables</h2></td></tr>
         <tr>
           <td class="memname">void request_mapping </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98">nat_pmp_or_pcp_t</a> *&#160;</td>
-          <td class="paramname"><em>p</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98">nat_pmp_or_pcp_t</a> *const&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">const struct sockaddr *const&#160;</td>
+          <td class="paramname"><em>address</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const int&#160;</td>
+          <td class="paramname"><em>server</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">size_t&#160;</td>
+          <td class="paramname"><em>address_size</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00132">132</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00121">121</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -562,7 +542,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00068">68</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00062">62</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -578,7 +558,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00067">67</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00061">61</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -594,7 +574,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00081">81</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00075">75</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>

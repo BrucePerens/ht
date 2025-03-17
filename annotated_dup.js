@@ -10,7 +10,6 @@ var annotated_dup =
     [ "_gm_uri", "struct__gm__uri.html", "struct__gm__uri" ],
     [ "_gm_user_data", "struct__gm__user__data.html", "struct__gm__user__data" ],
     [ "_icmpv6_message", "struct__icmpv6__message.html", "struct__icmpv6__message" ],
-    [ "_last_request", "struct__last__request.html", "struct__last__request" ],
     [ "_nat_pmp_or_pcp", "struct__nat__pmp__or__pcp.html", "struct__nat__pmp__or__pcp" ],
     [ "compressed_fs_entry", "structcompressed__fs__entry.html", "structcompressed__fs__entry" ],
     [ "compressed_fs_header", "structcompressed__fs__header.html", "structcompressed__fs__header" ],

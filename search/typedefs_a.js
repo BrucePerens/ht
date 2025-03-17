@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['sa818_5fmodule_0',['sa818_module',['../radio_8h.html#a6d472c72726a88ea16e4568f8f82bf2d',1,'radio.h']]],
-  ['sa828_5fmodule_1',['sa828_module',['../radio_8h.html#a0152f720acfa1b5de8c2d66b32e0ee80',1,'radio.h']]],
-  ['set_5fptr_2',['set_ptr',['../radio_8h.html#a4fcd539e7250febf9082e0efcebb08b9',1,'radio.h']]]
+  ['tag_5ft_0',['tag_t',['../web__template_8c.html#a9fe3c9b5705f8b821f4651794eca4513',1,'web_template.c']]],
+  ['transmit_5fptr_1',['transmit_ptr',['../radio_8h.html#a20239143f914b4aaf6959d94a6da86bc',1,'radio.h']]]
 ];

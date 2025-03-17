@@ -66,6 +66,10 @@ var generic__main_8h =
       [ "URL", "generic__main_8h.html#ad1bd8b42ebaf7b55f667a193621739e6a7859c6fa207d555e4f392f308b4b9d7c", null ],
       [ "DOMAIN", "generic__main_8h.html#ad1bd8b42ebaf7b55f667a193621739e6a732051072655cbf978ac5fba25e61ee2", null ]
     ] ],
+    [ "gm_pcp_protocol", "generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942a", [
+      [ "GM_PCP_TCP", "generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942aa934e9936f94b705bbf10056889df1f75", null ],
+      [ "GM_PCP_UDP", "generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942aae023d1ec7b811d7e9c4a69ebcf634d3f", null ]
+    ] ],
     [ "ESP_EVENT_DECLARE_BASE", "generic__main_8h.html#aa7d4b559afc372a06f52a961b83c46df", null ],
     [ "gm_all_zeroes", "generic__main_8h.html#a8f2bc0cf62bff4994db4a27f212bb544", null ],
     [ "gm_array_add", "generic__main_8h.html#a5f2a3e59e07f1c813f53d80eb26e250b", null ],

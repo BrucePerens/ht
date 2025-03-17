@@ -1,8 +1,6 @@
 var port__control__protocol_8c =
 [
     [ "_nat_pmp_or_pcp", "struct__nat__pmp__or__pcp.html", "struct__nat__pmp__or__pcp" ],
-    [ "_last_request", "struct__last__request.html", "struct__last__request" ],
-    [ "last_request_t", "port__control__protocol_8c.html#a61b37a11154464e1e6a5be106a01d8c5", null ],
     [ "nat_pmp_or_pcp_t", "port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98", null ],
     [ "nat_pmp_opcode", "port__control__protocol_8c.html#a6b2e886b8bf75e801faa567368191538", [
       [ "NAT_PMP_ANNOUNCE", "port__control__protocol_8c.html#a6b2e886b8bf75e801faa567368191538a11ecc37f168ab1c5eb8ed1bb09e06fea", null ],
@@ -25,10 +23,6 @@ var port__control__protocol_8c =
     [ "pcp_port", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fd", [
       [ "PCP_SERVER_PORT", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fdacb52e7d1eb328dcdb3b891f7ac75ffa8", null ],
       [ "PCP_CLIENT_PORT", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fda5da67ab1f4f662c2b948e455a54d5125", null ]
-    ] ],
-    [ "pcp_protocol", "port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1", [
-      [ "PCP_TCP", "port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1a1c7dde88e5f3edec1cc13756854ab685", null ],
-      [ "PCP_UDP", "port__control__protocol_8c.html#a90612c1cf7d50c4d0c09e1d3fd6196f1ab2496b9f6ec4819101288376006f8342", null ]
     ] ],
     [ "pcp_response_code", "port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7", [
       [ "PCP_SUCCESS", "port__control__protocol_8c.html#a67c82a1c7b790dd189aa42b7e35444d7af3df30c12dbceb4ea9604c20047b99e5", null ],
@@ -56,7 +50,7 @@ var port__control__protocol_8c =
     [ "gm_pcp_start_ipv4", "port__control__protocol_8c.html#a1b10c3cf8ce6f741c364d6a4d47fe656", null ],
     [ "gm_pcp_start_ipv6", "port__control__protocol_8c.html#acd804fc00297a254089c90d765e15957", null ],
     [ "gm_pcp_stop", "port__control__protocol_8c.html#a0628cd4da01a84dab437d4fc2679cd27", null ],
-    [ "request_mapping", "port__control__protocol_8c.html#aae81f77c2e860917cc7931be88aae3ea", null ],
+    [ "request_mapping", "port__control__protocol_8c.html#a460d9046d5bd79328085739692216764", null ],
     [ "announce_packet_size", "port__control__protocol_8c.html#a62c5ff15885af035a2c77740ad716c5d", null ],
     [ "map_packet_size", "port__control__protocol_8c.html#a8104caddba80fd1ffba4b70efc6fead1", null ],
     [ "PCP_MAX_PAYLOAD", "port__control__protocol_8c.html#a74473e5fce6791a91bb13e45ce9d0304", null ]
