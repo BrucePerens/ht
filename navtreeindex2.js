@@ -230,8 +230,6 @@ var NAVTREEINDEX2 =
 "struct__icmpv6__message_1_1__ra.html#ab35e1dd3fec0cccb9a355d1282d4911c":[0,1,9,1,0],
 "struct__icmpv6__message_1_1__ra.html#ac312ebaf41f73310ee571315b047ea9c":[0,1,9,1,2],
 "struct__last__request.html":[0,1,10],
-"struct__last__request.html#a28e3c179a86f337095088b3ca02a2b2a":[0,1,10,3],
-"struct__last__request.html#a48b0549e79bd9c322fd060c093d88ced":[0,1,10,2],
 "struct__last__request.html#a4f62b89936e240780bf4c0d946072a81":[0,1,10,1],
 "struct__last__request.html#aae8fde91ce26bf141fe1d113e5c895fb":[0,1,10,0],
 "struct__nat__pmp__or__pcp.html":[0,1,11],
@@ -249,5 +247,7 @@ var NAVTREEINDEX2 =
 "struct__nat__pmp__or__pcp.html#aa14ef1b5257ed5037c430d2f049e0511":[0,1,11,20],
 "struct__nat__pmp__or__pcp.html#aa3de37afab5717fd74a4ddeb8eeb292a":[0,1,11,21],
 "struct__nat__pmp__or__pcp.html#aa9df22d58f0863dfc558312cd0be902c":[0,1,11,10],
-"struct__nat__pmp__or__pcp.html#ab22abc2906422da61885ac6c8e6a1a59":[0,1,11,22]
+"struct__nat__pmp__or__pcp.html#ab22abc2906422da61885ac6c8e6a1a59":[0,1,11,22],
+"struct__nat__pmp__or__pcp.html#abb63f788ff5501cacac1bf54c71e8381":[0,1,11,2],
+"struct__nat__pmp__or__pcp.html#abe847c815b75a0a6324d838efc335ecb":[0,1,11,7]
 };
