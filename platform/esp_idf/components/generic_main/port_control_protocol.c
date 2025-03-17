@@ -53,12 +53,6 @@ typedef struct _nat_pmp_or_pcp {
   };
 } nat_pmp_or_pcp_t;
 
-typedef struct _last_request {
-  struct sockaddr_storage	address;
-  nat_pmp_or_pcp_t		packet;
-} last_request_t;
-
-static last_request_t		last_request;
 static int			listener = -1;
 static int			local_ipv6_socket = -1;
 static struct sockaddr_in6	local_ipv6_address = {};
@@ -90,11 +84,6 @@ enum nat_pmp_opcode {
   NAT_PMP_ANNOUNCE = 0,
   NAT_PMP_MAP_UDP = 1,
   NAT_PMP_MAP_TCP = 2
-};
-
-enum pcp_protocol {
-  PCP_TCP = 6,
-  PCP_UDP = 17
 };
 
 enum nat_pmp_response_code {
@@ -129,32 +118,25 @@ static void incoming_packet(int, void *, bool, bool, bool, bool);
 static void renew_all_mappings();
 
 void
-request_mapping(nat_pmp_or_pcp_t * p)
+request_mapping(
+ nat_pmp_or_pcp_t * const	p,
+ const struct sockaddr * const	address,
+ const int			server,
+ size_t				address_size)
 {
   esp_fill_random(p->pcp.mp.nonce, sizeof(p->pcp.mp.nonce));
   p->version = PORT_MAPPING_PROTOCOL;
   p->opcode = PCP_MAP;
   p->pcp.lifetime = htonl(2 * 60);
 
-  size_t size;
-  int connection;
-  if ( last_request.address.ss_family == AF_INET6 && local_ipv6_socket >= 0 ) {
-    connection = local_ipv6_socket;
-    size = sizeof(struct sockaddr_in6);
-  }
-  else {
-    connection = listener;
-    size = sizeof(struct sockaddr_in);
-  }
-
   // Send the packet to the gateway.
   const int sendto_status = sendto(
-   connection,
+   server,
    p,
    map_packet_size,
    0,
-   (struct sockaddr *)&last_request.address,
-   size);
+   address,
+   address_size);
 
   if ( sendto_status < 0 ) {
     GM_FAIL("PCP sendto: %s\n", strerror(errno));
@@ -165,54 +147,50 @@ request_mapping(nat_pmp_or_pcp_t * p)
 void
 gm_pcp_request_mapping_ipv4()
 {
-  memset(&last_request, '\0', sizeof(last_request));
-  nat_pmp_or_pcp_t * const p = &last_request.packet;
+  nat_pmp_or_pcp_t p = {};
+  struct sockaddr_in address = {};
+  address.sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr;
+  address.sin_family = AF_INET;
+  address.sin_port = htons(PCP_SERVER_PORT);
 
-  struct sockaddr_in * const a4 = (struct sockaddr_in *)&last_request.address;
-  a4->sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr;
-  a4->sin_family = AF_INET;
-  a4->sin_port = htons(PCP_SERVER_PORT);
-
-  p->pcp.request.client_address.s6_addr[10] = 0xff;
-  p->pcp.request.client_address.s6_addr[11] = 0xff;
-  memcpy(&p->pcp.request.client_address.s6_addr[12], &GM.sta.ip4.address.sin_addr.s_addr, 4);
+  p.pcp.request.client_address.s6_addr[10] = 0xff;
+  p.pcp.request.client_address.s6_addr[11] = 0xff;
+  memcpy(&p.pcp.request.client_address.s6_addr[12], &GM.sta.ip4.address.sin_addr.s_addr, 4);
 
   // This sets the requested address to the all-zeroes IPV4 address: ::ffff:0.0.0.0 .
   // if external_address was all zeroes, it would be the all-zeroes IPV6 address.
-  p->pcp.mp.external_address.s6_addr[10] = 0xff;
-  p->pcp.mp.external_address.s6_addr[11] = 0xff;
+  p.pcp.mp.external_address.s6_addr[10] = 0xff;
+  p.pcp.mp.external_address.s6_addr[11] = 0xff;
 
-  p->pcp.mp.protocol = PCP_TCP;
-  p->pcp.mp.internal_port = htons(443);
-  p->pcp.mp.external_port = htons(7300);
-  request_mapping(p);
+  p.pcp.mp.protocol = GM_PCP_TCP;
+  p.pcp.mp.internal_port = htons(443);
+  p.pcp.mp.external_port = htons(7300);
+  request_mapping(&p, (struct sockaddr *)&address, listener, sizeof(address));
 }
 
  
 void
 gm_pcp_request_mapping_ipv6()
 {
-  nat_pmp_or_pcp_t * const	p = &last_request.packet;
-  struct sockaddr_in6 * const 	a6 = (struct sockaddr_in6 *)&last_request.address;
+  nat_pmp_or_pcp_t p = {};
+  struct sockaddr_in6 address = {};
   // char				buffer[INET6_ADDRSTRLEN + 1];
 
-  memset(&last_request, '\0', sizeof(last_request));
- 
-  a6->sin6_family = AF_INET6;
-  memcpy(&a6->sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(a6->sin6_addr));
-  a6->sin6_port = htons(PCP_SERVER_PORT);
+  address.sin6_family = AF_INET6;
+  memcpy(&address.sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(address.sin6_addr));
+  address.sin6_port = htons(PCP_SERVER_PORT);
 
-  memcpy(&p->pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p->pcp.request.client_address));
-  p->pcp.mp.protocol = PCP_TCP;
-  p->pcp.mp.internal_port = htons(443);
-  p->pcp.mp.external_port = htons(7300);
+  memcpy(&p.pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p.pcp.request.client_address));
+  p.pcp.mp.protocol = GM_PCP_TCP;
+  p.pcp.mp.internal_port = htons(443);
+  p.pcp.mp.external_port = htons(7300);
 
-  // gm_ntop(&last_request.address, buffer, sizeof(buffer));
+  // gm_ntop(&address, buffer, sizeof(buffer));
   // gm_printf("Request IPv6 port mapping of router %s\n", buffer);
-  // inet_ntop(AF_INET6, &a6->sin6_addr, buffer, sizeof(buffer));
+  // inet_ntop(AF_INET6, &address.sin6_addr, buffer, sizeof(buffer));
   // gm_printf("Client is %s\n", buffer);
  
-  request_mapping(p);
+  request_mapping(&p, (struct sockaddr *)&address, local_ipv6_socket, sizeof(address));
 }
 
 static void
@@ -249,7 +227,6 @@ save_pcp_mapping(
   // We don't change the byte-order of the nonce, just send it out as it was
   // received.
   memcpy(m.nonce, p->pcp.mp.nonce, sizeof(m.nonce));
-  m.epoch = ntohl(p->pcp.response.epoch);
   m.protocol = p->pcp.mp.protocol;
   m.internal_port = ntohs(p->pcp.mp.internal_port);
   m.external_port = ntohs(p->pcp.mp.external_port);
@@ -315,10 +292,13 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
     GM_FAIL("PCP received result code: %d.\n", p->result_code);
     return;
   }
+#if 0
+  // FIX: Match against the table of mappings.
   if ( p->opcode != (last_request.packet.opcode | 0x80) ) {
     GM_FAIL("Received opcode: %x, no match to last packet opcode %x.\n", p->opcode, last_request.packet.opcode);
     return;
   }
+#endif
 
   if ( ipv6_type != ESP_IP6_ADDR_IS_GLOBAL
    && ipv6_type != ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6) {
@@ -462,53 +442,51 @@ static void
 renew_ipv4(const gm_port_mapping_t * const m)
 {
   gm_printf("Renew ipv4\n");
-  memset(&last_request, '\0', sizeof(last_request));
-  nat_pmp_or_pcp_t * const p = &last_request.packet;
+  nat_pmp_or_pcp_t	p = {};
+  struct sockaddr_in	address = {};
 
-  struct sockaddr_in * const a4 = (struct sockaddr_in *)&last_request.address;
-  a4->sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr;
-  a4->sin_family = AF_INET;
-  a4->sin_port = htons(PCP_SERVER_PORT);
+  address.sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr;
+  address.sin_family = AF_INET;
+  address.sin_port = htons(PCP_SERVER_PORT);
 
-  memcpy(p->pcp.mp.nonce, m->nonce, sizeof(m->nonce));
-  memcpy(&p->pcp.request.client_address.s6_addr[12], &GM.sta.ip4.address.sin_addr.s_addr, 4);
-  p->pcp.request.client_address.s6_addr[10] = 0xff;
-  p->pcp.request.client_address.s6_addr[11] = 0xff;
+  memcpy(p.pcp.mp.nonce, m->nonce, sizeof(m->nonce));
+  memcpy(&p.pcp.request.client_address.s6_addr[12], &GM.sta.ip4.address.sin_addr.s_addr, 4);
+  p.pcp.request.client_address.s6_addr[10] = 0xff;
+  p.pcp.request.client_address.s6_addr[11] = 0xff;
 
-  p->pcp.mp.external_address = m->external_address;
-  p->pcp.mp.protocol = m->protocol;
-  p->pcp.mp.internal_port = htons(m->internal_port);
-  p->pcp.mp.external_port = htons(m->external_port);
-  request_mapping(p);
+  p.pcp.mp.external_address = m->external_address;
+  p.pcp.mp.protocol = m->protocol;
+  p.pcp.mp.internal_port = htons(m->internal_port);
+  p.pcp.mp.external_port = htons(m->external_port);
+  request_mapping(&p, (struct sockaddr *)&address, listener, sizeof(address));
 }
 
 static void
 renew_ipv6(const gm_port_mapping_t * const m)
 {
-  nat_pmp_or_pcp_t * const	p = &last_request.packet;
-  struct sockaddr_in6 * const 	a6 = (struct sockaddr_in6 *)&last_request.address;
-  // char				buffer[INET6_ADDRSTRLEN + 1];
+  nat_pmp_or_pcp_t	p = {};
+  struct sockaddr_in6	address = {};
+  // char		buffer[INET6_ADDRSTRLEN + 1];
 
   gm_printf("Renew ipv6.\n");
-  memset(&last_request, '\0', sizeof(last_request));
  
-  a6->sin6_family = AF_INET6;
-  memcpy(&a6->sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(a6->sin6_addr));
-  a6->sin6_port = htons(PCP_SERVER_PORT);
+  address.sin6_family = AF_INET6;
+  memcpy(&address.sin6_addr, &GM.sta.ip6.router.sin6_addr, sizeof(address.sin6_addr));
+  address.sin6_port = htons(PCP_SERVER_PORT);
 
-  memcpy(p->pcp.mp.nonce, m->nonce, sizeof(m->nonce));
-  memcpy(&p->pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p->pcp.request.client_address));
-  p->pcp.mp.external_address = m->external_address;
-  p->pcp.mp.protocol = m->protocol;
-  p->pcp.mp.internal_port = htons(m->internal_port);
-  p->pcp.mp.external_port = htons(m->external_port);
+  memcpy(p.pcp.mp.nonce, m->nonce, sizeof(m->nonce));
+  memcpy(&p.pcp.request.client_address, &local_ipv6_address.sin6_addr, sizeof(p.pcp.request.client_address));
+  p.pcp.mp.external_address = m->external_address;
+  p.pcp.mp.protocol = m->protocol;
+  p.pcp.mp.internal_port = htons(m->internal_port);
+  p.pcp.mp.external_port = htons(m->external_port);
 
   // gm_ntop(&last_request.address, buffer, sizeof(buffer));
   // gm_printf("Request IPv6 port mapping of router %s\n", buffer);
-  // inet_ntop(AF_INET6, &a6->sin6_addr, buffer, sizeof(buffer));
+  // inet_ntop(AF_INET6, &address.sin6_addr, buffer, sizeof(buffer));
   // gm_printf("Client is %s\n", buffer);
  
-  request_mapping(p);
+  request_mapping(&p, (struct sockaddr *)&address, local_ipv6_socket, sizeof(address));
 }
 
 static void
