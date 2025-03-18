@@ -350,19 +350,16 @@ remove_pcp_mapping(gm_port_mapping_t * * mp)
 static void
 decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storage * address)
 {
-  esp_ip6_addr_t	esp_addr;
-  esp_ip6_addr_type_t	ipv6_type;
-  char			buffer[INET6_ADDRSTRLEN + 1];
+  char buffer[INET6_ADDRSTRLEN + 1];
 
   gm_ntop(address, buffer, sizeof(buffer));
   gm_printf("Received mapping from %s\n", buffer);
 
-  inet_ntop(AF_INET6, p->pcp.mp.external_address.ipv6.s6_addr, buffer, sizeof(buffer));
   // esp-idf has its own IPv6 address structure.
-  memset(&esp_addr, '\0', sizeof(esp_addr));
+  esp_ip6_addr_t esp_addr = {};
   memcpy(esp_addr.addr, p->pcp.mp.external_address.ipv6.s6_addr, sizeof(esp_addr.addr));
   // Get the address type (global, link-local, etc.) for the IPv6 address.
-  ipv6_type = esp_netif_ip6_get_addr_type(&esp_addr);
+  esp_ip6_addr_type_t ipv6_type = esp_netif_ip6_get_addr_type(&esp_addr);
 
   gm_port_mapping_t * *	mp;
   if ( ipv6_type == ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6 )
@@ -391,6 +388,7 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
 
   if ( ipv6_type != ESP_IP6_ADDR_IS_GLOBAL
    && ipv6_type != ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6) {
+    inet_ntop(AF_INET6, p->pcp.mp.external_address.ipv6.s6_addr, buffer, sizeof(buffer));
     if ( memcmp(
      &p->pcp.mp.external_address.ipv6,
      &GM.sta.ip6.link_local.sin6_addr,
