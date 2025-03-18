@@ -112,10 +112,8 @@ Data Fields</h2></td></tr>
 <tr class="separator:a569e06e92ec3d06c5ebf7f40d7f9a84e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b5ddb5de38d1042c02bc72fd41311b4"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__port__mapping.html#a1b5ddb5de38d1042c02bc72fd41311b4">internal_port</a></td></tr>
 <tr class="separator:a1b5ddb5de38d1042c02bc72fd41311b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4579a6a3bb00195b8f1b0dbcf10984e5"><td class="memItemLeft" align="right" valign="top">uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__port__mapping.html#a4579a6a3bb00195b8f1b0dbcf10984e5">external_port</a></td></tr>
-<tr class="separator:a4579a6a3bb00195b8f1b0dbcf10984e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abb63f788ff5501cacac1bf54c71e8381"><td class="memItemLeft" align="right" valign="top">struct in6_addr&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__port__mapping.html#abb63f788ff5501cacac1bf54c71e8381">external_address</a></td></tr>
-<tr class="separator:abb63f788ff5501cacac1bf54c71e8381"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a819a18877cda312f74540ef654995817"><td class="memItemLeft" align="right" valign="top">struct sockaddr_storage&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__port__mapping.html#a819a18877cda312f74540ef654995817">external</a></td></tr>
+<tr class="separator:a819a18877cda312f74540ef654995817"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0728145e54c157fd88c1e8bb7cb78286"><td class="memItemLeft" align="right" valign="top"><a class="el" href="generic__main_8h.html#a3902b6ea7918ed74816e8928c04713e0">gm_pcp_protocol_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__port__mapping.html#a0728145e54c157fd88c1e8bb7cb78286">protocol</a></td></tr>
 <tr class="separator:a0728145e54c157fd88c1e8bb7cb78286"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4c2100acfbb85133d3629f6b143ac626"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="struct__gm__port__mapping.html">_gm_port_mapping</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__gm__port__mapping.html#a4c2100acfbb85133d3629f6b143ac626">next</a></td></tr>
@@ -141,30 +139,14 @@ Data Fields</h2></td></tr>
 
 </div>
 </div>
-<a id="abb63f788ff5501cacac1bf54c71e8381" name="abb63f788ff5501cacac1bf54c71e8381"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abb63f788ff5501cacac1bf54c71e8381">&#9670;&#160;</a></span>external_address</h2>
+<a id="a819a18877cda312f74540ef654995817" name="a819a18877cda312f74540ef654995817"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a819a18877cda312f74540ef654995817">&#9670;&#160;</a></span>external</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">struct in6_addr external_address</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00107">107</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
-
-</div>
-</div>
-<a id="a4579a6a3bb00195b8f1b0dbcf10984e5" name="a4579a6a3bb00195b8f1b0dbcf10984e5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a4579a6a3bb00195b8f1b0dbcf10984e5">&#9670;&#160;</a></span>external_port</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">uint16_t external_port</td>
+          <td class="memname">struct sockaddr_storage external</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -233,7 +215,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00109">109</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00108">108</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -265,7 +247,7 @@ Data Fields</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00108">108</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00107">107</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>

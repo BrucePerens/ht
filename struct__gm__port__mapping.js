@@ -1,8 +1,7 @@
 var struct__gm__port__mapping =
 [
     [ "expiration_time", "struct__gm__port__mapping.html#a98ed99328ad621551cdfbee6b83754ae", null ],
-    [ "external_address", "struct__gm__port__mapping.html#abb63f788ff5501cacac1bf54c71e8381", null ],
-    [ "external_port", "struct__gm__port__mapping.html#a4579a6a3bb00195b8f1b0dbcf10984e5", null ],
+    [ "external", "struct__gm__port__mapping.html#a819a18877cda312f74540ef654995817", null ],
     [ "granted_time", "struct__gm__port__mapping.html#aa66d354f07eb278916fb908751906dce", null ],
     [ "internal_port", "struct__gm__port__mapping.html#a1b5ddb5de38d1042c02bc72fd41311b4", null ],
     [ "lifetime", "struct__gm__port__mapping.html#a569e06e92ec3d06c5ebf7f40d7f9a84e", null ],
