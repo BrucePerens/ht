@@ -14,6 +14,7 @@ var generic__main_8h =
     [ "CONSTRUCTOR", "generic__main_8h.html#a5facd426173a400e33c57d48617b3a66", null ],
     [ "COUNTOF", "generic__main_8h.html#ad0add60b29474b53705e3863a72935d4", null ],
     [ "GM_FAIL", "generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b", null ],
+    [ "GM_FAIL_WITH_OS_ERROR", "generic__main_8h.html#a93c10da314e7e7a8acbf51982c1fe4b8", null ],
     [ "GM_VSPRINTF", "generic__main_8h.html#a7c2a2fd12f16d8765ac7db2d6c175a1e", null ],
     [ "GM_WARN_ONCE", "generic__main_8h.html#a2d57a3d149dbc0839f136d6194318bbe", null ],
     [ "generic_main_t", "generic__main_8h.html#a9f6195ead211be381840e183d6a0e478", null ],
@@ -27,7 +28,9 @@ var generic__main_8h =
     [ "gm_nonvolatile_type_t", "generic__main_8h.html#a2b4f8abccc75510616454e63cf16e30e", null ],
     [ "gm_param_t", "generic__main_8h.html#a4c816f122e5c792037607a8cdb1abb8b", null ],
     [ "gm_pattern_coroutine_t", "generic__main_8h.html#a1e989767b6cfe7b5f1a9f2658312e5c4", null ],
+    [ "gm_pcp_protocol_t", "generic__main_8h.html#a3902b6ea7918ed74816e8928c04713e0", null ],
     [ "gm_port_mapping_t", "generic__main_8h.html#a251dfd646a4401eac0dc9d0f80ffa9bd", null ],
+    [ "gm_port_mapping_type_t", "generic__main_8h.html#a096c9d75d08acb696c97d6245d7f3535", null ],
     [ "gm_run_data_t", "generic__main_8h.html#acc4acd744a98ad5add8194aa33ef1964", null ],
     [ "gm_run_speed_t", "generic__main_8h.html#a4aae862eedcfc29f4110d55e11413a27", null ],
     [ "gm_run_t", "generic__main_8h.html#a9825bc4be4dde7c5c0a98ac022b51a6b", null ],
@@ -48,6 +51,14 @@ var generic__main_8h =
       [ "GM_SECRET", "generic__main_8h.html#aaad57ac91e77fd3345e35d4fa501b2aaa341f4060eb718891a45063c6587958ac", null ],
       [ "GM_NOT_SET", "generic__main_8h.html#aaad57ac91e77fd3345e35d4fa501b2aaa94dbfc92b922023e36eec05f4cced81f", null ]
     ] ],
+    [ "_gm_pcp_protocol", "generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312", [
+      [ "GM_PCP_TCP", "generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312a934e9936f94b705bbf10056889df1f75", null ],
+      [ "GM_PCP_UDP", "generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312ae023d1ec7b811d7e9c4a69ebcf634d3f", null ]
+    ] ],
+    [ "_gm_port_mapping_type", "generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0", [
+      [ "GM_REQUEST", "generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0a02f15fd61a42c00fe9f15c1c4dec95de", null ],
+      [ "GM_GRANTED", "generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0ae3280043133c4df56fc385e75a74aefc", null ]
+    ] ],
     [ "_gm_run_speed", "generic__main_8h.html#ad04ba6c25fcbdc23c3123de6bd4e0279", [
       [ "GM_SLOW", "generic__main_8h.html#ad04ba6c25fcbdc23c3123de6bd4e0279ae2cee6819251267112ab34e412d35393", null ],
       [ "GM_MEDIUM", "generic__main_8h.html#ad04ba6c25fcbdc23c3123de6bd4e0279a7779b3d2993fd5458ab785b1bccf6f4a", null ],
@@ -66,10 +77,6 @@ var generic__main_8h =
       [ "URL", "generic__main_8h.html#ad1bd8b42ebaf7b55f667a193621739e6a7859c6fa207d555e4f392f308b4b9d7c", null ],
       [ "DOMAIN", "generic__main_8h.html#ad1bd8b42ebaf7b55f667a193621739e6a732051072655cbf978ac5fba25e61ee2", null ]
     ] ],
-    [ "gm_pcp_protocol", "generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942a", [
-      [ "GM_PCP_TCP", "generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942aa934e9936f94b705bbf10056889df1f75", null ],
-      [ "GM_PCP_UDP", "generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942aae023d1ec7b811d7e9c4a69ebcf634d3f", null ]
-    ] ],
     [ "ESP_EVENT_DECLARE_BASE", "generic__main_8h.html#aa7d4b559afc372a06f52a961b83c46df", null ],
     [ "gm_all_zeroes", "generic__main_8h.html#a8f2bc0cf62bff4994db4a27f212bb544", null ],
     [ "gm_array_add", "generic__main_8h.html#a5f2a3e59e07f1c813f53d80eb26e250b", null ],
@@ -85,6 +92,7 @@ var generic__main_8h =
     [ "gm_ddns", "generic__main_8h.html#aacc4ebafeb423a13a5362cc1ba310124", null ],
     [ "gm_event_server", "generic__main_8h.html#a241265b53f97b10d9cdf9fdf85e34127", null ],
     [ "gm_fail", "generic__main_8h.html#ab36918ceea6a52ab5b938f0a3eb10989", null ],
+    [ "gm_fail_with_os_error", "generic__main_8h.html#a3526f25106ba237886de5439508dc2ee", null ],
     [ "gm_fd_register", "generic__main_8h.html#ac22a7af22d1407b004803ed54e3d85af", null ],
     [ "gm_fd_unregister", "generic__main_8h.html#a3433e32a85b9cd569c3a4d8f0a82a039", null ],
     [ "gm_flash_failure", "generic__main_8h.html#ac2cfab6c3d6dc1fc469dffb54cb4cae4", null ],

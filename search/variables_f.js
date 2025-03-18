@@ -16,7 +16,7 @@ var searchData=
   ['port_5fmappings_13',['port_mappings',['../struct__gm__netif_1_1gm__netif__ip6.html#a1e01f8ea029440b59296507906357ae4',1,'_gm_netif::gm_netif_ip6::port_mappings()'],['../struct__gm__netif_1_1gm__netif__ip4.html#a1e01f8ea029440b59296507906357ae4',1,'_gm_netif::gm_netif_ip4::port_mappings()']]],
   ['preemphasis_5fdeemphasis_14',['preemphasis_deemphasis',['../structradio__channel__data.html#af72fda9873998e1d8769803acfd94482',1,'radio_channel_data']]],
   ['procedure_15',['procedure',['../structgm__event__t.html#a340ca94a564c73e516b842cece89dc64',1,'gm_event_t::procedure()'],['../struct__gm__run__data.html#a340ca94a564c73e516b842cece89dc64',1,'_gm_run_data::procedure()']]],
-  ['protocol_16',['protocol',['../struct__gm__port__mapping.html#a1237ca511ce36e46c235d1d5cbd503da',1,'_gm_port_mapping::protocol()'],['../struct__nat__pmp__or__pcp.html#ad124d3d2e02c729afa303c775295278e',1,'_nat_pmp_or_pcp::protocol()']]],
+  ['protocol_16',['protocol',['../struct__gm__port__mapping.html#a0728145e54c157fd88c1e8bb7cb78286',1,'_gm_port_mapping::protocol()'],['../struct__nat__pmp__or__pcp.html#ad124d3d2e02c729afa303c775295278e',1,'_nat_pmp_or_pcp::protocol()']]],
   ['pull_5fdown_17',['pull_down',['../gpio_8c.html#a3f685123d5ee1e8bac30ce91bd3c42f2',1,'gpio.c']]],
   ['pull_5fup_18',['pull_up',['../gpio_8c.html#afc6e0853ad6df62caa768dd78fed18c5',1,'gpio.c']]]
 ];

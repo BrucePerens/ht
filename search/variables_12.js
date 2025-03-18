@@ -11,6 +11,6 @@ var searchData=
   ['transmit_5fpower_8',['transmit_power',['../structradio__channel__data.html#a911757d50bd11e42c9fff2f67172ea78',1,'radio_channel_data']]],
   ['transmit_5fsubaudible_5ftone_9',['transmit_subaudible_tone',['../structradio__channel__data.html#a376f70cf058812d646ca4b512e034f25',1,'radio_channel_data']]],
   ['tries_10',['tries',['../structstun__run.html#aa37603a419f2f7a9871eae9e371ce691',1,'stun_run']]],
-  ['type_11',['type',['../struct__icmpv6__message.html#a1d127017fb298b889f4ba24752d08b8e',1,'_icmpv6_message::type()'],['../structgm__nonvolatile.html#a81ec80619ac7fde59ecdf81d780d5560',1,'gm_nonvolatile::type()'],['../structstun__message.html#acb5cfd209ba75c853d03f701e7f91679',1,'stun_message::type()'],['../structstun__attribute.html#acb5cfd209ba75c853d03f701e7f91679',1,'stun_attribute::type()']]],
+  ['type_11',['type',['../struct__icmpv6__message.html#a1d127017fb298b889f4ba24752d08b8e',1,'_icmpv6_message::type()'],['../struct__gm__port__mapping.html#a32246d59910e3711e0d36eec46b56ce9',1,'_gm_port_mapping::type()'],['../structgm__nonvolatile.html#a81ec80619ac7fde59ecdf81d780d5560',1,'gm_nonvolatile::type()'],['../structstun__message.html#acb5cfd209ba75c853d03f701e7f91679',1,'stun_message::type()'],['../structstun__attribute.html#acb5cfd209ba75c853d03f701e7f91679',1,'stun_attribute::type()']]],
   ['types_12',['types',['../structstun__attribute.html#a432d0e2de0d0911d5bca316a9329dfbb',1,'stun_attribute']]]
 ];

@@ -98,6 +98,8 @@ $(document).ready(function(){initNavTree('printf_8c.html',''); initResizable(); 
 <div class="contents">
 <div class="textblock"><code>#include &lt;stdarg.h&gt;</code><br />
 <code>#include &lt;stdio.h&gt;</code><br />
+<code>#include &lt;errno.h&gt;</code><br />
+<code>#include &lt;string.h&gt;</code><br />
 <code>#include &lt;freertos/FreeRTOS.h&gt;</code><br />
 <code>#include &lt;freertos/task.h&gt;</code><br />
 <code>#include &quot;<a class="el" href="generic__main_8h_source.html">generic_main.h</a>&quot;</code><br />
@@ -113,6 +115,8 @@ Macros</h2></td></tr>
 Functions</h2></td></tr>
 <tr class="memitem:a0c3b98b69319299fe58f61c3ed2cae63"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a0c3b98b69319299fe58f61c3ed2cae63">gm_fail</a> (const char *function, const char *file, int line, const char *pattern,...)</td></tr>
 <tr class="separator:a0c3b98b69319299fe58f61c3ed2cae63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaa748f78e9be6dca3e0a331eb396172c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#aaa748f78e9be6dca3e0a331eb396172c">gm_fail_with_os_error</a> (const char *function, const char *file, int line, const char *pattern,...)</td></tr>
+<tr class="separator:aaa748f78e9be6dca3e0a331eb396172c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a269c13cf4b200589936d8bd6fb0f4e85"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a269c13cf4b200589936d8bd6fb0f4e85">gm_vprintf</a> (const char *pattern, va_list args)</td></tr>
 <tr class="separator:a269c13cf4b200589936d8bd6fb0f4e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a02c5acd2c854feded072f474e9da947e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="printf_8c.html#a02c5acd2c854feded072f474e9da947e">gm_printf</a> (const char *pattern,...)</td></tr>
@@ -131,7 +135,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00003">3</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00005">5</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>
@@ -180,7 +184,55 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00013">13</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00015">15</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+
+</div>
+</div>
+<a id="aaa748f78e9be6dca3e0a331eb396172c" name="aaa748f78e9be6dca3e0a331eb396172c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaa748f78e9be6dca3e0a331eb396172c">&#9670;&#160;</a></span>gm_fail_with_os_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_fail_with_os_error </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pattern</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00030">30</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>
@@ -210,7 +262,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00038">38</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00061">61</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>
@@ -240,7 +292,7 @@ Functions</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00027">27</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00050">50</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>

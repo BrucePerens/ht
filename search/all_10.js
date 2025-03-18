@@ -64,12 +64,12 @@ var searchData=
   ['printf_2ec_61',['printf.c',['../printf_8c.html',1,'']]],
   ['procedure_62',['procedure',['../struct__gm__run__data.html#a340ca94a564c73e516b842cece89dc64',1,'_gm_run_data::procedure()'],['../structgm__event__t.html#a340ca94a564c73e516b842cece89dc64',1,'gm_event_t::procedure()']]],
   ['progress_63',['progress',['../web__template_8h.html#a1053da3b486f550d915639288726a15a',1,'web_template.h']]],
-  ['protocol_64',['protocol',['../struct__gm__port__mapping.html#a1237ca511ce36e46c235d1d5cbd503da',1,'_gm_port_mapping::protocol()'],['../struct__nat__pmp__or__pcp.html#ad124d3d2e02c729afa303c775295278e',1,'_nat_pmp_or_pcp::protocol()']]],
+  ['protocol_64',['protocol',['../struct__gm__port__mapping.html#a0728145e54c157fd88c1e8bb7cb78286',1,'_gm_port_mapping::protocol()'],['../struct__nat__pmp__or__pcp.html#ad124d3d2e02c729afa303c775295278e',1,'_nat_pmp_or_pcp::protocol()']]],
   ['public_5fip_2ec_65',['public_ip.c',['../public__ip_8c.html',1,'']]],
   ['public_5fip_5fcmd_2ec_66',['public_ip_cmd.c',['../public__ip__cmd_8c.html',1,'']]],
-  ['pull_5fdown_67',['pull_down',['../gpio_8c.html#a3f685123d5ee1e8bac30ce91bd3c42f2',1,'gpio.c']]],
-  ['pull_5fdown_68',['PULL_DOWN',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba0351276972489e49e38c22116a9b88be',1,'gpio.c']]],
-  ['pull_5fup_69',['pull_up',['../gpio_8c.html#afc6e0853ad6df62caa768dd78fed18c5',1,'gpio.c']]],
-  ['pull_5fup_70',['PULL_UP',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba6d031447a3a4f4a8bd019caae5a8eefd',1,'gpio.c']]],
+  ['pull_5fdown_67',['PULL_DOWN',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba0351276972489e49e38c22116a9b88be',1,'gpio.c']]],
+  ['pull_5fdown_68',['pull_down',['../gpio_8c.html#a3f685123d5ee1e8bac30ce91bd3c42f2',1,'gpio.c']]],
+  ['pull_5fup_69',['PULL_UP',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1ba6d031447a3a4f4a8bd019caae5a8eefd',1,'gpio.c']]],
+  ['pull_5fup_70',['pull_up',['../gpio_8c.html#afc6e0853ad6df62caa768dd78fed18c5',1,'gpio.c']]],
   ['put_71',['PUT',['../generic__main_8h.html#a57e1ec3d9f1a185ad67f0409af45fd75afec39d40e8bc9e12afa614df5ddb9fa9',1,'generic_main.h']]]
 ];

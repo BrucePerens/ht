@@ -155,6 +155,8 @@ Macros</h2></td></tr>
 <tr class="separator:a7c2a2fd12f16d8765ac7db2d6c175a1e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5775ffb7210a4f9052e884ed6fda249b"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a5775ffb7210a4f9052e884ed6fda249b">GM_FAIL</a>(args...)&#160;&#160;&#160;<a class="el" href="generic__main_8h.html#ab36918ceea6a52ab5b938f0a3eb10989">gm_fail</a>(__PRETTY_FUNCTION__, __FILE__, __LINE__, args)</td></tr>
 <tr class="separator:a5775ffb7210a4f9052e884ed6fda249b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c10da314e7e7a8acbf51982c1fe4b8"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a93c10da314e7e7a8acbf51982c1fe4b8">GM_FAIL_WITH_OS_ERROR</a>(args...)&#160;&#160;&#160;<a class="el" href="generic__main_8h.html#a3526f25106ba237886de5439508dc2ee">gm_fail_with_os_error</a>(__PRETTY_FUNCTION__, __FILE__, __LINE__, args)</td></tr>
+<tr class="separator:a93c10da314e7e7a8acbf51982c1fe4b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2d57a3d149dbc0839f136d6194318bbe"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a2d57a3d149dbc0839f136d6194318bbe">GM_WARN_ONCE</a>(args...)&#160;&#160;&#160;{ static bool i_told_you_once = false; if ( !i_told_you_once ) { <a class="el" href="generic__main_8h.html#a5d74fbe16c813a7c392df9132d100b5b">gm_printf</a>(args); i_told_you_once = true; } }</td></tr>
 <tr class="separator:a2d57a3d149dbc0839f136d6194318bbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -180,6 +182,10 @@ Typedefs</h2></td></tr>
 <tr class="separator:a77245251bed1ec5505fcd39aa708185d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acc4acd744a98ad5add8194aa33ef1964"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__gm__run__data.html">_gm_run_data</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#acc4acd744a98ad5add8194aa33ef1964">gm_run_data_t</a></td></tr>
 <tr class="separator:acc4acd744a98ad5add8194aa33ef1964"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a096c9d75d08acb696c97d6245d7f3535"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0">_gm_port_mapping_type</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a096c9d75d08acb696c97d6245d7f3535">gm_port_mapping_type_t</a></td></tr>
+<tr class="separator:a096c9d75d08acb696c97d6245d7f3535"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3902b6ea7918ed74816e8928c04713e0"><td class="memItemLeft" align="right" valign="top">typedef enum <a class="el" href="generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312">_gm_pcp_protocol</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a3902b6ea7918ed74816e8928c04713e0">gm_pcp_protocol_t</a></td></tr>
+<tr class="separator:a3902b6ea7918ed74816e8928c04713e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a251dfd646a4401eac0dc9d0f80ffa9bd"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__gm__port__mapping.html">_gm_port_mapping</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a251dfd646a4401eac0dc9d0f80ffa9bd">gm_port_mapping_t</a></td></tr>
 <tr class="separator:a251dfd646a4401eac0dc9d0f80ffa9bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a94e385d04b8c632983af0242f4c0e409"><td class="memItemLeft" align="right" valign="top">typedef struct <a class="el" href="struct__gm__netif.html">_gm_netif</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a94e385d04b8c632983af0242f4c0e409">gm_netif_t</a></td></tr>
@@ -241,15 +247,21 @@ Enumerations</h2></td></tr>
 <tr class="memitem:a1c6471ee124a77e8c5ec4a644b7f3305"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a1c6471ee124a77e8c5ec4a644b7f3305">_gm_event_id</a> { <a class="el" href="generic__main_8h.html#a1c6471ee124a77e8c5ec4a644b7f3305a655d31d9a860c2f89743d4535526e639">GM_RUN</a>
  }</td></tr>
 <tr class="separator:a1c6471ee124a77e8c5ec4a644b7f3305"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abc31ae1e44e9ae729d0e2438f9f2942a"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942a">gm_pcp_protocol</a> { <a class="el" href="generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942aa934e9936f94b705bbf10056889df1f75">GM_PCP_TCP</a> = 6
-, <a class="el" href="generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942aae023d1ec7b811d7e9c4a69ebcf634d3f">GM_PCP_UDP</a> = 17
+<tr class="memitem:acd603c0a350249d9df89176c2fff1ff0"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0">_gm_port_mapping_type</a> { <a class="el" href="generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0a02f15fd61a42c00fe9f15c1c4dec95de">GM_REQUEST</a>
+, <a class="el" href="generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0ae3280043133c4df56fc385e75a74aefc">GM_GRANTED</a>
  }</td></tr>
-<tr class="separator:abc31ae1e44e9ae729d0e2438f9f2942a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="separator:acd603c0a350249d9df89176c2fff1ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab889fd9549c152bd16a83baa8587e312"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312">_gm_pcp_protocol</a> { <a class="el" href="generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312a934e9936f94b705bbf10056889df1f75">GM_PCP_TCP</a> = 6
+, <a class="el" href="generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312ae023d1ec7b811d7e9c4a69ebcf634d3f">GM_PCP_UDP</a> = 17
+ }</td></tr>
+<tr class="separator:ab889fd9549c152bd16a83baa8587e312"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:ab36918ceea6a52ab5b938f0a3eb10989"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#ab36918ceea6a52ab5b938f0a3eb10989">gm_fail</a> (const char *, const char *, int, const char *,...)</td></tr>
 <tr class="separator:ab36918ceea6a52ab5b938f0a3eb10989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3526f25106ba237886de5439508dc2ee"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a3526f25106ba237886de5439508dc2ee">gm_fail_with_os_error</a> (const char *, const char *, int, const char *,...)</td></tr>
+<tr class="separator:a3526f25106ba237886de5439508dc2ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa7d4b559afc372a06f52a961b83c46df"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#aa7d4b559afc372a06f52a961b83c46df">ESP_EVENT_DECLARE_BASE</a> (GM_EVENT)</td></tr>
 <tr class="separator:aa7d4b559afc372a06f52a961b83c46df"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8f2bc0cf62bff4994db4a27f212bb544"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="generic__main_8h.html#a8f2bc0cf62bff4994db4a27f212bb544">gm_all_zeroes</a> (const void *, size_t)</td></tr>
@@ -463,6 +475,26 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="a93c10da314e7e7a8acbf51982c1fe4b8" name="a93c10da314e7e7a8acbf51982c1fe4b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93c10da314e7e7a8acbf51982c1fe4b8">&#9670;&#160;</a></span>GM_FAIL_WITH_OS_ERROR</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define GM_FAIL_WITH_OS_ERROR</td>
+          <td>(</td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname">args...</td><td>)</td>
+          <td>&#160;&#160;&#160;<a class="el" href="generic__main_8h.html#a3526f25106ba237886de5439508dc2ee">gm_fail_with_os_error</a>(__PRETTY_FUNCTION__, __FILE__, __LINE__, args)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00041">41</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+
+</div>
+</div>
 <a id="a7c2a2fd12f16d8765ac7db2d6c175a1e" name="a7c2a2fd12f16d8765ac7db2d6c175a1e"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7c2a2fd12f16d8765ac7db2d6c175a1e">&#9670;&#160;</a></span>GM_VSPRINTF</h2>
 
@@ -511,7 +543,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00040">40</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00042">42</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -542,7 +574,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00201">201</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00209">209</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -572,7 +604,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00077">77</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00079">79</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -588,7 +620,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00080">80</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00082">82</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -618,7 +650,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00202">202</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00210">210</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -676,7 +708,21 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00203">203</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00211">211</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+
+</div>
+</div>
+<a id="a3902b6ea7918ed74816e8928c04713e0" name="a3902b6ea7918ed74816e8928c04713e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3902b6ea7918ed74816e8928c04713e0">&#9670;&#160;</a></span>gm_pcp_protocol_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef enum <a class="el" href="generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312">_gm_pcp_protocol</a> <a class="el" href="generic__main_8h.html#a3902b6ea7918ed74816e8928c04713e0">gm_pcp_protocol_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>
@@ -688,6 +734,20 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">typedef struct <a class="el" href="struct__gm__port__mapping.html">_gm_port_mapping</a> <a class="el" href="generic__main_8h.html#a251dfd646a4401eac0dc9d0f80ffa9bd">gm_port_mapping_t</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a096c9d75d08acb696c97d6245d7f3535" name="a096c9d75d08acb696c97d6245d7f3535"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a096c9d75d08acb696c97d6245d7f3535">&#9670;&#160;</a></span>gm_port_mapping_type_t</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef enum <a class="el" href="generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0">_gm_port_mapping_type</a> <a class="el" href="generic__main_8h.html#a096c9d75d08acb696c97d6245d7f3535">gm_port_mapping_type_t</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -734,7 +794,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00078">78</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00080">80</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -764,7 +824,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00079">79</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00081">81</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -808,7 +868,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00204">204</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00212">212</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -856,7 +916,7 @@ Variables</h2></td></tr>
 <tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="a1c6471ee124a77e8c5ec4a644b7f3305a655d31d9a860c2f89743d4535526e639" name="a1c6471ee124a77e8c5ec4a644b7f3305a655d31d9a860c2f89743d4535526e639"></a>GM_RUN&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00073">73</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00075">75</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -879,7 +939,47 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="aaad57ac91e77fd3345e35d4fa501b2aaa94dbfc92b922023e36eec05f4cced81f" name="aaad57ac91e77fd3345e35d4fa501b2aaa94dbfc92b922023e36eec05f4cced81f"></a>GM_NOT_SET&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00044">44</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00046">46</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+
+</div>
+</div>
+<a id="ab889fd9549c152bd16a83baa8587e312" name="ab889fd9549c152bd16a83baa8587e312"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab889fd9549c152bd16a83baa8587e312">&#9670;&#160;</a></span>_gm_pcp_protocol</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="generic__main_8h.html#ab889fd9549c152bd16a83baa8587e312">_gm_pcp_protocol</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ab889fd9549c152bd16a83baa8587e312a934e9936f94b705bbf10056889df1f75" name="ab889fd9549c152bd16a83baa8587e312a934e9936f94b705bbf10056889df1f75"></a>GM_PCP_TCP&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="ab889fd9549c152bd16a83baa8587e312ae023d1ec7b811d7e9c4a69ebcf634d3f" name="ab889fd9549c152bd16a83baa8587e312ae023d1ec7b811d7e9c4a69ebcf634d3f"></a>GM_PCP_UDP&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00094">94</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+
+</div>
+</div>
+<a id="acd603c0a350249d9df89176c2fff1ff0" name="acd603c0a350249d9df89176c2fff1ff0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acd603c0a350249d9df89176c2fff1ff0">&#9670;&#160;</a></span>_gm_port_mapping_type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="generic__main_8h.html#acd603c0a350249d9df89176c2fff1ff0">_gm_port_mapping_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="acd603c0a350249d9df89176c2fff1ff0a02f15fd61a42c00fe9f15c1c4dec95de" name="acd603c0a350249d9df89176c2fff1ff0a02f15fd61a42c00fe9f15c1c4dec95de"></a>GM_REQUEST&#160;</td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="acd603c0a350249d9df89176c2fff1ff0ae3280043133c4df56fc385e75a74aefc" name="acd603c0a350249d9df89176c2fff1ff0ae3280043133c4df56fc385e75a74aefc"></a>GM_GRANTED&#160;</td><td class="fielddoc"></td></tr>
+</table>
+
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00089">89</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -900,7 +1000,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="ad04ba6c25fcbdc23c3123de6bd4e0279a02cb6861fa2161f0e406f2cb2e40dadb" name="ad04ba6c25fcbdc23c3123de6bd4e0279a02cb6861fa2161f0e406f2cb2e40dadb"></a>GM_FAST&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00067">67</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00069">69</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -921,7 +1021,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926" name="a57e1ec3d9f1a185ad67f0409af45fd75a368c5bc07109370b819193871352b926"></a>POST&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00061">61</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00063">63</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -945,27 +1045,7 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="ad1bd8b42ebaf7b55f667a193621739e6a732051072655cbf978ac5fba25e61ee2" name="ad1bd8b42ebaf7b55f667a193621739e6a732051072655cbf978ac5fba25e61ee2"></a>DOMAIN&#160;</td><td class="fielddoc"></td></tr>
 </table>
 
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00052">52</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
-
-</div>
-</div>
-<a id="abc31ae1e44e9ae729d0e2438f9f2942a" name="abc31ae1e44e9ae729d0e2438f9f2942a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abc31ae1e44e9ae729d0e2438f9f2942a">&#9670;&#160;</a></span>gm_pcp_protocol</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">enum <a class="el" href="generic__main_8h.html#abc31ae1e44e9ae729d0e2438f9f2942a">gm_pcp_protocol</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<table class="fieldtable">
-<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="abc31ae1e44e9ae729d0e2438f9f2942aa934e9936f94b705bbf10056889df1f75" name="abc31ae1e44e9ae729d0e2438f9f2942aa934e9936f94b705bbf10056889df1f75"></a>GM_PCP_TCP&#160;</td><td class="fielddoc"></td></tr>
-<tr><td class="fieldname"><a id="abc31ae1e44e9ae729d0e2438f9f2942aae023d1ec7b811d7e9c4a69ebcf634d3f" name="abc31ae1e44e9ae729d0e2438f9f2942aae023d1ec7b811d7e9c4a69ebcf634d3f"></a>GM_PCP_UDP&#160;</td><td class="fielddoc"></td></tr>
-</table>
-
-<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00087">87</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
+<p class="definition">Definition at line <a class="el" href="generic__main_8h_source.html#l00054">54</a> of file <a class="el" href="generic__main_8h_source.html">generic_main.h</a>.</p>
 
 </div>
 </div>
@@ -1322,7 +1402,55 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00013">13</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00015">15</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+
+</div>
+</div>
+<a id="a3526f25106ba237886de5439508dc2ee" name="a3526f25106ba237886de5439508dc2ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3526f25106ba237886de5439508dc2ee">&#9670;&#160;</a></span>gm_fail_with_os_error()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void gm_fail_with_os_error </td>
+          <td>(</td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>function</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>file</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>line</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const char *&#160;</td>
+          <td class="paramname"><em>pattern</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">&#160;</td>
+          <td class="paramname"><em>...</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00030">30</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>
@@ -1382,7 +1510,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00049">49</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00047">47</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
 
 </div>
 </div>
@@ -1402,7 +1530,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00102">102</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00100">100</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
 
 </div>
 </div>
@@ -1522,7 +1650,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="icmpv6_8c_source.html#l00088">88</a> of file <a class="el" href="icmpv6_8c_source.html">icmpv6.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="icmpv6_8c_source.html#l00089">89</a> of file <a class="el" href="icmpv6_8c_source.html">icmpv6.c</a>.</p>
 
 </div>
 </div>
@@ -1932,7 +2060,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00520">520</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00522">522</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -1952,7 +2080,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00578">578</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00580">580</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -1972,7 +2100,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00635">635</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="port__control__protocol_8c_source.html#l00637">637</a> of file <a class="el" href="port__control__protocol_8c_source.html">port_control_protocol.c</a>.</p>
 
 </div>
 </div>
@@ -2002,7 +2130,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00038">38</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00061">61</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>
@@ -2108,7 +2236,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00240">240</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="select__task_8c_source.html#l00243">243</a> of file <a class="el" href="select__task_8c_source.html">select_task.c</a>.</p>
 
 </div>
 </div>
@@ -2489,7 +2617,7 @@ Variables</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00027">27</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
+<p class="definition">Definition at line <a class="el" href="printf_8c_source.html#l00050">50</a> of file <a class="el" href="printf_8c_source.html">printf.c</a>.</p>
 
 </div>
 </div>
