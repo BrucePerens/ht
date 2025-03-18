@@ -96,16 +96,27 @@ typedef enum _gm_pcp_protocol {
   GM_PCP_UDP = 17
 } gm_pcp_protocol_t;
 
+// This is an assignable version of the PCP nonce data, rather than a raw array.
+// It must be the same size as the underlying data.
+#pragma pack(1)
+typedef struct _gm_pcp_nonce {
+  uint32_t data[3];
+} gm_pcp_nonce_t;
+#pragma pack()
+
+// This is arranged in the hope of reducing unnecessary padding.
+// Note the enums restricted in size as bit-fields.
 typedef struct _gm_port_mapping { 
-  gm_port_mapping_type_t	type;
+  uint32_t			lifetime;
+  struct _gm_port_mapping *	next;
   struct timeval		granted_time;
   struct timeval		expiration_time;
-  uint32_t			nonce[3];
-  uint32_t			lifetime;
-  uint16_t			internal_port;
   struct sockaddr_storage	external;
-  gm_pcp_protocol_t		protocol;
-  struct _gm_port_mapping *	next;
+  gm_pcp_nonce_t		nonce;
+  uint16_t			internal_port;
+  uint8_t			request_count;
+  gm_pcp_protocol_t		protocol:6;
+  gm_port_mapping_type_t	type:2;
 } gm_port_mapping_t;
 
 typedef struct _gm_netif {
