@@ -103,8 +103,7 @@ typedef struct _gm_port_mapping {
   uint32_t			nonce[3];
   uint32_t			lifetime;
   uint16_t			internal_port;
-  uint16_t			external_port;
-  struct in6_addr		external_address;
+  struct sockaddr_storage	external;
   gm_pcp_protocol_t		protocol;
   struct _gm_port_mapping *	next;
 } gm_port_mapping_t;
