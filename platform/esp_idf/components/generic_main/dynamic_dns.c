@@ -70,7 +70,7 @@ static int parameter(const char * name,  char * buffer, size_t buffer_size)
       p++;
     }
   }
-  GM_FAIL("No such DDNS parameter %s.\n", name);
+  GM_FAIL("No such DDNS parameter %s.", name);
   return 0;
 }
 

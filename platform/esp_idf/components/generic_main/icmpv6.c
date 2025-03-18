@@ -64,7 +64,7 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
   message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
 
   if ( message_size < 0 ) {
-    GM_FAIL("icmpv6 receive handler failed: %s.\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("icmpv6 receive handler failed");
     return;
   }
   if ( address.ss_family != AF_INET6 ) // We get ICMPv4 packets.
@@ -78,7 +78,8 @@ gm_icmpv6_start_listener_ipv6 (gm_ipv6_router_advertisement_after_t after)
 {
   icmpv6_socket = socket(AF_INET6, SOCK_RAW, IPPROTO_ICMPV6);
   if ( icmpv6_socket < 0 ) {
-    GM_FAIL("Socket creation failed: %s.\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Socket creation failed");
+    return;
   }
 
   gm_fd_register(icmpv6_socket, incoming_packet, after, after, false, true, 0);

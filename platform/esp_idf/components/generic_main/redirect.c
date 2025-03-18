@@ -162,7 +162,7 @@ accept_handler(int sock, void * data, bool readable, bool writable, bool excepti
    (struct sockaddr *)&client_address,
    &client_size);
   if ( connection < 0 ) {
-    GM_FAIL("Select event server accept failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Select event server accept failed");
     return;
   }
   struct request * r = (struct request *)malloc(sizeof(struct request));

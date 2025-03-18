@@ -139,7 +139,7 @@ request_mapping(
    address_size);
 
   if ( sendto_status < 0 ) {
-    GM_FAIL("PCP sendto: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("PCP sendto");
     return;
   }
 }
@@ -284,18 +284,18 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
 #if 0
   // FIX: Match against the table of mappings.
   if ( memcmp(p->pcp.mp.nonce, last_request.packet.pcp.mp.nonce, sizeof(p->pcp.mp.nonce)) < 0 ) {
-    GM_FAIL("Received nonce isn't equal to transmitted one.\n");
+    GM_FAIL("Received nonce isn't equal to transmitted one.");
     return;
   }
 #endif
   if ( p->result_code != PCP_SUCCESS ) {
-    GM_FAIL("PCP received result code: %d.\n", p->result_code);
+    GM_FAIL("PCP received result code: %d.", p->result_code);
     return;
   }
 #if 0
   // FIX: Match against the table of mappings.
   if ( p->opcode != (last_request.packet.opcode | 0x80) ) {
-    GM_FAIL("Received opcode: %x, no match to last packet opcode %x.\n", p->opcode, last_request.packet.opcode);
+    GM_FAIL("Received opcode: %x, no match to last packet opcode %x.", p->opcode, last_request.packet.opcode);
     return;
   }
 #endif
@@ -416,7 +416,7 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
   message_size = recvfrom(fd, &packet, sizeof(packet), MSG_DONTWAIT, (struct sockaddr *)&address, &address_size);
  
   if ( message_size <= 0 ) {
-    GM_FAIL("recvfrom returned %d", message_size);
+    GM_FAIL_WITH_OS_ERROR("recvfrom returned %d", message_size);
     return;
   }
   memset(buffer, '\0', sizeof(buffer));
@@ -546,7 +546,7 @@ gm_pcp_start_ipv4()
   // Accept both IPV4 and IPV6 connections.
   (void) setsockopt(listener, IPPROTO_IPV6, IPV6_V6ONLY, (const void *)&no, sizeof(no)); 
   if ( bind(listener, (struct sockaddr *)&address, sizeof(address)) < 0 ) {
-    GM_FAIL("bind failed.\n");
+    GM_FAIL_WITH_OS_ERROR("Bind failed");
     return;
   }
 
@@ -557,7 +557,7 @@ gm_pcp_start_ipv4()
     // This fails because the host is already registered to the "all-hosts" multicast
     // group. Ignore that.
     if ( errno != EADDRNOTAVAIL ) {
-      GM_FAIL("Setsockopt IP_ADD_MEMBERSHIP failed: %s.\n", strerror(errno));
+      GM_FAIL_WITH_OS_ERROR("Setsockopt IP_ADD_MEMBERSHIP failed");
       return;
     }
   }
@@ -568,7 +568,7 @@ gm_pcp_start_ipv4()
     // This fails because the host is already registered to the "all-hosts" multicast
     // group. Ignore that.
     if ( errno != EADDRNOTAVAIL ) {
-      GM_FAIL("Setsockopt IP_ADD_MEMBERSHIP failed: %s.\n", strerror(errno));
+      GM_FAIL_WITH_OS_ERROR("Setsockopt IP_ADD_MEMBERSHIP failed");
       return;
     }
   }
@@ -607,7 +607,7 @@ gm_pcp_start_ipv6()
   }
 
   if ( bits == 0 ) {
-    GM_FAIL("Didn't find a local address that matches the router.\n");
+    GM_FAIL("Didn't find a local address that matches the router.");
     return;
   }
 
@@ -616,7 +616,7 @@ gm_pcp_start_ipv6()
 
   local_ipv6_socket = socket(AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
   if ( local_ipv6_socket < 0 ) {
-    GM_FAIL("Can't get a socket: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Can't get a socket");
   }
 
   // Make the address reusable, because other things have bound to this address.
@@ -627,7 +627,7 @@ gm_pcp_start_ipv6()
   setsockopt(local_ipv6_socket, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes));
 
   if ( bind(local_ipv6_socket, (struct sockaddr *)&local_ipv6_address, sizeof(local_ipv6_address)) < 0 ) {
-    GM_FAIL("bind failed: %s.\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Bind failed");
     return;
   }
   gm_fd_register(local_ipv6_socket, incoming_packet, 0, true, false, true, 0);

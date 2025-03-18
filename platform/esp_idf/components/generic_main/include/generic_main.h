@@ -37,6 +37,8 @@
 
 extern void gm_fail(const char *, const char *, int, const char *, ...);
 #define GM_FAIL(args...) gm_fail(__PRETTY_FUNCTION__, __FILE__, __LINE__, args)
+extern void gm_fail_with_os_error(const char *, const char *, int, const char *, ...);
+#define GM_FAIL_WITH_OS_ERROR(args...) gm_fail_with_os_error(__PRETTY_FUNCTION__, __FILE__, __LINE__, args)
 #define GM_WARN_ONCE(args...) { static bool i_told_you_once = false; if ( !i_told_you_once ) { gm_printf(args); i_told_you_once = true; } }
 
 ESP_EVENT_DECLARE_BASE(GM_EVENT);

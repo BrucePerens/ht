@@ -58,7 +58,7 @@ accept_handler(int sock, void * data, bool readable, bool writable, bool excepti
   if ( readable ) {
     size = sizeof(client_address);
     if ( (connection = accept(sock, (struct sockaddr *)&client_address, &size)) < 0 ) {
-      GM_FAIL("Select event server accept failed: %s\n", strerror(errno));
+      GM_FAIL_WITH_OS_ERROR("Select event server accept failed");
       return;
     }
     gm_printf("Now logging to the telnet client rather than the console.\n");
@@ -90,12 +90,12 @@ gm_log_server_start(void)
   address.sin_port = htons(23);
 
   if ( bind(server, (struct sockaddr *)&address, sizeof(address)) != 0 ) {
-    GM_FAIL("Log server bind failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Log server bind failed");
     return;
   }
 
   if ( listen(server, 2) != 0 ) {
-    GM_FAIL("Log server listen failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Log server listen failed");
     close(server);
     return;
   }

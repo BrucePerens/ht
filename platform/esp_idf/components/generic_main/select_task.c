@@ -1,5 +1,3 @@
-// FIX: Make repeating timeout work.
-
 // Provide a task that does select() on file descriptors that have been
 // registered with it, and calls handlers when there are events upon those
 // file descriptors. This allows us to do event-driven I/O without depending
@@ -145,11 +143,17 @@ select_task(void * param)
     struct timeval select_blocking_interval = {};
     select_blocking_interval.tv_sec = 1 << 30;
    
-
     for ( int i = 0; i < fd_limit; i++ ) {
       if ( FD_ISSET(i, &monitored_fds) ) {
-        // Check if the FD was closed without being unregistered.
-        if ( lseek(i, 0, SEEK_CUR) < 0 && errno == EBADF ) {
+        // Check if the FD was closed without being unregistered. Use both
+        // getsockname() and lseek() because lwIP doesn't implement lseek()
+        // and I don't trust lseek() to test a closed file descriptor in the
+        // lwIP range (they are higher numbers than FreeRTOS fds) and correctly
+        // return EBADF rather than ESPIPE.
+        struct sockaddr_storage address;
+        socklen_t length = sizeof(address);
+        if ( (getsockname(i, (struct sockaddr *)&address, &length) < 0 && errno == EBADF) 
+         ||  (lseek(i, 0, SEEK_CUR) < 0 && errno == EBADF) ) {
           GM_FAIL("select_task(): fd %d isn't an open file descriptor and gm_fd_unregister() wasn't called.\n");
           gm_fd_unregister(i);
         }
@@ -185,12 +189,11 @@ select_task(void * param)
       // Select failed.
       if ( errno == EBADF ) {
         // A file descriptor was closed while select() was sleeping upon it.
-        // FIX: Check that the lseek() call above detects bad sockets. Or this
-        // might become a non-terminating loop.
+        // The check using getsockname() and lseek() above will unregister it.
         continue;
       }
       else
-        GM_FAIL("Select failed");
+        GM_FAIL_WITH_OS_ERROR("Select failed");
     }
     struct timeval time_of_day_after_select;
     gettimeofday(&time_of_day_after_select, 0);

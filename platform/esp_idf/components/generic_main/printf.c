@@ -1,5 +1,7 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 #define INCLUDE_xTaskGetCurrentTaskHandle 1
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
@@ -17,6 +19,27 @@ gm_fail(const char * function, const char * file, int line, const char * pattern
   va_start(args, pattern);
   gm_vprintf(pattern, args);
   va_end(args);
+
+  fprintf(stderr, "\n");
+  // This isn't on GM.log_file_pointer.
+  esp_backtrace_print(100);
+  fflush(stderr);
+}
+
+void
+gm_fail_with_os_error(const char * function, const char * file, int line, const char * pattern, ...)
+{
+  va_list	args;
+  char		buffer[128];
+
+  // Do this before other I/O that could set errno.
+  strerror_r(errno, buffer, sizeof(buffer));
+
+  va_start(args, pattern);
+  gm_vprintf(pattern, args);
+  va_end(args);
+  
+  fprintf(stderr, ": %s\n", buffer);
 
   // This isn't on GM.log_file_pointer.
   esp_backtrace_print(100);

@@ -48,7 +48,7 @@ event_handler(int fd, void * data, bool readable, bool writable, bool exception,
   int	result = read(fd, buffer, 8);
 
   if ( result != 8 ) {
-    GM_FAIL("Event header read returned %d\n", result);
+    GM_FAIL_WITH_OS_ERROR("Event header read returned %d", result);
     return;
   }
 
@@ -60,7 +60,7 @@ event_handler(int fd, void * data, bool readable, bool writable, bool exception,
     result = read(fd, &event->data, event->size);
 
     if ( result != event->size ) {
-      GM_FAIL("Event data read returned %d, error: %s\n", result, strerror(errno));
+      GM_FAIL_WITH_OS_ERROR("Event data read returned %d", result);
       return;
     }
 
@@ -90,13 +90,13 @@ accept_handler(int sock, void * data, bool readable, bool writable, bool excepti
   if ( readable ) {
     size = sizeof(client_address);
     if ( (connection = accept(sock, (struct sockaddr *)&client_address, &size)) < 0 ) {
-      GM_FAIL("Select event server listen failed: %s\n", strerror(errno));
+      GM_FAIL_WITH_OS_ERROR("Select event server listen failed");
       return;
     }
     gm_fd_register(connection, event_handler, 0, true, false, true, 0);
   }
   if ( exception ) {
-    GM_FAIL("Exception on event socket.\n");
+    GM_FAIL("Exception on event socket.");
   }
 }
 
@@ -109,7 +109,7 @@ gm_event_server(void)
   client = socket(AF_INET, SOCK_STREAM, 0);
 
   if ( server < 0 ) {
-    GM_FAIL("Select event server could not create a socket: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Select event server could not create a socket");
     return;
   }
   
@@ -118,12 +118,12 @@ gm_event_server(void)
   address.sin_port = htons(2139); // Private port not expected to be used by other code.
 
   if ( bind(server, (struct sockaddr *)&address, sizeof(address)) != 0 ) {
-    GM_FAIL("Select event server bind failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Select event server bind failed");
     return;
   }
 
   if ( listen(server, 2) != 0 ) {
-    GM_FAIL("Select event server listen failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Select event server listen failed");
     close(server);
     return;
   }
@@ -132,7 +132,7 @@ gm_event_server(void)
 
   // This blocks until the select task is running.
   if ( connect(client, (struct sockaddr *)&address, sizeof(address)) < 0 ) {
-    GM_FAIL("Connect failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("Connect failed");
   }
 }
 
@@ -147,7 +147,7 @@ gm_select_wakeup(void)
   event.operation = GM_EVENT_WAKE_SELECT;
   event.size = 0;
   if ( write(client, &event, 8) != 8 ) {
-    GM_FAIL("gm_select_wakeup() write failed: %s\n", strerror(errno));
+    GM_FAIL_WITH_OS_ERROR("gm_select_wakeup() write failed");
     abort();
   }
 }
@@ -171,7 +171,7 @@ gm_run(gm_run_t procedure, void * data, gm_run_speed_t speed)
     event.data.run.procedure = procedure;
     event.data.run.data = data;
     if ( write(client, &event, sizeof(event)) != sizeof(event) )
-      GM_FAIL("gm_run(GM_FAST) write failed: %s\n", strerror(errno));
+      GM_FAIL_WITH_OS_ERROR("gm_run(GM_FAST) write failed");
     break;
   case GM_MEDIUM:
     run.procedure = procedure;

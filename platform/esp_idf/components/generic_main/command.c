@@ -33,7 +33,7 @@ gm_command_add_registered_to_console(void)
   size_t size;
 
   if (!array || (size = gm_array_size(array)) == 0) {
-    GM_FAIL("No commands are registered.\n");
+    GM_FAIL("No commands are registered.");
     return;
   }
   
