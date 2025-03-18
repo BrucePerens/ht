@@ -9,6 +9,6 @@ var searchData=
   ['expiration_5ftime_6',['expiration_time',['../struct__gm__port__mapping.html#a98ed99328ad621551cdfbee6b83754ae',1,'_gm_port_mapping']]],
   ['explanation_7',['explanation',['../structgm__nonvolatile.html#a0fd01ad3deedadb3bc0d980d65ebee61',1,'gm_nonvolatile']]],
   ['external_8',['external',['../struct__gm__port__mapping.html#a819a18877cda312f74540ef654995817',1,'_gm_port_mapping']]],
-  ['external_5faddress_9',['external_address',['../struct__nat__pmp__or__pcp.html#abb63f788ff5501cacac1bf54c71e8381',1,'_nat_pmp_or_pcp']]],
+  ['external_5faddress_9',['external_address',['../struct__nat__pmp__or__pcp.html#a0d4bfd1726b8bdaa5236558f733b9cd2',1,'_nat_pmp_or_pcp']]],
   ['external_5fport_10',['external_port',['../struct__nat__pmp__or__pcp.html#a4579a6a3bb00195b8f1b0dbcf10984e5',1,'_nat_pmp_or_pcp']]]
 ];

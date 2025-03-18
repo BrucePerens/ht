@@ -1,6 +1,7 @@
 var generic__main_8h =
 [
     [ "_gm_run_data", "struct__gm__run__data.html", "struct__gm__run__data" ],
+    [ "_gm_pcp_nonce", "struct__gm__pcp__nonce.html", "struct__gm__pcp__nonce" ],
     [ "_gm_port_mapping", "struct__gm__port__mapping.html", "struct__gm__port__mapping" ],
     [ "_gm_netif", "struct__gm__netif.html", "struct__gm__netif" ],
     [ "_gm_netif::gm_netif_ip4", "struct__gm__netif_1_1gm__netif__ip4.html", "struct__gm__netif_1_1gm__netif__ip4" ],
@@ -28,6 +29,7 @@ var generic__main_8h =
     [ "gm_nonvolatile_type_t", "generic__main_8h.html#a2b4f8abccc75510616454e63cf16e30e", null ],
     [ "gm_param_t", "generic__main_8h.html#a4c816f122e5c792037607a8cdb1abb8b", null ],
     [ "gm_pattern_coroutine_t", "generic__main_8h.html#a1e989767b6cfe7b5f1a9f2658312e5c4", null ],
+    [ "gm_pcp_nonce_t", "generic__main_8h.html#a36fbb65883c2e51142e2ddd6e066b893", null ],
     [ "gm_pcp_protocol_t", "generic__main_8h.html#a3902b6ea7918ed74816e8928c04713e0", null ],
     [ "gm_port_mapping_t", "generic__main_8h.html#a251dfd646a4401eac0dc9d0f80ffa9bd", null ],
     [ "gm_port_mapping_type_t", "generic__main_8h.html#a096c9d75d08acb696c97d6245d7f3535", null ],

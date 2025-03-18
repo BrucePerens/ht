@@ -6,7 +6,8 @@ var struct__gm__port__mapping =
     [ "internal_port", "struct__gm__port__mapping.html#a1b5ddb5de38d1042c02bc72fd41311b4", null ],
     [ "lifetime", "struct__gm__port__mapping.html#a569e06e92ec3d06c5ebf7f40d7f9a84e", null ],
     [ "next", "struct__gm__port__mapping.html#a4c2100acfbb85133d3629f6b143ac626", null ],
-    [ "nonce", "struct__gm__port__mapping.html#ae722813cfe3d285edb203934178a27e0", null ],
+    [ "nonce", "struct__gm__port__mapping.html#aafcce202dc346c227cdddfc071db6c2f", null ],
     [ "protocol", "struct__gm__port__mapping.html#a0728145e54c157fd88c1e8bb7cb78286", null ],
+    [ "request_count", "struct__gm__port__mapping.html#a06bcac59bc3cd3b4041fcf1eb37e69a7", null ],
     [ "type", "struct__gm__port__mapping.html#a32246d59910e3711e0d36eec46b56ce9", null ]
 ];
