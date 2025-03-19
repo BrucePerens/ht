@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['pcp_5faddress_5ft_0',['pcp_address_t',['../port__control__protocol_8c.html#a410246a5f81f4809056997dd959e382b',1,'port_control_protocol.c']]],
-  ['pcp_5fopcode_5ft_1',['pcp_opcode_t',['../port__control__protocol_8c.html#a8882f06238260482660e72e3d70fe7e8',1,'port_control_protocol.c']]],
-  ['pcp_5fresult_5fcode_5ft_2',['pcp_result_code_t',['../port__control__protocol_8c.html#a83eb31629fc5ef2143f6ceff9456c7ce',1,'port_control_protocol.c']]],
-  ['pcp_5fversion_5ft_3',['pcp_version_t',['../port__control__protocol_8c.html#a52c6094bd27bf1ef3b893a55c0e08132',1,'port_control_protocol.c']]],
-  ['platform_5fcontext_4',['platform_context',['../os__driver_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;os_driver.h'],['../platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e',1,'platform_context():&#160;platform.h']]]
+  ['nat_5fpmp_5fopcode_5ft_0',['nat_pmp_opcode_t',['../port__control__protocol_8c.html#a4a8a7a248bbc84b0520b8bb36526331a',1,'port_control_protocol.c']]],
+  ['nat_5fpmp_5for_5fpcp_5ft_1',['nat_pmp_or_pcp_t',['../port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98',1,'port_control_protocol.c']]],
+  ['nat_5fpmp_5fresponse_5fcode_5ft_2',['nat_pmp_response_code_t',['../port__control__protocol_8c.html#a7f071e9f5ddbc932fbb2e9a25fc56afc',1,'port_control_protocol.c']]]
 ];

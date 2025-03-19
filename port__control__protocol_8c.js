@@ -3,6 +3,7 @@ var port__control__protocol_8c =
     [ "_pcp_address", "union__pcp__address.html", "union__pcp__address" ],
     [ "_pcp_address::_ipv4_to_ipv6_mapping", "struct__pcp__address_1_1__ipv4__to__ipv6__mapping.html", "struct__pcp__address_1_1__ipv4__to__ipv6__mapping" ],
     [ "_nat_pmp_or_pcp", "struct__nat__pmp__or__pcp.html", "struct__nat__pmp__or__pcp" ],
+    [ "mapping_coroutine", "port__control__protocol_8c.html#a6434bb68828c8f49026d77784d87caa2", null ],
     [ "nat_pmp_opcode_t", "port__control__protocol_8c.html#a4a8a7a248bbc84b0520b8bb36526331a", null ],
     [ "nat_pmp_or_pcp_t", "port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98", null ],
     [ "nat_pmp_response_code_t", "port__control__protocol_8c.html#a7f071e9f5ddbc932fbb2e9a25fc56afc", null ],
@@ -59,7 +60,6 @@ var port__control__protocol_8c =
     [ "gm_pcp_start_ipv4", "port__control__protocol_8c.html#a1b10c3cf8ce6f741c364d6a4d47fe656", null ],
     [ "gm_pcp_start_ipv6", "port__control__protocol_8c.html#acd804fc00297a254089c90d765e15957", null ],
     [ "gm_pcp_stop", "port__control__protocol_8c.html#a0628cd4da01a84dab437d4fc2679cd27", null ],
-    [ "request_mapping", "port__control__protocol_8c.html#a0fa44cf2f1a03b88e8c828b7b4dc49bc", null ],
     [ "pcp_announce_packet_size", "port__control__protocol_8c.html#a9af8c19966d321887c364d62ff300b15", null ],
     [ "pcp_map_packet_size", "port__control__protocol_8c.html#ac1ac3dec1bf8d301c0465bf3cdb04fb5", null ],
     [ "pcp_max_payload", "port__control__protocol_8c.html#a3fbe482721e531f51bcaafeec18a2a70", null ]

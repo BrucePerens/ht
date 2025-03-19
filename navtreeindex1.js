@@ -248,6 +248,6 @@ var NAVTREEINDEX1 =
 "platform_8h.html#aeeda0afc6ab4963876d08c36f134a15e":[1,0,2,5,2],
 "platform_8h_source.html":[1,0,2,5],
 "port__control__protocol_8c.html":[1,0,2,1,0,1,20],
-"port__control__protocol_8c.html#a0628cd4da01a84dab437d4fc2679cd27":[1,0,2,1,0,1,20,21],
-"port__control__protocol_8c.html#a0fa44cf2f1a03b88e8c828b7b4dc49bc":[1,0,2,1,0,1,20,22]
+"port__control__protocol_8c.html#a0628cd4da01a84dab437d4fc2679cd27":[1,0,2,1,0,1,20,22],
+"port__control__protocol_8c.html#a136b849bd010b82b7b1f85c105910bd7":[1,0,2,1,0,1,20,19]
 };
