@@ -8,7 +8,7 @@ var searchData=
   ['map_5',['map',['../web__template_8h.html#ae04efecf89df11add53e68543696c1e6',1,'web_template.h']]],
   ['mapped_5faddress_6',['mapped_address',['../structstun__attribute.html#a9d1d99b9f2047c6fe5863345a9f711ff',1,'stun_attribute']]],
   ['mapped_5faddress_7',['MAPPED_ADDRESS',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13a80acef7c8d8e078129e5e3d169836b37',1,'stun.c']]],
-  ['mapping_5fcoroutine_8',['mapping_coroutine',['../port__control__protocol_8c.html#a6434bb68828c8f49026d77784d87caa2',1,'port_control_protocol.c']]],
+  ['mapping_5fcoroutine_5ft_8',['mapping_coroutine_t',['../port__control__protocol_8c.html#a081de492fc9dc1fee81632f80fc3911f',1,'port_control_protocol.c']]],
   ['mark_9',['mark',['../web__template_8h.html#a3d691545b0775d09f5585c1c10ebdb76',1,'web_template.h']]],
   ['match_5fbits_2ec_10',['match_bits.c',['../match__bits_8c.html',1,'']]],
   ['max_11',['MAX',['../select__task_8c.html#afa99ec4acc4ecb2dc3c2d05da15d0e3f',1,'select_task.c']]],

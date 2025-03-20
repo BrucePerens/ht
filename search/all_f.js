@@ -13,7 +13,7 @@ var searchData=
   ['os_5fwait_10',['os_wait',['../os__driver_8h.html#aee3bc883c50dca19551cbd7d03962817',1,'os_wait(platform_context *const context, const float seconds):&#160;posix.c'],['../posix_8c.html#a6edb12aeee88418f825314f800c69648',1,'os_wait(platform_context *const, const float):&#160;posix.c']]],
   ['os_5fwake_11',['os_wake',['../os__driver_8h.html#ac8a68806778c592e06734d7459a458fa',1,'os_wake(platform_context *const context):&#160;posix.c'],['../posix_8c.html#adf7da42b8656f694886aec6732e9417b',1,'os_wake(platform_context *const):&#160;posix.c']]],
   ['os_5fwrite_12',['os_write',['../os__driver_8h.html#ace5ef5553df295c2ac2ff49e0710e387',1,'os_write(platform_context *const context, const char *const buffer, const size_t buffer_length):&#160;posix.c'],['../posix_8c.html#af09401299bdb2870637a58de060a6dd9',1,'os_write(platform_context *const context, const char *const buffer, const size_t length):&#160;posix.c']]],
-  ['out_13',['out',['../gpio_8c.html#abb47f08cfc3ed41877e595520b06f186',1,'gpio.c']]],
-  ['out_14',['OUT',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1bac72cb4ba9e379a25e80f157177dbe2b8',1,'gpio.c']]],
+  ['out_13',['OUT',['../gpio_8c.html#ae647a44ad55704d3f447db1de2858e1bac72cb4ba9e379a25e80f157177dbe2b8',1,'gpio.c']]],
+  ['out_14',['out',['../gpio_8c.html#abb47f08cfc3ed41877e595520b06f186',1,'gpio.c']]],
   ['output_15',['output',['../web__template_8h.html#ae04293253b669ea7b9882c968030eeed',1,'web_template.h']]]
 ];

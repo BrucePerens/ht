@@ -3,7 +3,8 @@ var port__control__protocol_8c =
     [ "_pcp_address", "union__pcp__address.html", "union__pcp__address" ],
     [ "_pcp_address::_ipv4_to_ipv6_mapping", "struct__pcp__address_1_1__ipv4__to__ipv6__mapping.html", "struct__pcp__address_1_1__ipv4__to__ipv6__mapping" ],
     [ "_nat_pmp_or_pcp", "struct__nat__pmp__or__pcp.html", "struct__nat__pmp__or__pcp" ],
-    [ "mapping_coroutine", "port__control__protocol_8c.html#a6434bb68828c8f49026d77784d87caa2", null ],
+    [ "for_each_interface_coroutine_t", "port__control__protocol_8c.html#a46bc1ad37b668064c619d41f909f400b", null ],
+    [ "mapping_coroutine_t", "port__control__protocol_8c.html#a081de492fc9dc1fee81632f80fc3911f", null ],
     [ "nat_pmp_opcode_t", "port__control__protocol_8c.html#a4a8a7a248bbc84b0520b8bb36526331a", null ],
     [ "nat_pmp_or_pcp_t", "port__control__protocol_8c.html#a7956e8c2d582239ebfaadb346460af98", null ],
     [ "nat_pmp_response_code_t", "port__control__protocol_8c.html#a7f071e9f5ddbc932fbb2e9a25fc56afc", null ],
@@ -28,6 +29,7 @@ var port__control__protocol_8c =
       [ "PCP_ANNOUNCE", "port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751ad52db63731ea42d3bffa83e7b979f9a9", null ],
       [ "PCP_MAP", "port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751aa9c0044a20582f1dab99306c1758719e", null ],
       [ "PCP_PEER", "port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751a631112db1d9b15d3d89832591fec39ff", null ],
+      [ "PCP_OPCODE_MASK", "port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751ac825e3a1fe8e4b157b0ab6fe1f0867c6", null ],
       [ "PCP_RESPONSE", "port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751adbb842e1cb0839b7d8821d53091c6004", null ]
     ] ],
     [ "_pcp_result_code", "port__control__protocol_8c.html#a36e2a5b10c10531de01239e54ddc25a0", [
@@ -54,12 +56,12 @@ var port__control__protocol_8c =
       [ "PCP_SERVER_PORT", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fdacb52e7d1eb328dcdb3b891f7ac75ffa8", null ],
       [ "PCP_CLIENT_PORT", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fda5da67ab1f4f662c2b948e455a54d5125", null ]
     ] ],
-    [ "decode_packet", "port__control__protocol_8c.html#a845720afac28dd44877913780c95601c", null ],
-    [ "gm_pcp_request_mapping_ipv4", "port__control__protocol_8c.html#a7011b75e2d4bf348fb5150f7899d111b", null ],
-    [ "gm_pcp_request_mapping_ipv6", "port__control__protocol_8c.html#a136b849bd010b82b7b1f85c105910bd7", null ],
-    [ "gm_pcp_start_ipv4", "port__control__protocol_8c.html#a1b10c3cf8ce6f741c364d6a4d47fe656", null ],
-    [ "gm_pcp_start_ipv6", "port__control__protocol_8c.html#acd804fc00297a254089c90d765e15957", null ],
-    [ "gm_pcp_stop", "port__control__protocol_8c.html#a0628cd4da01a84dab437d4fc2679cd27", null ],
+    [ "decode_packet", "port__control__protocol_8c.html#af9bf2719fb6e9e9cafc0c95830b6e447", null ],
+    [ "gm_pcp_request_mapping_ipv4", "port__control__protocol_8c.html#a4ea211ca6c94a61a5932486d8d45f84e", null ],
+    [ "gm_pcp_request_mapping_ipv6", "port__control__protocol_8c.html#a15c038ec5d6298921469dfd64222cebb", null ],
+    [ "gm_pcp_start_ipv4", "port__control__protocol_8c.html#ae6c6a313315f6da9a6540842046b0e0f", null ],
+    [ "gm_pcp_start_ipv6", "port__control__protocol_8c.html#aa53d783504b2fe80790c15a3b44ebc4d", null ],
+    [ "gm_pcp_stop", "port__control__protocol_8c.html#aa7e203a89d472befdc77c58ac1f7e070", null ],
     [ "pcp_announce_packet_size", "port__control__protocol_8c.html#a9af8c19966d321887c364d62ff300b15", null ],
     [ "pcp_map_packet_size", "port__control__protocol_8c.html#ac1ac3dec1bf8d301c0465bf3cdb04fb5", null ],
     [ "pcp_max_payload", "port__control__protocol_8c.html#a3fbe482721e531f51bcaafeec18a2a70", null ]
