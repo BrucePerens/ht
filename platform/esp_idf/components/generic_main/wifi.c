@@ -166,8 +166,8 @@ ipv6_router_advertisement_handler(struct sockaddr_in6 * address, uint16_t router
   GM.sta.ip6.router.sin6_port = 0;
   if ( !pcp_ipv6_started ) {
     pcp_ipv6_started = true;
-    gm_pcp_start_ipv6();
-    gm_pcp_request_mapping_ipv6();
+    gm_pcp_start_ipv6(&GM.sta);
+    gm_pcp_request_mapping_ipv6(&GM.sta);
   }
 }
 
@@ -199,8 +199,8 @@ static void ip_event_sta_got_ip4(void* arg, esp_event_base_t event_base, int32_t
   gm_printf("router %s\n", buffer);
   gm_sntp_start();
   gm_stun(false, (struct sockaddr *)&GM.sta.ip4.router_public_ip, after_stun);
-  gm_pcp_start_ipv4();
-  gm_pcp_request_mapping_ipv4();
+  gm_pcp_start_ipv4(&GM.sta);
+  gm_pcp_request_mapping_ipv4(&GM.sta);
   start_webserver();
   gm_log_server_start();
 }
@@ -309,7 +309,7 @@ gm_wifi_stop()
   stop_webserver();
   gm_log_server_stop();
   gm_icmpv6_stop_listener_ipv6();
-  gm_pcp_stop();
+  gm_pcp_stop(&GM.sta);
   gm_stun_stop();
   gm_sntp_stop();
   if ( gm_wifi_is_connected() ) {

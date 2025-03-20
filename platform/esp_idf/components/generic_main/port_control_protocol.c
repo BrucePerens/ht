@@ -23,6 +23,7 @@ typedef enum _pcp_opcode {
   PCP_ANNOUNCE = 0,
   PCP_MAP = 1,
   PCP_PEER = 2,
+  PCP_OPCODE_MASK = 0x7f,
   PCP_RESPONSE = 0x80
 } pcp_opcode_t;
 
@@ -126,25 +127,27 @@ const size_t pcp_max_payload = 1100;
 const size_t pcp_map_packet_size = (size_t)&(((nat_pmp_or_pcp_t *)0)->pcp.mp.remote_peer_port);
 const size_t pcp_announce_packet_size = (size_t)&(((nat_pmp_or_pcp_t *)0)->pcp.mp);
 
+typedef gm_port_mapping_t * (*mapping_coroutine_t)(gm_port_mapping_t *, const void * const);
+
+static bool is_ipv4_mapped_ipv6(const pcp_address_t *);
 static bool send_request(const nat_pmp_or_pcp_t * const, const struct sockaddr * const, const int, size_t);
+static gm_netif_t * interface_for_sockaddr(const struct sockaddr_storage * const, bool *);
 static gm_pcp_nonce_t random_nonce();
-static void renew_all_mappings_if_router_has_reset(const nat_pmp_or_pcp_t * const);
+static gm_port_mapping_t * find_mapping(gm_port_mapping_t *, const void * const);
+static gm_port_mapping_t * for_each_mapping(gm_port_mapping_t *, const mapping_coroutine_t, const void * const);
 static gm_port_mapping_t * renew_if_granted(gm_port_mapping_t * m, const void * const);
 static void decode_pcp_announce(const nat_pmp_or_pcp_t * const, const ssize_t, const struct sockaddr_storage * const);
-static void decode_pcp_map(nat_pmp_or_pcp_t *, ssize_t, struct sockaddr_storage *);
-static void decode_pcp_peer(nat_pmp_or_pcp_t *, ssize_t, struct sockaddr_storage *);
-static gm_port_mapping_t * find_mapping(gm_port_mapping_t *, const void * const);
-typedef gm_port_mapping_t * (*mapping_coroutine)(gm_port_mapping_t *, const void * const);
-static gm_port_mapping_t * for_each_mapping(gm_port_mapping_t *, const mapping_coroutine, const void * const);
+static void decode_pcp_map(nat_pmp_or_pcp_t *, ssize_t, const struct sockaddr_storage * const);
+static void decode_pcp_peer(nat_pmp_or_pcp_t *, ssize_t, const struct sockaddr_storage * const);
 static void incoming_packet(int, void *, bool, bool, bool, bool);
-static bool is_ipv4_mapped_ipv6(const pcp_address_t *);
 static void maintain_mappings();
 static void remove_pcp_mapping(gm_port_mapping_t *);
 static void renew_all_mappings();
+static void renew_all_mappings_if_router_has_reset(const nat_pmp_or_pcp_t * const);
 static void renew_ipv4(const gm_port_mapping_t * const);
 static void renew_ipv6(const gm_port_mapping_t * const);
 static void renew_mapping(const gm_port_mapping_t * const);
-static void save_pcp_mapping(const nat_pmp_or_pcp_t * const, const gm_port_mapping_type_t);
+static void save_pcp_mapping(const nat_pmp_or_pcp_t * const, gm_netif_t *, const gm_port_mapping_type_t);
 
 static const int requested_mapping_duration = 15 * 60;
 static const uint16_t https_port = 443;
@@ -196,24 +199,32 @@ current_time()
 }
 
 void
-decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storage * address)
+decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr_storage * const address)
 {
-  bool		response;
   uint16_t	port;
 
   // This assumes all messages are PCP, we don't currently support NAT-PMP as
   // we'd only need it on really old routers.
 
-  switch ( address->ss_family ) {
-  case AF_INET:
+  bool ipv4;
+  gm_netif_t * interface = interface_for_sockaddr(address, &ipv4);
+
+  if ( ipv4 ) {
     port = ntohs(((struct sockaddr_in *)address)->sin_port);
-    break;
-  case AF_INET6:
+    if ( ((struct sockaddr_in *)address)->sin_addr.s_addr != interface->ip4.router.sin_addr.s_addr ) {
+      GM_WARN_ONCE("IPV4 packet not from the router, ignored.\n");
+      return;
+    }
+  }
+  else {
     port = ntohs(((struct sockaddr_in6 *)address)->sin6_port);
-    break;
-  default:
-    GM_WARN_ONCE("PCP: decode_packet(): Address family %d.\n", address->ss_family);
-    return;
+    if ( memcmp(
+     &((struct sockaddr_in6 *)address)->sin6_addr,
+     &interface->ip6.router.sin6_addr,
+     sizeof(interface->ip6.router.sin6_addr)) != 0 ) {
+      GM_WARN_ONCE("IPV6 packet not from the router, ignored.\n");
+      return;
+    }
   }
 
   if ( port != PCP_SERVER_PORT ) {
@@ -221,27 +232,9 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storag
     return;
   }
 
-  switch ( address->ss_family ) {
-  case AF_INET:
-    if ( ((struct sockaddr_in *)address)->sin_addr.s_addr != GM.sta.ip4.router.sin_addr.s_addr ) {
-      GM_WARN_ONCE("IPV4 packet not from the router, ignored.\n");
-      return;
-    }
-    break;
-  case AF_INET6:
-    if ( memcmp(
-     &((struct sockaddr_in6 *)address)->sin6_addr,
-     &GM.sta.ip6.router.sin6_addr,
-     sizeof(GM.sta.ip6.router.sin6_addr)) != 0 ) {
-      GM_WARN_ONCE("IPV6 packet not from the router, ignored.\n");
-      return;
-    }
-    break;
-  }
-
-  response = p->opcode & PCP_RESPONSE;
+  const bool response = p->opcode & PCP_RESPONSE;
   
-  switch ( p->opcode & 0x7f ) {
+  switch ( p->opcode & PCP_OPCODE_MASK ) {
   case PCP_ANNOUNCE:
     decode_pcp_announce(p, message_size, address);
     break;
@@ -251,7 +244,7 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storag
       GM_WARN_ONCE("PCP client received request.\n");
       return;
     }
-    switch ( p->opcode & 0x7f ) {
+    switch ( p->opcode & PCP_OPCODE_MASK ) {
     case PCP_MAP:
       if ( message_size < pcp_map_packet_size ) {
         GM_WARN_ONCE("PCP receive packet too small for MAP: %d\n", message_size);
@@ -287,7 +280,7 @@ decode_pcp_announce(const nat_pmp_or_pcp_t * const p, const ssize_t message_size
 }
 
 static void
-decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storage * address)
+decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr_storage * const address)
 {
   char buffer[INET6_ADDRSTRLEN + 1];
 
@@ -343,7 +336,7 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_stora
 }
 
 static void
-decode_pcp_peer(nat_pmp_or_pcp_t * p, ssize_t message_size, struct sockaddr_storage * address)
+decode_pcp_peer(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr_storage * const address)
 {
   char buffer[INET6_ADDRSTRLEN + 1];
   gm_ntop(address, buffer, sizeof(buffer));
@@ -367,9 +360,26 @@ find_mapping(gm_port_mapping_t * m, const void * const d)
   return for_each_mapping(m, find_coroutine, d);
 }
 
+typedef gm_netif_t * (*for_each_interface_coroutine_t)(gm_netif_t *, const void * const);
+
+static gm_netif_t *
+for_each_interface(const for_each_interface_coroutine_t f, const void * const d)
+{
+  gm_netif_t * const sta_result = f(&GM.sta, d);
+  if ( sta_result )
+    return sta_result;
+#if 0
+  gm_netif_t * const eth_result = f(&GM.eth, d);
+  if ( eth_result )
+    return eth_result;
+#endif
+
+  return 0;
+}
+
 // Process each datun in a chain of port mappings.
 static gm_port_mapping_t *
-for_each_mapping(gm_port_mapping_t * m, const mapping_coroutine f, const void * d) {
+for_each_mapping(gm_port_mapping_t * m, const mapping_coroutine_t f, const void * d) {
   while ( m ) {
     // *m is potentially changing, so store m->next it before processing.
     gm_port_mapping_t * const next = m->next;
@@ -389,7 +399,7 @@ free_mapping(gm_port_mapping_t * m, const void * const)
 }
 
 void
-gm_pcp_request_mapping_ipv4()
+gm_pcp_request_mapping_ipv4(gm_netif_t * interface)
 {
   const nat_pmp_or_pcp_t p = {
     .version = PORT_MAPPING_PROTOCOL,
@@ -399,7 +409,7 @@ gm_pcp_request_mapping_ipv4()
      // IPV6-mapped-IPV4 client address.
     .pcp.request.client_address.ipv4_to_ipv6_mapping.all_ones[0] = 0xff,
     .pcp.request.client_address.ipv4_to_ipv6_mapping.all_ones[1] = 0xff,
-    .pcp.request.client_address.ipv4_to_ipv6_mapping.s_addr = GM.sta.ip4.address.sin_addr.s_addr,
+    .pcp.request.client_address.ipv4_to_ipv6_mapping.s_addr = interface->ip4.address.sin_addr.s_addr,
 
     // This sets the requested address to the all-zeroes IPV6-mapped-IPV4
     // address: ::ffff:0.0.0.0 .
@@ -424,11 +434,11 @@ gm_pcp_request_mapping_ipv4()
    (const struct sockaddr *)&address,
    ipv4_socket,
    sizeof(address)) )
-    save_pcp_mapping(&p, GM_REQUEST);
+    save_pcp_mapping(&p, interface, GM_REQUEST);
 }
 
 void
-gm_pcp_request_mapping_ipv6()
+gm_pcp_request_mapping_ipv6(gm_netif_t * interface)
 {
   const nat_pmp_or_pcp_t p = {
     .version = PORT_MAPPING_PROTOCOL,
@@ -462,11 +472,11 @@ gm_pcp_request_mapping_ipv6()
    (const struct sockaddr *)&address,
    ipv6_socket,
    sizeof(address)) )
-    save_pcp_mapping(&p, GM_REQUEST);
+    save_pcp_mapping(&p, interface, GM_REQUEST);
 }
 
 void
-gm_pcp_start_ipv4()
+gm_pcp_start_ipv4(gm_netif_t * interface)
 {
   int			yes = 1;
 
@@ -507,7 +517,7 @@ gm_pcp_start_ipv4()
 
 // Don't start this until a router advertisement is received.
 void
-gm_pcp_start_ipv6()
+gm_pcp_start_ipv6(gm_netif_t * interface)
 {
   if ( ipv6_socket >= 0 )
     return;
@@ -522,9 +532,6 @@ gm_pcp_start_ipv6()
 
   size_t bits = 0;
 
-  char buf_b[128];
-  inet_ntop(AF_INET6, &GM.sta.ip6.router.sin6_addr, buf_b, sizeof(buf_b));
-  
   for ( size_t i = 0; i < sizeof(addresses) / sizeof(*addresses); i++ ) {
     size_t this_bits = gm_match_bits(
      &addresses[i],
@@ -575,7 +582,7 @@ gm_pcp_start_ipv6()
 }
 
 void
-gm_pcp_stop(void)
+gm_pcp_stop(gm_netif_t * interface)
 {
   // Close the sockets.
   if ( ipv4_socket >= 0 ) {
@@ -632,6 +639,13 @@ incoming_packet(int fd, void * data, bool readable, bool writable, bool exceptio
     decode_packet(&packet, message_size, &address);
   }
   maintain_mappings();
+}
+
+gm_netif_t *
+interface_for_sockaddr(const struct sockaddr_storage * const s, bool * ipv4)
+{
+  *ipv4 = s->ss_family == AF_INET;
+  return &GM.sta;
 }
 
 static bool
@@ -830,6 +844,7 @@ renew_mapping(const gm_port_mapping_t * const m)
 static void
 save_pcp_mapping(
   const nat_pmp_or_pcp_t * const	p,
+  gm_netif_t *				interface,
   const gm_port_mapping_type_t		type
 )
 {
@@ -849,9 +864,9 @@ save_pcp_mapping(
   gm_port_mapping_t * *	mp;
 
   if ( ipv4 )
-    mp = &GM.sta.ip4.port_mappings;
+    mp = &interface->ip4.port_mappings;
   else
-    mp = &GM.sta.ip6.port_mappings;
+    mp = &interface->ip6.port_mappings;
 
   char buffer[INET6_ADDRSTRLEN + 1];
   gm_ntop(&m.external, buffer, sizeof(buffer));

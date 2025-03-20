@@ -269,11 +269,11 @@ extern void			gm_ntop(const struct sockaddr_storage * const s, char * const buff
 extern const char *		gm_param(const gm_param_t * p, int count, const char * name);
 extern int			gm_param_parse(const char * s, gm_param_t * p, int count);
 extern int			gm_pattern_string(const char * string, gm_pattern_coroutine_t coroutine, char * buffer, size_t buffer_size);
-extern void			gm_pcp_request_mapping_ipv4(void);
-extern void			gm_pcp_request_mapping_ipv6(void);
-extern void			gm_pcp_start_ipv4(void);
-extern void			gm_pcp_start_ipv6(void);
-extern void			gm_pcp_stop(void);
+extern void			gm_pcp_request_mapping_ipv4(gm_netif_t *);
+extern void			gm_pcp_request_mapping_ipv6(gm_netif_t *);
+extern void			gm_pcp_start_ipv4(gm_netif_t *);
+extern void			gm_pcp_start_ipv6(gm_netif_t *);
+extern void			gm_pcp_stop(gm_netif_t *);
 extern int			gm_printf(const char * format, ...);
 extern int			gm_public_ipv4(char * data, size_t size);
 
