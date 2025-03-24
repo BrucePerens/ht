@@ -175,14 +175,15 @@ typedef struct _gm_session_context {
 } gm_session_context_t;
 
 enum _gm_interface_index {
-  GM_AP,
   GM_STA,
+  GM_AP,
   GM_ETH
 };
 
 typedef struct _generic_main {
   nvs_handle_t		nvs;
   gm_netif_t		net_interfaces[3]; // ap, sta, eth
+  size_t		next_free_net_interface;
   esp_console_repl_t *	repl;
   pthread_mutex_t 	console_print_mutex;
   int64_t		time_last_synchronized;

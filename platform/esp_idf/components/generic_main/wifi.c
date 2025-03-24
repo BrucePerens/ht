@@ -92,22 +92,22 @@ static void after_stun(bool success, bool ipv6, struct sockaddr * address)
 void
 gm_wifi_start(void)
 {
-  // Empty configuration for starting WiFi.
-  wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-
   // Initialize the TCP/IP interfaces for WiFi.
-  GM.net_interfaces[GM_STA].esp_netif = esp_netif_create_default_wifi_sta();
-  // GM.net_interfaces[GM_AP].esp_netif = esp_netif_create_default_wifi_ap();
-  // assert(GM.net_interfaces[GM_AP].esp_netif);
+  gm_netif_t * const sta = &GM.net_interfaces[GM.next_free_net_interface++];
+  sta->esp_netif = esp_netif_create_default_wifi_sta();
 
   // Register the event handler for WiFi station ready.
   ESP_ERROR_CHECK( esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_START, &wifi_event_sta_start, NULL) );
   ESP_ERROR_CHECK( esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_DISCONNECTED, &wifi_event_sta_disconnected, NULL) );
 
+  wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
   ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-  ESP_ERROR_CHECK(esp_netif_set_hostname(GM.net_interfaces[GM_STA].esp_netif, "ht"));
+  ESP_ERROR_CHECK(esp_netif_set_hostname(sta->esp_netif, GM.unique_name));
   ESP_ERROR_CHECK( esp_wifi_start() );
+
+  // GM.net_interfaces[GM.next_free_net_interface++].esp_netif
+  //  = esp_netif_create_default_wifi_ap();
 }
 
 // This is called when WiFi is ready for configuration.
@@ -190,7 +190,9 @@ static void ip_event_sta_got_ip4(void* arg, esp_event_base_t event_base, int32_t
   GM.net_interfaces[GM_STA].ip4.netmask = event->ip_info.netmask.addr;
 
   inet_ntop(AF_INET, &event->ip_info.ip.addr, buffer, sizeof(buffer));
-  gm_printf("Got IPv4: interface %s, address %s ", esp_netif_get_desc(event->esp_netif), buffer);
+  char name[6];
+  esp_netif_get_netif_impl_name(event->esp_netif, name);
+  gm_printf("Got IPv4: interface %s, address %s ", name, buffer);
   inet_ntop(AF_INET, &event->ip_info.gw.addr, buffer, sizeof(buffer));
   gm_printf("router %s\n", buffer);
   gm_sntp_start();
@@ -209,8 +211,9 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
 
   ip_event_got_ip6_t *	event = (ip_event_got_ip6_t*)event_data;
   esp_ip6_addr_type_t	ipv6_type = esp_netif_ip6_get_addr_type(&event->ip6_info.ip);
-  const char *		netif_name = esp_netif_get_desc(event->esp_netif);
+  char 			netif_name[6];
   gm_netif_t *		interface;
+  esp_netif_get_netif_impl_name(event->esp_netif, netif_name);
    
   inet_ntop(AF_INET6, &event->ip6_info.ip.addr, buffer, sizeof(buffer));
   gm_printf("Got IPv6: interface %s, address %s, type %s\n",
@@ -219,11 +222,13 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
    GM.ipv6_address_types[ipv6_type]);
   fflush(stderr);
 
-  if (strcmp(netif_name, "sta") == 0)
+  // FIX: Stop using interface-specific indices and just initialize the array in
+  // order.
+  if (strcmp(netif_name, "st1") == 0)
     interface = &GM.net_interfaces[GM_STA];
-  else if (strcmp(netif_name, "ap") == 0)
+  else if (strcmp(netif_name, "ap1") == 0)
     interface = &GM.net_interfaces[GM_AP];
-  else if (strcmp(netif_name, "eth") == 0)
+  else if (strcmp(netif_name, "et1") == 0)
     interface = &GM.net_interfaces[GM_ETH];
   else
     return;

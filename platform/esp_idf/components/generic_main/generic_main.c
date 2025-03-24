@@ -62,7 +62,7 @@ static void initialize()
   snprintf(
    GM.unique_name,
    sizeof(GM.unique_name),
-   "%s-%02x:%02x:%02x:%02x:%02x:%02x",
+   "%s-%02x%02x%02x%02x%02x%02x",
    GM.application_name,
    GM.factory_mac_address[0],
    GM.factory_mac_address[1],
