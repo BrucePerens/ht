@@ -104,44 +104,48 @@ typedef struct _gm_pcp_nonce {
 } gm_pcp_nonce_t;
 #pragma pack()
 
+struct _gm_netif;
+typedef struct _gm_netif gm_netif_t;
+
 // This is arranged in the hope of reducing unnecessary padding.
 // Note the enums restricted in size as bit-fields.
 typedef struct _gm_port_mapping { 
   uint32_t			lifetime;
   struct _gm_port_mapping *	next;
+  gm_netif_t *			interface;
   struct timeval		granted_time;
   struct timeval		expiration_time;
+  struct sockaddr_storage	internal;
   struct sockaddr_storage	external;
   gm_pcp_nonce_t		nonce;
-  uint16_t			internal_port;
   uint8_t			request_count;
   gm_pcp_protocol_t		protocol:6;
   gm_port_mapping_type_t	type:2;
 } gm_port_mapping_t;
 
-typedef struct _gm_netif {
+struct _gm_netif {
   esp_netif_t *		esp_netif;
   // lwip_netif is esp_netif->lwip_netif
   struct gm_netif_ip4 {
-    struct sockaddr_in	address;
-    struct sockaddr_in	router;
+    struct in_addr	address;
+    struct in_addr	router;
     uint32_t		netmask;
-    struct sockaddr_in	router_public_ip;
+    struct in_addr	router_public_ip;
     int			nat;	// 1 for NAT, 2 for double-nat.
     gm_port_mapping_t *	port_mappings;
   } ip4;
   struct gm_netif_ip6 {
-    struct sockaddr_in6	link_local;
-    struct sockaddr_in6	site_local;
-    struct sockaddr_in6	site_unique;
-    struct sockaddr_in6	global[3];
-    struct sockaddr_in6 router;
-    struct sockaddr_in6	router_public_ip;
+    struct in6_addr	link_local;
+    struct in6_addr	site_local;
+    struct in6_addr	site_unique;
+    struct in6_addr	global[3];
+    struct in6_addr	router;
+    struct in6_addr	router_public_ip;
     gm_port_mapping_t *	port_mappings;
     bool pat66; // True if there is prefix-address-translation. Ugh.
     bool nat6;  // True if there is NAT6 that is not PAT66. Double-ugh.
   } ip6;
-} gm_netif_t;
+};
 
 // Don't put the user's language in here, the browser should send it in the
 // Accept-Language header.
@@ -170,10 +174,15 @@ typedef struct _gm_session_context {
   gm_user_data_t	user_data;
 } gm_session_context_t;
 
+enum _gm_interface_index {
+  GM_AP,
+  GM_STA,
+  GM_ETH
+};
+
 typedef struct _generic_main {
   nvs_handle_t		nvs;
-  gm_netif_t		ap;
-  gm_netif_t		sta;
+  gm_netif_t		net_interfaces[3]; // ap, sta, eth
   esp_console_repl_t *	repl;
   pthread_mutex_t 	console_print_mutex;
   int64_t		time_last_synchronized;

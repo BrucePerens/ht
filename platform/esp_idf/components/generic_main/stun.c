@@ -292,18 +292,18 @@ send_stun_request(bool ipv6)
   // Bind the request address to a local address. This probably only matters
   // for IPV6, as the only IPV4 address is usually behind NAT.
   if ( ipv6 ) {
-    struct sockaddr_in6 * address = &GM.sta.ip6.link_local;
+    struct in6_addr * address = &GM.net_interfaces[GM_STA].ip6.link_local;
     if ( gm_all_zeroes(address, sizeof(struct sockaddr_in6)) )
-      address = &GM.sta.ip6.site_local;
+      address = &GM.net_interfaces[GM_STA].ip6.site_local;
     if ( gm_all_zeroes(address, sizeof(struct sockaddr_in6)) )
-      address = &GM.sta.ip6.site_unique;
+      address = &GM.net_interfaces[GM_STA].ip6.site_unique;
     else
-      address = &GM.sta.ip6.global[0];
+      address = &GM.net_interfaces[GM_STA].ip6.global[0];
 
     (void) bind(stun_sock, (struct sockaddr *)address, sizeof(struct sockaddr_in6));
   }
   else
-	  (void) bind(stun_sock, (struct sockaddr *)&GM.sta.ip4.address, sizeof(GM.sta.ip4.address));
+	  (void) bind(stun_sock, (struct sockaddr *)&GM.net_interfaces[GM_STA].ip4.address, sizeof(GM.net_interfaces[GM_STA].ip4.address));
 
   send_packet->magic_cookie = stun_magic;
   send_packet->type = htons(((message_class & 0x1) << 4) | ((message_class & 0x2) << 8) | (method & 0xf));

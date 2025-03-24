@@ -133,12 +133,14 @@ static bool is_ipv4_mapped_ipv6(const pcp_address_t *);
 static bool send_request(const nat_pmp_or_pcp_t * const, const struct sockaddr * const, const int, size_t);
 static gm_netif_t * interface_for_sockaddr(const struct sockaddr_storage * const, bool *);
 static gm_pcp_nonce_t random_nonce();
-static gm_port_mapping_t * find_mapping(gm_port_mapping_t *, const void * const);
+static gm_port_mapping_t * find_mapping(const gm_pcp_nonce_t * const);
 static gm_port_mapping_t * for_each_mapping(gm_port_mapping_t *, const mapping_coroutine_t, const void * const);
 static gm_port_mapping_t * renew_if_granted(gm_port_mapping_t * m, const void * const);
 static void decode_pcp_announce(const nat_pmp_or_pcp_t * const, const ssize_t, const struct sockaddr_storage * const);
 static void decode_pcp_map(nat_pmp_or_pcp_t *, ssize_t, const struct sockaddr_storage * const);
 static void decode_pcp_peer(nat_pmp_or_pcp_t *, ssize_t, const struct sockaddr_storage * const);
+typedef gm_netif_t * (*for_each_interface_coroutine_t)(gm_netif_t *, const void * const);
+static gm_netif_t * for_each_interface(const for_each_interface_coroutine_t, const void * const);
 static void incoming_packet(int, void *, bool, bool, bool, bool);
 static void maintain_mappings();
 static void remove_pcp_mapping(gm_port_mapping_t *);
@@ -198,6 +200,41 @@ current_time()
   return t;
 }
 
+struct in6_addr
+best_matching_ipv6_address(
+ const gm_netif_t * const	interface,
+ const struct in6_addr * const	candidate,
+ uint32_t *			matching_bits)
+{
+  // Find the address of this interface that has the most high bits that match
+  // the given  address.
+
+  struct in6_addr result = {};
+
+  const struct in6_addr addresses[5] = { 
+    interface->ip6.link_local,
+    interface->ip6.site_local,
+    interface->ip6.global[0],
+    interface->ip6.global[1],
+    interface->ip6.global[2]
+  };
+
+  *matching_bits = 0;
+
+  for ( size_t i = 0; i < sizeof(addresses) / sizeof(*addresses); i++ ) {
+    size_t this_bits = gm_match_bits(
+     &addresses[i],
+     candidate,
+     sizeof(*candidate));
+
+    if ( this_bits > *matching_bits ) {
+      *matching_bits = this_bits;
+      result = addresses[i];
+    }
+  }
+  return result;
+}
+
 void
 decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr_storage * const address)
 {
@@ -211,7 +248,7 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr_
 
   if ( ipv4 ) {
     port = ntohs(((struct sockaddr_in *)address)->sin_port);
-    if ( ((struct sockaddr_in *)address)->sin_addr.s_addr != interface->ip4.router.sin_addr.s_addr ) {
+    if ( ((struct sockaddr_in *)address)->sin_addr.s_addr != interface->ip4.router.s_addr ) {
       GM_WARN_ONCE("IPV4 packet not from the router, ignored.\n");
       return;
     }
@@ -219,9 +256,9 @@ decode_packet(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr_
   else {
     port = ntohs(((struct sockaddr_in6 *)address)->sin6_port);
     if ( memcmp(
-     &((struct sockaddr_in6 *)address)->sin6_addr,
-     &interface->ip6.router.sin6_addr,
-     sizeof(interface->ip6.router.sin6_addr)) != 0 ) {
+     &((struct sockaddr_in6 *)address)->sin6_addr.s6_addr,
+     &interface->ip6.router.s6_addr,
+     sizeof(interface->ip6.router.s6_addr)) != 0 ) {
       GM_WARN_ONCE("IPV6 packet not from the router, ignored.\n");
       return;
     }
@@ -293,13 +330,8 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr
   // Get the address type (global, link-local, etc.) for the IPv6 address.
   esp_ip6_addr_type_t ipv6_type = esp_netif_ip6_get_addr_type(&esp_addr);
 
-  gm_port_mapping_t * m;
-  if ( ipv6_type == ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6 )
-   m = GM.sta.ip4.port_mappings;
-  else
-    m = GM.sta.ip6.port_mappings;
-
-  if ( (m = find_mapping(m, &p->pcp.mp.nonce)) == 0 ) {
+  gm_port_mapping_t * m = find_mapping(&p->pcp.mp.nonce);
+  if ( m == 0 ) {
     GM_WARN_ONCE("PCP: Received unrequested mapping, ignoring.\n");
     return;
   }
@@ -316,8 +348,8 @@ decode_pcp_map(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockaddr
     inet_ntop(AF_INET6, p->pcp.mp.external_address.sin6_addr.s6_addr, buffer, sizeof(buffer));
     if ( memcmp(
      &p->pcp.mp.external_address.sin6_addr,
-     &GM.sta.ip6.link_local.sin6_addr,
-     sizeof(GM.sta.ip6.link_local.sin6_addr)) == 0 ) {
+     &m->interface->ip6.link_local,
+     sizeof(m->interface->ip6.link_local)) == 0 ) {
       GM_WARN_ONCE("Warning: The router responded to a PCP map request with a useless mapping specifying the link-local address of this device, instead of the global address of the router. This is probably a MiniUPnPd bug.\n");
     }
     else {
@@ -344,35 +376,46 @@ decode_pcp_peer(nat_pmp_or_pcp_t * p, ssize_t message_size, const struct sockadd
 }
 
 static gm_port_mapping_t *
-find_coroutine(gm_port_mapping_t * const m, const void * const d)
+find_mapping(const gm_pcp_nonce_t * const n)
 {
-  const gm_pcp_nonce_t * const n = (const gm_pcp_nonce_t *)d;
-
-  if ( memcmp(&m->nonce, n, sizeof(*n)) == 0 )
-    return m;
-  else
-    return 0;
+  gm_netif_t *
+  coroutine1(
+   gm_netif_t * const	i,
+   const void * const	d)
+  {
+    gm_port_mapping_t *
+    coroutine2(gm_port_mapping_t * const m, const void * const d)
+    {
+      const gm_pcp_nonce_t * const n = (const gm_pcp_nonce_t *)d;
+    
+      if ( memcmp(&m->nonce, n, sizeof(*n)) == 0 )
+        return m;
+      else
+        return 0;
+    }
+  
+    gm_port_mapping_t * m = for_each_mapping(i->ip4.port_mappings, coroutine2, d);
+    if ( m )
+      return (gm_netif_t *)m;
+    m = for_each_mapping(i->ip6.port_mappings, coroutine2, d);
+    return (gm_netif_t *)m;
+  }
+  
+  return (gm_port_mapping_t *)for_each_interface(coroutine1, n);
 }
 
-static gm_port_mapping_t *
-find_mapping(gm_port_mapping_t * m, const void * const d)
-{
-  return for_each_mapping(m, find_coroutine, d);
-}
-
-typedef gm_netif_t * (*for_each_interface_coroutine_t)(gm_netif_t *, const void * const);
 
 static gm_netif_t *
 for_each_interface(const for_each_interface_coroutine_t f, const void * const d)
 {
-  gm_netif_t * const sta_result = f(&GM.sta, d);
-  if ( sta_result )
-    return sta_result;
-#if 0
-  gm_netif_t * const eth_result = f(&GM.eth, d);
-  if ( eth_result )
-    return eth_result;
-#endif
+  for ( size_t n = 0; n < (sizeof(GM.net_interfaces) / sizeof(GM.net_interfaces[0])); n++ ) {
+    gm_netif_t * const i = &GM.net_interfaces[n];
+    if ( i ) {
+      gm_netif_t * const result = f(i, d);
+      if ( result )
+        return result;
+    }
+  }
 
   return 0;
 }
@@ -409,7 +452,7 @@ gm_pcp_request_mapping_ipv4(gm_netif_t * interface)
      // IPV6-mapped-IPV4 client address.
     .pcp.request.client_address.ipv4_to_ipv6_mapping.all_ones[0] = 0xff,
     .pcp.request.client_address.ipv4_to_ipv6_mapping.all_ones[1] = 0xff,
-    .pcp.request.client_address.ipv4_to_ipv6_mapping.s_addr = interface->ip4.address.sin_addr.s_addr,
+    .pcp.request.client_address.ipv4_to_ipv6_mapping.s_addr = interface->ip4.address.s_addr,
 
     // This sets the requested address to the all-zeroes IPV6-mapped-IPV4
     // address: ::ffff:0.0.0.0 .
@@ -419,12 +462,13 @@ gm_pcp_request_mapping_ipv4(gm_netif_t * interface)
 
     .pcp.mp.protocol = GM_PCP_TCP,
     .pcp.mp.internal_port = htons(https_port),
+    .pcp.mp.external_port = htons(external_https_port),
    
     .pcp.mp.nonce = random_nonce()
   };
 
   const struct sockaddr_in address = {
-    .sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr,
+    .sin_addr.s_addr = interface->ip4.router.s_addr,
     .sin_family = AF_INET,
     .sin_port = htons(PCP_SERVER_PORT)
   };
@@ -454,7 +498,7 @@ gm_pcp_request_mapping_ipv6(gm_netif_t * interface)
 
   const struct sockaddr_in6 address = {
     .sin6_family = AF_INET6,
-    .sin6_addr = GM.sta.ip6.router.sin6_addr,
+    .sin6_addr = interface->ip6.router,
     .sin6_port = htons(PCP_SERVER_PORT)
   };
 
@@ -501,7 +545,7 @@ gm_pcp_start_ipv4(gm_netif_t * interface)
   }
 
   const struct ip_mreq m = {
-   .imr_interface.s_addr = GM.sta.ip4.address.sin_addr.s_addr,
+   .imr_interface.s_addr = interface->ip4.address.s_addr,
    .imr_multiaddr.s_addr = htonl((224 << 24) + 1) // 224.0.0.1
   };
   if ( setsockopt(ipv4_socket, IPPROTO_IP, IP_ADD_MEMBERSHIP, &m, sizeof(m)) < 0 ) {
@@ -519,36 +563,24 @@ gm_pcp_start_ipv4(gm_netif_t * interface)
 void
 gm_pcp_start_ipv6(gm_netif_t * interface)
 {
+  struct in6_addr result = {};
+  uint32_t matching_bits = 0;
+
   if ( ipv6_socket >= 0 )
     return;
 
   // Find the local address that has the most high bits that match the router's
   // address. Use that address to communicate with the router.
-  struct in6_addr addresses[5] = { 
-    GM.sta.ip6.link_local.sin6_addr,
-    GM.sta.ip6.site_local.sin6_addr,
-  };
-  memcpy(&addresses[2], GM.sta.ip6.global, sizeof(*addresses) * 3);
+  result = best_matching_ipv6_address(
+   interface,
+   &interface->ip6.router,
+   &matching_bits);
 
-  size_t bits = 0;
 
-  for ( size_t i = 0; i < sizeof(addresses) / sizeof(*addresses); i++ ) {
-    size_t this_bits = gm_match_bits(
-     &addresses[i],
-     &GM.sta.ip6.router.sin6_addr,
-     sizeof(*addresses));
-
-    if ( this_bits > bits ) {
-      my_ipv6_address.sin6_addr = addresses[i];
-      bits = this_bits;
-    }
-  }
-
-  if ( bits == 0 ) {
+  if ( matching_bits == 0 ) {
     GM_FAIL("Didn't find a local address that matches the router.");
     return;
   }
-
 
   ipv6_socket = socket(AF_INET6, SOCK_DGRAM, IPPROTO_UDP);
   if ( ipv6_socket < 0 ) {
@@ -562,6 +594,7 @@ gm_pcp_start_ipv6(gm_netif_t * interface)
   setsockopt(ipv6_socket, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
   // setsockopt(ipv6_socket, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes));
 
+  my_ipv6_address.sin6_addr = result;
   if ( bind(ipv6_socket, (struct sockaddr *)&my_ipv6_address, sizeof(my_ipv6_address)) < 0 ) {
     GM_FAIL_WITH_OS_ERROR("Bind failed");
     return;
@@ -597,13 +630,20 @@ gm_pcp_stop(gm_netif_t * interface)
     close(ipv6_socket);
     ipv6_socket = -1;
   }
-
+  
   // All I/O is shut down, so  at this point, there can be no
   // new port mappings. Remove the existing port mapping data.
-  for_each_mapping(GM.sta.ip4.port_mappings, free_mapping, 0);
-  GM.sta.ip4.port_mappings = 0;
-  for_each_mapping(GM.sta.ip6.port_mappings, free_mapping, 0);
-  GM.sta.ip6.port_mappings = 0;
+  gm_netif_t *
+  coroutine(gm_netif_t * const interface, const void * const data)
+  {
+    for_each_mapping(interface->ip4.port_mappings, free_mapping, 0);
+    interface->ip4.port_mappings = 0;
+    for_each_mapping(interface->ip6.port_mappings, free_mapping, 0);
+    interface->ip6.port_mappings = 0;
+    return 0;
+  }
+  
+  for_each_interface(coroutine, 0);
 }
 
 static void
@@ -645,7 +685,39 @@ gm_netif_t *
 interface_for_sockaddr(const struct sockaddr_storage * const s, bool * ipv4)
 {
   *ipv4 = s->ss_family == AF_INET;
-  return &GM.sta;
+
+  gm_netif_t *	interface = 0;
+  uint32_t	best_match_so_far = 0;
+  const size_t	number_of_interfaces =
+   sizeof(GM.net_interfaces) / sizeof(GM.net_interfaces[0]);
+
+  for ( size_t i = 0; i < number_of_interfaces; i++ ) {
+    if ( *ipv4 ) {
+      const uint32_t matching_bits = gm_match_bits(
+       &GM.net_interfaces[i].ip4.address,
+       &((struct sockaddr_in *)s)->sin_addr.s_addr,
+       sizeof(GM.net_interfaces[0].ip4.address));
+
+       if ( matching_bits > best_match_so_far ) {
+         best_match_so_far = matching_bits;
+         interface = &GM.net_interfaces[i];
+       }
+    }
+    else {
+       uint32_t	matching_bits;
+
+       (void) best_matching_ipv6_address(
+        &GM.net_interfaces[i],
+        &((struct sockaddr_in6 *)s)->sin6_addr,
+        &matching_bits);
+
+       if ( matching_bits > best_match_so_far ) {
+         best_match_so_far = matching_bits;
+         interface = &GM.net_interfaces[i];
+       }
+    }
+  }
+  return interface;
 }
 
 static bool
@@ -658,40 +730,39 @@ is_ipv4_mapped_ipv6(const pcp_address_t * a)
   && a->ipv4_to_ipv6_mapping.all_ones[1] == 0xff;
 }
 
-static gm_port_mapping_t *
-maintain_mappings_coroutine(gm_port_mapping_t * m, const void *)
-{
-  const struct timeval now = current_time();
-
-  if ( m->type == GM_GRANTED ) {
-    if ( timercmp(&m->expiration_time, &now, >) ) {
-      m->type = GM_REQUEST;
-      renew_mapping(m);
-    }
-    else {
-      struct timeval remaining;
-      timersub(&m->expiration_time, &now, &remaining);
-      if ( remaining.tv_sec < m->lifetime / 3 )
-        renew_mapping(m);
-    }
-  }
-  else {
-    // This is a requested mapping that hasn't been confirmed by the server.
-    renew_mapping(m);
-  }
-  return 0;
-}
-
 static void
 maintain_mappings()
 {
+  gm_port_mapping_t *
+  coroutine(gm_port_mapping_t * m, const void *)
+  {
+    const struct timeval now = current_time();
+  
+    if ( m->type == GM_GRANTED ) {
+      if ( timercmp(&m->expiration_time, &now, >) ) {
+        m->type = GM_REQUEST;
+        renew_mapping(m);
+      }
+      else {
+        struct timeval remaining;
+        timersub(&m->expiration_time, &now, &remaining);
+        if ( remaining.tv_sec < m->lifetime / 3 )
+          renew_mapping(m);
+      }
+    }
+    else {
+      // This is a requested mapping that hasn't been confirmed by the server.
+      renew_mapping(m);
+    }
+    return 0;
+  }
+  
   gm_printf("In maintain_mappings.\n");
-
   if ( ipv4_socket >= 0 )
-    for_each_mapping(GM.sta.ip4.port_mappings, maintain_mappings_coroutine, 0);
+    for_each_mapping(GM.net_interfaces[GM_STA].ip4.port_mappings, coroutine, 0);
 
   if ( ipv6_socket >= 0 )
-    for_each_mapping(GM.sta.ip6.port_mappings, maintain_mappings_coroutine, 0);
+    for_each_mapping(GM.net_interfaces[GM_STA].ip6.port_mappings, coroutine, 0);
 }
 
 // Provide random nonce data in assignable form, so that I can make
@@ -703,35 +774,35 @@ random_nonce() {
   return n;
 }
 
-static gm_port_mapping_t *
-remove_pcp_mapping_coroutine(gm_port_mapping_t * m, const void * n)
-{
-  while ( m ) {
-    if ( m->next == n ) {
-      m->next = m->next->next;
-      free(m);
-      return (gm_port_mapping_t *)1;
-    }
-  }
-  return 0;
-}
-
 // I could do this using pointers to pointers and a custom loop.
 static void
 remove_pcp_mapping(gm_port_mapping_t * m)
 {
-  if ( m == GM.sta.ip4.port_mappings ) {
-    GM.sta.ip4.port_mappings = GM.sta.ip4.port_mappings->next;
+  if ( m == GM.net_interfaces[GM_STA].ip4.port_mappings ) {
+    GM.net_interfaces[GM_STA].ip4.port_mappings = GM.net_interfaces[GM_STA].ip4.port_mappings->next;
     return;
   }
-  if ( m == GM.sta.ip6.port_mappings ) {
-    GM.sta.ip6.port_mappings = GM.sta.ip6.port_mappings->next;
+  if ( m == GM.net_interfaces[GM_STA].ip6.port_mappings ) {
+    GM.net_interfaces[GM_STA].ip6.port_mappings = GM.net_interfaces[GM_STA].ip6.port_mappings->next;
     return;
   }
 
-  if ( for_each_mapping(GM.sta.ip4.port_mappings, remove_pcp_mapping_coroutine, m) )
+  gm_port_mapping_t *
+  coroutine(gm_port_mapping_t * m, const void * n)
+  {
+    while ( m ) {
+      if ( m->next == n ) {
+        m->next = m->next->next;
+        free(m);
+        return (gm_port_mapping_t *)1;
+      }
+    }
+    return 0;
+  }
+  
+  if ( for_each_mapping(GM.net_interfaces[GM_STA].ip4.port_mappings, coroutine, m) )
     return;
-  if ( for_each_mapping(GM.sta.ip6.port_mappings, remove_pcp_mapping_coroutine, m) )
+  if ( for_each_mapping(GM.net_interfaces[GM_STA].ip6.port_mappings, coroutine, m) )
     return;
 }
 
@@ -740,11 +811,18 @@ renew_all_mappings()
 {
   gm_printf("In renew_all_mappings.\n");
 
-  if ( ipv4_socket >= 0 )
-    for_each_mapping(GM.sta.ip4.port_mappings, renew_if_granted, 0);
-
-  if ( ipv6_socket >= 0 )
-    for_each_mapping(GM.sta.ip6.port_mappings, renew_if_granted, 0);
+  gm_netif_t *
+  coroutine(gm_netif_t * interface, const void * const)
+  {
+    if ( ipv4_socket >= 0 )
+      for_each_mapping(GM.net_interfaces[GM_STA].ip4.port_mappings, renew_if_granted, 0);
+  
+    if ( ipv6_socket >= 0 )
+  	  for_each_mapping(GM.net_interfaces[GM_STA].ip6.port_mappings, renew_if_granted, 0);
+    return 0;
+  }
+  
+  for_each_interface(coroutine, 0);
 }
 
 static void
@@ -785,12 +863,12 @@ renew_ipv4(const gm_port_mapping_t * const m)
     .pcp.mp.external_address.ipv4_to_ipv6_mapping.s_addr = s->sin_addr.s_addr,
     .pcp.mp.external_port = htons(s->sin_port),
     .pcp.mp.protocol = m->protocol,
-    .pcp.mp.internal_port = htons(m->internal_port),
+    .pcp.mp.internal_port = htons(((struct sockaddr_in *)&m->internal)->sin_port),
     .pcp.mp.nonce = m->nonce
   };
 
   const struct sockaddr_in address = {
-    .sin_addr.s_addr = GM.sta.ip4.router.sin_addr.s_addr,
+    .sin_addr.s_addr = m->interface->ip4.router.s_addr,
     .sin_family = AF_INET,
     .sin_port = htons(PCP_SERVER_PORT)
   };
@@ -811,12 +889,12 @@ renew_ipv6(const gm_port_mapping_t * const m)
     .pcp.mp.external_address.sin6_addr = s->sin6_addr,
     .pcp.mp.external_port = htons(s->sin6_port),
     .pcp.mp.protocol = m->protocol,
-    .pcp.mp.internal_port = htons(m->internal_port),
+    .pcp.mp.internal_port = htons(((struct sockaddr_in6 *)&m->internal)->sin6_port),
     .pcp.mp.nonce = m->nonce
   };
 
   const struct sockaddr_in6 address = {
-    .sin6_addr = GM.sta.ip6.router.sin6_addr,
+    .sin6_addr = m->interface->ip6.router,
     .sin6_family = AF_INET6,
     .sin6_port = htons(PCP_SERVER_PORT)
   };
@@ -850,10 +928,12 @@ save_pcp_mapping(
 {
   const gm_port_mapping_t m = {
     .protocol = p->pcp.mp.protocol,
+    .internal = assign_sockaddr(
+     &p->pcp.request.client_address,
+     ntohs(p->pcp.mp.internal_port)),
     .external = assign_sockaddr(
      &p->pcp.mp.external_address,
      ntohs(p->pcp.mp.external_port)),
-    .internal_port = ntohs(p->pcp.mp.internal_port),
     .lifetime = ntohl(p->pcp.lifetime),
     .nonce = p->pcp.mp.nonce,
     .granted_time = current_time()

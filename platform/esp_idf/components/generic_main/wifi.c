@@ -96,9 +96,9 @@ gm_wifi_start(void)
   wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
 
   // Initialize the TCP/IP interfaces for WiFi.
-  GM.sta.esp_netif = esp_netif_create_default_wifi_sta();
-  // GM.ap_netif = esp_netif_create_default_wifi_ap();
-  // assert(GM.ap.netif);
+  GM.net_interfaces[GM_STA].esp_netif = esp_netif_create_default_wifi_sta();
+  // GM.net_interfaces[GM_AP].esp_netif = esp_netif_create_default_wifi_ap();
+  // assert(GM.net_interfaces[GM_AP].esp_netif);
 
   // Register the event handler for WiFi station ready.
   ESP_ERROR_CHECK( esp_event_handler_register(WIFI_EVENT, WIFI_EVENT_STA_START, &wifi_event_sta_start, NULL) );
@@ -106,7 +106,7 @@ gm_wifi_start(void)
 
   ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
   ESP_ERROR_CHECK( esp_wifi_set_mode(WIFI_MODE_STA) );
-  ESP_ERROR_CHECK(esp_netif_set_hostname(GM.sta.esp_netif, "ht"));
+  ESP_ERROR_CHECK(esp_netif_set_hostname(GM.net_interfaces[GM_STA].esp_netif, "ht"));
   ESP_ERROR_CHECK( esp_wifi_start() );
 }
 
@@ -156,18 +156,16 @@ void wifi_event_sta_disconnected(void* arg, esp_event_base_t event_base, int32_t
 static void
 ipv6_router_advertisement_handler(struct sockaddr_in6 * address, uint16_t router_lifetime)
 {
-  if ( !gm_all_zeroes(GM.sta.ip6.router.sin6_addr.s6_addr, sizeof(GM.sta.ip6.router.sin6_addr.s6_addr))
-   && memcmp(GM.sta.ip6.router.sin6_addr.s6_addr, address->sin6_addr.s6_addr, sizeof(address->sin6_addr.s6_addr)) != 0 ) {
+  if ( !gm_all_zeroes(GM.net_interfaces[GM_STA].ip6.router.s6_addr, sizeof(GM.net_interfaces[GM_STA].ip6.router.s6_addr))
+   && memcmp(GM.net_interfaces[GM_STA].ip6.router.s6_addr, address->sin6_addr.s6_addr, sizeof(address->sin6_addr.s6_addr)) != 0 ) {
     GM_WARN_ONCE("Received a router advertisement from more than one IPv6 router. Ignoring all but the first.\n");
     return;
   }
-  memcpy(GM.sta.ip6.router.sin6_addr.s6_addr, address->sin6_addr.s6_addr, sizeof(address->sin6_addr.s6_addr));
-  GM.sta.ip6.router.sin6_family = AF_INET6;
-  GM.sta.ip6.router.sin6_port = 0;
+  memcpy(GM.net_interfaces[GM_STA].ip6.router.s6_addr, address->sin6_addr.s6_addr, sizeof(address->sin6_addr.s6_addr));
   if ( !pcp_ipv6_started ) {
     pcp_ipv6_started = true;
-    gm_pcp_start_ipv6(&GM.sta);
-    gm_pcp_request_mapping_ipv6(&GM.sta);
+    gm_pcp_start_ipv6(&GM.net_interfaces[GM_STA]);
+    gm_pcp_request_mapping_ipv6(&GM.net_interfaces[GM_STA]);
   }
 }
 
@@ -175,9 +173,9 @@ static void wifi_event_sta_connected_to_ap(void* arg, esp_event_base_t event_bas
   // Start the ICMPv6 listener as early as possible, so that we get the router
   // advertisement that is solicited when the IPV6 interfaces are configured.
   gm_icmpv6_start_listener_ipv6(ipv6_router_advertisement_handler);
-  ESP_ERROR_CHECK_WITHOUT_ABORT(esp_netif_create_ip6_linklocal(GM.sta.esp_netif));
-  dhcp6_enable_stateful(GM.sta.esp_netif->lwip_netif);
-  dhcp6_enable_stateless(GM.sta.esp_netif->lwip_netif);
+  ESP_ERROR_CHECK_WITHOUT_ABORT(esp_netif_create_ip6_linklocal(GM.net_interfaces[GM_STA].esp_netif));
+  dhcp6_enable_stateful(GM.net_interfaces[GM_STA].esp_netif->lwip_netif);
+  dhcp6_enable_stateless(GM.net_interfaces[GM_STA].esp_netif->lwip_netif);
 }
 
 // This handler is called only when the "sta" netif gets an IPv4 address.
@@ -186,21 +184,19 @@ static void ip_event_sta_got_ip4(void* arg, esp_event_base_t event_base, int32_t
   char	buffer[INET6_ADDRSTRLEN + 1];
 
   // Save the IP information for other facilities, like NAT-PCP, to use.
-  GM.sta.esp_netif = event->esp_netif;
-  GM.sta.ip4.address.sin_family = AF_INET;
-  GM.sta.ip4.address.sin_addr.s_addr = event->ip_info.ip.addr;
-  GM.sta.ip4.router.sin_family = AF_INET;
-  GM.sta.ip4.router.sin_addr.s_addr = event->ip_info.gw.addr;
-  GM.sta.ip4.netmask = event->ip_info.netmask.addr;
+  GM.net_interfaces[GM_STA].esp_netif = event->esp_netif;
+  GM.net_interfaces[GM_STA].ip4.address.s_addr = event->ip_info.ip.addr;
+  GM.net_interfaces[GM_STA].ip4.router.s_addr = event->ip_info.gw.addr;
+  GM.net_interfaces[GM_STA].ip4.netmask = event->ip_info.netmask.addr;
 
   inet_ntop(AF_INET, &event->ip_info.ip.addr, buffer, sizeof(buffer));
   gm_printf("Got IPv4: interface %s, address %s ", esp_netif_get_desc(event->esp_netif), buffer);
   inet_ntop(AF_INET, &event->ip_info.gw.addr, buffer, sizeof(buffer));
   gm_printf("router %s\n", buffer);
   gm_sntp_start();
-  gm_stun(false, (struct sockaddr *)&GM.sta.ip4.router_public_ip, after_stun);
-  gm_pcp_start_ipv4(&GM.sta);
-  gm_pcp_request_mapping_ipv4(&GM.sta);
+  gm_stun(false, (struct sockaddr *)&GM.net_interfaces[GM_STA].ip4.router_public_ip, after_stun);
+  gm_pcp_start_ipv4(&GM.net_interfaces[GM_STA]);
+  gm_pcp_request_mapping_ipv4(&GM.net_interfaces[GM_STA]);
   start_webserver();
   gm_log_server_start();
 }
@@ -208,7 +204,7 @@ static void ip_event_sta_got_ip4(void* arg, esp_event_base_t event_base, int32_t
 // This handler is called when any netif gets an IPv6 address.
 static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t event_id, void* event_data) {
   const unsigned int public_address_count = \
-   sizeof(GM.sta.ip6.global) / sizeof(*GM.sta.ip6.global);
+   sizeof(GM.net_interfaces[GM_STA].ip6.global) / sizeof(*GM.net_interfaces[GM_STA].ip6.global);
   char buffer[INET6_ADDRSTRLEN + 1];
 
   ip_event_got_ip6_t *	event = (ip_event_got_ip6_t*)event_data;
@@ -224,9 +220,11 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
   fflush(stderr);
 
   if (strcmp(netif_name, "sta") == 0)
-    interface = &GM.sta;
+    interface = &GM.net_interfaces[GM_STA];
   else if (strcmp(netif_name, "ap") == 0)
-    interface = &GM.ap;
+    interface = &GM.net_interfaces[GM_AP];
+  else if (strcmp(netif_name, "eth") == 0)
+    interface = &GM.net_interfaces[GM_ETH];
   else
     return;
   
@@ -236,27 +234,23 @@ static void ip_event_got_ip6(void* arg, esp_event_base_t event_base, int32_t eve
   case ESP_IP6_ADDR_IS_GLOBAL:
     for ( unsigned int i = 0; i < public_address_count - 1; i++) {
        // If we already have this address, don't add it twice.
-       if (memcmp(interface->ip6.global[i].sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr)) == 0)
+       if (memcmp(interface->ip6.global[i].s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr)) == 0)
          break;
        // If one of the public address entries is all zeroes, copy the address into it.
-       if (gm_all_zeroes(&interface->ip6.global[i].sin6_addr.s6_addr, sizeof(&interface->ip6.global[0].sin6_addr.s6_addr))) {
-         interface->ip6.global[i].sin6_family = AF_INET6;
-         memcpy(interface->ip6.global[i].sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
+       if (gm_all_zeroes(&interface->ip6.global[i].s6_addr, sizeof(&interface->ip6.global[0].s6_addr))) {
+         memcpy(interface->ip6.global[i].s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
          break;
        }
     }
     break;
   case ESP_IP6_ADDR_IS_LINK_LOCAL:
-    interface->ip6.link_local.sin6_family = AF_INET6;
-    memcpy(interface->ip6.link_local.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
+    memcpy(interface->ip6.link_local.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
     break;
   case ESP_IP6_ADDR_IS_SITE_LOCAL:
-    interface->ip6.site_local.sin6_family = AF_INET6;
-    memcpy(interface->ip6.site_local.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
+    memcpy(interface->ip6.site_local.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
     break;
   case ESP_IP6_ADDR_IS_UNIQUE_LOCAL:
-    interface->ip6.site_unique.sin6_family = AF_INET6;
-    memcpy(interface->ip6.site_unique.sin6_addr.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
+    memcpy(interface->ip6.site_unique.s6_addr, event->ip6_info.ip.addr, sizeof(event->ip6_info.ip.addr));
     break;
   case ESP_IP6_ADDR_IS_IPV4_MAPPED_IPV6:
     break;
@@ -309,7 +303,7 @@ gm_wifi_stop()
   stop_webserver();
   gm_log_server_stop();
   gm_icmpv6_stop_listener_ipv6();
-  gm_pcp_stop(&GM.sta);
+  gm_pcp_stop(&GM.net_interfaces[GM_STA]);
   gm_stun_stop();
   gm_sntp_stop();
   if ( gm_wifi_is_connected() ) {

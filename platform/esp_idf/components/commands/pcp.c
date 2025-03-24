@@ -20,9 +20,9 @@ static int run(int argc, char * * argv)
   }
   printf("\n"); 
   if ( args.ipv6->count > 0 )
-    gm_pcp_request_mapping_ipv6(&GM.sta);
+    gm_pcp_request_mapping_ipv6(&GM.net_interfaces[GM_STA]);
   else
-    gm_pcp_request_mapping_ipv4(&GM.sta);
+    gm_pcp_request_mapping_ipv4(&GM.net_interfaces[GM_STA]);
 
   return 0;
 }

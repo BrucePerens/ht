@@ -86,7 +86,7 @@ gm_log_server_start(void)
   server = socket(AF_INET, SOCK_STREAM, 0);
 
   address.sin_family = AF_INET;
-  address.sin_addr.s_addr = GM.sta.ip4.address.sin_addr.s_addr;
+  address.sin_addr.s_addr = GM.net_interfaces[GM_STA].ip4.address.s_addr;
   address.sin_port = htons(23);
 
   if ( bind(server, (struct sockaddr *)&address, sizeof(address)) != 0 ) {
