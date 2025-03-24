@@ -5,7 +5,7 @@ var searchData=
   ['characters_2',['characters',['../union_cookie_payload.html#aaa9d24212c7053a96342a2e6bd55b084',1,'CookiePayload']]],
   ['checksum_3',['checksum',['../struct__icmpv6__message.html#a6796c847bbd16253ce2538754c250bd6',1,'_icmpv6_message']]],
   ['class_4',['class',['../structstun__attribute.html#a17f4064b3a26c1ff2aea6b50dfca9d9e',1,'stun_attribute']]],
-  ['client_5faddress_5',['client_address',['../struct__nat__pmp__or__pcp.html#abf246fc0c6f7fcd27223f0704e855247',1,'_nat_pmp_or_pcp']]],
+  ['client_5faddress_5',['client_address',['../struct__pcp__packet.html#abf246fc0c6f7fcd27223f0704e855247',1,'_pcp_packet']]],
   ['code_6',['code',['../struct__icmpv6__message.html#a966576744a473fafb7687f8e5649941f',1,'_icmpv6_message']]],
   ['compressed_5ffs_5fmagic_7',['compressed_fs_magic',['../compressed__fs_8h.html#acc418e31c4f621d9786362d258de9cd6',1,'compressed_fs.h']]],
   ['compressed_5fsize_8',['compressed_size',['../structcompressed__fs__entry.html#a0390ef14e544845805d363863209a341',1,'compressed_fs_entry']]],

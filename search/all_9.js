@@ -15,7 +15,7 @@ var searchData=
   ['int_12',['INT',['../generic__main_8h.html#ad1bd8b42ebaf7b55f667a193621739e6afd5a5f51ce25953f3db2c7e93eb7864a',1,'generic_main.h']]],
   ['interface_13',['interface',['../struct__gm__port__mapping.html#ae0ac79952e3acf9e17f9e52ab2f124d5',1,'_gm_port_mapping']]],
   ['internal_14',['internal',['../struct__gm__port__mapping.html#a9b9f1b7cf6eab378968dcaa597608c5e',1,'_gm_port_mapping']]],
-  ['internal_5fport_15',['internal_port',['../struct__nat__pmp__or__pcp.html#a1b5ddb5de38d1042c02bc72fd41311b4',1,'_nat_pmp_or_pcp']]],
+  ['internal_5fport_15',['internal_port',['../struct__pcp__packet_1_1pcp__map__peer.html#a1b5ddb5de38d1042c02bc72fd41311b4',1,'_pcp_packet::pcp_map_peer']]],
   ['ip4_16',['ip4',['../struct__gm__netif.html#ab9ef7195a36b5427338db9911416c778',1,'_gm_netif']]],
   ['ip6_17',['ip6',['../struct__gm__netif.html#a9894ed5fe050701c50b43fcd955be95f',1,'_gm_netif']]],
   ['ipv4_18',['ipv4',['../structstun__attribute.html#add3360fe1b943393e493a602765d9f05',1,'stun_attribute']]],

@@ -14,6 +14,7 @@ var struct__generic__main =
     [ "log_file_pointer", "struct__generic__main.html#a24738a7628babf4c49890c1b0f4dbb09", null ],
     [ "medium_event_loop", "struct__generic__main.html#ae111d446a669cf3f9461cdde9806f8ee", null ],
     [ "net_interfaces", "struct__generic__main.html#a7c6a7019e77386c3265acb48b5deca9b", null ],
+    [ "next_free_net_interface", "struct__generic__main.html#ae7cdf37cdfd522ab0d8bb9cb99c5672e", null ],
     [ "nvs", "struct__generic__main.html#ae854bbaa72998a26e43f827235f88777", null ],
     [ "nvs_index", "struct__generic__main.html#a1350a415f70a900437755a7ac02157b8", null ],
     [ "repl", "struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4", null ],

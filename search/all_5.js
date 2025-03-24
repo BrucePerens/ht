@@ -7,10 +7,10 @@ var searchData=
   ['end_4',['end',['../date_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;date.c'],['../ddns_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;ddns.c'],['../fds_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;fds.c'],['../gpio_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;gpio.c'],['../pcp_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;pcp.c'],['../public__ip__cmd_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;public_ip_cmd.c'],['../commands_2stun_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;stun.c'],['../tasks_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;tasks.c'],['../structrequest.html#aa0c4bdeda46c4ae639e086c22fe5eed6',1,'request::end()'],['../uptime_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;uptime.c'],['../wget_8c.html#a088ac7ffa534015d5b07ddcc7aef9fd4',1,'end():&#160;wget.c']]],
   ['end_5fboilerplate_5',['end_boilerplate',['../web__template_8h.html#ad5ea7e68893a46cd22e8d686e5ed3496',1,'web_template.h']]],
   ['end_5fptr_6',['end_ptr',['../radio_8h.html#aab00c8b7e0117c18dbfe146b48234575',1,'radio.h']]],
-  ['epoch_7',['epoch',['../struct__nat__pmp__or__pcp.html#a6bf8f46b72d33a0bc8f527b37fd0eba9',1,'_nat_pmp_or_pcp']]],
+  ['epoch_7',['epoch',['../struct__pcp__packet.html#a6bf8f46b72d33a0bc8f527b37fd0eba9',1,'_pcp_packet']]],
   ['erase_8',['erase',['../commands_2nonvolatile_8c.html#a47a5d27444e33e9daca9e35f34f921a4',1,'nonvolatile.c']]],
   ['error_5fcode_9',['ERROR_CODE',['../generic__main_2stun_8c.html#a54d7b299e8d62d787fd56bddbdd68e13af92feceab1e86b1db3922220d4e26664',1,'stun.c']]],
-  ['error_5fcode_10',['error_code',['../structstun__attribute.html#a40cad3a1ec9cfe51cb9feaed5ed9e905',1,'stun_attribute']]],
+  ['error_5fcode_10',['error_code',['../structstun__attribute.html#a67120d226d768010a7b03f7340fdf484',1,'stun_attribute']]],
   ['error_5fmessage_11',['error_message',['../structradio__module.html#aed3e11140a4ff2456ee8cb2bb7271c3c',1,'radio_module']]],
   ['esp_5fevent_5fdeclare_5fbase_12',['ESP_EVENT_DECLARE_BASE',['../generic__main_8h.html#aa7d4b559afc372a06f52a961b83c46df',1,'generic_main.h']]],
   ['esp_5fevent_5fdefine_5fbase_13',['ESP_EVENT_DEFINE_BASE',['../event__loop_8c.html#a3c7b643325e4cd481b27739acc042b3c',1,'event_loop.c']]],
@@ -23,6 +23,6 @@ var searchData=
   ['expiration_5ftime_20',['expiration_time',['../struct__gm__port__mapping.html#a98ed99328ad621551cdfbee6b83754ae',1,'_gm_port_mapping']]],
   ['explanation_21',['explanation',['../structgm__nonvolatile.html#a0fd01ad3deedadb3bc0d980d65ebee61',1,'gm_nonvolatile']]],
   ['external_22',['external',['../struct__gm__port__mapping.html#a819a18877cda312f74540ef654995817',1,'_gm_port_mapping']]],
-  ['external_5faddress_23',['external_address',['../struct__nat__pmp__or__pcp.html#a0d4bfd1726b8bdaa5236558f733b9cd2',1,'_nat_pmp_or_pcp']]],
-  ['external_5fport_24',['external_port',['../struct__nat__pmp__or__pcp.html#a4579a6a3bb00195b8f1b0dbcf10984e5',1,'_nat_pmp_or_pcp']]]
+  ['external_5faddress_23',['external_address',['../struct__pcp__packet_1_1pcp__map__peer.html#a0d4bfd1726b8bdaa5236558f733b9cd2',1,'_pcp_packet::pcp_map_peer']]],
+  ['external_5fport_24',['external_port',['../struct__pcp__packet_1_1pcp__map__peer.html#a4579a6a3bb00195b8f1b0dbcf10984e5',1,'_pcp_packet::pcp_map_peer']]]
 ];

@@ -47,8 +47,8 @@ var generic__main_8h =
       [ "GM_RUN", "generic__main_8h.html#a1c6471ee124a77e8c5ec4a644b7f3305a655d31d9a860c2f89743d4535526e639", null ]
     ] ],
     [ "_gm_interface_index", "generic__main_8h.html#a8037d9e688b726396e53002dbef6e4c4", [
-      [ "GM_AP", "generic__main_8h.html#a8037d9e688b726396e53002dbef6e4c4a0193dd8720d786d81b26fb7f48f40a85", null ],
       [ "GM_STA", "generic__main_8h.html#a8037d9e688b726396e53002dbef6e4c4a4131dced4033a7a60efa596cb8ff72f6", null ],
+      [ "GM_AP", "generic__main_8h.html#a8037d9e688b726396e53002dbef6e4c4a0193dd8720d786d81b26fb7f48f40a85", null ],
       [ "GM_ETH", "generic__main_8h.html#a8037d9e688b726396e53002dbef6e4c4a3cde49942f090d217872b8c67e320c4d", null ]
     ] ],
     [ "_gm_nonvolatile_result", "generic__main_8h.html#aaad57ac91e77fd3345e35d4fa501b2aa", [

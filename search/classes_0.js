@@ -13,7 +13,7 @@ var searchData=
   ['_5ficmpv6_5fmessage_10',['_icmpv6_message',['../struct__icmpv6__message.html',1,'']]],
   ['_5fipv4_5fto_5fipv6_5fmapping_11',['_ipv4_to_ipv6_mapping',['../struct__pcp__address_1_1__ipv4__to__ipv6__mapping.html',1,'_pcp_address']]],
   ['_5fipv6_5fheader_12',['_ipv6_header',['../struct__icmpv6__message_1_1__ipv6__header.html',1,'_icmpv6_message']]],
-  ['_5fnat_5fpmp_5for_5fpcp_13',['_nat_pmp_or_pcp',['../struct__nat__pmp__or__pcp.html',1,'']]],
-  ['_5fpcp_5faddress_14',['_pcp_address',['../union__pcp__address.html',1,'']]],
+  ['_5fpcp_5faddress_13',['_pcp_address',['../union__pcp__address.html',1,'']]],
+  ['_5fpcp_5fpacket_14',['_pcp_packet',['../struct__pcp__packet.html',1,'']]],
   ['_5fra_15',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
 ];

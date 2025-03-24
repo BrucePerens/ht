@@ -22,11 +22,10 @@ var searchData=
   ['_5fipv4_5fto_5fipv6_5fmapping_19',['_ipv4_to_ipv6_mapping',['../struct__pcp__address_1_1__ipv4__to__ipv6__mapping.html',1,'_pcp_address']]],
   ['_5fipv6_5fheader_20',['_ipv6_header',['../struct__icmpv6__message_1_1__ipv6__header.html',1,'_icmpv6_message']]],
   ['_5fnat_5fpmp_5fopcode_21',['_nat_pmp_opcode',['../port__control__protocol_8c.html#a574e89b7a50f8f770daa6eddf0895828',1,'port_control_protocol.c']]],
-  ['_5fnat_5fpmp_5for_5fpcp_22',['_nat_pmp_or_pcp',['../struct__nat__pmp__or__pcp.html',1,'']]],
-  ['_5fnat_5fpmp_5fresponse_5fcode_23',['_nat_pmp_response_code',['../port__control__protocol_8c.html#adcc6fc6ee9d8cd37cf0a7fe3e6b9c6e5',1,'port_control_protocol.c']]],
-  ['_5fpcp_5faddress_24',['_pcp_address',['../union__pcp__address.html',1,'']]],
-  ['_5fpcp_5fopcode_25',['_pcp_opcode',['../port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751',1,'port_control_protocol.c']]],
-  ['_5fpcp_5fresult_5fcode_26',['_pcp_result_code',['../port__control__protocol_8c.html#a36e2a5b10c10531de01239e54ddc25a0',1,'port_control_protocol.c']]],
-  ['_5fpcp_5fversion_27',['_pcp_version',['../port__control__protocol_8c.html#a4a4af7f762c1a675739a6539948536a8',1,'port_control_protocol.c']]],
-  ['_5fra_28',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
+  ['_5fpcp_5faddress_22',['_pcp_address',['../union__pcp__address.html',1,'']]],
+  ['_5fpcp_5fopcode_23',['_pcp_opcode',['../port__control__protocol_8c.html#a92ec74947920554afe7c827630ae0751',1,'port_control_protocol.c']]],
+  ['_5fpcp_5fpacket_24',['_pcp_packet',['../struct__pcp__packet.html',1,'']]],
+  ['_5fpcp_5fresult_5fcode_25',['_pcp_result_code',['../port__control__protocol_8c.html#a36e2a5b10c10531de01239e54ddc25a0',1,'port_control_protocol.c']]],
+  ['_5fpcp_5fversion_26',['_pcp_version',['../port__control__protocol_8c.html#a4a4af7f762c1a675739a6539948536a8',1,'port_control_protocol.c']]],
+  ['_5fra_27',['_ra',['../struct__icmpv6__message_1_1__ra.html',1,'_icmpv6_message']]]
 ];
