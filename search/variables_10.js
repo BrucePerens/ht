@@ -19,8 +19,8 @@ var searchData=
   ['response_16',['response',['../struct__nat__pmp__or__pcp.html#ae1084f60bc67a8763ca2bf738124a944',1,'_nat_pmp_or_pcp::response()'],['../struct__nat__pmp__or__pcp.html#aa14ef1b5257ed5037c430d2f049e0511',1,'_nat_pmp_or_pcp::response()']]],
   ['result_5fcode_17',['result_code',['../struct__nat__pmp__or__pcp.html#a42daa7f6b6fd4bfae213808411a5e8ce',1,'_nat_pmp_or_pcp']]],
   ['retransmit_5ftimer_18',['retransmit_timer',['../struct__icmpv6__message_1_1__ra.html#aa3bcc107c5fcb7b9d54f3c672a4880f3',1,'_icmpv6_message::_ra']]],
-  ['router_19',['router',['../struct__gm__netif_1_1gm__netif__ip4.html#a76c167858effe7ee221df62c260cde4e',1,'_gm_netif::gm_netif_ip4::router()'],['../struct__gm__netif_1_1gm__netif__ip6.html#a5cab611a06e7eed74b08f509b6997a6c',1,'_gm_netif::gm_netif_ip6::router()']]],
+  ['router_19',['router',['../struct__gm__netif_1_1gm__netif__ip4.html#ab9daaaa812d2c0f54a5af7b15dbb28b1',1,'_gm_netif::gm_netif_ip4::router()'],['../struct__gm__netif_1_1gm__netif__ip6.html#a28f8ce6055c1fa6d4b337c648cf1da24',1,'_gm_netif::gm_netif_ip6::router()']]],
   ['router_5flifetime_20',['router_lifetime',['../struct__icmpv6__message_1_1__ra.html#aad10a5bcb25abcca8282d3a55dbc1458',1,'_icmpv6_message::_ra']]],
-  ['router_5fpublic_5fip_21',['router_public_ip',['../struct__gm__netif_1_1gm__netif__ip4.html#ae5173979fff7b6d14256f25bd34aaa60',1,'_gm_netif::gm_netif_ip4::router_public_ip()'],['../struct__gm__netif_1_1gm__netif__ip6.html#a73ca0b1d278c194990da9eddbdc3ba8d',1,'_gm_netif::gm_netif_ip6::router_public_ip()']]],
+  ['router_5fpublic_5fip_21',['router_public_ip',['../struct__gm__netif_1_1gm__netif__ip4.html#a93c3e8655e5f3b74ab26e7fa2b020b34',1,'_gm_netif::gm_netif_ip4::router_public_ip()'],['../struct__gm__netif_1_1gm__netif__ip6.html#a2382c71266593677abb9a121bb9d69e0',1,'_gm_netif::gm_netif_ip6::router_public_ip()']]],
   ['run_22',['run',['../structgm__event__t.html#a6fb782caacb45eeaf9bf33f5f372b830',1,'gm_event_t']]]
 ];

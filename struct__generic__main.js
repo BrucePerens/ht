@@ -2,7 +2,6 @@ var struct__generic__main =
 [
     [ "aes_cookie_context", "struct__generic__main.html#a9fdb30ef7b2e1becab1e2e57117a792e", null ],
     [ "aes_cookie_iv", "struct__generic__main.html#a74d8e89f87e4ed006a64c3356bb8dec9", null ],
-    [ "ap", "struct__generic__main.html#a5b9ded7f7c04d5754210be639ea9ac6b", null ],
     [ "application_name", "struct__generic__main.html#a9e847a23f360de37c084ec762a8a75b4", null ],
     [ "build_number", "struct__generic__main.html#a8494c2cbc48ea4044fadf5982763352d", null ],
     [ "build_version", "struct__generic__main.html#a07784bbd82144271ed1b23a64c946a40", null ],
@@ -14,11 +13,11 @@ var struct__generic__main =
     [ "log_fd", "struct__generic__main.html#ad9f84b0791cb1cac996456b223aeffec", null ],
     [ "log_file_pointer", "struct__generic__main.html#a24738a7628babf4c49890c1b0f4dbb09", null ],
     [ "medium_event_loop", "struct__generic__main.html#ae111d446a669cf3f9461cdde9806f8ee", null ],
+    [ "net_interfaces", "struct__generic__main.html#a7c6a7019e77386c3265acb48b5deca9b", null ],
     [ "nvs", "struct__generic__main.html#ae854bbaa72998a26e43f827235f88777", null ],
     [ "nvs_index", "struct__generic__main.html#a1350a415f70a900437755a7ac02157b8", null ],
     [ "repl", "struct__generic__main.html#a3807c4e08410473915ab4900b18ab8f4", null ],
     [ "slow_event_loop", "struct__generic__main.html#a0d02c66c8cb134c523b1c397b941ae33", null ],
-    [ "sta", "struct__generic__main.html#a477579ad6762a6fb11348e532989f90b", null ],
     [ "time_last_synchronized", "struct__generic__main.html#aee06400a85ce2c234482e68d6ecba864", null ],
     [ "unique_name", "struct__generic__main.html#a8a63147b17a52a0e8e33f5aa961b61dc", null ]
 ];

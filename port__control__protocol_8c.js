@@ -56,6 +56,7 @@ var port__control__protocol_8c =
       [ "PCP_SERVER_PORT", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fdacb52e7d1eb328dcdb3b891f7ac75ffa8", null ],
       [ "PCP_CLIENT_PORT", "port__control__protocol_8c.html#afd99e49e7909dd1145a257cd6e17e0fda5da67ab1f4f662c2b948e455a54d5125", null ]
     ] ],
+    [ "best_matching_ipv6_address", "port__control__protocol_8c.html#a41309602c18c582f48478c3d8032b243", null ],
     [ "decode_packet", "port__control__protocol_8c.html#af9bf2719fb6e9e9cafc0c95830b6e447", null ],
     [ "gm_pcp_request_mapping_ipv4", "port__control__protocol_8c.html#a4ea211ca6c94a61a5932486d8d45f84e", null ],
     [ "gm_pcp_request_mapping_ipv6", "port__control__protocol_8c.html#a15c038ec5d6298921469dfd64222cebb", null ],
